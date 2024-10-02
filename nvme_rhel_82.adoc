@@ -1,0 +1,379 @@
+---
+sidebar: sidebar 
+permalink: nvme_rhel_82.html 
+keywords: nvme, linux, rhel, red hat, enterprise 
+summary: Como configurar o host NVMe/FC para RHEL 8,2 com o ONTAP 
+---
+= Configuração de host NVMe/FC para RHEL 8,2 com ONTAP
+:hardbreaks:
+:toclevels: 1
+:allow-uri-read: 
+:toclevels: 1
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./media/
+
+
+[role="lead"]
+O NVMe/FC é compatível com o ONTAP 9.6 ou posterior para o Red Hat Enterprise Linux (RHEL) 8,2. O host RHEL 8,2 executa o tráfego NVMe e SCSI através das mesmas portas do adaptador iniciador de Fibre Channel (FC). Consulte o link:https://hwu.netapp.com/Home/Index["Hardware Universe"^] para obter uma lista de controladores e adaptadores FC compatíveis.
+
+Consulte a link:https://mysupport.netapp.com/matrix/["Ferramenta de Matriz de interoperabilidade do NetApp"^] para obter a lista mais atual de configurações suportadas.
+
+
+
+== Caraterísticas
+
+* Começando com RHEL 8,2, `nvme-fc auto-connect` os scripts são incluídos no pacote nativo `nvme-cli`. Você pode confiar nesses scripts nativos de conexão automática em vez de ter que instalar os scripts externos de conexão automática fornecidos pelo fornecedor externo.
+* A partir do RHEL 8,2, uma regra nativa `udev` já é fornecida como parte `nvme-cli` do pacote que permite o balanceamento de carga round-robin para multipath NVMe. Você não precisa criar manualmente esta regra mais (como foi feito no RHEL 8,1).
+* A partir do RHEL 8,2, o tráfego NVMe e SCSI podem ser executados no mesmo host coexistente. Na verdade, essa é a configuração de host implantada esperada. Portanto, para SCSI, você pode configurar `dm-multipath` como de costume para LUNs SCSI resultando `mpath` em dispositivos, enquanto o multipath NVMe pode ser usado para configurar dispositivos multipath NVMe-of no host.
+* A partir do RHEL 8,2, o plug-in NetApp no pacote nativo `nvme-cli` é capaz de exibir detalhes do ONTAP para namespaces ONTAP.
+
+
+
+
+== Limitações conhecidas
+
+* Para RHEL 8,2, o multipath NVMe no kernel é desativado por padrão. Portanto, você precisa ativá-lo manualmente.
+* A inicialização DE SAN usando o protocolo NVMe-of não é atualmente suportada.
+
+
+
+
+== Habilite o NVMe/FC
+
+Use o procedimento a seguir para ativar o NVMe/FC.
+
+.Passos
+. Instale o Red Hat Enterprise Linux 8,2 GA no servidor.
+. Se você estiver atualizando do RHEL 8,1 para o RHEL 8,2 usando `yum update/upgrade`, seus `/etc/nvme/host*` arquivos poderão ser perdidos. Para evitar a perda de arquivos, faça o seguinte:
++
+.. Faça backup de seus `/etc/nvme/host*` arquivos.
+.. Se você tiver uma regra editada manualmente `udev`, remova-a:
++
+[listing]
+----
+/lib/udev/rules.d/71-nvme-iopolicy-netapp-ONTAP.rules
+----
+.. Execute a atualização.
+.. Depois que a atualização estiver concluída, execute o seguinte comando:
++
+[listing]
+----
+yum remove nvme-cli
+----
+.. Restaure os arquivos do host em `/etc/nvme/`.
++
+[listing]
+----
+yum install nvmecli
+----
+.. Copie o conteúdo original `/etc/nvme/host*` do backup para os arquivos de host reais em `/etc/nvme/`.
+
+
+. Após a conclusão da instalação, verifique se você está executando o kernel especificado Red Hat Enterprise Linux.
++
+[listing]
+----
+# uname -r
+4.18.0-193.el8.x86_64
+----
++
+Consulte a link:https://mysupport.netapp.com/matrix/["Ferramenta de Matriz de interoperabilidade do NetApp"^] para obter a lista mais atual de versões suportadas.
+
+. Instale o pacote nvme-cli.
++
+[listing]
+----
+# rpm -qa|grep nvme-cli
+nvme-cli-1.9.5.el8.x86_64
+----
+. Habilite o multipath NVMe no kernel.
++
+[listing]
+----
+# grubby –args=nvme_core.multipath=Y –update-kernel /boot/vmlinuz-4.18.0-193.el8.x86_64
+----
+. No host RHEL 8,2, verifique a string NQN do host em `/etc/nvme/hostnqn` e verifique se ela corresponde à string NQN do host para o subsistema correspondente no array ONTAP.
++
+[listing]
+----
+# cat /etc/nvme/hostnqn
+nqn.2014-08.org.nvmexpress:uuid:9ed5b327-b9fc-4cf5-97b3-1b5d986345d1
+
+
+::> vserver nvme subsystem host show -vserver vs_fcnvme_141
+Vserver      Subsystem        Host           NQN
+----------- --------------- ----------- ---------------
+  vs_fcnvme_141
+    nvme_141_1
+        nqn.2014-08.org.nvmexpress:uuid:9ed5b327-b9fc-4cf5-97b3-1b5d986345d1
+----
++
+Se as strings NQN do host não corresponderem, use o `vserver modify` comando para atualizar a string NQN do host no subsistema de array ONTAP correspondente para corresponder à string NQN do `/etc/nvme/hostnqn` host.
+
+. Reinicie o host.
+. Atualize a `enable_foreign` definição _(opcional)_.
++
+Se você pretende executar o tráfego NVMe e SCSI no mesmo host coexistente RHEL 8,2, a NetApp recomenda o uso de multipath NVMe no kernel para namespaces ONTAP e dm-multipath para LUNs ONTAP, respetivamente. Você também deve colocar em lista negra os namespaces do ONTAP no dm-multipath para impedir que o dm-multipath reivindique esses dispositivos de namespace. Pode fazê-lo adicionando a `enable_foreign` definição `/etc/multipath.conf` ao , conforme ilustrado abaixo.
+
++
+[listing]
+----
+# cat /etc/multipath.conf
+defaults {
+   enable_foreign NONE
+}
+----
+. Reinicie o daemon multipathd executando um `systemctl restart multipathd`.
+
+
+
+
+== Configurar o adaptador Broadcom FC para NVMe/FC
+
+Você pode usar o seguinte procedimento para configurar um adaptador Broadcom FC.
+
+Para obter a lista mais atual de adaptadores suportados, consulte link:https://mysupport.netapp.com/matrix/["Ferramenta de Matriz de interoperabilidade do NetApp"^].
+
+.Passos
+. Verifique se você está usando o adaptador suportado.
++
+[listing]
+----
+# cat /sys/class/scsi_host/host*/modelname
+LPe32002-M2
+LPe32002-M2
+----
++
+[listing]
+----
+# cat /sys/class/scsi_host/host*/modeldesc
+Emulex LightPulse LPe32002-M2 2-Port 32Gb Fibre Channel Adapter
+Emulex LightPulse LPe32002-M2 2-Port 32Gb Fibre Channel Adapter
+----
+. Verifique se `lpfc_enable_fc4_type` está definido como "*3*".
++
+[listing]
+----
+# cat /sys/module/lpfc/parameters/lpfc_enable_fc4_type
+3
+----
+. Verifique se as portas do iniciador estão em funcionamento e podem ver os LIFs de destino.
++
+[listing]
+----
+# cat /sys/class/fc_host/host*/port_name
+0x100000109b1c1204
+0x100000109b1c1205
+----
++
+[listing]
+----
+# cat /sys/class/fc_host/host*/port_state
+Online
+Online
+----
++
+[listing]
+----
+# cat /sys/class/scsi_host/host*/nvme_info
+NVME Initiator Enabled
+XRI Dist lpfc0 Total 6144 IO 5894 ELS 250
+NVME LPORT lpfc0 WWPN x100000109b1c1204 WWNN x200000109b1c1204 DID x011d00 ONLINE
+NVME RPORT WWPN x203800a098dfdd91 WWNN x203700a098dfdd91 DID x010c07 TARGET DISCSRVC ONLINE
+NVME RPORT WWPN x203900a098dfdd91 WWNN x203700a098dfdd91 DID x011507 TARGET DISCSRVC ONLINE
+NVME Statistics
+LS: Xmt 0000000f78 Cmpl 0000000f78 Abort 00000000
+LS XMIT: Err 00000000 CMPL: xb 00000000 Err 00000000
+Total FCP Cmpl 000000002fe29bba Issue 000000002fe29bc4 OutIO 000000000000000a
+abort 00001bc7 noxri 00000000 nondlp 00000000 qdepth 00000000 wqerr 00000000 err 00000000
+FCP CMPL: xb 00001e15 Err 0000d906
+NVME Initiator Enabled
+XRI Dist lpfc1 Total 6144 IO 5894 ELS 250
+NVME LPORT lpfc1 WWPN x100000109b1c1205 WWNN x200000109b1c1205 DID x011900 ONLINE
+NVME RPORT WWPN x203d00a098dfdd91 WWNN x203700a098dfdd91 DID x010007 TARGET DISCSRVC ONLINE
+NVME RPORT WWPN x203a00a098dfdd91 WWNN x203700a098dfdd91 DID x012a07 TARGET DISCSRVC ONLINE
+NVME Statistics
+LS: Xmt 0000000fa8 Cmpl 0000000fa8 Abort 00000000
+LS XMIT: Err 00000000 CMPL: xb 00000000 Err 00000000
+Total FCP Cmpl 000000002e14f170 Issue 000000002e14f17a OutIO 000000000000000a
+abort 000016bb noxri 00000000 nondlp 00000000 qdepth 00000000 wqerr 00000000 err 00000000
+FCP CMPL: xb 00001f50 Err 0000d9f8
+----
+. Ative o tamanho de e/S de 1 MB _ (opcional)_.
++
+O `lpfc_sg_seg_cnt` parâmetro precisa ser definido como 256 para que o driver lpfc emita solicitações de e/S de até 1 MB de tamanho.
+
++
+[listing]
+----
+# cat /etc/modprobe.d/lpfc.conf
+options lpfc lpfc_sg_seg_cnt=256
+----
+. Execute um `dracut -f` comando e reinicie o host.
+. Depois que o host inicializar, verifique se lpfc_sg_seg_cnt está definido como 256.
++
+[listing]
+----
+# cat /sys/module/lpfc/parameters/lpfc_sg_seg_cnt
+256
+----
+. Verifique se você está usando o firmware Broadcom lpfc recomendado, bem como o driver da caixa de entrada.
++
+[listing]
+----
+# cat /sys/class/scsi_host/host*/fwrev
+12.6.182.8, sli-4:2:c
+12.6.182.8, sli-4:2:c
+----
++
+[listing]
+----
+# cat /sys/module/lpfc/version
+0:12.6.0.2
+----
+. Verifique se `lpfc_enable_fc4_type` está definido como "*3*".
++
+[listing]
+----
+# cat /sys/module/lpfc/parameters/lpfc_enable_fc4_type
+3
+----
+. Verifique se as portas do iniciador estão em funcionamento e podem ver os LIFs de destino.
++
+[listing]
+----
+# cat /sys/class/fc_host/host*/port_name
+0x100000109b1c1204
+0x100000109b1c1205
+----
++
+[listing]
+----
+# cat /sys/class/fc_host/host*/port_state
+Online
+Online
+----
++
+[listing]
+----
+# cat /sys/class/scsi_host/host*/nvme_info
+NVME Initiator Enabled
+XRI Dist lpfc0 Total 6144 IO 5894 ELS 250
+NVME LPORT lpfc0 WWPN x100000109b1c1204 WWNN x200000109b1c1204 DID x011d00 ONLINE
+NVME RPORT WWPN x203800a098dfdd91 WWNN x203700a098dfdd91 DID x010c07 TARGET DISCSRVC ONLINE
+NVME RPORT WWPN x203900a098dfdd91 WWNN x203700a098dfdd91 DID x011507 TARGET DISCSRVC ONLINE
+NVME Statistics
+LS: Xmt 0000000f78 Cmpl 0000000f78 Abort 00000000
+LS XMIT: Err 00000000 CMPL: xb 00000000 Err 00000000
+Total FCP Cmpl 000000002fe29bba Issue 000000002fe29bc4 OutIO 000000000000000a
+abort 00001bc7 noxri 00000000 nondlp 00000000 qdepth 00000000 wqerr 00000000 err 00000000
+FCP CMPL: xb 00001e15 Err 0000d906
+NVME Initiator Enabled
+XRI Dist lpfc1 Total 6144 IO 5894 ELS 250
+NVME LPORT lpfc1 WWPN x100000109b1c1205 WWNN x200000109b1c1205 DID x011900 ONLINE
+NVME RPORT WWPN x203d00a098dfdd91 WWNN x203700a098dfdd91 DID x010007 TARGET DISCSRVC ONLINE
+NVME RPORT WWPN x203a00a098dfdd91 WWNN x203700a098dfdd91 DID x012a07 TARGET DISCSRVC ONLINE
+NVME Statistics
+LS: Xmt 0000000fa8 Cmpl 0000000fa8 Abort 00000000
+LS XMIT: Err 00000000 CMPL: xb 00000000 Err 00000000
+Total FCP Cmpl 000000002e14f170 Issue 000000002e14f17a OutIO 000000000000000a
+abort 000016bb noxri 00000000 nondlp 00000000 qdepth 00000000 wqerr 00000000 err 00000000
+FCP CMPL: xb 00001f50 Err 0000d9f8
+----
+. Ative o tamanho de e/S de 1 MB _ (opcional)_.
++
+O `lpfc_sg_seg_cnt` parâmetro precisa ser definido como 256 para que o driver lpfc emita solicitações de e/S de até 1 MB de tamanho.
+
++
+[listing]
+----
+# cat /etc/modprobe.d/lpfc.conf
+options lpfc lpfc_sg_seg_cnt=256
+----
+. Execute um `dracut -f` comando e reinicie o host.
+. Depois que o host inicializar, verifique se lpfc_sg_seg_cnt está definido como 256.
++
+[listing]
+----
+# cat /sys/module/lpfc/parameters/lpfc_sg_seg_cnt
+256
+----
+
+
+
+
+== Validar o NVMe/FC
+
+Use o procedimento a seguir para validar o NVMe/FC.
+
+.Passos
+. Verifique as configurações de NVMe/FC a seguir.
++
+[listing]
+----
+# cat /sys/module/nvme_core/parameters/multipath
+Y
+----
++
+[listing]
+----
+# cat /sys/class/nvme-subsystem/nvme-subsys*/model
+NetApp ONTAP Controller
+NetApp ONTAP Controller
+----
++
+[listing]
+----
+# cat /sys/class/nvme-subsystem/nvme-subsys*/iopolicy
+round-robin
+round-robin
+----
+. Verifique se os namespaces são criados.
++
+[listing]
+----
+# nvme list
+Node SN Model Namespace Usage Format FW Rev
+---------------- -------------------- -----------------------
+/dev/nvme0n1 80BADBKnB/JvAAAAAAAC NetApp ONTAP Controller 1 53.69 GB / 53.69 GB 4 KiB + 0 B FFFFFFFF
+----
+. Verifique o status dos caminhos ANA.
++
+[listing]
+----
+# nvme list-subsys/dev/nvme0n1
+Nvme-subsysf0 – NQN=nqn.1992-08.com.netapp:sn.341541339b9511e8a9b500a098c80f09:subsystem.rhel_141_nvme_ss_10_0
+\
++- nvme0 fc traddr=nn-0x202c00a098c80f09:pn-0x202d00a098c80f09 host_traddr=nn-0x20000090fae0ec61:pn-0x10000090fae0ec61 live optimized
++- nvme1 fc traddr=nn-0x207300a098dfdd91:pn-0x207600a098dfdd91 host_traddr=nn-0x200000109b1c1204:pn-0x100000109b1c1204 live inaccessible
++- nvme2 fc traddr=nn-0x207300a098dfdd91:pn-0x207500a098dfdd91 host_traddr=nn-0x200000109b1c1205:pn-0x100000109b1c1205 live optimized
++- nvme3 fc traddr=nn-0x207300a098dfdd91:pn-0x207700a098dfdd91 host traddr=nn-0x200000109b1c1205:pn-0x100000109b1c1205 live inaccessible
+----
+. Verifique o plug-in NetApp para dispositivos ONTAP.
++
+[listing]
+----
+
+# nvme netapp ontapdevices -o column
+Device   Vserver  Namespace Path             NSID   UUID   Size
+-------  -------- -------------------------  ------ ----- -----
+/dev/nvme0n1   vs_nvme_10       /vol/rhel_141_vol_10_0/rhel_141_ns_10_0    1        55baf453-f629-4a18-9364-b6aee3f50dad   53.69GB
+
+# nvme netapp ontapdevices -o json
+{
+   "ONTAPdevices" : [
+   {
+        Device" : "/dev/nvme0n1",
+        "Vserver" : "vs_nvme_10",
+        "Namespace_Path" : "/vol/rhel_141_vol_10_0/rhel_141_ns_10_0",
+         "NSID" : 1,
+         "UUID" : "55baf453-f629-4a18-9364-b6aee3f50dad",
+         "Size" : "53.69GB",
+         "LBA_Data_Size" : 4096,
+         "Namespace_Size" : 13107200
+    }
+]
+----
+

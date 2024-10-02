@@ -1,0 +1,59 @@
+= Erros e soluções alternativas comuns do nvme-cli
+:allow-uri-read: 
+
+
+
+
+=== Erros e soluções alternativas comuns do nvme-cli
+
+Os erros exibidos por `nvme-cli` operações durante `nvme discover`, `nvme connect`, ou `nvme connect-all` e as soluções alternativas são mostrados na tabela a seguir:
+
+[cols="20, 20, 50"]
+|===
+| Mensagem de erro | Causa provável | Solução alternativa 
+
+
+| `Failed to write to /dev/nvme-fabrics: Invalid argument` | Sintaxe incorreta | Verifique se você está usando a sintaxe correta para os `nvme discover` comandos , `nvme connect` e `nvme connect-all` . 
+
+
+| `Failed to write to /dev/nvme-fabrics: No such file or directory` | Vários problemas podem desencadear isso, por exemplo, fornecer argumentos errados aos comandos NVMe é uma das causas comuns.  a| 
+* Verifique se você passou os argumentos corretos (como, string WWNN correta, string WWPN e mais) para os comandos.
+* Se os argumentos estiverem corretos, mas você ainda vir esse erro, verifique se a `/sys/class/scsi_host/host*/nvme_info` saída do comando está correta, o iniciador NVMe é exibido como `Enabled`, e os LIFs de destino NVMe/FC são exibidos corretamente nas seções portas remotas. Exemplo:
++
+[listing]
+----
+
+# cat /sys/class/scsi_host/host*/nvme_info
+NVME Initiator Enabled
+NVME LPORT lpfc0 WWPN x10000090fae0ec9d WWNN x20000090fae0ec9d DID x012000 ONLINE
+NVME RPORT WWPN x200b00a098c80f09 WWNN x200a00a098c80f09 DID x010601 TARGET DISCSRVC ONLINE
+NVME Statistics
+LS: Xmt 0000000000000006 Cmpl 0000000000000006
+FCP: Rd 0000000000000071 Wr 0000000000000005 IO 0000000000000031
+Cmpl 00000000000000a6 Outstanding 0000000000000001
+NVME Initiator Enabled
+NVME LPORT lpfc1 WWPN x10000090fae0ec9e WWNN x20000090fae0ec9e DID x012400 ONLINE
+NVME RPORT WWPN x200900a098c80f09 WWNN x200800a098c80f09 DID x010301 TARGET DISCSRVC ONLINE
+NVME Statistics
+LS: Xmt 0000000000000006 Cmpl 0000000000000006
+FCP: Rd 0000000000000073 Wr 0000000000000005 IO 0000000000000031
+Cmpl 00000000000000a8 Outstanding 0000000000000001
+----
+* Se os LIFs de destino não forem exibidos como acima na `nvme_info` saída do comando, verifique as `/var/log/messages` saídas de comando e `dmesg` para verificar se há falhas suspeitas de NVMe/FC e informe ou corrija adequadamente.
+
+
+
+
+| `No discovery log entries to fetch`  a| 
+Geralmente observado quando a `/etc/nvme/hostnqn` cadeia de carateres não foi adicionada ao subsistema correspondente na matriz NetApp ou uma cadeia de carateres incorreta `hostnqn` foi adicionada ao respetivo subsistema.
+ a| 
+Verifique se a string exata `/etc/nvme/hostnqn` é adicionada ao subsistema correspondente no array NetApp (verifique usando o `vserver nvme subsystem host show` comando).
+
+
+
+| `Failed to write to /dev/nvme-fabrics: Operation already in progress`  a| 
+Observado quando as associações do controlador ou operação especificada já estão criadas ou em processo de criação. Isso pode acontecer como parte dos scripts de conexão automática instalados acima.
+ a| 
+Nenhum. Tente executar o `nvme discover` comando novamente após algum tempo. Para `nvme connect` e `connect-all`, execute o `nvme list` comando para verificar se os dispositivos de namespace já estão criados e exibidos no host.
+
+|===

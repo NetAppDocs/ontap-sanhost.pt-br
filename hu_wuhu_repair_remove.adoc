@@ -1,0 +1,57 @@
+---
+sidebar: sidebar 
+permalink: hu_wuhu_repair_remove.html 
+keywords: windows, host, utilities, 7.1, hba, fibre, channel, SANtricity, netapp, san, host, e-series, platform 
+summary: Os Utilitários unificados de host do Windows incluem um programa de instalação que define os parâmetros necessários do Registro do Windows e do HBA para que o host do Windows manipule corretamente os comportamentos do sistema de storage para plataformas NetApp ONTAP e e-Series. 
+---
+= Repare e remova os Utilitários do Windows Unified Host
+:toc: macro
+:hardbreaks:
+:toclevels: 1
+:allow-uri-read: 
+:toc: 
+:toclevels: 1
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./media/
+:toc-position: content
+
+
+[role="lead"]
+Você pode usar a opção *Repair* do programa de instalação do Host Utilities para atualizar as configurações do adaptador de barramento do host (HBA) e do Registro do Windows. Você também pode remover completamente os Utilitários do host, interativamente ou da linha de comando do Windows.
+
+[role="tabbed-block"]
+====
+.Repare ou remova interativamente
+--
+A opção *Repair* atualiza o Registro do Windows e os HBAs FC com as configurações necessárias. Você também pode remover completamente os Utilitários do host.
+
+.Passos
+. Abra o Windows *programas e recursos* (Windows Server 2012 R2, Windows Server 2016, Windows Server 2019 e Windows 2022).
+. Selecione *Utilitários de host unificado do NetApp*.
+. Selecione *alterar*.
+. Selecione *Repair* ou *Remove*, conforme necessário.
+. Siga as instruções apresentadas no ecrã.
+
+
+--
+.Repare ou remova da linha de comando
+--
+A opção *Repair* atualiza o Registro do Windows e os HBAs FC com as configurações necessárias. Você também pode remover os Utilitários do host inteiramente de uma linha de comando do Windows.
+
+.Passos
+. Digite o seguinte comando na linha de comando do Windows para reparar os Utilitários de host do Windows:
++
+`msiexec /f installer.msi [/quiet]`
+
++
+** `/f` repara a instalação.
+** `installer.msi` É o nome do programa de instalação do Windows Host Utilities no seu sistema.
+** `/quiet` suprime todo o feedback e reinicializa o sistema automaticamente sem solicitar quando o comando for concluído.
+
+
+
+
+--
+====

@@ -1,0 +1,17 @@
+= 
+:allow-uri-read: 
+
+
+.Passos
+. Mapeie o LUN de inicialização SAN para o host.
+. Verifique se há vários caminhos disponíveis.
++
+
+NOTE: Vários caminhos ficam disponíveis depois que o sistema operacional do host estiver ativo e em execução nos caminhos.
+
+. Ative a inicialização SAN no BIOS do servidor para as portas às quais o LUN de inicialização SAN está mapeado.
++
+Para obter informações sobre como ativar o BIOS HBA, consulte a documentação específica do fornecedor.
+
+. Reinicie o host para verificar se a inicialização foi bem-sucedida.
+

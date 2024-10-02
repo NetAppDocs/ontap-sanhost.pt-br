@@ -1,0 +1,5 @@
+= 
+:allow-uri-read: 
+
+
+O NVMe/TCP não tem a funcionalidade de conexão automática. Portanto, se um caminho for desativado e não for restaurado dentro do período de tempo limite padrão de 10 minutos, o NVMe/TCP não poderá se reconetar automaticamente. Para evitar um tempo limite, você deve definir o período de repetição para eventos de failover para pelo menos 30 minutos.

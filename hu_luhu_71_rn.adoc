@@ -1,0 +1,71 @@
+---
+sidebar: sidebar 
+permalink: hu_luhu_71_rn.html 
+keywords: host utilities, linux, 7.1, netapp, ontap, release, notes, linux 
+summary: Notas de versão para Linux Unified Host Utilities 7,1 
+---
+= Notas de versão do Linux Unified Host Utilities 7,1
+:hardbreaks:
+:toclevels: 1
+:allow-uri-read: 
+:toclevels: 1
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./media/
+
+
+[role="lead"]
+As notas de versão descrevem novos recursos e aprimoramentos, problemas e limitações conhecidos e precauções importantes para configurar e gerenciar seu host específico com seu sistema de armazenamento ONTAP.
+
+Para obter informações específicas sobre as versões e atualizações do sistema operacional compatíveis com os Utilitários do host, consulte link:https://mysupport.netapp.com/matrix/imt.jsp?components=65623;64703;&solution=1&isHWU&src=IMT["Ferramenta de Matriz de interoperabilidade do NetApp"^].
+
+
+
+== Novidades
+
+A versão Linux Host Utilities 7,1 contém os seguintes novos recursos e aprimoramentos:
+
+* Os utilitários de host do Linux agora são chamados de _utilitários de host unificado do Linux_ porque são compatíveis com sistemas de storage NetApp e-Series que executam o SANtricity, bem como sistemas AFF, FAS e ASA que executam o ONTAP.
++
+
+NOTE: Qualquer menção a Utilitários de host ou utilitários de host Linux neste documento se refere a Utilitários de host unificado do Linux.
+
+* Os seguintes sistemas operacionais agora são suportados:
++
+** SUSE Linux Enterprise Server série 15
+** Oracle VM série 3,2
+** Oracle Linux séries 6 e 7
+** Red Hat Enterprise Linux séries 6 e 7
+** SUSE Linux Enterprise Server 11 SP4
+** KVM e XEN, RHEV 6,4 e 6,5
+** Citrix XenServer
+
+
+* Nos hosts Red Hat Enterprise Linux (RHEL) 6 e RHEL 7, um pacote ajustado para definir perfis de servidor agora é suportado. Você pode usar o `tuned-adm` comando para definir perfis diferentes, dependendo do ambiente. Por exemplo, você também pode usar o perfil de convidado virtual como uma máquina virtual convidada e usar o perfil de storage empresarial para configurações em que LUNs de storage arrays empresariais são usados. O uso desses pacotes ajustados pode resultar em melhoria na taxa de transferência e latência no ONTAP.
+* Adiciona suporte para adaptadores FC de 32GB GB da Broadcom Emulex e Marvell Qlogic.
+
+
+
+NOTE: O NetApp continua a trabalhar com os Utilitários do host para adicionar suporte a recursos após o lançamento inicial. Para obter informações mais recentes sobre os recursos suportados e os novos recursos adicionados, consulte o link:https://mysupport.netapp.com/matrix/imt.jsp?components=65623;64703;&solution=1&isHWU&src=IMT["Ferramenta de Matriz de interoperabilidade do NetApp"^].
+
+
+
+== Corrigido nesta versão
+
+O problema intermitente de falha do sistema operacional do host que ocorre ao executar o `sanlun lun show -p` comando em SLES12SP1, OL7,2, RHEL7,2 e RHEL 6,8 é corrigido nesta versão.
+
+
+
+== Problemas e limitações conhecidos
+
+A versão Linux Host Utilities 7,1 tem os seguintes problemas e limitações conhecidos.
+
+[cols="10, 30, 30"]
+|===
+| ID de erro do NetApp | Título | Descrição 
+
+
+| 1457017 |  `sanlun` problemas de instalação mensagens de aviso relacionadas a `libdevmapper.so` bibliotecas e `libnl.so`. Estes avisos não afetam a funcionalidade `sanlun` do kit. | Quando você executa o comando CLI de utilitários de host unificados do Linux - "sanlun fcp show adapter -v" em um host SAN, o comando falha com uma mensagem de erro exibindo que as dependências de biblioteca necessárias para uma descoberta de adaptador de barramento de host (HBA) não podem ser localizadas lib64 NetApp:link:https://mysupport.netapp.com/site/bugs-online/product/HOSTUTILITIES/1508554["1508554"^] 
+|===
+link:https://mysupport.netapp.com/site/bugs-online/product["NetApp Bugs Online"^] fornece informações completas para a maioria dos problemas conhecidos, incluindo soluções alternativas sugeridas sempre que possível.

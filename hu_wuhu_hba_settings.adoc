@@ -1,0 +1,391 @@
+---
+sidebar: sidebar 
+permalink: hu_wuhu_hba_settings.html 
+keywords: windows, host, utilities, 7.1, hba, fibre, channel, SANtricity, netapp, san, host, e-series, platform 
+summary: Os Utilitários unificados de host do Windows incluem um programa de instalação que define os parâmetros necessários do Registro do Windows e do HBA para que o host do Windows manipule corretamente os comportamentos do sistema de storage para plataformas NetApp ONTAP e e-Series. 
+---
+= Configure as definições do registo
+:toc: macro
+:hardbreaks:
+:toclevels: 1
+:allow-uri-read: 
+:toc: 
+:toclevels: 1
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./media/
+:toc-position: content
+
+
+[role="lead"]
+Os Utilitários do host exigem determinadas configurações de Registro e parâmetros para verificar se o host do Windows lida corretamente com o comportamento do sistema de armazenamento.
+
+Os Utilitários de host do Windows definem os parâmetros que afetam a forma como o host do Windows responde a um atraso ou perda de dados. Os valores específicos foram selecionados para verificar se o host do Windows manipula corretamente eventos, como o failover de uma controladora no sistema de armazenamento para sua controladora parceira.
+
+Nem todos os valores se aplicam ao módulo específico do dispositivo (DSM) para SANtricity Storage Manager; no entanto, qualquer sobreposição de valores definidos pelos Utilitários do sistema anfitrião e os definidos pelo DSM para SANtricity Storage Manager não resulta em conflitos.
+
+FC, NVMe/FC e iSCSI HBAs também têm parâmetros que você precisa definir para garantir a melhor performance e gerenciar com sucesso eventos do sistema de storage.
+
+O programa de instalação fornecido com os Utilitários unificados de host do Windows define os parâmetros HBA do Windows, FC e NVMe/FC para os valores suportados.
+
+Tem de definir manualmente os parâmetros iSCSI HBA.
+
+O instalador define valores diferentes dependendo se você especificar o suporte de e/S multipath (MPIO) ao executar o programa de instalação.
+
+
+NOTE: Você não deve alterar esses valores, a menos que o suporte técnico da NetApp o direcione a fazê-lo.
+
+
+
+== Valores de Registro definidos pelo Windows Unified Host Utilities 7,2
+
+O instalador do Windows Unified Host Utilities define automaticamente os valores do Registro que são baseados nas escolhas feitas durante a instalação. Você deve estar ciente desses valores de Registro e da versão do sistema operacional.
+
+Os valores a seguir são definidos pelo instalador do Windows Unified Host Utilities. Todos os valores são em decimal, a menos que indicado de outra forma.
+
+
+NOTE: HKLM é a abreviatura `HKEY_LOCAL_MACHINE` de .
+
+[cols="20,20,30"]
+|===
+| Chave de registo | Valor | Quando definido 
+
+
+| HKLM SYSTEM/CurrentControlSet/Services parâmetros DsmMaximumRetryTimeDuringStateTransition | 120 | Quando o suporte MPIO é especificado e o servidor é Windows Server 2012 R2, Windows Server 2016 e Windows 2019 ou Windows Server 2022 
+
+
+| HKLM SYSTEM/CurrentControlSet Serviços/msdsmsm parâmetros DsmMaximumStateTransitionTime | 120 | Quando o suporte MPIO é especificado e o servidor é Windows Server 2012 R2 ou Windows Server 2016, Windows 2019 ou Windows Server 2022 
+
+
+| HKLM/SYSTEM/CurrentControlSet/Services/DsmSupportedDeviceList | "NetApp LUN", "NetApp LUN C- Mode" "NVMe NetApp ONTAO Con" | Quando o suporte MPIO é especificado 
+
+
+| Parâmetros IPSecConfigTimeout | 60 | Sempre 
+
+
+| Os parâmetros de ID de instância são LinkDownTime | 10 | Sempre 
+
+
+| Parâmetros do SISTEMA HKLM/CurrentControlSet/Services/ClusterDisk/ManageDisksOnSystemBuses | 1 | Sempre 
+
+
+| Parâmetros de ID_instância_ID_de_instância_de_Registro_de_Registro_de_Registro_de_Registro_de_Registro_de_Registro_de_Registro_de_Registro_de_Registro_de_Registro_de_Registro | 120 | Quando nenhum suporte MPIO está selecionado 
+
+
+| Parâmetros de ID_instância_ID_de_instância_de_Registro_de_Registro_de_Registro_de_Registro_de_Registro_de_Registro_de_Registro_de_Registro_de_Registro_de_Registro_de_Registro | 30 | Sempre 
+
+
+| HKLM/SYSTEM/CurrentControlSet/Control/MPDEV/MPIOSupportedDeviceList | "NetApp LUN", "NetApp LUN C- Mode", "NVMe NetApp ONTAO Con" | Quando o suporte MPIO é especificado 
+
+
+| Parâmetros/PathRecoveryInterval | 30 | Quando o servidor é Windows Server 2012 R2, Windows Server 2016, Windows Server 2019 ou Windows Server 2022 
+
+
+| HKLM/SYSTEM/CurrentControlSet/Services/mpio parâmetros/PathVerifyEnabled | 1 | Quando o suporte MPIO é especificado 
+
+
+| HKLM/SYSTEM/CurrentControlSet/Services/PathVerifyEnabled | 1 | Quando o suporte MPIO é especificado e o servidor é Windows Server 2012 R2, Windows Server 2016, Windows Server 2019 ou Windows Server 2022 
+
+
+| HKLM/SYSTEM/CurrentControlSet/Services/Vnetapp/Parameters/PathVerifyEnabled | 0 | Quando o suporte MPIO é especificado 
+
+
+| HKLM SYSTEM/CurrentControlSet/Services/mpio/Parameters/PDORemovePeriod | 130 | Quando o suporte MPIO é especificado 
+
+
+| Parâmetros do PDORemovePeriod | 130 | Quando o suporte MPIO é especificado e o servidor é Windows Server 2012 R2, Windows Server 2016 , Windows Server 2019 ou Windows Server 2022 
+
+
+| Parâmetros do PDORemovePeriod | 130 | Quando o suporte MPIO é especificado, exceto se o DSM Data ONTAP for detetado 
+
+
+| Parâmetros/RetryCount | 6 | Quando o suporte MPIO é especificado 
+
+
+| Parâmetros/RetryCount | 6 | Quando o suporte MPIO é especificado e o servidor é Windows Server 2012 R2, Windows Server 2016, Windows Server 2019 ou Windows Server 2022 
+
+
+| Parâmetros/intervalo de retoque | 1 | Quando o suporte MPIO é especificado 
+
+
+| Parâmetros/RetryInterval | 1 | Quando o suporte MPIO é especificado e o servidor é Windows Server 2012 R2, Windows Server 2016, Windows Server 2019 ou Windows Server 2022 
+
+
+| Parâmetros/RetryInterval | 1 | Quando o suporte MPIO é especificado 
+
+
+| HKLM/SYSTEM/CurrentControlSet/Services/TimeOutValue | 120 | Quando nenhum suporte MPIO está selecionado 
+
+
+| Parâmetros do UseCustomPathRecoveryInterval | 1 | Quando o suporte MPIO é especificado e o servidor é Windows Server 2012 R2, Windows Server 2016, Windows Server 2019 ou Windows Server 2022 
+|===
+
+
+=== Parâmetros NVMe
+
+Os seguintes parâmetros do driver NVMe Emulex são atualizados ao instalar os Utilitários de host unificado do Windows 7,2:
+
+* EnableNVMe: 1
+* NVMEMode (modo NVMEMode): 0
+* LimTransferSize 1
+
+
+
+
+== Valores de Registro definidos pelo Windows Unified Host Utilities 7,1
+
+O instalador do Windows Unified Host Utilities define automaticamente os valores do Registro que são baseados nas escolhas feitas durante a instalação. Você deve estar ciente desses valores de Registro, a versão do sistema operacional.
+
+Os valores a seguir são definidos pelo instalador do Windows Unified Host Utilities. Todos os valores estão em decimal, a menos que indicado de outra forma.
+
+
+NOTE: `HKLM` é a abreviatura `HKEY_LOCAL_MACHINE` de .
+
+[cols="~, 10, ~"]
+|===
+| Chave de registo | Valor | Quando definido 
+
+
+| HKLM SYSTEM/CurrentControlSet/Services parâmetros DsmMaximumRetryTimeDuringStateTransition | 120 | Quando o suporte MPIO é especificado e o seu servidor é Windows Server 2008, Windows Server 2008 R2, Windows Server 2012, Windows Server 2012 R2 ou Windows Server 2016, exceto se o Data ONTAP DSM for detetado 
+
+
+| HKLM SYSTEM/CurrentControlSet/Services parâmetros DsmMaximumStateTransitionTime | 120 | Quando o suporte MPIO é especificado e o seu servidor é Windows Server 2008, Windows Server 2008 R2, Windows Server 2012, Windows Server 2012 R2 ou Windows Server 2016, exceto se o Data ONTAP DSM for detetado 
+
+
+.2+| Parâmetros/DsmSupportedDeviceList | "NETAPPLUN" | Quando o suporte MPIO é especificado 
+
+
+| "NetApp LUN", "NetApp LUN C-Mode" | Quando o suporte MPIO é especificado, exceto se o DSM Data ONTAP for detetado 
+
+
+| Verifique se a MENSAGEM de erro está correta | 60 | Sempre, exceto quando o Data ONTAP DSM é detetado 
+
+
+| Verifique se a MENSAGEM de erro está ativada | 10 | Sempre 
+
+
+| Parâmetros/ManageDisksOnSystemBuses | 1 | Sempre, exceto quando o Data ONTAP DSM é detetado 
+
+
+.2+| Verifique se a MENSAGEM de erro está correta | 120 | Quando nenhum suporte MPIO está selecionado 
+
+
+| 30 | Sempre, exceto quando o Data ONTAP DSM é detetado 
+
+
+.2+| HKLM/SYSTEM/CurrentControlSet/MPDEV/MPIOSupportedDeviceList | "LUN NetApp" | Quando o suporte MPIO é especificado 
+
+
+| "NetApp LUN", "NetApp LUN C-Mode" | Quando o MPIO é especificado pelo suporte, exceto se o DSM Data ONTAP for detetado 
+
+
+| Parâmetros/PathRecoveryInterval | 40 | Quando o servidor é apenas Windows Server 2008, Windows Server 2008 R2, Windows Server 2012, Windows Server 2012 R2 ou Windows Server 2016 
+
+
+| HKLM/SYSTEM/CurrentControlSet/Services/mpio parâmetros/PathVerifyEnabled | 0 | Quando o suporte MPIO é especificado, exceto se o DSM Data ONTAP for detetado 
+
+
+| HKLM/SYSTEM/CurrentControlSet/Services/msdssm parâmetros/PathVerifyEnabled | 0 | Quando o suporte MPIO é especificado, exceto se o DSM Data ONTAP for detetado 
+
+
+| HKLM/SYSTEM/CurrentControlSet/Services/PathVerifyEnabled | 0 | Quando o suporte MPIO é especificado e o seu servidor é Windows Server 2008, Windows Server 2008 R2, Windows Server 2012, Windows Server 2012 R2 ou Windows Server 2016, exceto se o Data ONTAP DSM for detetado 
+
+
+| HKLM/SYSTEM/CurrentControlSet/Services/PathVerifyEnabled | 0 | Quando o suporte MPIO é especificado e o seu servidor é Windows Server 2003, exceto se o Data ONTAP DSM for detetado 
+
+
+| HKLM/SYSTEM/CurrentControlSet/Services/vnetapp parâmetros/PathVerifyEnabled | 0 | Quando o suporte MPIO é especificado, exceto se o DSM Data ONTAP for detetado 
+
+
+| HKLM SYSTEM/CurrentControlSet/Services/mpio Parameters/PDORemovePeriod | 130 | Quando o suporte MPIO é especificado, exceto se o DSM Data ONTAP for detetado 
+
+
+| Parâmetros do PDORemovePeriod | 130 | Quando o suporte MPIO é especificado e o seu servidor é Windows Server 2008, Windows Server 2008 R2, Windows Server 2012, Windows Server 2012 R2 ou Windows Server 2016, exceto se o Data ONTAP DSM for detetado 
+
+
+| Parâmetros/PDORemovePeriod | 130 | Quando o suporte MPIO é especificado e o seu servidor é Windows Server 2003, exceto se o Data ONTAP DSM for detetado 
+
+
+| Parâmetros do PDORemovePeriod | 130 | Quando o suporte MPIO é especificado, exceto se o DSM Data ONTAP for detetado 
+
+
+| HKLM/SYSTEM/CurrentControlSet/Services/mpio/Parameters/RetryCount | 6 | Quando o suporte MPIO é especificado, exceto se o DSM Data ONTAP for detetado 
+
+
+| Parâmetros/RetryCount | 6 | Quando o suporte MPIO é especificado e o seu servidor é Windows Server 2008, Windows Server 2008 R2, Windows Server 2012, Windows Server 2012 R2 ou Windows Server 2016, exceto se o Data ONTAP DSM for detetado 
+
+
+| Parâmetros/RetryCount | 6 | Quando o suporte MPIO é especificado e o seu servidor é Windows Server 2003, exceto se o Data ONTAP DSM for detetado 
+
+
+| HKLM/SYSTEM/CurrentControlSet/Services/Vnetapp/Parameters/RetryCount | 6 | Quando o suporte MPIO é especificado, exceto se o DSM Data ONTAP for detetado 
+
+
+| HKLM/SYSTEM/CurrentControlSet/Services/mpio/Parameters/RetryInterval | 1 | Quando o suporte MPIO é especificado, exceto se o DSM Data ONTAP for detetado 
+
+
+| HKLM/SYSTEM/CurrentControlSet/Services/Parameters/RetryInterval | 1 | Quando o suporte MPIO é especificado e o seu servidor é Windows Server 2008, Windows Server 2008 R2, Windows Server 2012, Windows Server 2012 R2 ou Windows Server 2016, exceto se o Data ONTAP DSM for detetado 
+
+
+| HKLM/SYSTEM/CurrentControlSet/Services/Vnetapp/Parameters/RetryInterval | 1 | Quando o suporte MPIO é especificado, exceto se o DSM Data ONTAP for detetado 
+
+
+.2+| HKLM/SISTEMA/CurrentControlSet Serviços/disco/TimeOutValue | 120 | Quando não é selecionado suporte MPIO, exceto se for detetado Data ONTAP DSM 
+
+
+| 60 | Quando o suporte MPIO é especificado, exceto se o DSM Data ONTAP for detetado 
+
+
+| Parâmetros do UseCustomPathRecoveryInterval | 1 | Quando o servidor é apenas Windows Server 2008, Windows Server 2008 R2, Windows Server 2012, Windows Server 2012 R2 ou Windows Server 2016 
+|===
+Consulte https://docs.microsoft.com/en-us/troubleshoot/windows-server/performance/windows-registry-advanced-users["Documentos da Microsoft"^] a para obter os detalhes dos parâmetros do registo.
+
+
+
+== Valores HBA FC definidos pelos Utilitários de host do Windows
+
+Em sistemas que usam FC, o instalador de Utilitários de host define os valores de tempo limite necessários para HBAs Emulex e QLogic FC.
+
+Para HBAs Emulex FC, o instalador define os seguintes parâmetros:
+
+[role="tabbed-block"]
+====
+.Quando MPIO é selecionado
+--
+|===
+| Tipo de propriedade | Valor da propriedade 
+
+
+| LinkTimeOut | 1 
+
+
+| NodeTimeOut | 10 
+|===
+--
+.Quando MPIO não está selecionado
+--
+|===
+| Tipo de propriedade | Valor da propriedade 
+
+
+| LinkTimeOut | 30 
+
+
+| NodeTimeOut | 120 
+|===
+--
+====
+Para HBAs Fibre Channel QLogic, o instalador define os seguintes parâmetros:
+
+[role="tabbed-block"]
+====
+.Quando MPIO é selecionado
+--
+|===
+| Tipo de propriedade | Valor da propriedade 
+
+
+| LinkDownTimeOut | 1 
+
+
+| PortDownRetryCount | 10 
+|===
+--
+.Quando MPIO não está selecionado
+--
+|===
+| Tipo de propriedade | Valor da propriedade 
+
+
+| LinkDownTimeOut | 30 
+
+
+| PortDownRetryCount | 120 
+|===
+--
+====
+
+NOTE: Os nomes dos parâmetros podem variar ligeiramente dependendo do programa. Por exemplo, no programa QLogic QConvergeConsole, o parâmetro é exibido como `Link Down Timeout`. O arquivo Utilitários do host `fcconfig.ini` exibe esse parâmetro como `LinkDownTimeOut` `MpioLinkDownTimeOut` ou , dependendo se o MPIO é especificado. No entanto, todos esses nomes referem-se ao mesmo parâmetro HBA.  https://www.broadcom.com/support/download-search["Emulex"^]Consulte ou https://driverdownloads.qlogic.com/QLogicDriverDownloads_UI/Netapp_search.aspx["QLogic"^] para saber mais sobre os parâmetros de tempo limite.
+
+
+
+=== Compreender as alterações dos Utilitários do sistema anfitrião às definições do controlador FC HBA
+
+Durante a instalação dos drivers Emulex ou QLogic HBA necessários em um sistema FC, vários parâmetros são verificados e, em alguns casos, modificados.
+
+Os Utilitários do sistema anfitrião definem valores para os seguintes parâmetros se o MS DSM para Windows MPIO for detetado:
+
+* LinkTimeOut – define o período de tempo em segundos que a porta do host espera antes de retomar a I/o depois que um link físico está inativo.
+* NodeTimeOut – define o período de tempo em segundos antes que a porta do host reconheça que uma conexão com o dispositivo de destino está inativa.
+
+
+Ao solucionar problemas de HBA, verifique se essas configurações têm os valores corretos. Os valores corretos dependem de dois fatores:
+
+* O fornecedor HBA
+* Se você está usando software multipathing (MPIO)
+
+
+Você pode corrigir as configurações do HBA executando a opção reparar do instalador do Windows Host Utilities.
+
+[role="tabbed-block"]
+====
+.Emulex HBA drivers
+--
+Se tiver um sistema FC, tem de verificar as definições do controlador Emulex HBA. Essas configurações devem existir para cada porta no HBA.
+
+.Passos
+. Abra o Gerenciador de OnCommand.
+. Selecione a HBA adequada na lista e clique na guia *parâmetros do driver*.
++
+São apresentados os parâmetros do condutor.
+
++
+.. Se estiver a utilizar o software MPIO, certifique-se de que tem as seguintes definições de controlador:
++
+*** Jogue LinkTimeOut online grátis - 1
+*** NodeTimeOut - 10
+
+
+.. Se não estiver a utilizar o software MPIO, certifique-se de que tem as seguintes definições de controlador:
++
+*** Jogue LinkTimeOut online grátis - 30
+*** NodeTimeOut - 120
+
+
+
+
+
+
+--
+.Drivers QLogic HBA
+--
+Nos sistemas FC, tem de verificar as definições do controlador QLogic HBA. Essas configurações devem existir para cada porta no HBA.
+
+.Passos
+. Abra o QConvergeConsole e clique em *Connect* na barra de ferramentas.
++
+A caixa de diálogo *conetar ao host* é exibida.
+
+. Selecione o host apropriado na lista e, em seguida, selecione *Connect*.
++
+Uma lista de HBAs é exibida no painel HBA FC.
+
+. Selecione a porta HBA apropriada na lista e, em seguida, selecione a guia *Configurações*.
+. Selecione *Advanced HBA Port Settings* na seção *Select Settings*.
+. Se você estiver usando o software MPIO, verifique se você tem as seguintes configurações de driver:
++
+** Link Down Timeout (linkdwnto) - 1
+** Port Down Retry Count (portdwnrc) - 10
+
+
+. Se você não estiver usando o software MPIO, verifique se você tem as seguintes configurações de driver:
++
+** Link Down Timeout (linkdwnto) - 30
+** Port Down Retry Count (portdwnrc) - 120
+
+
+
+
+--
+====

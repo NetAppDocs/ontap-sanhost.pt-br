@@ -1,0 +1,149 @@
+---
+sidebar: sidebar 
+permalink: hu_wuhu_72.html 
+keywords: wuhu, 7.2, host utilities, SAN, windows, unified 
+summary: Os utilitários de host unificados do Windows incluem um programa de instalação que define os parâmetros necessários do Registro do Windows e do HBA para que o host do Windows manipule corretamente os comportamentos do sistema de storage para plataformas NetApp ONTAP e e-Series. 
+---
+= Instale o Windows Unified Host Utilities 7,2
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./media/
+
+
+[role="lead"]
+Os Utilitários unificados de host do Windows (WUHU) permitem que você conete um computador host do Windows aos sistemas de armazenamento do NetApp.
+
+Os Utilitários de host unificado do Windows oferecem suporte às seguintes versões do Windows:
+
+* Windows 2022
+* Windows 2019
+* Windows 2016
+* Windows 2012R2
+* Windows 2012
+
+
+Os Utilitários unificados de host do Windows incluem um programa de instalação que define os parâmetros necessários do Registro do Windows e do adaptador de barramento do host (HBA) para que um host do Windows possa lidar corretamente com os comportamentos do sistema de armazenamento para plataformas NetApp ONTAP e e-Series.
+
+Ao instalar o software Host Utilities, o instalador define os parâmetros necessários do registo do Windows e do HBA.
+
+Os seguintes programas e arquivos são instalados no computador host do Windows. O diretório padrão é `C:\Program Files\NetApp\Windows Host Utilities`.
+
+|===
+| Programa | Finalidade 
+
+
+| `emulexhba.reg` | Programa de solução de problemas; execute este programa somente se instruído a fazê-lo pelo pessoal de suporte técnico. 
+
+
+| `\NetAppQCLI\fcconfig.exe` | Utilizado pelo programa de instalação para definir os parâmetros HBA. 
+
+
+| `\NetAppQCLI\fcconfig.ini` | Utilizado pelo programa de instalação para definir os parâmetros HBA. 
+
+
+| `\NetAppQCLI\*.*` | Utilizado pelo programa de instalação para definir os parâmetros QLogic FC HBA. 
+
+
+| `san_version.exe` | Exibe a versão dos Utilitários do host e HBAs FC. 
+|===
+Os utilitários de host oferecem suporte a diferentes configurações de host do Windows, protocolos e opções de multipathing. Para obter mais informações, consulte https://mysupport.netapp.com/matrix/["Ferramenta de Matriz de interoperabilidade do NetApp"^] .
+
+
+
+== Verifique a configuração do host e do sistema de storage
+
+Antes de instalar os utilitários de host, você deve verificar se a versão dos utilitários de host suporta a configuração do sistema de armazenamento e host para que o software seja instalado corretamente.
+
+.Passos
+. Verifique a configuração suportada no http://mysupport.netapp.com/matrix["Ferramenta de Matriz de interoperabilidade do NetApp"^].
+. Verifique os hotfixes necessários para o respetivo host no link:https://docs.netapp.com/us-en/ontap-sanhost/index.html["Documentação do Windows de host SAN"].
++
+
+NOTE: O link:https://docs.netapp.com/us-en/ontap-sanhost/hu_windows_2022.html["Usando o Windows Server 2022 com ONTAP"] documento fornece instruções sobre link:https://docs.netapp.com/us-en/ontap-sanhost/hu_windows_2022.html#installing-windows-hotfixes["Instalando hotfixes do Windows"] para o Windows Server 2022. Consulte os documentos do Windows na categoria configurações de host para encontrar as informações de hotfix relevantes para versões anteriores do servidor Windows.
+
+. Adicione a licença iSCSI, FCP ou NVMe-of e inicie o serviço de destino.
++
+
+NOTE: Os protocolos FC e iSCSI não exigem licenças em sistemas de storage e-Series que usam o SANtricity Storage Manager.
+
+. Verifique o cabeamento.
++
+Consulte https://docs.netapp.com/us-en/ontap/san-config/index.html["Referência de configuração SAN"^] a documentação da sua versão do ONTAP ou https://docs.netapp.com/us-en/e-series/install-hw-cabling/index.html["Cabeamento de hardware e-Series"^] para obter informações detalhadas sobre cabeamento e configuração.
+
+
+
+
+
+== Configurar HBAs FC e switches
+
+Instalar e configurar um ou mais adaptadores de barramento de host FC (HBAs) compatíveis para conexões FC ao sistema de storage.
+
+O instalador de Utilitários de host do Windows define as configurações de HBA FC necessárias.
+
+
+CAUTION: Não altere as definições HBA manualmente.
+
+.Passos
+. Instale um ou mais HBAs FC compatíveis de acordo com as instruções fornecidas pelo fornecedor do HBA.
+. Obtenha os drivers e utilitários de gerenciamento HBA suportados e instale-os de acordo com as instruções fornecidas pelo fornecedor HBA.
+. Conete os HBAs aos switches FC ou diretamente ao sistema de storage.
+. Crie zonas no switch FC de acordo com a documentação do switch FC.
+. Para o ONTAP, coloque o comutador na zona pela WWPN. Certifique-se de usar o WWPN das interfaces lógicas (LIFs) e não o WWPN das portas físicas nos controladores de armazenamento. Consulte https://docs.netapp.com/us-en/ontap/san-config/index.html["Referência de configuração SAN"^] a documentação para obter mais informações.
+
+
+
+
+== Instale os Utilitários do sistema anfitrião
+
+O programa de instalação instala o pacote de utilitários de host e define as configurações de Registro do Windows e HBA.
+
+Você deve especificar se deve incluir suporte multipathing ao instalar o pacote de software Windows Unified Host Utilities. O instalador solicita as seguintes opções. Você também pode executar uma instalação silenciosa (sem supervisão) a partir de um prompt de comando do Windows.
+
+.Suporte multipathing
+* Escolha `MPIO` se você tiver mais de um caminho do host do Windows ou da máquina virtual para o sistema de armazenamento.
+* Escolha `no MPIO` somente se você estiver usando um único caminho para o sistema de storage.
+
+
+A seleção MPIO não está disponível para sistemas Windows XP e Windows Vista; a e/S multipath não é suportada nesses sistemas operacionais convidados. Para convidados do Hyper-V, os discos brutos (pass-through) não aparecem no SO convidado se você escolher suporte para multipathing. Você pode usar discos brutos ou usar MPIO, mas não pode usar ambos no SO convidado.
+
+Você pode instalar os utilitários do host de forma interativa ou usando a linha de comando. O novo pacote de instalação do Host Utilities deve estar em um caminho acessível pelo host do Windows. Siga as instruções para instalar os Utilitários do host de forma interativa ou a partir da linha de comando do Windows.
+
+[role="tabbed-block"]
+====
+.Instale de forma interativa
+--
+Para instalar o pacote de software Host Utilities de forma interativa, você deve executar o programa de instalação de utilitários host e seguir as instruções.
+
+.Passos
+. Transfira o ficheiro executável a partir do https://mysupport.netapp.com/site/products/all/details/hostutilities/downloads-tab/download/61343/7.2/downloads["Site de suporte da NetApp"^].
+. Mude para o diretório onde você baixou o arquivo executável.
+. Execute o `netapp_windows_host_utilities_7.2_x64` arquivo e siga as instruções na tela.
+. Reinicie o host do Windows quando solicitado.
+
+
+--
+.Instale a partir de uma linha de comando
+--
+Você pode executar uma instalação silenciosa (sem supervisão) dos utilitários host inserindo os comandos apropriados no prompt de comando do Windows. O sistema reinicia automaticamente quando a instalação está concluída.
+
+.Passos
+. Digite o seguinte comando no prompt de comando do Windows:
++
+`msiexec /i installer.msi /quiet MULTIPATHING= {0 | 1} [INSTALLDIR=inst_path]`
+
++
+** `installer` É o nome do `.msi` arquivo para a arquitetura da CPU.
+** MULTIPATHING especifica se o suporte MPIO está instalado. Os valores permitidos são "0" para não e "1" para sim.
+** `inst_path` é o caminho onde os arquivos de utilitários do host são instalados. O caminho padrão é `C:\Program Files\NetApp\Windows Host Utilities\`.
+
+
+
+
+
+NOTE: Para ver as opções padrão do Microsoft Installer (MSI) para Registro e outras funções, digite `msiexec /help` no prompt de comando do Windows. Por exemplo, o `msiexec /i install.msi /quiet /l*v <install.log> LOGVERBOSE=1` comando exibe informações de Registro.
+
+--
+====

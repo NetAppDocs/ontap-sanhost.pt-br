@@ -1,0 +1,282 @@
+---
+sidebar: sidebar 
+permalink: hu_veritas_8x.html 
+keywords: host utilities, veritas, infoscale, 8, netapp, ontap, sanhost, iscsi, red, hat linux, oracle, linux 
+summary: Fornece orientação sobre as configurações do host SAN ONTAP para o lançamento da série Veritas Infoscale 7 
+---
+= Use o Veritas Infoscale 8 para Linux com ONTAP
+:hardbreaks:
+:toclevels: 1
+:allow-uri-read: 
+:toclevels: 1
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./media/
+
+
+[role="lead"]
+Você pode usar as configurações de host SAN ONTAP para a versão da base de armazenamento Veritas Infoscale da série 8 para plataformas Red Hat Enterprise Linux e Oracle Linux (baseadas em RHCK) com protocolos FC, FCoE e iSCSI.
+
+
+
+== Instale os utilitários do host unificado do Linux
+
+O pacote de software Utilitários de host unificado do NetApp Linux está disponível no link:https://mysupport.netapp.com/site/products/all/details/hostutilities/downloads-tab/download/61343/7.1/downloads["Site de suporte da NetApp"^]arquivo .rpm de 64 bits.
+
+O NetApp recomenda fortemente a instalação dos Utilitários de host unificado do Linux, mas não é obrigatório. Os utilitários não alteram nenhuma configuração em seu host Linux. Os utilitários melhoram o gerenciamento e auxiliam o suporte ao cliente da NetApp na coleta de informações sobre sua configuração.
+
+.O que você vai precisar
+Se você tiver uma versão do Linux Unified Host Utilities atualmente instalada, você deve atualizá-la ou removê-la e, em seguida, siga as etapas a seguir para instalar a versão mais recente.
+
+.Passos
+. Baixe o pacote de software Linux Unified Host Utilities de 64 bits do https://mysupport.netapp.com/site/products/all/details/hostutilities/downloads-tab/download/61343/7.1/downloads["Site de suporte da NetApp"^] para o seu host.
+. Instale o pacote de software:
++
+`rpm -ivh netapp_linux_unified_host_utilities-7-1.x86_64`
+
+
+
+
+
+== Kit de ferramentas SAN
+
+O kit de ferramentas é instalado automaticamente quando você instala o pacote de Utilitários de host do NetApp. Este kit fornece o `sanlun` utilitário, que ajuda você a gerenciar LUNs e HBAs. O `sanlun` comando retorna informações sobre os LUNs mapeados para o seu host, multipathing e informações necessárias para criar grupos de iniciadores.
+
+.Exemplo
+Na ilustração a seguir, o `sanlun show` comando retorna informações de LUN.
+
+[listing]
+----
+# sanlun show -p -v SFRAC:/vol/fen1/lun1
+
+              ONTAP Path: SFRAC:/vol/fen1/lun1
+                     LUN: 0
+                LUN Size: 10g
+                 Product: cDOT
+                DMP NODE: sfrac0_47
+      Multipath Provider: Veritas
+----------  ------  ---------  ------  -------------------------------------
+Veritas     host    vserver    host:
+path        path    path     /dev/   chan:     vserver           major:
+state       state   type     node    id:lun    LIF                   minor
+----------  ------  ---------  ------  -------------------------------------
+enabled     up      active/non-optimized sdea   14:0:1:0   lif_10    128:32
+enabled (a) up      active/optimized     sdcj   14:0:0:0   lif_2      69:112
+enabled (a) up      active/optimized     sdb    13:0:0:0   lif_1       8:16
+enabled     up      active/non-optimized sdas   13:0:1:0   lif_9      66:192
+----
+
+
+== Inicialização de SAN
+
+.O que você vai precisar
+Se você decidir usar a inicialização de SAN, ele deve ser suportado por sua configuração. Você pode usar o https://mysupport.netapp.com/matrix/imt.jsp?components=65623;64703;&solution=1&isHWU&src=IMT["Ferramenta de Matriz de interoperabilidade do NetApp"^] para verificar se o seu sistema operacional, HBA, HBA firmware e o BIOS de inicialização HBA e a versão ONTAP são suportados.
+
+Consulte o Portal de suporte da Veritas (Matriz de Produtos, Pesquisa de Plataforma, Matriz HCL) para verificar a compatibilidade com a configuração do SAN Boot e as advertências conhecidas.
+
+.Passos
+. Mapeie o LUN de inicialização SAN para o host.
+. Verifique se há vários caminhos disponíveis.
++
+
+NOTE: Vários caminhos ficam disponíveis depois que o sistema operacional do host estiver ativo e em execução nos caminhos.
+
+. Ative a inicialização SAN no BIOS do servidor para as portas às quais o LUN de inicialização SAN está mapeado.
++
+Para obter informações sobre como ativar o BIOS HBA, consulte a documentação específica do fornecedor.
+
+. Reinicie o host para verificar se a inicialização foi bem-sucedida.
+
+
+
+
+== Multipathing
+
+Você deve verificar se sua configuração atende aos requisitos do sistema. Para obter mais informações, consulte a ferramenta de Matriz de interoperabilidade do NetApp e a Matriz de HCL da Veritas.
+
+.Exemplo
+Neste exemplo, o `vxdmpadm` comando é usado para verificar se o Multipath VxDMP tem o array de destino ONTAP anexado.
+
+[listing]
+----
+# vxdmpadm listenclosure
+ENCLR_NAME   ENCLR_TYPE  ENCLR_SNO     STATUS      ARRAY_TYPE    LUN_COUNT    FIRMWARE
+=====================================================================================
+sfrac0       SFRAC       804Xw$PqE52h  CONNECTED   ALUA          43           9800
+# vxdmpadm getdmpnode
+NAME       STATE    ENCLR-TYPE  PATHS  ENBL  DSBL ENCLR-NAME
+===================================================================
+sfrac0_47  ENABLED  SFRAC       4      4     0    sfrac0
+----
+Com o Veritas Dynamic Multipathing (VxDMP), você deve executar tarefas de configuração para reivindicar NetApp LUNs como dispositivos Veritas Multipath. Você deve ter os pacotes da Biblioteca de suporte de matriz (ASL) e do módulo de política de matriz (APM) instalados que a Veritas fornece para os sistemas de armazenamento NetApp. Embora a instalação do software Veritas carregue os pacotes APM ASL padrão junto com o produto, é recomendável usar os pacotes suportados mais recentes listados no portal de suporte Veritas.
+
+.Exemplo
+O exemplo a seguir exibe a biblioteca de suporte Veritas (ASL) e a configuração do Array Policy Module (APM).
+
+[listing]
+----
+# vxdmpadm list dmpnode dmpnodename=sfrac0_47 | grep asl
+asl        = libvxnetapp.so
+# vxddladm listversion |grep libvxnetapp.so
+libvxnetapp.so                  vm-8.0.0-rev-1   8.0
+
+# rpm -qa |grep VRTSaslapm
+VRTSaslapm-x.x.x.0000-RHEL8.X86_64
+vxddladm listsupport libname=libvxnetapp.so
+ATTR_NAME   ATTR_VALUE
+=========================================
+LIBNAME     libvxnetapp.so
+VID         NETAPP
+PID         All
+ARRAY_TYPE  ALUA, A/A
+----
+
+
+== Configuração de todas as matrizes SAN
+
+Em todas as configurações de storage SAN (ASA), todos os caminhos para uma determinada unidade lógica (LUN) estão ativos e otimizados. Isso significa que a e/S pode ser servida por todos os caminhos ao mesmo tempo, permitindo assim um melhor desempenho.
+
+.Exemplo
+O exemplo a seguir exibe a saída correta para um LUN ONTAP:
+
+[listing]
+----
+# vxdmpadm getsubpaths dmpnodename-sfrac0_47
+NAME  STATE[A]   PATH-TYPE[M]   CTLR-NAME   ENCLR-TYPE  ENCLR-NAME  ATTRS  PRIORITY
+===================================================================================
+sdas  ENABLED (A)    Active/Optimized c13   SFRAC       sfrac0     -      -
+sdb   ENABLED(A) Active/Optimized     c14   SFRAC       sfrac0     -      -
+sdcj  ENABLED(A)  Active/Optimized     c14   SFRAC       sfrac0     -      -
+sdea  ENABLED (A)    Active/Optimized c14   SFRAC       sfrac0     -
+----
+
+NOTE: Não use um número excessivo de caminhos para um único LUN. Não mais de 4 caminhos devem ser necessários. Mais de 8 caminhos podem causar problemas de caminho durante falhas de storage.
+
+
+
+== Configuração sem ASA
+
+Para configurações que não sejam ASA, deve haver dois grupos de caminhos com prioridades diferentes. Os caminhos com as prioridades mais altas são Ativo/otimizado, o que significa que eles são atendidos pelo controlador onde o agregado está localizado. Os caminhos com as prioridades mais baixas estão ativos, mas não são otimizados porque são servidos de um controlador diferente. Os caminhos não otimizados são usados somente quando caminhos otimizados não estão disponíveis.
+
+.Exemplo
+O exemplo a seguir exibe a saída correta para um LUN ONTAP com dois caminhos ativos/otimizados e dois caminhos ativos/não otimizados:
+
+[listing]
+----
+# vxdmpadm getsubpaths dmpnodename-sfrac0_47
+NAME  STATE[A]   PATH-TYPE[M]   CTLR-NAME   ENCLR-TYPE  ENCLR-NAME  ATTRS  PRIORITY
+===================================================================================
+sdas  ENABLED     Active/Non-Optimized c13   SFRAC       sfrac0     -      -
+sdb   ENABLED(A)  Active/Optimized     c14   SFRAC       sfrac0     -      -
+sdcj  ENABLED(A)  Active/Optimized     c14   SFRAC       sfrac0     -      -
+sdea  ENABLED     Active/Non-Optimized c14   SFRAC       sfrac0     -      -
+----
+
+NOTE: Não use um número excessivo de caminhos para um único LUN. Não mais de 4 caminhos devem ser necessários. Mais de 8 caminhos podem causar problemas de caminho durante falhas de storage.
+
+
+
+=== Definições recomendadas
+
+
+
+==== Configurações do Veritas Multipath
+
+Os seguintes sintonizáveis VxDMP da Veritas são recomendados pela NetApp para uma configuração ideal do sistema em operações de failover de armazenamento.
+
+[cols="2*"]
+|===
+| Parâmetro | Definição 
+
+
+| dmp_lun_retry_timeout | 60 
+
+
+| dmp_path_age | 120 
+
+
+| dmp_restore_interval | 60 
+|===
+Os sintonizáveis DMP são definidos online usando o `vxdmpadm` comando da seguinte forma:
+
+`# vxdmpadm settune dmp_tunable=value`
+
+Os valores desses ajustáveis podem ser verificados dinamicamente usando `#vxdmpadm gettune`o .
+
+.Exemplo
+O exemplo a seguir mostra os sintonizáveis VxDMP efetivos no host SAN.
+
+[listing]
+----
+# vxdmpadm gettune
+
+Tunable                    Current Value    Default Value
+dmp_cache_open                      on                on
+dmp_daemon_count                    10                10
+dmp_delayq_interval                 15                15
+dmp_display_alua_states             on                on
+dmp_fast_recovery                   on                on
+dmp_health_time                     60                60
+dmp_iostats_state              enabled           enabled
+dmp_log_level                        1                 1
+dmp_low_impact_probe                on                on
+dmp_lun_retry_timeout               60                30
+dmp_path_age                       120               300
+dmp_pathswitch_blks_shift            9                 9
+dmp_probe_idle_lun                  on                on
+dmp_probe_threshold                  5                 5
+dmp_restore_cycles                  10                10
+dmp_restore_interval                60               300
+dmp_restore_policy         check_disabled   check_disabled
+dmp_restore_state              enabled           enabled
+dmp_retry_count                      5                 5
+dmp_scsi_timeout                    20                20
+dmp_sfg_threshold                    1                 1
+dmp_stat_interval                    1                 1
+dmp_monitor_ownership               on                on
+dmp_monitor_fabric                  on                on
+dmp_native_support                 off               off
+----
+
+
+==== Definições por protocolo
+
+* Somente para FC/FCoE: Use os valores de tempo limite padrão.
+* Apenas para iSCSI: Defina o `replacement_timeout` valor do parâmetro para 120.
++
+O parâmetro iSCSI `replacement_timeout` controla por quanto tempo a camada iSCSI deve esperar por um caminho ou sessão de tempo limite para se restabelecer antes de falhar qualquer comando nela. Recomenda-se definir o valor de `replacement_timeout` para 120 no ficheiro de configuração iSCSI.
+
+
+
+.Exemplo
+[listing]
+----
+# grep replacement_timeout /etc/iscsi/iscsid.conf
+node.session.timeo.replacement_timeout = 120
+----
+
+
+==== Configurações por plataformas do SO
+
+Para o Red Hat Enterprise Linux série 7 e 8, você deve configurar `udev rport` valores para oferecer suporte ao ambiente Veritas Infoscale em cenários de failover de armazenamento. Crie o arquivo `/etc/udev/rules.d/40-rport.rules` com o seguinte conteúdo de arquivo:
+
+[listing]
+----
+# cat /etc/udev/rules.d/40-rport.rules
+KERNEL=="rport-*", SUBSYSTEM=="fc_remote_ports", ACTION=="add", RUN+=/bin/sh -c 'echo 20 > /sys/class/fc_remote_ports/%k/fast_io_fail_tmo;echo 864000 >/sys/class/fc_remote_ports/%k/dev_loss_tmo'"
+----
+
+NOTE: Para todas as outras configurações específicas do Veritas, consulte a documentação padrão do produto Veritas Infoscale.
+
+
+
+== Coexistência da multipath
+
+Se você tiver um ambiente multipath heterogêneo, incluindo Veritas Infoscale, Linux Native Device Mapper e LVM volume Manager, consulte o guia Veritas Product Administration para obter as configurações.
+
+
+
+== Problemas conhecidos
+
+Não há problemas conhecidos para o Veritas Infoscale 8 para Linux com a versão ONTAP.

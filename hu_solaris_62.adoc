@@ -1,0 +1,129 @@
+---
+sidebar: sidebar 
+permalink: hu_solaris_62.html 
+keywords: host utilities, unified, oracle, linux, 7.1, netapp, ontap 
+summary: Descreve como usar os Utilitários unificados de host do Linux 7,1 com ONTAP 
+---
+= Instale os Utilitários do Solaris Host 6,2
+:hardbreaks:
+:toclevels: 1
+:allow-uri-read: 
+:toclevels: 1
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./media/
+
+
+[role="lead"]
+Os Utilitários unificados de host do Solaris ajudam você a gerenciar o armazenamento do NetApp ONTAP anexado a um host Solaris.
+
+O Solaris Host Utilities 6,2 suporta vários ambientes Solaris e vários protocolos. Os principais ambientes de utilitários de host são:
+
+* SO nativo com MPxIO com o protocolo Fibre Channel (FC) ou iSCSI em um sistema que usa um processador SPARC ou um processador x86/64.
+* Veritas Dynamic Multipathing (DMP) com o protocolo FC ou iSCSI em um sistema que usa um processador SPARC, ou o protocolo iSCSI em um sistema que usa um processador x86/64.
+
+
+O Solaris Unified Host Utilities 6,2 continua a suportar as seguintes versões do Solaris:
+
+* Solaris série 11.x.
+* Solaris série 10.x.
+
+
+.O que você vai precisar
+* Para uma operação confiável, verifique se toda a configuração iSCSI, FC ou FCoE é suportada.
+
+
+Pode utilizar o link:https://mysupport.netapp.com/matrix/imt.jsp?components=71102;&solution=1&isHWU&src=IMT["Ferramenta de Matriz de interoperabilidade do NetApp"^] para verificar a sua configuração.
+
+
+NOTE: O pacote de software Utilitários de host do NetApp está disponível no link:https://mysupport.netapp.com/site/products/all/details/hostutilities/downloads-tab/download/61343/6.2/downloads["Site de suporte da NetApp"^]em um formato de arquivo compactado para o processador. Pode transferir o pacote de software Host Utilities para o seu ambiente a partir do site de suporte.
+
+.Passos
+. Faça login no seu host como root.
+. Faça o download de uma cópia do arquivo compactado que contém os Utilitários do host do link:https://mysupport.netapp.com/site/products/all/details/hostutilities/downloads-tab/download/61343/6.2/downloads["Site de suporte da NetApp"^] para um diretório em seu host.
++
+No momento em que esta documentação foi preparada, os arquivos compatados foram chamados:
+
++
+** CPU SPARC: `netapp_solaris_host_utilities_6_2_sparc.tar.gz`
+** CPU x86/x64: `netapp_solaris_host_utilities_6_2_amd.tar.gz`
+
+
+. Vá para o diretório que contém o download.
+. Descompacte o arquivo usando o `gunzip` comando:
++
+`# gunzip netapp_solaris_host_utilities_6_2_sparc.tar.gz`
+
+. Descompacte o ficheiro. Você pode usar o `tar xvf` comando para fazer isso.
++
+`# tar xvf netapp_solaris_host_utilities_6_2_sparc.tar`
+
+. Adicione os pacotes que você extraiu do arquivo tar ao seu host. Você pode usar o `pkgadd` comando para fazer isso.
++
+Os pacotes são adicionados ao `/opt/NTAP/SANToolkit/bin` diretório. O exemplo a seguir usa o `pkgadd` comando para instalar o pacote de instalação do Solaris:
+
++
+`# pkgadd -d ./NTAPSANTool.pkg`
+
+. Confirme se o kit de ferramentas foi instalado com sucesso usando o `pkginfo` comando ou o `ls - al` comando.
++
+[listing]
+----
+# ls -alR /opt/NTAP/SANToolkit
+/opt/NTAP/SANToolkit:
+total 1038
+drwxr-xr-x   3 root     sys            4 Jul 22  2019 .
+drwxr-xr-x   3 root     sys            3 Jul 22  2019 ..
+drwxr-xr-x   2 root     sys            6 Jul 22  2019 bin
+-r-xr-xr-x   1 root     sys       432666 Sep 13  2017 NOTICES.PDF
+
+/opt/NTAP/SANToolkit/bin:
+total 7962
+drwxr-xr-x   2 root     sys            6 Jul 22  2019 .
+drwxr-xr-x   3 root     sys            4 Jul 22  2019 ..
+-r-xr-xr-x   1 root     sys      2308252 Sep 13  2017 host_config
+-r-xr-xr-x   1 root     sys          995 Sep 13  2017 san_version
+-r-xr-xr-x   1 root     sys      1669204 Sep 13  2017 sanlun
+-r-xr-xr-x   1 root     sys          677 Sep 13  2017 vidpid.dat
+
+# (cd /usr/share/man/man1; ls -al host_config.1 sanlun.1)
+-r-xr-xr-x   1 root     sys        12266 Sep 13  2017 host_config.1
+-r-xr-xr-x   1 root     sys         9044 Sep 13  2017 sanlun.1
+----
+. Depois de terminar, configure os parâmetros do host para o seu ambiente usando o `/opt/NTAP/SANToolkit/bin/host_config` comando:
++
+** MPxIO
+** Veritas DMP
+
+
+. Verifique a instalação:
++
+`sanlun version`
+
+
+
+
+
+== Kit de ferramentas SAN
+
+Os Utilitários de host do NetApp são um software host que fornece um kit de ferramentas de linha de comando em seu host do Oracle Solaris. O kit de ferramentas é instalado quando você instala o pacote de utilitários de host do NetApp. Este kit fornece o `sanlun` utilitário que ajuda você a gerenciar LUNs e adaptadores de barramento de host (HBAs). O `sanlun` comando retorna informações sobre os LUNs mapeados para o seu host, multipathing e informações necessárias para criar grupos de iniciadores.
+
+.Exemplo
+No exemplo a seguir, o `sanlun lun show` comando retorna as informações de LUN.
+
+[listing]
+----
+#sanlun lun show all
+controller(7mode)/ device host lun
+vserver(Cmode)                     lun-pathname       filename                                       adapter protocol size mode
+-----------------------------------------------------------------------------------------------------------------------------------
+data_vserver                     /vol/vol1/lun1     /dev/rdsk/c0t600A098038304437522B4E694E49792Dd0s2 qlc3   FCP       10g cDOT
+data_vserver                     /vol/vol0/lun2     /dev/rdsk/c0t600A098038304437522B4E694E497938d0s2 qlc3   FCP       10g cDOT
+data_vserver                     /vol/vol2/lun3     /dev/rdsk/c0t600A098038304437522B4E694E497939d0s2 qlc3   FCP       10g cDOT
+data_vserver                     /vol/vol3/lun4     /dev/rdsk/c0t600A098038304437522B4E694E497941d0s2 qlc3   FCP       10g cDOT
+
+
+----
+
+NOTE: Este kit de ferramentas é comum em todas as configurações e protocolos do Host Utilities. Como resultado, algum conteúdo de kit de ferramentas pode se aplicar a uma configuração, mas não a outra. Ter componentes não utilizados não afeta o desempenho do sistema.

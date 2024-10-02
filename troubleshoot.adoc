@@ -1,0 +1,157 @@
+---
+sidebar: sidebar 
+permalink: troubleshoot.html 
+keywords: host utilities, veritas, infoscale, 8.x, netapp, ontap, vmware, vspehere 
+summary: Você pode configurar as configurações de host SAN ONTAP para a versão do VMware vSphere 8.x com protocolos FC, FCoE e iSCSI. 
+---
+= Solucionar problemas
+:hardbreaks:
+:toclevels: 1
+:allow-uri-read: 
+:toclevels: 1
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./media/
+
+
+[role="lead"]
+Antes de solucionar qualquer falha de NVMe-of para hosts RHEL, OL e SLES, verifique se você está executando uma configuração compatível com as especificações da ferramenta de Matriz de interoperabilidade (IMT) e prossiga com as próximas etapas para depurar quaisquer problemas do lado do host.
+
+
+NOTE: As instruções de solução de problemas não se aplicam aos hosts AIX, Windows e ESXi.
+
+
+
+== Ative o registo detalhado
+
+Se você tiver um problema com sua configuração, o Registro detalhado pode fornecer informações essenciais para a solução de problemas.
+
+O procedimento para definir o registo verboso para Qlogic (qla2xxx) é diferente do procedimento para definir o registo de verbosidade LPFC.
+
+[role="tabbed-block"]
+====
+.LPFC
+--
+Defina o driver lpfc para NVMe/FC.
+
+.Passos
+. Defina a `lpfc_log_verbose` configuração do driver para qualquer um dos seguintes valores para Registrar eventos NVMe/FC.
++
+[listing]
+----
+#define LOG_NVME 0x00100000 /* NVME general events. */
+#define LOG_NVME_DISC 0x00200000 /* NVME Discovery/Connect events. */
+#define LOG_NVME_ABTS 0x00400000 /* NVME ABTS events. */
+#define LOG_NVME_IOERR 0x00800000 /* NVME IO Error events. */
+----
+. Depois de definir os valores, execute o `dracut-f` comando e reinicie o host.
+. Verifique as definições.
++
+[listing]
+----
+# cat /etc/modprobe.d/lpfc.conf options lpfc lpfc_log_verbose=0xf00083
+
+# cat /sys/module/lpfc/parameters/lpfc_log_verbose 15728771
+----
+
+
+--
+.Qla2xxx
+--
+Não há Registro qla2xxx específico para NVMe/FC semelhante ao `lpfc` do driver. Em vez disso, defina o nível geral de log qla2xxx.
+
+.Passos
+. Anexe o `ql2xextended_error_logging=0x1e400000` valor ao arquivo correspondente `modprobe qla2xxx conf`.
+. Execute o `dracut -f` comando e reinicie o host.
+. Após a reinicialização, verifique se o log detalhado foi ativado:
++
+[listing]
+----
+# cat /etc/modprobe.d/qla2xxx.conf
+----
++
+Exemplo de saída:
+
++
+[listing]
+----
+options qla2xxx ql2xnvmeenable=1 ql2xextended_error_logging=0x1e400000
+# cat /sys/module/qla2xxx/parameters/ql2xextended_error_logging
+507510784
+----
+
+
+--
+====
+
+
+=== Erros e soluções alternativas comuns do nvme-cli
+
+Os erros exibidos por `nvme-cli` operações durante `nvme discover`, `nvme connect`, ou `nvme connect-all` e as soluções alternativas são mostrados na tabela a seguir:
+
+[cols="20, 20, 50"]
+|===
+| Mensagem de erro | Causa provável | Solução alternativa 
+
+
+| `Failed to write to /dev/nvme-fabrics: Invalid argument` | Sintaxe incorreta | Verifique se você está usando a sintaxe correta para os `nvme discover` comandos , `nvme connect` e `nvme connect-all` . 
+
+
+| `Failed to write to /dev/nvme-fabrics: No such file or directory` | Vários problemas podem desencadear isso, por exemplo, fornecer argumentos errados aos comandos NVMe é uma das causas comuns.  a| 
+* Verifique se você passou os argumentos corretos (como, string WWNN correta, string WWPN e mais) para os comandos.
+* Se os argumentos estiverem corretos, mas você ainda vir esse erro, verifique se a `/sys/class/scsi_host/host*/nvme_info` saída do comando está correta, o iniciador NVMe é exibido como `Enabled`, e os LIFs de destino NVMe/FC são exibidos corretamente nas seções portas remotas. Exemplo:
++
+[listing]
+----
+
+# cat /sys/class/scsi_host/host*/nvme_info
+NVME Initiator Enabled
+NVME LPORT lpfc0 WWPN x10000090fae0ec9d WWNN x20000090fae0ec9d DID x012000 ONLINE
+NVME RPORT WWPN x200b00a098c80f09 WWNN x200a00a098c80f09 DID x010601 TARGET DISCSRVC ONLINE
+NVME Statistics
+LS: Xmt 0000000000000006 Cmpl 0000000000000006
+FCP: Rd 0000000000000071 Wr 0000000000000005 IO 0000000000000031
+Cmpl 00000000000000a6 Outstanding 0000000000000001
+NVME Initiator Enabled
+NVME LPORT lpfc1 WWPN x10000090fae0ec9e WWNN x20000090fae0ec9e DID x012400 ONLINE
+NVME RPORT WWPN x200900a098c80f09 WWNN x200800a098c80f09 DID x010301 TARGET DISCSRVC ONLINE
+NVME Statistics
+LS: Xmt 0000000000000006 Cmpl 0000000000000006
+FCP: Rd 0000000000000073 Wr 0000000000000005 IO 0000000000000031
+Cmpl 00000000000000a8 Outstanding 0000000000000001
+----
+* Se os LIFs de destino não forem exibidos como acima na `nvme_info` saída do comando, verifique as `/var/log/messages` saídas de comando e `dmesg` para verificar se há falhas suspeitas de NVMe/FC e informe ou corrija adequadamente.
+
+
+
+
+| `No discovery log entries to fetch`  a| 
+Geralmente observado quando a `/etc/nvme/hostnqn` cadeia de carateres não foi adicionada ao subsistema correspondente na matriz NetApp ou uma cadeia de carateres incorreta `hostnqn` foi adicionada ao respetivo subsistema.
+ a| 
+Verifique se a string exata `/etc/nvme/hostnqn` é adicionada ao subsistema correspondente no array NetApp (verifique usando o `vserver nvme subsystem host show` comando).
+
+
+
+| `Failed to write to /dev/nvme-fabrics: Operation already in progress`  a| 
+Observado quando as associações do controlador ou operação especificada já estão criadas ou em processo de criação. Isso pode acontecer como parte dos scripts de conexão automática instalados acima.
+ a| 
+Nenhum. Tente executar o `nvme discover` comando novamente após algum tempo. Para `nvme connect` e `connect-all`, execute o `nvme list` comando para verificar se os dispositivos de namespace já estão criados e exibidos no host.
+
+|===
+
+
+== Quando contactar o suporte técnico
+
+Se você ainda estiver enfrentando problemas, colete os seguintes arquivos e saídas de comando e entre em Contato link:mysupport.netapp.com["Suporte à NetApp"^] para triagem adicional:
+
+[listing]
+----
+cat /sys/class/scsi_host/host*/nvme_info
+/var/log/messages
+dmesg
+nvme discover output as in:
+nvme discover --transport=fc --traddr=nn-0x200a00a098c80f09:pn-0x200b00a098c80f09 --host-traddr=nn-0x20000090fae0ec9d:pn-0x10000090fae0ec9d
+nvme list
+nvme list-subsys /dev/nvmeXnY
+----

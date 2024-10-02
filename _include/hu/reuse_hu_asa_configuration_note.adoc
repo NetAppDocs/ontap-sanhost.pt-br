@@ -1,0 +1,6 @@
+= 
+:allow-uri-read: 
+
+
+
+NOTE: Não use um número excessivo de caminhos para um único LUN. Não mais do que quatro caminhos devem ser necessários. Mais de oito caminhos podem causar problemas de caminho durante falhas de storage.

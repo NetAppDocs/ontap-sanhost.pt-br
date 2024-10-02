@@ -1,0 +1,136 @@
+---
+sidebar: sidebar 
+permalink: hu_luhu_71.html 
+keywords: host utilities, unified, oracle, linux, 7.1, netapp, ontap 
+summary: Descreve como usar os Utilitários unificados de host do Linux 7,1 com ONTAP 
+---
+= Instale o Linux Unified Host Utilities 7,1
+:hardbreaks:
+:toclevels: 1
+:allow-uri-read: 
+:toclevels: 1
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./media/
+
+
+[role="lead"]
+O Linux Unified Host Utilities (LUHU) ajuda você a gerenciar o armazenamento do NetApp ONTAP anexado a um host Linux. O NetApp recomenda fortemente a instalação dos Utilitários de host unificado do Linux, mas não é obrigatório. Os utilitários não alteram nenhuma configuração em seu host Linux. Os utilitários melhoram o gerenciamento e auxiliam o suporte ao cliente da NetApp na coleta de informações sobre sua configuração.
+
+As seguintes distribuições Linux são suportadas:
+
+* Red Hat Enterprise Linux
+* SUSE Linux Enterprise Server
+* Oracle Linux
+* VM Oracle
+* Citrix XenServer
+
+
+.O que você vai precisar
+O pacote de software Utilitários de host unificado do NetApp Linux está disponível no link:https://mysupport.netapp.com/site/products/all/details/hostutilities/downloads-tab/download/61343/7.1/downloads["Site de suporte da NetApp"^]em um arquivo .rpm de 32 ou 64 bits.
+
+* Para uma operação confiável, você deve verificar se toda a configuração iSCSI, FC ou FCoE é suportada.
++
+Pode utilizar o https://mysupport.netapp.com/matrix/imt.jsp?components=65623;64703;&solution=1&isHWU&src=IMT["Ferramenta de Matriz de interoperabilidade do NetApp"^] para verificar a sua configuração.
+
+* Você deve instalar os pacotes de gerenciamento do adaptador de barramento do host (HBA) disponíveis no site de suporte do fornecedor.
++
+O software de gerenciamento permite que os comandos do kit de ferramentas SAN coletem informações sobre os HBAs FC, como seus WWPNs. Para que o `sanlun fcp show adapter` comando funcione, verifique se os seguintes pacotes estão instalados corretamente:
+
++
+** Marvell QLogic HBA – QConvergeConsole CLI
+** Broadcom Emulex HBA - OneCommand Manager Core Application CLI
+** Marvell Brocade HBA – Utilitário de comando Brocade CLI
+
+
+* Pacotes RPM "libhbaapi" e "libhbalinux" disponíveis para cada distribuição Linux devem ser instalados no sistema operacional host.
+
+
+
+NOTE: O software Linux Unified Host Utilities não é compatível com os protocolos de host NVMe em Fibre Channel (NVMe/FC) e NVMe em TCP (NVMe/TCP).
+
+.Passos
+. Se você tiver uma versão do Linux Unified Host Utilities atualmente instalada, use o seguinte comando para removê-la:
++
+[source, cli]
+----
+rpm -e netapp_linux_unified_host_utilities-7-1
+----
++
+Para versões mais antigas do Linux Host Utilities, vá para o diretório onde o software do utilitário host está instalado e digite o comando de desinstalação para remover o pacote instalado.
+
+. Faça o download do pacote de software Linux Unified Host Utilities de 32 ou 64 bits do link:https://mysupport.netapp.com/site/products/all/details/hostutilities/downloads-tab/download/61343/7.1/downloads["Site de suporte da NetApp"^] para o seu host.
+. Vá para o diretório para o qual você baixou o pacote de software e use o seguinte comando para instalá-lo:
++
+[source, cli]
+----
+rpm -ivh netapp_linux_unified_host_utilities-7-1.x86_xx.rpm
+----
++
+*Exemplo de saída*
+
++
+[listing]
+----
+Verifying...                          ################################# [100%]
+Preparing...                          ################################# [100%]
+Updating / installing...
+   1:netapp_linux_unified_host_utiliti################################# [100%]
+----
+. Verifique a instalação:
++
+[source, cli]
+----
+sanlun version
+----
++
+*Exemplo de saída*
+
++
+[listing]
+----
+sanlun version 7.1.386.1644
+----
+
+
+
+
+== Configurações de driver recomendadas com kernel Linux
+
+Quando você configura um ambiente FC que usa drivers de caixa de entrada nativos que são empacotados com o kernel Linux, você pode usar os valores padrão para os drivers.
+
+
+
+== Kit de ferramentas SAN
+
+Utilitários de host unificado Linux é um software host NetApp que fornece um kit de ferramentas de linha de comando em seu host Linux.
+
+O kit de ferramentas é instalado automaticamente quando você instala o pacote de utilitários de host do NetApp. Este kit fornece o `sanlun` utilitário, que ajuda você a gerenciar LUNs e HBAs. O `sanlun` comando retorna informações sobre os LUNs mapeados para o seu host, multipathing e informações necessárias para criar grupos de iniciadores.
+
+.Exemplo
+No exemplo a seguir, o `sanlun lun show` comando retorna informações de LUN.
+
+[source, cli]
+----
+# sanlun lun show all
+----
+Exemplo de saída:
+
+[listing]
+----
+controller(7mode/E-Series)/            device     host               lun
+vserver(cDOT/FlashRay)   lun-pathname  filename   adapter  protocol  size    Product
+-------------------------------------------------------------------------
+data_vserver          /vol/vol1/lun1   /dev/sdb   host16   FCP       120.0g  cDOT
+data_vserver          /vol/vol1/lun1   /dev/sdc   host15   FCP       120.0g  cDOT
+data_vserver          /vol/vol2/lun2   /dev/sdd   host16   FCP       120.0g  cDOT
+data_vserver          /vol/vol2/lun2   /dev/sde   host15   FCP       120.0g  cDOT
+----
+[NOTE]
+====
+* Este kit de ferramentas é comum em todas as configurações e protocolos dos Utilitários do host. Como resultado, alguns de seus conteúdos se aplicam a uma configuração, mas não a outra. Ter componentes não utilizados não afeta o desempenho do sistema.
+* O kit de ferramentas SAN não é compatível com Citrix XenServer, Oracle VM e Red Hat Enterprise Virtualization Hypervisor.
+
+
+====

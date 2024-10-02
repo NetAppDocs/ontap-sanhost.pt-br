@@ -1,0 +1,147 @@
+---
+sidebar: sidebar 
+permalink: hu_windows_2022.html 
+keywords: windows, enterprise 
+summary: Usando o Windows Server 2022 com ONTAP 
+---
+= Usando o Windows Server 2022 com ONTAP
+:hardbreaks:
+:toclevels: 1
+:allow-uri-read: 
+:toclevels: 1
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./media/
+
+
+[role="lead"]
+Você pode usar as configurações do host SAN ONTAP para configurar o Windows Server 2022 com o ONTAP como destino.
+
+
+
+== Inicializando o SO
+
+Há duas opções para inicializar o sistema operacional: Usando inicialização local ou inicialização SAN. Para a inicialização local, você instala o sistema operacional no disco rígido local (SSD, SATA, RAID e assim por diante). Para iniciar SAN, consulte as instruções abaixo.
+
+
+
+=== Inicialização de SAN
+
+Se você optar por usar a inicialização de SAN, ele deve ser suportado por sua configuração. Você pode usar a ferramenta Matriz de interoperabilidade do NetApp para verificar se o seu sistema operacional, HBA, firmware HBA e o BIOS de inicialização HBA e a versão do ONTAP são suportados.
+
+. Mapeie o LUN de inicialização SAN para o host.
+. Verifique se há vários caminhos disponíveis. Lembre-se, vários caminhos só estarão disponíveis depois que o sistema operacional host estiver ativo e em execução nos caminhos.
+. Ative a inicialização SAN no BIOS do servidor para as portas às quais o LUN de inicialização SAN está mapeado. Para obter informações sobre como ativar o BIOS HBA, consulte a documentação específica do fornecedor.
+. Reinicie o host para verificar se a inicialização foi bem-sucedida.
+
+
+
+
+== Instale os hotfixes do Windows
+
+A NetApp recomenda que a *última atualização cumulativa* esteja instalada no servidor.
+
+
+NOTE: Vá para link:https://www.catalog.update.microsoft.com/Search.aspx?q=update%20%22windows%20server%202022%22["Catálogo do Microsoft Update 2022"^]o site para obter e instalar os hotfixes do Windows necessários para sua versão do Windows.
+
+. Baixe hotfixes do site de suporte da Microsoft.
+
+
+
+NOTE: Alguns hotfixes não estão disponíveis para download direto. Nesses casos, você precisará solicitar um determinado hotfix do pessoal de suporte da Microsoft.
+
+. Siga as instruções fornecidas pela Microsoft para instalar os hotfixes.
+
+
+
+TIP: Muitos hotfixes exigem uma reinicialização do seu host Windows, mas você pode optar por esperar para reiniciar o host até _depois_ instalar ou atualizar os Utilitários do host.
+
+
+
+== Instale os Utilitários do sistema de anfitrião unificado do Windows
+
+Os utilitários de host unificado do Windows (WUHU) são um conjunto de programas de software com documentação que permite conetar computadores host a discos virtuais (LUNs) em uma SAN NetApp. A NetApp recomenda o download e a instalação do kit utilitário mais recente. Para obter informações e instruções sobre a configuração DO WUHU, consulte link:https://docs.netapp.com/us-en/ontap-sanhost/hu_wuhu_71_rn.html["Documentação dos Utilitários do Windows Unified Host"]e selecione o procedimento de instalação para a versão do Windows Unified Host Utilities.
+
+
+
+== Multipathing
+
+Você deve instalar o software MPIO e ter multipathing configurado se seu host Windows tiver mais de um caminho para o sistema de armazenamento. Sem o software MPIO, o sistema operacional pode ver cada caminho como um disco separado, o que pode levar à corrupção de dados. O software MPIO apresenta um único disco para o sistema operativo para todos os caminhos, e um módulo específico do dispositivo (DSM) gere o failover de caminho.
+
+Em um sistema Windows, os dois componentes principais de qualquer solução MPIO são um DSM e o Windows MPIO. MPIO não é suportado para Windows XP ou Windows Vista em execução em uma máquina virtual Hyper- V.
+
+
+NOTE: Quando você seleciona suporte a MPIO, os Utilitários unificados do Windows Host ativa o recurso MPIO incluído do Windows Server 2022.
+
+
+
+== Configuração SAN
+
+
+
+=== Configuração sem ASA
+
+Para configurações que não sejam ASA, deve haver dois grupos de caminhos com prioridades diferentes.
+
+Os caminhos com as prioridades mais altas são Ativo/otimizado, o que significa que eles são atendidos pelo controlador onde o agregado está localizado.
+
+Os caminhos com as prioridades mais baixas estão ativos, mas não são otimizados porque são servidos de um controlador diferente.
+
+
+NOTE: Os caminhos não otimizados são usados somente quando caminhos otimizados não estão disponíveis.
+
+.Exemplo
+O exemplo a seguir exibe a saída correta para um LUN ONTAP com dois caminhos ativos/otimizados e dois caminhos ativos/não otimizados.
+
+image::nonasa.png[Captura de tela de um LUN ONTAP com dois caminhos ativos/otimizados e dois caminhos ativos/não otimizados]
+
+
+
+=== Toda a configuração de array SAN
+
+Para todas as configurações de storage SAN (ASA), deve haver um grupo de caminhos com prioridades únicas. Todos os caminhos estão ativos/otimizados, ou seja, são atendidos pelo controlador e que a e/S é enviada em todos os caminhos ativos.
+
+image::asa.png[Captura de tela do LUN ONTAP com caminhos ativos/otimizados]
+
+
+NOTE: Não use um número excessivo de caminhos para um único LUN. Não mais do que quatro caminhos devem ser necessários. Mais de oito caminhos podem causar problemas de caminho durante falhas de storage.
+
+
+
+== Definições recomendadas
+
+Em sistemas que usam FC, os seguintes valores de tempo limite para HBAs Emulex e QLogic FC são necessários quando MPIO é selecionado.
+
+Para HBAs Fibre Channel Emulex:
+
+[cols="2*"]
+|===
+| Tipo de propriedade | Valor da propriedade 
+
+
+| LinkTimeOut | 1 
+
+
+| NodeTimeOut | 10 
+|===
+Para HBAs Fibre Channel QLogic:
+
+[cols="2*"]
+|===
+| Tipo de propriedade | Valor da propriedade 
+
+
+| LinkDownTimeOut | 1 
+
+
+| PortDownRetryCount | 10 
+|===
+
+NOTE: O Utilitário de host unificado do Windows definirá esses valores. Para obter as configurações recomendadas detalhadas, consulte link:https://docs.netapp.com/us-en/ontap-sanhost/hu_wuhu_71_rn.html["Documentação dos Utilitários do sistema anfitrião do Windows"] e selecione o procedimento de instalação para a versão do Windows Unified Host Utilities.
+
+
+
+== Problemas conhecidos
+
+Não há problemas conhecidos para o Windows Server 2022 com a versão ONTAP.

@@ -1,0 +1,53 @@
+---
+sidebar: sidebar 
+permalink: hu_aix_rn.html 
+keywords: host utilities, aix, 6.1 netapp, 7.0, ontap, powervm 
+summary: Notas de versão para AIX Host Utilities 6,1 
+---
+= AIX Host Utilities Notas de lançamento
+:hardbreaks:
+:toclevels: 1
+:allow-uri-read: 
+:toclevels: 1
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./media/
+
+
+[role="lead"]
+As notas de versão descrevem novos recursos e aprimoramentos, problemas corrigidos na versão atual, problemas e limitações conhecidos e precauções importantes relacionadas à configuração e gerenciamento de seu host AIX específico com seu sistema de armazenamento ONTAP.
+
+Para obter informações específicas sobre as versões e atualizações do sistema operacional compatíveis com os Utilitários do host, consulte link:https://mysupport.netapp.com/matrix/imt.jsp?components=85803;&solution=1&isHWU&src=IMT["Ferramenta de Matriz de interoperabilidade do NetApp"^].
+
+
+
+== O que há de novo
+
+As versões recentes do AIX Host Utilities contêm os seguintes novos recursos e aprimoramentos:
+
+* O AIX Host Utilities 7,0 suporta O DESBLOQUEIO SCSI no sistema operacional do host AIX. Com os utilitários de host AIX 7,0, o provisionamento de thin SCSI funciona perfeitamente com LUNs AIX e NetApp para dispositivos FC.
+* AIX Host Utilities 6,1 adicionou suporte para o problema de falha de memória que ocorreu em versões anteriores do sistema operacional host AIX. Com AIX Host Utilities 6,1, apenas o binário sanlun mudou. O MPIO e o ODM relacionado permanecem inalterados.
+
+
+
+
+== Problemas e limitações conhecidos
+
+Você deve estar ciente dos seguintes problemas conhecidos e limitações que podem afetar o desempenho em seu host específico.
+
+[cols="3"]
+|===
+| ID do bug | Título | Descrição 
+
+
+| N/A. | O SCSI DESMAPEIA o suporte para LUNs iSCSI NetApp ONTAP | O AIX Host Utilities 7,0 suporta apenas o recurso DE DESINSTALAÇÃO SCSI para dispositivos FC. O suporte DE DESBLOQUEIO SCSI para dispositivos iSCSI não está incluído nesta versão. 
+
+
+| link:https://mysupport.netapp.com/site/bugs-online/product/HOSTUTILITIES/BURT/1069147["1069147"^] | AIX HU Sanlun relata velocidade HBA incorreta | Instâncias de sanlun exibindo velocidades HBA incorretas são relatadas durante a execução do `sanlun fcp show adapter –v` comando. O `sanlun fcp show adapter –v` comando exibe as informações das placas HBA, como velocidades suportadas e negociadas para os adaptadores. Este parece ser apenas um problema de relatório. Para identificar a velocidade real, use o `fcstat fcsx` comando. 
+|===
+link:https://mysupport.netapp.com/site/["NetApp Bugs Online"^] fornece informações completas para a maioria dos problemas conhecidos, incluindo soluções alternativas sugeridas sempre que possível. Algumas combinações de palavras-chave e tipos de bug que você pode querer usar incluem o seguinte:
+
+* FCP Geral: Exibe bugs FC e HBA que não estão associados a um host específico.
+* FCP - AIX
+

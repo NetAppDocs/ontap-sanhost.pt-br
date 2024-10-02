@@ -1,0 +1,568 @@
+---
+sidebar: sidebar 
+permalink: nvme_ol_93.html 
+keywords: nvme, oracle linux, 9.3, host configuration 
+summary: Configuração de host NVMe-of para Oracle Linux 9,3 com ONTAP 
+---
+= Configuração de host NVMe-of para Oracle Linux 9,3 com ONTAP
+:hardbreaks:
+:toclevels: 1
+:allow-uri-read: 
+:toclevels: 1
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./media/
+
+
+[role="lead"]
+O NVMe sobre Fabrics (NVMe-of), incluindo NVMe sobre Fibre Channel (NVMe/FC) e outros transportes, é compatível com Oracle Linux (OL) 9,3 com acesso a namespace assimétrico (ANA). Em ambientes NVMe-of, o ANA equivale a multipathing ALUA em ambientes iSCSI e FC e é implementado com multipath NVMe no kernel.
+
+O suporte a seguir está disponível para a configuração de host NVMe-of para OL 9,3 com ONTAP:
+
+* Suporte para NVMe em TCP (NVMe/TCP), além de NVMe/FC. O plug-in do NetApp no pacote nvme-cli nativo exibe detalhes do ONTAP para namespaces NVMe/FC e NVMe/TCP.
+* Uso do tráfego coexistente NVMe e SCSI no mesmo host em um determinado adaptador de barramento do host (HBA), sem as configurações explícitas de dm-multipath para impedir a reivindicação de namespaces NVMe.
+
+
+Para obter detalhes adicionais sobre as configurações suportadas, consulte o link:https://mysupport.netapp.com/matrix/["Ferramenta de Matriz de interoperabilidade do NetApp"^].
+
+
+
+== Caraterísticas
+
+O Oracle Linux 9,3 tem multipath NVMe no kernel habilitado para namespaces NVMe por padrão, portanto, não há necessidade de configurações explícitas.
+
+
+
+== Limitações conhecidas
+
+A inicialização DE SAN usando o protocolo NVMe-of não é atualmente suportada.
+
+
+
+== Validar versões de software
+
+Você pode usar o procedimento a seguir para validar as versões mínimas de software OL 9,3 suportadas.
+
+.Passos
+. Instale OL 9,3 GA no servidor. Depois que a instalação estiver concluída, verifique se você está executando o kernel OL 9,3 GA especificado.
++
+[listing]
+----
+# uname -r
+----
++
+*Exemplo de saída:*
+
++
+[listing]
+----
+5.15.0-200.131.27.el9uek.x86_64
+----
+. Instale o `nvme-cli` pacote:
++
+[listing]
+----
+# rpm -qa|grep nvme-cli
+----
++
+*Exemplo de saída:*
+
++
+[listing]
+----
+nvme-cli-2.4-10.el9.x86_64
+----
+. Instale o `libnvme` pacote:
++
+[listing]
+----
+#rpm -qa|grep libnvme
+----
++
+*Exemplo de saída*
+
++
+[listing]
+----
+libnvme-1.4-7.el9.x86_64
+----
+. No host Oracle Linux 9,3, verifique a `hostnqn` string em `/etc/nvme/hostnqn`:
++
+[listing]
+----
+# cat /etc/nvme/hostnqn
+----
++
+*Exemplo de saída:*
+
++
+[listing]
+----
+nqn.2014-08.org.nvmexpress:uuid:2831093d-fa7f-4714-a6bf-548796e82053
+----
+. Verifique se a `hostnqn` cadeia corresponde à `hostnqn` cadeia para o subsistema correspondente na matriz ONTAP:
++
+[listing]
+----
+::> vserver nvme subsystem host show -vserver vs_ol_nvme
+----
++
+*Exemplo de saída:*
+
++
+[listing]
+----
+Vserver     Subsystem          Host NQN
+----------- --------------- ----------------------------------------------------------
+vs_ol_nvme   nvme              nqn.2014-08.org.nvmexpress:uuid:2831093d-fa7f-4714-a6bf-548796e82053
+----
++
+
+NOTE: Se as `hostnqn` strings não corresponderem, você pode usar o `vserver modify` comando para atualizar a `hostnqn` string no subsistema de matriz ONTAP correspondente para corresponder à `hostnqn` string do `/etc/nvme/hostnqn` no host.
+
+
+
+
+
+== Configurar o NVMe/FC
+
+Você pode configurar o NVMe/FC para adaptadores Broadcom/Emulex ou adaptadores Marvell/Qlogic.
+
+[role="tabbed-block"]
+====
+.Broadcom/Emulex
+--
+.Passos
+. Verifique se você está usando o modelo de adaptador suportado:
++
+[listing]
+----
+# cat /sys/class/scsi_host/host*/modelname
+----
++
+*Exemplo de saída:*
+
++
+[listing]
+----
+LPe36002-M2
+LPe36002-M2
+----
++
+[listing]
+----
+# cat /sys/class/scsi_host/host*/modeldesc
+----
++
+*Exemplo de saída:*
+
++
+[listing]
+----
+Emulex LightPulse LPe36002-M2 2-Port 64Gb Fibre Channel Adapter
+Emulex LightPulse LPe36002-M2 2-Port 64Gb Fibre Channel Adapter
+----
+. Verifique se você está usando o firmware Broadcom recomendado e o driver da `lpfc` caixa de entrada:
++
+[listing]
+----
+# cat /sys/class/scsi_host/host*/fwrev
+14.2.673.40, sli-4:2:c
+14.2.673.40, sli-4:2:c
+----
++
+[listing]
+----
+# cat /sys/module/lpfc/version
+0:14.2.0.13
+----
++
+Para obter a lista mais atual de versões de firmware e drivers de adaptador compatíveis, consulte link:https://mysupport.netapp.com/matrix/["Ferramenta de Matriz de interoperabilidade do NetApp"^].
+
+. Verifique se `lpfc_enable_fc4_type` está definido como `3`:
++
+[listing]
+----
+# cat /sys/module/lpfc/parameters/lpfc_enable_fc4_type
+3
+----
+. Verifique se as portas do iniciador estão ativas e em execução e se você pode ver os LIFs de destino:
++
+[listing]
+----
+# cat /sys/class/fc_host/host*/port_name
+0x100000620b3c089c
+0x100000620b3c089d
+
+----
++
+[listing]
+----
+
+# cat /sys/class/fc_host/host*/port_state
+Online
+Online
+----
++
+.Mostrar exemplo de saída
+[%collapsible]
+=====
+[listing]
+----
+# cat /sys/class/scsi_host/host*/nvme_info
+NVME Initiator Enabled
+XRI Dist lpfc0 Total 6144 IO 5894 ELS 250
+NVME LPORT lpfc0 WWPN x100000620b3c089c WWNN x200000620b3c089c DID x062f00 ONLINE
+NVME RPORT       WWPN x2019d039ea9ea480 WWNN x2018d039ea9ea480 DID x061b06 TARGET DISCSRVC ONLINE
+NVME RPORT       WWPN x201cd039ea9ea480 WWNN x2018d039ea9ea480 DID x062706 TARGET DISCSRVC ONLINE
+
+NVME Statistics
+LS: Xmt 0000000f03 Cmpl 0000000efa Abort 0000004a
+LS XMIT: Err 00000009  CMPL: xb 0000004a Err 0000004a
+Total FCP Cmpl 00000000b9b3486a Issue 00000000b97ba0d2 OutIO ffffffffffc85868
+abort 00000afc noxri 00000000 nondlp 00002e34 qdepth 00000000 wqerr 00000000 err 00000000
+FCP CMPL: xb 0000138c Err 00014750
+
+NVME Initiator Enabled
+XRI Dist lpfc1 Total 6144 IO 5894 ELS 250
+NVME LPORT lpfc1 WWPN x100000620b3c089d WWNN x200000620b3c089d DID x062400 ONLINE
+NVME RPORT       WWPN x201ad039ea9ea480 WWNN x2018d039ea9ea480 DID x060206 TARGET DISCSRVC ONLINE
+NVME RPORT       WWPN x201dd039ea9ea480 WWNN x2018d039ea9ea480 DID x061305 TARGET DISCSRVC ONLINE
+
+NVME Statistics
+LS: Xmt 0000000b40 Cmpl 0000000b40 Abort 00000000
+LS XMIT: Err 00000000  CMPL: xb 00000000 Err 00000000
+Total FCP Cmpl 00000000b9a9f03f Issue 00000000b96e622e OutIO ffffffffffc471ef
+abort 0000090d noxri 00000000 nondlp 00003b3f qdepth 00000000 wqerr 00000000 err 00000000
+FCP CMPL: xb 000010a5 Err 000147e4
+----
+=====
+
+
+--
+.Adaptador FC Marvell/QLogic para NVMe/FC
+--
+.Passos
+. O driver nativo da caixa de entrada qla2xxx incluído no kernel OL 9,3 GA tem as correções upstream mais recentes essenciais para o suporte ao ONTAP. Verifique se você está executando o driver de adaptador e as versões de firmware compatíveis:
++
+[listing]
+----
+# cat /sys/class/fc_host/host*/symbolic_name
+QLE2872 FW:v9.14.02 DVR:v 10.02.09.100-k
+QLE2872 FW:v9.14.02 DVR:v 10.02.09.100-k
+----
+. Verifique se `ql2xnvmeenable` está definido. Isso permite que o adaptador Marvell funcione como um iniciador NVMe/FC:
++
+[listing]
+----
+# cat /sys/module/qla2xxx/parameters/ql2xnvmeenable
+1
+----
+
+
+--
+====
+
+
+=== Ativar tamanho de e/S 1MB (opcional)
+
+O ONTAP relata um MDTS (MAX Data Transfer Size) de 8 nos dados do controlador de identificação. Isso significa que o tamanho máximo da solicitação de e/S pode ser de até 1MBMB. Para emitir solicitações de e/S de tamanho 1 MB para um host NVMe/FC Broadcom, é necessário aumentar `lpfc` o valor `lpfc_sg_seg_cnt` do parâmetro para 256 do valor padrão 64.
+
+.Passos
+. Defina `lpfc_sg_seg_cnt` o parâmetro como 256:
++
+[listing]
+----
+# cat /etc/modprobe.d/lpfc.conf
+options lpfc lpfc_sg_seg_cnt=256
+----
+. Execute um `dracut -f` comando e reinicie o host:
+. Verifique se `lpfc_sg_seg_cnt` é 256:
++
+[listing]
+----
+# cat /sys/module/lpfc/parameters/lpfc_sg_seg_cnt
+256
+----
+
+
+
+NOTE: Isso não se aplica a hosts Qlogic NVMe/FC.
+
+
+
+== Configurar o NVMe/TCP
+
+O NVMe/TCP não tem uma funcionalidade de conexão automática. Portanto, você precisa executar a funcionalidade de conexão NVMe/TCP ou conetar-all manualmente para descobrir os subsistemas e namespaces NVMe/TCP. Você pode usar o procedimento a seguir para configurar o NVMe/TCP.
+
+.Passos
+. Verifique se a porta do iniciador pode buscar os dados da página de log de descoberta nas LIFs NVMe/TCP suportadas:
++
+[listing]
+----
+nvme discover -t tcp -w host-traddr -a traddr
+----
++
+.Mostrar exemplo
+[%collapsible]
+====
+[listing]
+----
+# nvme discover -t tcp -w 192.168.166.4 -a 192.168.166.56
+
+Discovery Log Number of Records 4, Generation counter 10
+=====Discovery Log Entry 0======
+trtype:  tcp
+adrfam:  ipv4
+subtype: current discovery subsystem
+treq:    not specified
+portid:  2
+trsvcid: 8009
+subnqn:  nqn.1992-08.com.netapp:sn.337a0392d58011ee9764d039eab0dadd:discovery
+traddr:  192.168.165.56
+eflags:  explicit discovery connections, duplicate discovery information
+sectype: none
+=====Discovery Log Entry 1======
+trtype:  tcp
+adrfam:  ipv4
+subtype: current discovery subsystem
+treq:    not specified
+portid:  1
+trsvcid: 8009
+subnqn:  nqn.1992-08.com.netapp:sn.337a0392d58011ee9764d039eab0dadd:discovery
+traddr:  192.168.166.56
+eflags:  explicit discovery connections, duplicate discovery information
+sectype: none
+=====Discovery Log Entry 2======
+trtype:  tcp
+adrfam:  ipv4
+subtype: nvme subsystem
+treq:    not specified
+portid:  2
+trsvcid: 4420
+subnqn:  nqn.1992-08.com.netapp:sn.337a0392d58011ee9764d039eab0dadd:subsystem.rhel_95
+traddr:  192.168.165.56
+eflags:  none
+sectype: none
+..........
+----
+====
+. Verifique se as outras combinações de LIF entre iniciador e destino do NVMe/TCP podem obter com êxito os dados da página de log de descoberta:
++
+[listing]
+----
+nvme discover -t tcp -w host-traddr -a traddr
+----
++
+*Exemplo de saída:*
+
++
+[listing]
+----
+# nvme discover -t tcp -w 192.168.166.4 -a 192.168.166.56
+# nvme discover -t tcp -w 192.168.165.3 -a 192.168.165.56
+----
+. Execute o `nvme connect-all` comando em todos os LIFs de destino iniciador NVMe/TCP suportados nos nós:
++
+[listing]
+----
+nvme connect-all -t tcp -w host-traddr -a traddr -l <ctrl_loss_timeout_in_seconds>
+----
++
+*Exemplo de saída:*
+
++
+[listing]
+----
+# nvme connect-all -t tcp -w 192.168.166.4 -a 192.168.166.56 -l -1
+# nvme connect-all -t tcp -w 192.168.165.3 -a 192.168.165.56 -l -1
+----
++
+
+NOTE: A NetApp recomenda definir `ctrl-loss-tmo` a opção para `-1` que o iniciador NVMe/TCP tente se reconetar indefinidamente em caso de perda de caminho.
+
+
+
+
+
+== Validar o NVMe-of
+
+Use o procedimento a seguir para validar o NVMe-of.
+
+.Passos
+. Verifique as seguintes configurações de NVMe/FC no host OL 9,3:
++
+[listing]
+----
+# cat /sys/module/nvme_core/parameters/multipath
+Y
+----
++
+[listing]
+----
+# cat /sys/class/nvme-subsystem/nvme-subsys*/model
+NetApp ONTAP Controller
+NetApp ONTAP Controller
+----
++
+[listing]
+----
+# cat /sys/class/nvme-subsystem/nvme-subsys*/iopolicy
+round-robin
+round-robin
+----
+. Verifique se os namespaces são criados e descobertos corretamente no host:
++
+[listing]
+----
+# nvme list
+----
++
+*Exemplo de saída:*
+
++
+[listing]
+----
+Node         SN                   Model
+---------------------------------------------------------
+/dev/nvme0n1 814vWBNRwf9HAAAAAAAB NetApp ONTAP Controller
+/dev/nvme0n2 814vWBNRwf9HAAAAAAAB NetApp ONTAP Controller
+/dev/nvme0n3 814vWBNRwf9HAAAAAAAB NetApp ONTAP Controller
+
+
+Namespace Usage    Format             FW             Rev
+-----------------------------------------------------------
+1                 21.47 GB / 21.47 GB  4 KiB + 0 B   FFFFFFFF
+2                 21.47 GB / 21.47 GB  4 KiB + 0 B  FFFFFFFF
+3	                21.47 GB/ 21.47 GB 4 KiB + 0 B   FFFFFFFF
+
+----
+. Verifique se o estado do controlador de cada caminho está ativo e tem o status ANA correto:
++
+[role="tabbed-block"]
+====
+.NVMe/FC
+--
+[listing]
+----
+# nvme list-subsys /dev/nvme0n1
+----
+*Exemplo de saída:*
+
+[listing]
+----
+nvme-subsys5 - NQN=nqn.1992-08.com.netapp:sn.4aa0fa76c92c11eeb301d039eab0dadd:subsystem.rhel_213
+\
+ +- nvme3 fc traddr=nn-0x2018d039ea9ea480:pn-0x201dd039ea9ea480,host_traddr=nn-0x200000620b3c089d:pn-0x100000620b3c089d live non-optimized
+ +- nvme4 fc traddr=nn-0x2018d039ea9ea480:pn-0x201cd039ea9ea480,host_traddr=nn-0x200000620b3c089c:pn-0x100000620b3c089c live non-optimized
+ +- nvme6 fc traddr=nn-0x2018d039ea9ea480:pn-0x2019d039ea9ea480,host_traddr=nn-0x200000620b3c089c:pn-0x100000620b3c089c live optimized
+ +- nvme7 fc traddr=nn-0x2018d039ea9ea480:pn-0x201ad039ea9ea480,host_traddr=nn-0x200000620b3c089d:pn-0x100000620b3c089d live optimized
+----
+--
+.NVMe/TCP
+--
+[listing]
+----
+nvme list-subsys /dev/nvme1n22
+----
+*Exemplo de saída*
+
+[listing]
+----
+nvme-subsys1 - NQN=nqn.1992-08.com.netapp:sn.337a0392d58011ee9764d039eab0dadd:subsystem.rhel_95
+\
+ +- nvme2 tcp traddr=192.168.166.56,trsvcid=4420,host_traddr=192.168.166.4,src_addr=192.168.166.4 live optimized
+ +- nvme3 tcp traddr=192.168.165.56,trsvcid=4420,host_traddr=192.168.165.3,src_addr=192.168.165.3 live non-optimized
+
+
+----
+--
+====
+. Verifique se o plug-in NetApp exibe os valores corretos para cada dispositivo de namespace ONTAP:
++
+[role="tabbed-block"]
+====
+.Coluna
+--
+[listing]
+----
+# nvme netapp ontapdevices -o column
+----
+*Exemplo de saída:*
+
+[listing]
+----
+Device        Vserver   Namespace Path
+----------------------- ------------------------------
+/dev/nvme5n6     vs_nvme175                /vol/vol6/ns
+/dev/nvme5n7     vs_nvme175                /vol/vol7/ns
+/dev/nvme5n8     vs_nvme175                /vol/vol8/ns
+
+
+
+
+NSID       UUID                                   Size
+------------------------------------------------------------
+6          72b887b1-5fb6-47b8-be0b-33326e2542e2   21.47GB
+7          04bf9f6e-9031-40ea-99c7-a1a61b2d7d08   21.47GB
+8          264823b1-8e03-4155-80dd-e904237014a4   21.47GB
+
+
+----
+--
+.JSON
+--
+[listing]
+----
+# nvme netapp ontapdevices -o json
+----
+*Exemplo de saída*
+
+[listing]
+----
+{
+  "ONTAPdevices":[
+    {
+      "Device":"/dev/nvme5n1",
+      "Vserver":"vs_nvme175",
+      "Namespace_Path":"/vol/vol1/ns",
+      "NSID":1,
+      "UUID":"d4791955-07c9-44fc-b41c-d1c39d3d9b5b",
+      "Size":"21.47GB",
+      "LBA_Data_Size":4096,
+      "Namespace_Size":5242880
+    },
+    {
+      "Device":"/dev/nvme5n10",
+      "Vserver":"vs_nvme175",
+      "Namespace_Path":"/vol/vol10/ns",
+      "NSID":10,
+      "UUID":"f3a4ce94-bcc5-4ff0-9e52-e59030bbc97f",
+      "Size":"21.47GB",
+      "LBA_Data_Size":4096,
+      "Namespace_Size":5242880
+    },
+    {
+      "Device":"/dev/nvme5n11",
+      "Vserver":"vs_nvme175",
+      "Namespace_Path":"/vol/vol11/ns",
+      "NSID":11,
+      "UUID":"0bf171d2-51f7-4a00-8f6a-0ea2190885a2",
+      "Size":"21.47GB",
+      "LBA_Data_Size":4096,
+      "Namespace_Size":5242880
+    },
+  ]
+}
+
+----
+--
+====
+
+
+
+
+== Problemas conhecidos
+
+Não há problemas conhecidos para o Oracle Linux 9,3 com a versão ONTAP.

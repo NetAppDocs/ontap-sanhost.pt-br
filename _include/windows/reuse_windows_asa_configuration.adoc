@@ -1,0 +1,10 @@
+= 
+:allow-uri-read: 
+
+
+Para todas as configurações de storage SAN (ASA), deve haver um grupo de caminhos com prioridades únicas. Todos os caminhos estão ativos/otimizados, ou seja, são atendidos pelo controlador e que a e/S é enviada em todos os caminhos ativos.
+
+image::asa.png[Captura de tela do LUN ONTAP com caminhos ativos/otimizados]
+
+
+NOTE: Não use um número excessivo de caminhos para um único LUN. Não mais do que quatro caminhos devem ser necessários. Mais de oito caminhos podem causar problemas de caminho durante falhas de storage.

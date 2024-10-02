@@ -1,0 +1,217 @@
+---
+sidebar: sidebar 
+permalink: hu_windows_2012r2.html 
+keywords: windows, enterprise 
+summary: Usando o Windows Server 2012 R2 com ONTAP 
+---
+= Usando o Windows Server 2012 R2 com ONTAP
+:hardbreaks:
+:toclevels: 1
+:allow-uri-read: 
+:toclevels: 1
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./media/
+
+
+[role="lead"]
+Você pode usar as configurações do host SAN ONTAP para configurar o Windows Server 2012 R2 com o ONTAP como destino.
+
+
+
+== Inicializando o SO
+
+Há duas opções para inicializar o sistema operacional: Usando inicialização local ou inicialização SAN. Para a inicialização local, você instala o sistema operacional no disco rígido local (SSD, SATA, RAID e assim por diante). Para iniciar SAN, consulte as instruções abaixo.
+
+
+
+=== Inicialização de SAN
+
+Se você optar por usar a inicialização de SAN, ele deve ser suportado por sua configuração. Você pode usar a ferramenta Matriz de interoperabilidade do NetApp para verificar se o seu sistema operacional, HBA, firmware HBA e o BIOS de inicialização HBA e a versão do ONTAP são suportados.
+
+. Mapeie o LUN de inicialização SAN para o host.
+. Verifique se há vários caminhos disponíveis. Lembre-se, vários caminhos só estarão disponíveis depois que o sistema operacional host estiver ativo e em execução nos caminhos.
+. Ative a inicialização SAN no BIOS do servidor para as portas às quais o LUN de inicialização SAN está mapeado. Para obter informações sobre como ativar o BIOS HBA, consulte a documentação específica do fornecedor.
+. Reinicie o host para verificar se a inicialização foi bem-sucedida.
+
+
+
+NOTE: Pode utilizar as definições de configuração fornecidas neste documento para configurar os clientes em nuvem ligados a link:https://docs.netapp.com/us-en/cloud-manager-cloud-volumes-ontap/index.html["Cloud Volumes ONTAP"^] e link:https://docs.netapp.com/us-en/cloud-manager-fsx-ontap/index.html["Amazon FSX para ONTAP"^].
+
+
+
+== Instale os hotfixes do Windows
+
+A NetApp recomenda que a *última atualização cumulativa* esteja instalada no servidor.
+
+
+NOTE: Vá para link:https://www.catalog.update.microsoft.com/Search.aspx?q=Update+Windows+Server+2012_R2["Catálogo do Microsoft Update 2012 R2"^]o site para obter e instalar os hotfixes do Windows necessários para sua versão do Windows.
+
+. Baixe hotfixes do site de suporte da Microsoft.
+
+
+
+NOTE: Alguns hotfixes não estão disponíveis para download direto. Nesses casos, você precisará solicitar um determinado hotfix do pessoal de suporte da Microsoft.
+
+. Siga as instruções fornecidas pela Microsoft para instalar os hotfixes.
+
+
+
+TIP: Muitos hotfixes exigem uma reinicialização do seu host Windows, mas você pode optar por esperar para reiniciar o host até _depois_ instalar ou atualizar os Utilitários do host.
+
+
+
+== Instale os Utilitários do sistema de anfitrião unificado do Windows
+
+Os utilitários de host unificado do Windows (WUHU) são um conjunto de programas de software com documentação que permite conetar computadores host a discos virtuais (LUNs) em uma SAN NetApp. A NetApp recomenda o download e a instalação do kit utilitário mais recente. Para obter informações e instruções sobre a configuração DO WUHU, consulte link:https://docs.netapp.com/us-en/ontap-sanhost/hu_wuhu_71_rn.html["Documentação dos Utilitários do Windows Unified Host"]e selecione o procedimento de instalação para a versão do Windows Unified Host Utilities.
+
+
+
+== Multipathing
+
+Você deve instalar o software MPIO e ter multipathing configurado se seu host Windows tiver mais de um caminho para o sistema de armazenamento. Sem o software MPIO, o sistema operacional pode ver cada caminho como um disco separado, o que pode levar à corrupção de dados. O software MPIO apresenta um único disco para o sistema operativo para todos os caminhos, e um módulo específico do dispositivo (DSM) gere o failover de caminho.
+
+Em um sistema Windows, os dois componentes principais de qualquer solução MPIO são um DSM e o Windows MPIO. MPIO não é suportado para Windows XP ou Windows Vista em execução em uma máquina virtual Hyper- V.
+
+
+NOTE: Quando você seleciona suporte a MPIO, os Utilitários unificados do Windows Host ativa o recurso MPIO incluído do Windows Server 2012 R2.
+
+
+
+== Configuração SAN
+
+
+
+=== Configuração sem ASA
+
+Para configurações que não sejam ASA, deve haver dois grupos de caminhos com prioridades diferentes.
+
+Os caminhos com as prioridades mais altas são Ativo/otimizado, o que significa que eles são atendidos pelo controlador onde o agregado está localizado.
+
+Os caminhos com as prioridades mais baixas estão ativos, mas não são otimizados porque são servidos de um controlador diferente.
+
+
+NOTE: Os caminhos não otimizados são usados somente quando caminhos otimizados não estão disponíveis.
+
+.Exemplo
+O exemplo a seguir exibe a saída correta para um LUN ONTAP com dois caminhos ativos/otimizados e dois caminhos ativos/não otimizados.
+
+image::nonasa.png[Captura de tela de um LUN ONTAP com dois caminhos ativos/otimizados e dois caminhos ativos/não otimizados]
+
+
+
+=== Toda a configuração de array SAN
+
+Para todas as configurações de storage SAN (ASA), deve haver um grupo de caminhos com prioridades únicas. Todos os caminhos estão ativos/otimizados, ou seja, são atendidos pelo controlador e que a e/S é enviada em todos os caminhos ativos.
+
+image::asa.png[Captura de tela do LUN ONTAP com caminhos ativos/otimizados]
+
+
+NOTE: Não use um número excessivo de caminhos para um único LUN. Não mais do que quatro caminhos devem ser necessários. Mais de oito caminhos podem causar problemas de caminho durante falhas de storage.
+
+
+
+== O Hyper-V VHD requer alinhamento para obter o melhor desempenho
+
+Se os limites de bloco de dados de uma partição de disco não se alinharem com os limites de bloco do LUN subjacente, o sistema de armazenamento geralmente precisa completar duas leituras ou gravações de bloco para cada leitura ou gravação de bloco de sistema operacional. As leituras e gravações de bloco adicionais causadas pelo desalinhamento podem criar sérios problemas de desempenho.
+
+O desalinhamento é causado pela localização do setor inicial para cada partição definida pelo Registro mestre de inicialização.
+
+
+NOTE: As partições criadas pelo Windows Server 2016 devem ser alinhadas por padrão.
+
+Use `Get-NaVirtualDiskAlignment` o cmdlet no Toolkit do ONTAP PowerShell para verificar se as partições estão alinhadas com LUNs subjacentes. Se as partições estiverem alinhadas incorretamente, use `Repair-NaVirtualDiskAlignment` o cmdlet para criar um novo arquivo VHD com o alinhamento correto. Este cmdlet copia todas as partições para o novo arquivo. O arquivo VHD original não foi modificado ou excluído. A máquina virtual deve ser desligada enquanto os dados são copiados.
+
+Você pode baixar o Toolkit do ONTAP PowerShell em Comunidades do NetApp. Você deve descompactar o `DataONTAP.zip` arquivo no local especificado pela variável de ambiente `%PSModulePath%` (ou usar o `Install.ps1` script para fazer isso por você). Depois de concluir a instalação, use `Show-NaHelp` o cmdlet para obter ajuda para os cmdlets.
+
+O PowerShell Toolkit suporta apenas arquivos VHD de tamanho fixo com partições do tipo MBR. VHDs usando discos dinâmicos do Windows ou partições GPT não são suportados. Além disso, o PowerShell Toolkit requer um tamanho de partição mínimo de 4 GB. Partições menores não podem ser alinhadas corretamente.
+
+
+NOTE: Para máquinas virtuais Linux usando o Loader de inicialização GRUB em um VHD, você precisa atualizar a configuração de inicialização após executar o Kit de Ferramentas do PowerShell.
+
+
+
+=== Reinstale o GRUB para convidados Linux depois de corrigir o alinhamento do MBR com o PowerShell Toolkit
+
+Depois de executar `mbralign` em discos para corrigir o alinhamento do MBR com o PowerShell Toolkit em sistemas operacionais Linux Guest usando o Loader de inicialização do GRUB, você deve reinstalar o GRUB para garantir que o sistema operacional convidado seja inicializado corretamente.
+
+O cmdlet do PowerShell Toolkit foi concluído no arquivo VHD da máquina virtual. Este tópico aplica-se apenas a sistemas operacionais Linux Guest usando o GRUB boot Loader e `SystemRescueCd`.
+
+. Monte a imagem ISO do disco 1 dos CDs de instalação para a versão correta do Linux para a máquina virtual.
+. Abra o console da máquina virtual no Gerenciador do Hyper-V.
+. Se a VM estiver em execução e pendurada na tela GRUB, clique na área de exibição para se certificar de que está ativa e clique no ícone da barra de ferramentas *Ctrl-Alt-Delete* para reinicializar a VM. Se a VM não estiver em execução, inicie-a e, em seguida, clique imediatamente na área de visualização para se certificar de que está ativa.
+. Assim que você vir a tela inicial do VMware BIOS, pressione a tecla *Esc* uma vez. É apresentado o menu de arranque.
+. No menu de arranque, selecione *CD-ROM*.
+. Na tela de inicialização do Linux, digite: `linux rescue`
+. Tome as predefinições para Anaconda (os ecrãs de configuração azul/vermelho). A rede é opcional.
+. Inicie o GRUB introduzindo: `grub`
+. Se houver apenas um disco virtual nesta VM, ou se houver vários discos, mas o primeiro for o disco de inicialização, execute os seguintes comandos GRUB:
+
+
+[listing]
+----
+root (hd0,0)
+setup (hd0)
+quit
+----
+Se você tiver vários discos virtuais na VM, e o disco de inicialização não for o primeiro disco, ou você estiver corrigindo o GRUB inicializando a partir do VHD de backup desalinhado, digite o seguinte comando para identificar o disco de inicialização:
+
+[listing]
+----
+find /boot/grub/stage1
+----
+Em seguida, execute os seguintes comandos:
+
+[listing]
+----
+root (boot_disk,0)
+setup (boot_disk)
+quit
+----
+
+NOTE: Observe que `boot_disk`, acima, é um espaço reservado para o identificador de disco real do disco de inicialização.
+
+. Pressione *Ctrl-D* para sair.
+
+
+O resgate do Linux desliga e, em seguida, reinicia.
+
+
+
+== Definições recomendadas
+
+Em sistemas que usam FC, os seguintes valores de tempo limite para HBAs Emulex e QLogic FC são necessários quando MPIO é selecionado.
+
+Para HBAs Fibre Channel Emulex:
+
+[cols="2*"]
+|===
+| Tipo de propriedade | Valor da propriedade 
+
+
+| LinkTimeOut | 1 
+
+
+| NodeTimeOut | 10 
+|===
+Para HBAs Fibre Channel QLogic:
+
+[cols="2*"]
+|===
+| Tipo de propriedade | Valor da propriedade 
+
+
+| LinkDownTimeOut | 1 
+
+
+| PortDownRetryCount | 10 
+|===
+
+NOTE: O Utilitário de host unificado do Windows definirá esses valores. Para obter as configurações recomendadas detalhadas, consulte link:https://docs.netapp.com/us-en/ontap-sanhost/hu_wuhu_71_rn.html["Documentação dos Utilitários do sistema anfitrião do Windows"] e selecione o procedimento de instalação para a versão do Windows Unified Host Utilities.
+
+
+
+== Problemas conhecidos
+
+Não há problemas conhecidos para o Windows Server 2012 R2 com a versão ONTAP.

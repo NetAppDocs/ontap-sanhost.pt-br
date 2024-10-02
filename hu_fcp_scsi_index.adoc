@@ -1,0 +1,19 @@
+---
+sidebar: sidebar 
+permalink: hu_fcp_scsi_index.html 
+keywords:  
+summary:  
+---
+= Visão geral
+:hardbreaks:
+:toclevels: 1
+:allow-uri-read: 
+:toclevels: 1
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./media/
+
+
+[role="lead"]
+Você pode configurar determinados hosts SAN para FCP ou iSCSI com ONTAP como destino. Primeiro você instala o pacote de utilitário de host do sistema operacional relevante, que inclui o kit de ferramentas SAN. Em seguida, verifique as configurações de multipath dos LUNs NetApp ONTAP.

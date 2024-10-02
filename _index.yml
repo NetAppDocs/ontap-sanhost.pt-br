@@ -1,0 +1,47 @@
+---
+indexpage:
+  title: HOSTS DE SAN e clientes em nuvem
+  summary: Este conteúdo fornece orientação específica para distribuição sobre como
+    configurar clientes SAN conetados ao armazenamento ONTAP.
+  keywords: ontap, san, host, rhel, red, hat, linux, sles, suse, esxi, nvme, oracle,
+    linux, windows, enterprise, fc, fcp, isci, aix, powervm, vios, centos, citrix,
+    hp-ux, solaris, veritas, cvo, cloud, volume, ontap, clients, configuration, FSx,
+    instance, netapp
+  lead: Este conteúdo fornece orientação específica para distribuição sobre como configurar
+    clientes SAN conetados ao armazenamento ONTAP. Os clientes SAN e o storage ONTAP
+    podem residir no local ou na nuvem.
+  tiles:
+  - title: Comece agora
+    links:
+    - title: Visão geral do produto
+      url: "/overview.html"
+    - title: AIX Host Utilities notas de lançamento
+      url: "/hu_aix_rn.html"
+    - title: Notas de versão dos utilitários de host HP-UX
+      url: "/hu_hpux_60_rn.html"
+    - title: Notas de lançamento do Linux Host Utilities
+      url: "/hu_luhu_71_rn.html"
+    - title: Notas de versão do Solaris Host Utilities
+      url: "/hu_solaris_62_rn.html"
+    - title: Notas de lançamento dos Utilitários do sistema anfitrião do Windows
+      url: "/hu_wuhu_71_rn.html"
+  - title: Instalar e configurar hosts SAN
+    links:
+    - title: Instale os Utilitários do host SAN
+      url: "/hu_sanhost_index.html"
+    - title: Configurar hosts com FCP e iSCSI
+      url: "/hu_fcp_scsi_index.html"
+    - title: Configurar hosts com o NVMe-of
+      url: "/hu_nvme_index.html"
+  - title: Mais recursos
+    links:
+    - title: Cloud Volumes ONTAP
+      url: https://docs.netapp.com/us-en/cloud-manager-cloud-volumes-ontap/index.html
+    - title: Amazon FSX para ONTAP
+      url: https://docs.netapp.com/us-en/cloud-manager-fsx-ontap/index.html
+    - title: Todas as configurações do software SAN Array
+      url: https://docs.netapp.com/us-en/ontap/task_asa_software_configuration.html
+    - title: Administração da SAN
+      url: https://docs.netapp.com/us-en/ontap/san-admin/index.html
+    - title: Configuração SAN
+      url: https://docs.netapp.com/us-en/ontap/san-config/index.html

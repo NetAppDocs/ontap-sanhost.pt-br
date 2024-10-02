@@ -1,0 +1,249 @@
+---
+sidebar: sidebar 
+permalink: hu_ubuntu_2004.html 
+keywords: host utilities, red hat, rhel, linux, 20.04, netapp, ontap, ubuntu 
+summary: Descreve como usar o Ubuntu 20,04 com o ONTAP 
+---
+= Use o Ubuntu 20,04 com ONTAP
+:toc: macro
+:hardbreaks:
+:toclevels: 1
+:allow-uri-read: 
+:toc: 
+:toclevels: 1
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./media/
+:toc-position: content
+
+
+[role="lead"]
+Você pode usar as configurações de host SAN ONTAP para configurar o Ubuntu 20,04 com ONTAP como destino.
+
+
+NOTE: O pacote de software de utilitários de host unificado do NetApp não está disponível para o sistema operacional Ubuntu 20,04.04.
+
+
+
+== Inicialização de SAN
+
+.O que você vai precisar
+Se você decidir usar a inicialização de SAN, ele deve ser suportado por sua configuração. Você pode usar o link:https://mysupport.netapp.com/matrix/imt.jsp?components=91241;&solution=236&isHWU&src=IMT["Ferramenta de Matriz de interoperabilidade do NetApp"^] para verificar se o seu sistema operacional, HBA, HBA firmware e o BIOS de inicialização HBA e a versão ONTAP são suportados.
+
+.Passos
+. Mapeie o LUN de inicialização SAN para o host.
+. Verifique se há vários caminhos disponíveis.
++
+
+NOTE: Vários caminhos ficam disponíveis depois que o sistema operacional do host estiver ativo e em execução nos caminhos.
+
+. Ative a inicialização SAN no BIOS do servidor para as portas às quais o LUN de inicialização SAN está mapeado.
++
+Para obter informações sobre como ativar o BIOS HBA, consulte a documentação específica do fornecedor.
+
+. Reinicie o host para verificar se a inicialização foi bem-sucedida.
+
+
+
+
+== Multipathing
+
+Para o Ubuntu 20,04, o `/etc/multipath.conf` arquivo deve existir, mas você não precisa fazer alterações específicas no arquivo. O Ubuntu 20,04 é compilado com todas as configurações necessárias para reconhecer e gerenciar corretamente LUNs ONTAP.
+
+Você pode usar o `multipath -ll` comando para verificar as configurações dos LUNs do ONTAP. As seções a seguir fornecem saída multipath de amostra para um LUN mapeado para personas ASA e não ASA.
+
+
+
+=== Todas as configurações do SAN Array
+
+Em todas as configurações de storage SAN (ASA), todos os caminhos para um determinado LUN estão ativos e otimizados. Isso melhora a performance atendendo operações de e/S em todos os caminhos ao mesmo tempo.
+
+.Exemplo
+O exemplo a seguir exibe a saída correta para um LUN ONTAP:
+
+[listing]
+----
+# multipath -ll
+3600a098038314559533f524d6c652f62 dm-24 NETAPP,LUN C-Mode
+size=10G features='3 queue_if_no_path pg_init_retries 50' hwhandler='1 alua' wp=rw
+`-+- policy='service-time 0' prio=50 status=active
+  |- 11:0:1:13 sdm  8:192  active ready running
+  |- 11:0:3:13 sdah 66:16  active ready running
+  |- 12:0:1:13 sdbc 67:96  active ready running
+  `- 12:0:3:13 sdbx 68:176 active ready running
+----
+
+NOTE: Não use um número excessivo de caminhos para um único LUN. Não mais do que quatro caminhos devem ser necessários. Mais de oito caminhos podem causar problemas de caminho durante falhas de storage.
+
+
+
+=== Configurações que não são ASA
+
+Para configurações que não sejam ASA, deve haver dois grupos de caminhos com prioridades diferentes. Os caminhos com as prioridades mais altas são Ativo/otimizado, o que significa que eles são atendidos pelo controlador onde o agregado está localizado. Os caminhos com as prioridades mais baixas estão ativos, mas não são otimizados porque são servidos de um controlador diferente. Os caminhos não otimizados são usados somente quando caminhos otimizados não estão disponíveis.
+
+.Exemplo
+O exemplo a seguir exibe a saída correta para um LUN ONTAP com dois caminhos ativos/otimizados e dois caminhos ativos/não otimizados:
+
+[listing]
+----
+# multipath -ll
+3600a098038314837352453694b542f4a dm-0 NETAPP,LUN C-Mode
+size=160G features='3 queue_if_no_path pg_init_retries 50' hwhandler='1 alua' wp=rw
+|-+- policy='service-time 0' prio=50 status=active
+| |- 14:0:3:0 sdbk 67:224 active ready running
+| `- 15:0:2:0 sdbl 67:240 active ready running
+`-+- policy='service-time 0' prio=10 status=enabled
+  |- 14:0:0:0 sda  8:0    active ready running
+  `- 15:0:1:0 sdv  65:80  active ready running
+----
+
+NOTE: Não use um número excessivo de caminhos para um único LUN. Não mais do que quatro caminhos devem ser necessários. Mais de oito caminhos podem causar problemas de caminho durante falhas de storage.
+
+
+
+== Definições recomendadas
+
+O sistema operacional Ubuntu 20,04 é compilado para reconhecer LUNs ONTAP e definir automaticamente todos os parâmetros de configuração corretamente para configurações ASA e não-ASA. Você pode otimizar ainda mais o desempenho da configuração do seu host com as seguintes configurações recomendadas.
+
+O `multipath.conf` arquivo deve existir para o daemon multipath iniciar. Se este arquivo não existir, você pode criar um arquivo vazio de zero bytes usando o seguinte comando:
+
+`touch /etc/multipath.conf`
+
+Na primeira vez que você criar o `multipath.conf` arquivo, talvez seja necessário habilitar e iniciar os serviços multipath usando os seguintes comandos:
+
+[listing]
+----
+# chkconfig multipathd on
+# /etc/init.d/multipathd start
+----
+Não há necessidade de adicionar nada diretamente ao `multipath.conf` arquivo, a menos que você tenha dispositivos que não deseja que o multipath gerencie ou tenha configurações existentes que substituem os padrões. Para excluir dispositivos indesejados, adicione a seguinte sintaxe ao `multipath.conf` arquivo, substituindo o <DevId> pela cadeia WWID do dispositivo que você deseja excluir:
+
+[listing]
+----
+blacklist {
+        wwid <DevId>
+        devnode "^(ram|raw|loop|fd|md|dm-|sr|scd|st)[0-9]*"
+        devnode "^hd[a-z]"
+        devnode "^cciss.*"
+}
+----
+.Exemplo
+O exemplo a seguir determina o WWID de um dispositivo e o adiciona ao `multipath.conf` arquivo.
+
+.Passos
+. Execute o seguinte comando para determinar o WWID:
++
+[listing]
+----
+# /lib/udev/scsi_id -gud /dev/sda
+360030057024d0730239134810c0cb833
+----
++
+`sda` É o disco SCSI local que precisamos adicioná-lo à lista negra.
+
+. Adicione a `WWID` à estrofe da lista negra no `/etc/multipath.conf`:
++
+[listing]
+----
+blacklist {
+     wwid   360030057024d0730239134810c0cb833
+     devnode "^(ram|raw|loop|fd|md|dm-|sr|scd|st)[0-9]*"
+     devnode "^hd[a-z]"
+     devnode "^cciss.*"
+}
+----
+
+
+Você deve sempre verificar o `/etc/multipath.conf` arquivo para configurações herdadas, especialmente na seção padrões, que podem estar substituindo as configurações padrão.
+
+A tabela a seguir demonstra os parâmetros críticos `multipathd` para LUNs ONTAP e os valores necessários. Se um host estiver conetado a LUNs de outros fornecedores e qualquer um desses parâmetros for substituído, ele precisará ser corrigido por estrofes posteriores `multipath.conf` no arquivo que se aplicam especificamente aos LUNs ONTAP. Sem essa correção, os LUNs ONTAP podem não funcionar como esperado. Você só deve substituir esses padrões em consulta com o NetApp, o fornecedor do sistema operacional ou ambos, e apenas quando o impactos for totalmente compreendido.
+
+[cols="2*"]
+|===
+| Parâmetro | Definição 
+
+
+| detectar_prio | sim 
+
+
+| dev_loss_tmo | "infinito" 
+
+
+| failback | imediato 
+
+
+| fast_io_fail_tmo | 5 
+
+
+| caraterísticas | "2 pg_init_retries 50" 
+
+
+| flush_on_last_del | "sim" 
+
+
+| hardware_handler | "0" 
+
+
+| no_path_retry | fila de espera 
+
+
+| path_checker | "tur" 
+
+
+| path_grouing_policy | "group_by_prio" 
+
+
+| path_selector | "tempo de serviço 0" 
+
+
+| polling_interval | 5 
+
+
+| prio | "ONTAP" 
+
+
+| produto | LUN.* 
+
+
+| reter_anexado_hw_handler | sim 
+
+
+| rr_peso | "uniforme" 
+
+
+| user_friendly_names | não 
+
+
+| fornecedor | NetApp 
+|===
+.Exemplo
+O exemplo a seguir mostra como corrigir um padrão substituído. Nesse caso, o `multipath.conf` arquivo define valores para `path_checker` e `no_path_retry` que não são compatíveis com LUNs ONTAP. Se eles não puderem ser removidos porque outros arrays SAN ainda estão conetados ao host, esses parâmetros podem ser corrigidos especificamente para LUNs ONTAP com uma estrofe de dispositivo.
+
+[listing]
+----
+defaults {
+   path_checker      readsector0
+   no_path_retry     fail
+}
+
+devices {
+   device {
+      vendor         "NETAPP"
+      product         "LUN"
+      no_path_retry    queue
+      path_checker     tur
+   }
+}
+----
+
+
+=== Definições KVM
+
+Você também pode usar as configurações recomendadas para configurar a máquina virtual baseada no Kernel (KVM). Não são necessárias alterações para configurar o KVM, uma vez que o LUN é mapeado para o hipervisor.
+
+
+
+== Problemas conhecidos
+
+Não há problemas conhecidos para o Ubuntu 20,04 com a versão ONTAP.
