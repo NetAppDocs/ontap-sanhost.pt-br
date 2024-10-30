@@ -237,17 +237,21 @@ FCP CMPL: xb 00000821 Err 00012fcd
 --
 .Adaptador FC Marvell/QLogic para NVMe/FC
 --
+O driver nativo da caixa de entrada qla2xxx incluído no kernel RHEL 8,8 GA tem as correções upstream mais recentes. Essas correções são essenciais para o suporte ao ONTAP.
+
 .Passos
-. O driver nativo da caixa de entrada qla2xxx incluído no kernel RHEL 8,8 GA tem as correções upstream mais recentes essenciais para o suporte ao ONTAP. Verifique se você está executando o driver de adaptador e as versões de firmware compatíveis:
-+
+Verifique se você está executando o driver de adaptador e as versões de firmware compatíveis:
+
+E
+
 [listing]
 ----
 # cat /sys/class/fc_host/host*/symbolic_name
 ----
-+
-*Exemplo de saída*
+* Exemplo de saída*
 
-+
+E
+
 [listing]
 ----
 QLE2772 FW:v9.10.11 DVR:v10.02.07.900-k-debug

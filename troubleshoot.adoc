@@ -16,7 +16,7 @@ summary: Você pode configurar as configurações de host SAN ONTAP para a vers�
 
 
 [role="lead"]
-Antes de solucionar qualquer falha de NVMe-of para hosts RHEL, OL e SLES, verifique se você está executando uma configuração compatível com as especificações da ferramenta de Matriz de interoperabilidade (IMT) e prossiga com as próximas etapas para depurar quaisquer problemas do lado do host.
+Antes de solucionar qualquer falha de NVMe-of para hosts do RHEL, OL e SUSE Linux Enterprise Server, verifique se você está executando uma configuração compatível com as especificações da ferramenta de Matriz de interoperabilidade (IMT) e prossiga com as próximas etapas para depurar quaisquer problemas do lado do host.
 
 
 NOTE: As instruções de solução de problemas não se aplicam aos hosts AIX, Windows e ESXi.

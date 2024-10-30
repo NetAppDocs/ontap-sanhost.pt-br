@@ -26,8 +26,7 @@ O pacote de software Utilitários de host unificado do NetApp Linux está dispon
 
 O NetApp recomenda fortemente a instalação dos Utilitários de host unificado do Linux, mas não é obrigatório. Os utilitários não alteram nenhuma configuração em seu host Linux. Os utilitários melhoram o gerenciamento e auxiliam o suporte ao cliente da NetApp na coleta de informações sobre sua configuração.
 
-.O que você vai precisar
-Se você tiver uma versão do Linux Unified Host Utilities atualmente instalada, você deve atualizá-la ou removê-la e, em seguida, siga as etapas a seguir para instalar a versão mais recente.
+Se você tiver uma versão do Linux Unified Host Utilities atualmente instalada, você deve atualizá-la ou removê-la e seguir estas etapas para instalar a versão mais recente.
 
 .Passos
 . Baixe o pacote de software Linux Unified Host Utilities de 64 bits do https://mysupport.netapp.com/site/products/all/details/hostutilities/downloads-tab/download/61343/7.1/downloads["Site de suporte da NetApp"^] para o seu host.
@@ -59,7 +58,7 @@ Exemplo de saída:
 ----
 controller(7mode/E-Series)/            device     host               lun
 vserver(cDOT/FlashRay)   lun-pathname  filename   adapter  protocol  size    Product
--------------------------------------------------------------------------
+------------------------------------------------------------------------------------
 data_vserver          /vol/vol1/lun1   /dev/sdb   host16   FCP       120.0g  cDOT
 data_vserver          /vol/vol1/lun1   /dev/sdc   host15   FCP       120.0g  cDOT
 data_vserver          /vol/vol2/lun2   /dev/sdd   host16   FCP       120.0g  cDOT
@@ -94,13 +93,13 @@ Para Oracle Linux (OL) 8,4 o arquivo /etc/multipath.conf deve existir, mas você
 
 Você pode usar o `multipath -ll` comando para verificar as configurações dos LUNs do ONTAP.
 
-As seções a seguir fornecem saída multipath de amostra para personas não-ASA mapeadas pelo LUN.
+As seções a seguir fornecem exemplos de saídas multipath para um LUN mapeado para personas não-ASA.
 
 
 
 === Configurações que não são ASA
 
-Para configurações que não sejam ASA, deve haver dois grupos de caminhos com prioridades diferentes. Os caminhos com as prioridades mais altas são Ativo/otimizado, o que significa que eles são atendidos pelo controlador onde o agregado está localizado. Os caminhos com as prioridades mais baixas estão ativos, mas não são otimizados porque são servidos de um controlador diferente. Os caminhos não otimizados são usados somente quando caminhos otimizados não estão disponíveis.
+Para configurações que não sejam ASA, deve haver dois grupos de caminhos com prioridades diferentes. Os caminhos com prioridades mais altas são Ativo/otimizado, o que significa que eles são atendidos pelo controlador onde o agregado está localizado. Os caminhos com prioridades mais baixas estão ativos, mas não são otimizados porque são servidos de um controlador diferente. Os caminhos não otimizados são usados somente quando caminhos otimizados não estão disponíveis.
 
 .Exemplo
 O exemplo a seguir exibe a saída correta para um LUN ONTAP com dois caminhos ativos/otimizados e dois caminhos ativos/não otimizados:
@@ -118,7 +117,7 @@ size=80G features='3 queue_if_no_path pg_init_retries 50' hwhandler='1 alua' wp=
 |- 15:0:1:35 sdbx 68:176 active ready running
 ----
 
-NOTE: Não use um número excessivo de caminhos para um único LUN. Não mais do que quatro caminhos devem ser necessários. Mais de oito caminhos podem causar problemas de caminho durante falhas de storage.
+NOTE: Um único LUN não deve exigir mais de quatro caminhos. Mais de oito caminhos podem causar problemas de caminho durante falhas de storage.
 
 
 
@@ -175,7 +174,7 @@ blacklist {
 O exemplo a seguir determina o WWID de um dispositivo e o adiciona ao `multipath.conf` arquivo.
 
 .Passos
-. Execute o seguinte comando para determinar o WWID:
+. Determine o WWID:
 +
 [listing]
 ----
@@ -183,7 +182,7 @@ O exemplo a seguir determina o WWID de um dispositivo e o adiciona ao `multipath
 360030057024d0730239134810c0cb833
 ----
 +
-`sda` É o disco SCSI local que precisamos adicioná-lo à lista negra.
+`sda` É o disco SCSI local que você deseja adicionar à lista negra.
 
 . Adicione a `WWID` à estrofe da lista negra no `/etc/multipath.conf`:
 +

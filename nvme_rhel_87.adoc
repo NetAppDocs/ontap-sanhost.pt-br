@@ -191,7 +191,7 @@ FCP CMPL: xb 0000006b Err 00017f99
 --
 .Adaptador Marvell/QLogic FC para NVMe/FC
 --
-O driver nativo da caixa de entrada `qla2xxx` incluído no kernel RHEL 8,7 tem as correções mais recentes que são essenciais para o suporte ao ONTAP.
+O driver nativo da caixa de entrada `qla2xxx` incluído no kernel RHEL 8,7 tem as correções mais recentes. Essas correções são essenciais para o suporte ao ONTAP.
 
 .Passos
 . Verifique se você está executando o driver de adaptador suportado e as versões de firmware usando o seguinte comando:

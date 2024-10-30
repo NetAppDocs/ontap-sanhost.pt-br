@@ -6,8 +6,7 @@ O pacote de software Utilitários de host unificado do NetApp Linux está dispon
 
 O NetApp recomenda fortemente a instalação dos Utilitários de host unificado do Linux, mas não é obrigatório. Os utilitários não alteram nenhuma configuração em seu host Linux. Os utilitários melhoram o gerenciamento e auxiliam o suporte ao cliente da NetApp na coleta de informações sobre sua configuração.
 
-.O que você vai precisar
-Se você tiver uma versão do Linux Unified Host Utilities atualmente instalada, você deve atualizá-la ou removê-la e, em seguida, siga as etapas a seguir para instalar a versão mais recente.
+Se você tiver uma versão do Linux Unified Host Utilities atualmente instalada, você deve atualizá-la ou removê-la e seguir estas etapas para instalar a versão mais recente.
 
 .Passos
 . Baixe o pacote de software Linux Unified Host Utilities de 64 bits do https://mysupport.netapp.com/site/products/all/details/hostutilities/downloads-tab/download/61343/7.1/downloads["Site de suporte da NetApp"^] para o seu host.

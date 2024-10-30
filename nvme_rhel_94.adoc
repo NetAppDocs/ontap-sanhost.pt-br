@@ -237,8 +237,10 @@ FCP CMPL: xb 00000629 Err 0001bd3d
 --
 .Adaptador FC Marvell/QLogic para NVMe/FC
 --
+O driver nativo da caixa de entrada qla2xxx incluído no kernel RHEL 9,4 GA tem as correções mais recentes. Essas correções são essenciais para o suporte ao ONTAP.
+
 .Passos
-. O driver nativo da caixa de entrada qla2xxx incluído no kernel RHEL 9,4 GA tem as correções mais recentes essenciais para o suporte ao ONTAP. Verifique se você está executando o driver de adaptador e as versões de firmware compatíveis:
+. Verifique se você está executando o driver de adaptador e as versões de firmware compatíveis:
 +
 [listing]
 ----
@@ -295,9 +297,7 @@ NOTE: Isso não se aplica a hosts Qlogic NVMe/FC.
 
 == Configurar o NVMe/TCP
 
-O NVMe/TCP não tem uma funcionalidade de conexão automática. Portanto, você precisa executar a funcionalidade de conexão NVMe/TCP ou conetar-all manualmente para descobrir os subsistemas e namespaces NVMe/TCP.
-
-Você pode usar o procedimento a seguir para configurar o NVMe/TCP.
+O NVMe/TCP não tem uma funcionalidade de conexão automática. Portanto, você deve usar o procedimento a seguir para descobrir os subsistemas e namespaces NVMe/TCP executando a funcionalidade de conexão NVMe/TCP ou Connect-All manualmente.
 
 .Passos
 . Verifique se a porta do iniciador pode buscar os dados da página de log de descoberta nas LIFs NVMe/TCP suportadas:
@@ -445,7 +445,7 @@ nvme connect-all -t tcp -w host-traddr -a traddr
 
 
 
-NOTE: A partir do RHEL 9,4, a configuração padrão para o tempo limite NVMe/TCP `ctrl_loss_tmo` é desativada, o que significa que não há limite para o número de tentativas (tentativa indefinida). Consequentemente, você não precisa configurar manualmente uma duração específica `ctrl_loss_tmo` de tempo limite ao usar os `nvme connect` comandos ou `nvme connect-all` (opção -l ). Com esse comportamento padrão, as controladoras NVMe/TCP não apresentam timeouts em caso de falha de caminho e permanecem conectadas indefinidamente.
+NOTE: A partir do RHEL 9,4, a configuração padrão para o tempo limite NVMe/TCP `ctrl_loss_tmo` é desativada. Isto significa que não há limite para o número de tentativas (tentativa indefinida). Consequentemente, você não precisa configurar manualmente uma duração específica `ctrl_loss_tmo` de tempo limite ao usar os `nvme connect` comandos ou `nvme connect-all` (opção -l ). Com esse comportamento padrão, as controladoras NVMe/TCP não apresentam timeouts em caso de falha de caminho e permanecem conectadas indefinidamente.
 
 
 

@@ -22,7 +22,7 @@ O suporte a seguir está disponível para a configuração de host NVMe-of para 
 
 * Suporte para NVMe em TCP (NVMe/TCP), além de NVMe/FC. O plug-in do NetApp no pacote nativo `nvme-cli` exibe os detalhes do ONTAP para namespaces NVMe/FC e NVMe/TCP.
 * O tráfego NVMe e SCSI pode ser executado no mesmo host coexistente. Portanto, você pode configurar o dm-multipath para dispositivos SCSI mpath para LUNs SCSI, enquanto que você pode usar o NVMe multipath para configurar dispositivos de namespace NVMe-of no host.
-* Não há suporte para NVMe-of. Portanto, não há suporte a utilitário de host para NVMe-of em um host Oracle Linux 8,9. Você pode confiar no plug-in NetApp incluído no pacote nativo `nvme-cli` para todos os transportes NVMe-of.
+* Não há suporte para NVMe-of. Portanto, não há suporte a utilitário de host para NVMe-of em um host Oracle Linux 8,9. Você pode usar o plug-in NetApp incluído no pacote nativo `nvme-cli` para todos os transportes NVMe-of.
 
 
 Para obter detalhes adicionais sobre as configurações suportadas, consulte o link:https://mysupport.netapp.com/matrix/["Ferramenta de Matriz de interoperabilidade do NetApp"^].
@@ -243,8 +243,10 @@ FCP CMPL: xb 00001f50 Err 0000d9f8
 --
 .Adaptador FC Marvell/QLogic para NVMe/FC
 --
+O driver nativo da caixa de entrada qla2xxx incluído no kernel Oracle Linux 8,9 GA tem as correções mais recentes. Essas correções são essenciais para o suporte ao ONTAP.
+
 .Passos
-. O driver nativo da caixa de entrada qla2xxx incluído no kernel do Oracle Linux 8,9 GA tem as correções mais recentes essenciais para o suporte ao ONTAP. Verifique se você está executando o driver de adaptador e as versões de firmware compatíveis:
+. Verifique se você está executando o driver de adaptador e as versões de firmware compatíveis:
 +
 [listing]
 ----

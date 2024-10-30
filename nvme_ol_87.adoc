@@ -237,8 +237,10 @@ FCP CMPL: xb 00000a89 Err 0000e2f3
 --
 .Adaptador FC Marvell/Qlogic para NVMe/FC
 --
+O driver nativo da caixa de entrada qla2xxx incluído no kernel OL 8,7 GA tem as correções upstream mais recentes. Essas correções são essenciais para o suporte ao ONTAP.
+
 .Passos
-. O driver nativo da caixa de entrada qla2xxx incluído no kernel OL 8,7 GA tem as correções upstream mais recentes essenciais para o suporte ao ONTAP. Verifique se você está executando o driver de adaptador e as versões de firmware compatíveis:
+. Verifique se você está executando o driver de adaptador e as versões de firmware compatíveis:
 +
 [listing]
 ----

@@ -186,7 +186,7 @@ FCP CMPL: xb 00001f50 Err 0000d9f8
 --
 .Adaptador Marvell/QLogic FC para NVMe/FC
 --
-O driver nativo da caixa de entrada `qla2xxx` incluído no kernel RHEL 8,6 tem as correções upstream mais recentes que são essenciais para o suporte ao ONTAP.
+O driver nativo da caixa de entrada `qla2xxx` incluído no kernel RHEL 8,6 tem as correções upstream mais recentes. Essas correções são essenciais para o suporte ao ONTAP.
 
 .Passos
 . Verifique se você está executando o driver de adaptador e as versões de firmware compatíveis:

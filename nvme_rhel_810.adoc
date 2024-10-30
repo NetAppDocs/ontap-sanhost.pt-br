@@ -244,8 +244,10 @@ FCP CMPL: xb 00000368 Err 00000382
 --
 .Adaptador FC Marvell/QLogic para NVMe/FC
 --
+O driver nativo da caixa de entrada qla2xxx incluído no kernel RHEL 8,10 GA tem as correções upstream mais recentes. Essas correções são essenciais para o suporte ao ONTAP.
+
 .Passos
-. O driver nativo da caixa de entrada qla2xxx incluído no kernel RHEL 8,10 GA tem as correções upstream mais recentes essenciais para o suporte ao ONTAP. Verifique se você está executando o driver de adaptador e as versões de firmware compatíveis:
+. Verifique se você está executando o driver de adaptador e as versões de firmware compatíveis:
 +
 [listing]
 ----

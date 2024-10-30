@@ -16,7 +16,7 @@ summary: Descreve como configurar o NVMe/FC para o SUSE Linux Enterprise Server 
 
 
 [role="lead"]
-O NVMe/FC é compatível com o ONTAP 9.6 e superior com o SLES15 SP2. O host SLES15 SP2 pode executar o tráfego NVMe/FC e FCP nas mesmas portas do adaptador do iniciador de fibra. Consulte o link:https://hwu.netapp.com/Home/Index["Hardware Universe"^] para obter uma lista de controladores e adaptadores FC compatíveis.
+O NVMe/FC é compatível com o ONTAP 9.6 e superior com o SUSE Linux Enterprise Server 15 SP2. O host SUSE Linux Enterprise Server 15 SP2 pode executar o tráfego NVMe/FC e FCP nas mesmas portas do adaptador do iniciador de Fibre Channel. Consulte o link:https://hwu.netapp.com/Home/Index["Hardware Universe"^] para obter uma lista de controladores e adaptadores FC compatíveis.
 
 Para obter a lista mais atual de configurações e versões suportadas, consulte link:https://mysupport.netapp.com/matrix/["Matriz de interoperabilidade do NetApp"^].
 
@@ -31,9 +31,9 @@ A inicialização DE SAN usando o protocolo NVMe-of não é atualmente suportada
 
 
 
-== Habilite o NVMe/FC em SLES15 SP2
+== Habilite o NVMe/FC no SUSE Linux Enterprise Server 15 SP2
 
-. Atualize para a versão recomendada do kernel SLES15 SP2 MU.
+. Atualize para a versão recomendada do kernel SUSE Linux Enterprise Server 15 SP2 MU.
 . Atualize o pacote nvme-cli nativo.
 +
 Esse pacote nativo do nvme-cli contém os scripts de conexão automática do NVMe/FC, a regra do ONTAP udev que permite o balanceamento de carga round-robin para vários caminhos do NVMe e o plug-in do NetApp para namespaces do ONTAP.
@@ -44,7 +44,7 @@ Esse pacote nativo do nvme-cli contém os scripts de conexão automática do NVM
 # rpm -qa|grep nvme-cli
 nvme-cli-1.10-2.38.x86_64
 ----
-. No host SLES15 SP2, verifique a string NQN do host em `/etc/nvme/hostnqn` e verifique se ela corresponde à string NQN do host para o subsistema correspondente no array ONTAP. Por exemplo:
+. No host do SUSE Linux Enterprise Server 15 SP2, verifique a string NQN do host em `/etc/nvme/hostnqn` e verifique se ela corresponde à string NQN do host para o subsistema correspondente no array ONTAP. Por exemplo:
 +
 [listing]
 ----

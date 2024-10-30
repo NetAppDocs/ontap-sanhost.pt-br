@@ -51,7 +51,9 @@ Para obter informações sobre como ativar o BIOS HBA, consulte a documentação
 
 Para o Ubuntu 20,04, o `/etc/multipath.conf` arquivo deve existir, mas você não precisa fazer alterações específicas no arquivo. O Ubuntu 20,04 é compilado com todas as configurações necessárias para reconhecer e gerenciar corretamente LUNs ONTAP.
 
-Você pode usar o `multipath -ll` comando para verificar as configurações dos LUNs do ONTAP. As seções a seguir fornecem saída multipath de amostra para um LUN mapeado para personas ASA e não ASA.
+Você pode usar o `multipath -ll` comando para verificar as configurações dos LUNs do ONTAP.
+
+As seções a seguir fornecem exemplos de saídas multipath para um LUN mapeado para personas ASA e não ASA.
 
 
 
@@ -74,13 +76,13 @@ size=10G features='3 queue_if_no_path pg_init_retries 50' hwhandler='1 alua' wp=
   `- 12:0:3:13 sdbx 68:176 active ready running
 ----
 
-NOTE: Não use um número excessivo de caminhos para um único LUN. Não mais do que quatro caminhos devem ser necessários. Mais de oito caminhos podem causar problemas de caminho durante falhas de storage.
+NOTE: Um único LUN não deve exigir mais de quatro caminhos. Mais de oito caminhos podem causar problemas de caminho durante falhas de storage.
 
 
 
 === Configurações que não são ASA
 
-Para configurações que não sejam ASA, deve haver dois grupos de caminhos com prioridades diferentes. Os caminhos com as prioridades mais altas são Ativo/otimizado, o que significa que eles são atendidos pelo controlador onde o agregado está localizado. Os caminhos com as prioridades mais baixas estão ativos, mas não são otimizados porque são servidos de um controlador diferente. Os caminhos não otimizados são usados somente quando caminhos otimizados não estão disponíveis.
+Para configurações que não sejam ASA, deve haver dois grupos de caminhos com prioridades diferentes. Os caminhos com prioridades mais altas são Ativo/otimizado, o que significa que eles são atendidos pelo controlador onde o agregado está localizado. Os caminhos com prioridades mais baixas estão ativos, mas não são otimizados porque são servidos de um controlador diferente. Os caminhos não otimizados são usados somente quando caminhos otimizados não estão disponíveis.
 
 .Exemplo
 O exemplo a seguir exibe a saída correta para um LUN ONTAP com dois caminhos ativos/otimizados e dois caminhos ativos/não otimizados:
@@ -98,7 +100,7 @@ size=160G features='3 queue_if_no_path pg_init_retries 50' hwhandler='1 alua' wp
   `- 15:0:1:0 sdv  65:80  active ready running
 ----
 
-NOTE: Não use um número excessivo de caminhos para um único LUN. Não mais do que quatro caminhos devem ser necessários. Mais de oito caminhos podem causar problemas de caminho durante falhas de storage.
+NOTE: Um único LUN não deve exigir mais de quatro caminhos. Mais de oito caminhos podem causar problemas de caminho durante falhas de storage.
 
 
 
@@ -132,7 +134,7 @@ blacklist {
 O exemplo a seguir determina o WWID de um dispositivo e o adiciona ao `multipath.conf` arquivo.
 
 .Passos
-. Execute o seguinte comando para determinar o WWID:
+. Determine o WWID:
 +
 [listing]
 ----
@@ -140,7 +142,7 @@ O exemplo a seguir determina o WWID de um dispositivo e o adiciona ao `multipath
 360030057024d0730239134810c0cb833
 ----
 +
-`sda` É o disco SCSI local que precisamos adicioná-lo à lista negra.
+`sda` É o disco SCSI local que você deseja adicionar à lista negra.
 
 . Adicione a `WWID` à estrofe da lista negra no `/etc/multipath.conf`:
 +

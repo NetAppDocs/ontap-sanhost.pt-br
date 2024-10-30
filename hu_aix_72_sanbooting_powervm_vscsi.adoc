@@ -44,7 +44,7 @@ Os LUNs aparecem no host como discos. Você pode usar esses discos da mesma mane
 Anote os números da instância do hdisk. Você os usa quando executa a configuração do caminho.
 
 +
-O `lsdev -type disk` comando produz o seguinte tipo de saída. A saída neste exemplo foi truncada.
+O `lsdev -type disk` comando produz o seguinte tipo de saída. A saída no exemplo a seguir é truncada.
 
 +
 [listing]
