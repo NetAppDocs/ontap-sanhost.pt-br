@@ -214,26 +214,33 @@ QLE2742 FW:v9.06.02 DVR:v10.02.00.200-k
 
 O ONTAP relata um MDTS (MAX Data Transfer Size) de 8 nos dados do controlador de identificação. Isso significa que o tamanho máximo da solicitação de e/S pode ser de até 1MBMB. Para emitir solicitações de e/S de tamanho 1 MB para um host NVMe/FC Broadcom, é necessário aumentar `lpfc` o valor `lpfc_sg_seg_cnt` do parâmetro para 256 do valor padrão 64.
 
+
+NOTE: As etapas a seguir não se aplicam a hosts Qlogic NVMe/FC.
+
 .Passos
 . Defina `lpfc_sg_seg_cnt` o parâmetro como 256:
 +
 [listing]
 ----
-# cat /etc/modprobe.d/lpfc.conf
+cat /etc/modprobe.d/lpfc.conf
+----
++
+.Exemplo de saída
+[listing]
+----
 options lpfc lpfc_sg_seg_cnt=256
 ----
-. Execute um `dracut -f` comando e reinicie o host:
+. Execute o `dracut -f` comando e reinicie o host:
 . Verifique se `lpfc_sg_seg_cnt` é 256:
 +
 [listing]
 ----
-# cat /sys/module/lpfc/parameters/lpfc_sg_seg_cnt
-256
+cat /sys/module/lpfc/parameters/lpfc_sg_seg_cnt
 ----
++
+O valor esperado é 256.
 
 
-
-NOTE: Isso não se aplica a hosts Qlogic NVMe/FC.
 
 
 

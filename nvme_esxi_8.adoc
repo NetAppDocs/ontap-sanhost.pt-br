@@ -22,8 +22,9 @@ Você pode configurar o NVMe sobre Fabrics (NVMe-of) em hosts iniciadores que ex
 
 == Capacidade de suporte
 
-* A partir do ONTAP 9.10,1, o protocolo NVMe/TCP é compatível com ONTAP.
+* A partir da alocação de espaço ONTAP 9.16,1 é ativada por padrão para todos os namespaces NVMe recém-criados.
 * A partir do ONTAP 9.9,1 P3, o protocolo NVMe/FC é compatível com ESXi 8 e posterior.
+* A partir do ONTAP 9.10,1, o protocolo NVMe/TCP é compatível com ONTAP.
 
 
 
@@ -266,6 +267,38 @@ tcp.vmnic2:34:80:0d:30:ca:e0-tcp.192.168.100.167:4420-uuid.f4f14337c3ad4a639edf0
    Path State: active
    Path Config: {ANA_GRP_id=6,*ANA_GRP_state=AO*,health=UP}
 ----
+
+
+
+
+== Ativar alocação de espaço
+
+A alocação de espaço é suportada para ESXi 8.x e posterior.
+
+Quando a alocação de espaço está ativada, se um namespace ficar sem espaço, o ONTAP se comunica com o host que nenhum espaço livre está disponível para operações de gravação; o namespace permanece on-line e as operações de leitura continuam sendo atendidas. As operações de gravação são retomadas quando espaço livre adicional se torna disponível. A alocação de espaço também permite que o host execute `UNMAP` (às vezes chamado `TRIM`) operações. As operações DE DESMAPEAMENTO permitem que um host identifique blocos de dados que não são mais necessários porque eles não contêm mais dados válidos. O sistema de armazenamento pode então desalocar esses blocos de dados para que o espaço possa ser consumido em outro lugar.
+
+.Antes de começar
+link:https://docs.netapp.com/us-en/ontap/san-admin/enable-space-allocation.html["Habilite a alocação de espaço no sistema de storage ONTAP"^]. Em seguida, você deve executar as seguintes etapas no host ESXi.
+
+.Passos
+. No seu anfitrião ESXi, verifique se o DSM está desativado:
++
+`esxcfg-advcfg -g /SCSi/NVmeUseDsmTp4040`
+
++
+O valor esperado é 0.
+
+. Ativar o NVMe DSM:
++
+`esxcfg-advcfg -s 1 /Scsi/NvmeUseDsmTp4040`
+
+. Verifique se o DSM está ativado:
++
+`esxcfg-advcfg -g /SCSi/NVmeUseDsmTp4040`
+
++
+O valor esperado é 1.
+
 
 
 

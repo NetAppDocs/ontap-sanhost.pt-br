@@ -19,7 +19,7 @@ summary: Descreve como configurar o NVMe/FC para o SUSE Linux Enterprise Server 
 
 
 [role="lead"]
-O NVMe sobre Fabrics (NVMe-of), incluindo NVMe sobre Fibre Channel (NVMe/FC) e outros transportes, é compatível com o SUSE Linux Enterprise Server 15 SP5 com acesso a namespace assimétrico (ANA). Em ambientes NVMe-of, o ANA é equivalente ao multipathing ALUA em ambientes iSCSI e FCP e é implementado com multipath NVMe no kernel.
+O NVMe sobre Fabrics (NVMe-of), incluindo NVMe sobre Fibre Channel (NVMe/FC) e outros transportes, é compatível com SUSE Linux Enterprise Server 15 SP5 com acesso a namespace assimétrico (ANA). Em ambientes NVMe-of, o ANA é equivalente ao multipathing ALUA em ambientes iSCSI e FCP e é implementado com multipath NVMe no kernel.
 
 O suporte a seguir está disponível para a configuração de host NVMe-of para SUSE Linux Enterprise Server 15 SP5 com ONTAP:
 
@@ -236,26 +236,33 @@ cat /sys/module/qla2xxx/parameters/ql2xnvmeenable
 
 O ONTAP relata um MDTS (MAX Data Transfer Size) de 8 nos dados do controlador de identificação. Isso significa que o tamanho máximo da solicitação de e/S pode ser de até 1MBMB. Para emitir solicitações de e/S de tamanho 1 MB para um host NVMe/FC Broadcom, é necessário aumentar `lpfc` o valor `lpfc_sg_seg_cnt` do parâmetro para 256 do valor padrão 64.
 
+
+NOTE: As etapas a seguir não se aplicam a hosts Qlogic NVMe/FC.
+
 .Passos
 . Defina `lpfc_sg_seg_cnt` o parâmetro como 256:
 +
 [listing]
 ----
-# cat /etc/modprobe.d/lpfc.conf
+cat /etc/modprobe.d/lpfc.conf
+----
++
+.Exemplo de saída
+[listing]
+----
 options lpfc lpfc_sg_seg_cnt=256
 ----
-. Execute um `dracut -f` comando e reinicie o host:
+. Execute o `dracut -f` comando e reinicie o host:
 . Verifique se `lpfc_sg_seg_cnt` é 256:
 +
 [listing]
 ----
-# cat /sys/module/lpfc/parameters/lpfc_sg_seg_cnt
-256
+cat /sys/module/lpfc/parameters/lpfc_sg_seg_cnt
 ----
++
+O valor esperado é 256.
 
 
-
-NOTE: Isso não se aplica a hosts Qlogic NVMe/FC.
 
 
 
@@ -273,7 +280,7 @@ Created symlink /etc/systemd/system/default.target.wants/nvmf- autoconnect.servi
 
 ----
 . Reinicie o host.
-. Verifique se `nvmf-autoconnect.service` e `nvmefc-boot-connections.service` se estão em execução depois de o sistema arrancar:
+. Verifique se `nvmf-autoconnect.service` e `nvmefc-boot-connections.service` estão em execução após a inicialização do sistema:
 +
 *Exemplo de saída:*
 
