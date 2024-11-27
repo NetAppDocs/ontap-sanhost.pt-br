@@ -211,7 +211,7 @@ O `lpfc_sg_seg_cnt` parâmetro precisa ser definido como 256 para que o driver l
 # cat /etc/modprobe.d/lpfc.conf
 options lpfc lpfc_sg_seg_cnt=256
 ----
-. Execute um `dracut -f` comando e reinicie o host.
+. Execute o `dracut -f` comando e reinicie o host.
 . Depois que o host inicializar, verifique se lpfc_sg_seg_cnt está definido como 256.
 +
 [listing]
@@ -292,7 +292,7 @@ O `lpfc_sg_seg_cnt` parâmetro precisa ser definido como 256 para que o driver l
 # cat /etc/modprobe.d/lpfc.conf
 options lpfc lpfc_sg_seg_cnt=256
 ----
-. Execute um `dracut -f` comando e reinicie o host.
+. Execute o `dracut -f` comando e reinicie o host.
 . Depois que o host inicializar, verifique se lpfc_sg_seg_cnt está definido como 256.
 +
 [listing]

@@ -109,7 +109,7 @@ Para todas as configurações de storage SAN (ASA), deve haver um grupo de camin
 image::asa.png[Captura de tela do LUN ONTAP com caminhos ativos/otimizados]
 
 
-NOTE: Não use um número excessivo de caminhos para um único LUN. Não mais do que quatro caminhos devem ser necessários. Mais de oito caminhos podem causar problemas de caminho durante falhas de storage.
+NOTE: Um único LUN não deve exigir mais de quatro caminhos. Ter mais de quatro caminhos pode causar problemas de caminho durante falhas de storage.
 
 
 

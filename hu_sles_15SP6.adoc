@@ -116,7 +116,7 @@ size=80G features='3 queue_if_no_path pg_init_retries 50' hwhandler='1 alua' wp=
   `- 14:0:7:9   sdiw 8:256   active ready running
 ----
 
-NOTE: Um único LUN não deve exigir mais de quatro caminhos. Mais de oito caminhos podem causar problemas de caminho durante falhas de storage.
+NOTE: Um único LUN não deve exigir mais de quatro caminhos. Ter mais de quatro caminhos pode causar problemas de caminho durante falhas de storage.
 
 
 
@@ -140,7 +140,7 @@ size=80G features='3 queue_if_no_path pg_init_retries 50' hwhandler='1 alua' wp=
   `- 14:0:5:0   sdgz 132:240 active ready running
 ----
 
-NOTE: Um único LUN não deve exigir mais de quatro caminhos. Mais de oito caminhos podem causar problemas de caminho durante falhas de storage.
+NOTE: Um único LUN não deve exigir mais de quatro caminhos. Ter mais de quatro caminhos pode causar problemas de caminho durante falhas de storage.
 
 
 
@@ -148,9 +148,7 @@ NOTE: Um único LUN não deve exigir mais de quatro caminhos. Mais de oito camin
 
 O SUSE Linux Enterprise Server 15 SP6 os reconhece LUNs ONTAP e define automaticamente todos os parâmetros de configuração corretamente para configurações ASA e não ASA. Você pode otimizar ainda mais o desempenho da configuração do seu host com as seguintes configurações recomendadas.
 
-O `multipath.conf` arquivo deve existir para o daemon multipath iniciar. Se este arquivo não existir, você pode criar um arquivo vazio de zero bytes usando o seguinte comando:
-
-`touch /etc/multipath.conf`
+O `multipath.conf` arquivo deve existir para o daemon multipath iniciar. Se este arquivo não existir, você pode criar um arquivo vazio, zero-byte usando o `touch /etc/multipath.conf` comando.
 
 Na primeira vez que você criar o `multipath.conf` arquivo, talvez seja necessário habilitar e iniciar os serviços multipath usando os seguintes comandos:
 
@@ -197,7 +195,7 @@ blacklist {
 ----
 
 
-Você deve sempre verificar o `/etc/multipath.conf` arquivo para configurações herdadas, especialmente na seção padrões, que podem estar substituindo as configurações padrão.
+Você deve sempre verificar seu `/etc/multipath.conf` arquivo, especialmente na seção padrões, para configurações herdadas que podem estar substituindo as configurações padrão.
 
 A tabela a seguir demonstra os parâmetros críticos `multipathd` para LUNs ONTAP e os valores necessários. Se um host estiver conetado a LUNs de outros fornecedores e qualquer um desses parâmetros for substituído, ele precisará ser corrigido por estrofes posteriores `multipath.conf` no arquivo que se aplicam especificamente aos LUNs ONTAP. Se isso não for feito, os LUNs do ONTAP podem não funcionar como esperado. Você só deve substituir esses padrões em consulta com o NetApp e/ou um fornecedor de SO e somente quando o impactos for totalmente compreendido.
 

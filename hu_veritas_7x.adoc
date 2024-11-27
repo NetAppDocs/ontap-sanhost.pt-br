@@ -172,7 +172,7 @@ sdcj  ENABLED(A)  Active/Optimized     c14   SFRAC       sfrac0     -      -
 sdea  ENABLED     Active/Non-Optimized c14   SFRAC       sfrac0     -      -
 ----
 
-NOTE: Um único LUN não deve exigir mais de quatro caminhos. Mais de oito caminhos podem causar problemas de caminho durante falhas de storage.
+NOTE: Um único LUN não deve exigir mais de quatro caminhos. Ter mais de quatro caminhos pode causar problemas de caminho durante falhas de storage.
 
 
 
