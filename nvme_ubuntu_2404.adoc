@@ -212,9 +212,11 @@ FCP CMPL: xb 00000047 Err 00000075
 
 
 --
-.Adaptador FC Marvell/QLogic para NVMe/FC
+.Marvell/QLogic
 --
 O driver nativo da caixa de entrada qla2xxx incluído no kernel do Ubuntu 24,04 GA tem as correções upstream mais recentes. Essas correções são essenciais para o suporte ao ONTAP.
+
+Configure o NVMe/FC para um adaptador Marvell/QLogic.
 
 .Passos
 . Verifique se você está executando o driver de adaptador e as versões de firmware compatíveis:
@@ -259,7 +261,6 @@ NOTE: As etapas a seguir não se aplicam a hosts Qlogic NVMe/FC.
 cat /etc/modprobe.d/lpfc.conf
 ----
 +
-.Exemplo de saída
 [listing]
 ----
 options lpfc lpfc_sg_seg_cnt=256

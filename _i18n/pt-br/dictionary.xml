@@ -3363,7 +3363,6 @@
   <block id="1a0d3890b0eb9dc0c7e3f33e1b9f1865" category="sidebar">NVMeoF RHEL</block>
   <block id="2f9c81bcc0340cf8ca367c73fc2605c3" category="sidebar">NVMeoF SLES</block>
   <block id="829d28d8727a4d458f1c35bda30f5ad7" category="sidebar">NVMeoF Ubuntu</block>
-  <block id="ec1fba1237506df59a6228cbfc26fd26" category="admonition">Um único LUN não deve exigir mais de quatro caminhos. Mais de oito caminhos podem causar problemas de caminho durante falhas de storage.</block>
   <block id="89ee331d6db284677b24c21600e6743e" category="paragraph">Se você tiver uma versão do Linux Unified Host Utilities atualmente instalada, você deve atualizá-la ou removê-la e seguir estas etapas para instalar a versão mais recente.</block>
   <block id="19da5996e127dc42574323b94bce7dc8" category="paragraph">As seções a seguir fornecem exemplos de saídas multipath para um LUN mapeado para personas ASA e não ASA.</block>
   <block id="22842eddc6851487a56907e9a4c8df95" category="paragraph">Para configurações que não sejam ASA, deve haver dois grupos de caminhos com prioridades diferentes. Os caminhos com prioridades mais altas são Ativo/otimizado, o que significa que eles são atendidos pelo controlador onde o agregado está localizado. Os caminhos com prioridades mais baixas estão ativos, mas não são otimizados porque são servidos de um controlador diferente. Os caminhos não otimizados são usados somente quando caminhos otimizados não estão disponíveis.</block>
@@ -3649,4 +3648,5 @@
   <block id="198ef744f24c6814a980b52a8b628dbd" category="paragraph">Não há problemas conhecidos para a configuração de host NVMe-of para Ubuntu 24,04 com a versão ONTAP.</block>
   <block id="cd5fcfe02b1d4f040fde5ba738d7572a" category="sidebar">24,04</block>
   <block id="4d2491544460a0c7af79b0ca7492e6fd" category="paragraph">Você deve sempre verificar seu<block ref="dd5ff67ba72768d33f75e645aa2b8e56" prefix=" " category="inline-code"></block> arquivo, especialmente na seção padrões, para configurações herdadas que podem estar substituindo as configurações padrão.</block>
+  <block id="d7b408d96809ae22d6292a5e84814c2a" category="admonition">Um único LUN não deve exigir mais de quatro caminhos. Mais de quatro caminhos podem causar problemas de caminho durante falhas de storage.</block>
 </blocks>

@@ -56,7 +56,7 @@ Para o Ubuntu 24,04, o `/etc/multipath.conf` arquivo deve existir, mas você nã
 Para todas as configurações de matriz SAN (ASA) e não ASA, você pode usar o `multipath -ll` comando para verificar as configurações de um LUN ONTAP, como mostrado nos exemplos a seguir.
 
 
-NOTE: Um único LUN não deve exigir mais de quatro caminhos. Mais de oito caminhos podem causar problemas de caminho durante falhas de storage.
+NOTE: Um único LUN não deve exigir mais de quatro caminhos. Mais de quatro caminhos podem causar problemas de caminho durante falhas de storage.
 
 
 
