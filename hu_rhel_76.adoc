@@ -172,7 +172,7 @@ blacklist {
 ----
 
 
-Você deve sempre verificar seu `/etc/multipath.conf` arquivo, especialmente na seção padrões, para configurações herdadas que podem substituir as configurações padrão.
+Você deve sempre verificar seu `/etc/multipath.conf` arquivo, especialmente na seção padrões, para configurações herdadas que podem estar substituindo as configurações padrão.
 
 A tabela a seguir demonstra os parâmetros críticos `multipathd` para LUNs ONTAP e a configuração necessária. Se um host estiver conetado a LUNs de outros fornecedores e qualquer um desses parâmetros for substituído, ele precisará ser corrigido por estrofes posteriores `multipath.conf` no arquivo que se aplicam especificamente aos LUNs ONTAP. Sem essa correção, os LUNs ONTAP podem não funcionar como esperado. Você só deve substituir esses padrões em consulta com o NetApp, o fornecedor do sistema operacional ou ambos, e apenas quando o impactos for totalmente compreendido.
 
