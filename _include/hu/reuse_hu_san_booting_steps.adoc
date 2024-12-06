@@ -7,7 +7,7 @@
 . Verifique se há vários caminhos disponíveis.
 +
 
-NOTE: Vários caminhos ficam disponíveis depois que o sistema operacional do host estiver ativo e em execução nos caminhos.
+NOTE: Vários caminhos ficam disponíveis depois que o sistema operacional host estiver ativo e em execução nos caminhos.
 
 . Ative a inicialização SAN no BIOS do servidor para as portas às quais o LUN de inicialização SAN está mapeado.
 +

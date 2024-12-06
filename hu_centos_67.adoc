@@ -26,11 +26,11 @@ O pacote de software Utilitários de host unificado do NetApp Linux está dispon
 
 O NetApp recomenda fortemente a instalação dos Utilitários de host unificado do Linux, mas não é obrigatório. Os utilitários não alteram nenhuma configuração em seu host Linux. Os utilitários melhoram o gerenciamento e auxiliam o suporte ao cliente da NetApp na coleta de informações sobre sua configuração.
 
-Se você tiver uma versão do Linux Unified Host Utilities atualmente instalada, você deve atualizá-la ou removê-la e seguir estas etapas para instalar a versão mais recente.
+Se você tiver o Linux Unified Host Utilities atualmente instalado, você deve atualizá-lo para a versão mais recente ou removê-lo e siga estas etapas para instalar a versão mais recente.
 
 .Passos
-. Faça o download do pacote de software Linux Unified Host Utilities de 32 ou 64 bits do link:https://mysupport.netapp.com/site/products/all/details/hostutilities/downloads-tab/download/61343/7.1/downloads["Site de suporte da NetApp"^]site para o seu host.
-. Use o seguinte comando para instalar o pacote de software:
+. Faça o download do pacote de software Linux Unified Host Utilities de 32 ou 64 bits do link:https://mysupport.netapp.com/site/products/all/details/hostutilities/downloads-tab/download/61343/7.1/downloads["Site de suporte da NetApp"^] para o seu host.
+. Instale o pacote de software:
 +
 `rpm -ivh netapp_linux_unified_host_utilities-7-1.x86_64`
 
@@ -76,7 +76,7 @@ Se você decidir usar a inicialização de SAN, ele deve ser suportado por sua c
 . Verifique se há vários caminhos disponíveis.
 +
 
-NOTE: Vários caminhos ficam disponíveis depois que o sistema operacional do host estiver ativo e em execução nos caminhos.
+NOTE: Vários caminhos ficam disponíveis depois que o sistema operacional host estiver ativo e em execução nos caminhos.
 
 . Ative a inicialização SAN no BIOS do servidor para as portas às quais o LUN de inicialização SAN está mapeado.
 +
@@ -161,7 +161,7 @@ NOTE: Um único LUN não deve exigir mais de quatro caminhos. Ter mais de quatro
 
 O sistema operacional CentOS 6,7 é compilado para reconhecer LUNs ONTAP e definir automaticamente todos os parâmetros de configuração corretamente para configurações ASA e não-ASA.
 
-O `multipath.conf` arquivo deve existir para o daemon multipath iniciar. Se este arquivo não existir, você pode criar um arquivo vazio, zero-byte usando o `touch /etc/multipath.conf` comando
+O `multipath.conf` arquivo deve existir para o daemon multipath iniciar. Se este arquivo não existir, você pode criar um arquivo vazio, zero-byte usando o `touch /etc/multipath.conf` comando.
 
 Na primeira vez que você criar o `multipath.conf` arquivo, talvez seja necessário habilitar e iniciar os serviços multipath usando os seguintes comandos:
 
@@ -207,7 +207,7 @@ blacklist {
 
 Você deve sempre verificar seu `/etc/multipath.conf` arquivo, especialmente na seção padrões, para configurações herdadas que podem estar substituindo as configurações padrão.
 
-A tabela a seguir demonstra os parâmetros críticos `multipathd` para LUNs ONTAP e a configuração necessária. Se um host estiver conetado a LUNs de outros fornecedores e qualquer um desses parâmetros for substituído, ele precisará ser corrigido por estrofes posteriores `multipath.conf` no arquivo que se aplicam especificamente aos LUNs ONTAP. Sem essa correção, os LUNs ONTAP podem não funcionar como esperado. Você só deve substituir esses padrões em consulta com o NetApp, o fornecedor do sistema operacional ou ambos, e apenas quando o impactos for totalmente compreendido.
+A tabela a seguir demonstra os parâmetros críticos `multipathd` para LUNs ONTAP e os valores necessários. Se um host estiver conetado a LUNs de outros fornecedores e qualquer um desses parâmetros for substituído, ele precisará ser corrigido por estrofes posteriores `multipath.conf` no arquivo que se aplicam especificamente aos LUNs ONTAP. Sem essa correção, os LUNs ONTAP podem não funcionar como esperado. Você só deve substituir esses padrões em consulta com o NetApp, o fornecedor do sistema operacional ou ambos, e apenas quando o impactos for totalmente compreendido.
 
 [cols="2*"]
 |===

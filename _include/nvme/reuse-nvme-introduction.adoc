@@ -1,0 +1,5 @@
+= 
+:allow-uri-read: 
+
+
+Você pode usar o NVMe-of com ONTAP LUNs. Em ambientes NVMe-of, o ANA é equivalente ao multipathing ALUA em ambientes iSCSI e FCP; ele é implementado com o recurso multipath NVMe no kernel.

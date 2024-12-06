@@ -1,0 +1,16 @@
+= Configurações do ASA
+:allow-uri-read: 
+
+
+Para todas as configurações de matriz SAN (ASA) e não ASA, você pode usar o `multipath -ll` comando para verificar as configurações de um LUN ONTAP, como mostrado nos exemplos a seguir.
+
+
+NOTE: Um único LUN não deve exigir mais de quatro caminhos. Mais de oito caminhos podem causar problemas de caminho durante falhas de storage.
+
+
+
+=== Configurações do ASA
+
+Nas configurações do ASA, todos os caminhos para um determinado LUN estão ativos e otimizados. Isso melhora a performance atendendo operações de e/S em todos os caminhos ao mesmo tempo.
+
+O exemplo a seguir exibe a saída correta para um LUN ONTAP mapeado para uma persona ASA:

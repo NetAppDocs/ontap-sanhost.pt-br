@@ -1,0 +1,5 @@
+= 
+:allow-uri-read: 
+
+
+Para dar suporte à operação correta de LUNs ONTAP, verifique se o status multipath NVMe no kernel, o status ANA e os namespaces ONTAP estão corretos para a configuração NVMe-of.
