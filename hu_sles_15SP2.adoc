@@ -120,10 +120,12 @@ O `multipath.conf` arquivo deve existir para o daemon multipath iniciar. Se este
 
 Na primeira vez que você criar o `multipath.conf` arquivo, talvez seja necessário habilitar e iniciar os serviços multipath usando os seguintes comandos:
 
-`# chkconfig multipathd on`
-`# /etc/init.d/multipathd start`
-
-Não é necessário adicionar nada diretamente ao `multipath.conf` arquivo, a menos que você tenha dispositivos que não deseja que o multipath gerencie ou tenha configurações existentes que substituem os padrões. Para excluir dispositivos indesejados, adicione a seguinte sintaxe ao `multipath.conf` arquivo, substituindo o <DevId> pela cadeia WWID do dispositivo que você deseja excluir:
+[listing]
+----
+# systemctl enable multipathd
+# systemctl start multipathd
+----
+Não há necessidade de adicionar dispositivos diretamente ao `multipath.conf` arquivo, a menos que você tenha dispositivos que não deseja que o multipath gerencie ou tenha configurações existentes que substituem os padrões. Você pode excluir dispositivos indesejados adicionando a seguinte sintaxe ao `multipath.conf` arquivo, substituindo o <DevId> pela cadeia WWID do dispositivo que você deseja excluir:
 
 [listing]
 ----
@@ -134,18 +136,22 @@ blacklist {
         devnode "^cciss.*"
 }
 ----
-O exemplo a seguir determina o WWID de um dispositivo e o adiciona ao `multipath.conf` arquivo.
+No exemplo a seguir, você determina o WWID de um dispositivo e adiciona o dispositivo ao `multipath.conf` arquivo.
 
 .Passos
 . Determine o WWID:
 +
 [listing]
 ----
-# /lib/udev/scsi_id -gud /dev/sda
+/lib/udev/scsi_id -gud /dev/sda
+----
++
+[listing]
+----
 360030057024d0730239134810c0cb833
 ----
 +
-`sda` É o disco SCSI local que você deseja adicionar à lista negra.
+`sda` É o disco SCSI local que você deseja adicioná-lo à lista negra.
 
 . Adicione a `WWID` à estrofe da lista negra no `/etc/multipath.conf`:
 +
@@ -162,7 +168,7 @@ blacklist {
 
 Você deve sempre verificar seu `/etc/multipath.conf` arquivo, especialmente na seção padrões, para configurações herdadas que podem estar substituindo as configurações padrão.
 
-A tabela a seguir demonstra os parâmetros críticos `multipathd` para LUNs ONTAP e os valores necessários. Se um host estiver conetado a LUNs de outros fornecedores e qualquer um desses parâmetros for substituído, ele precisará ser corrigido por estrofes posteriores `multipath.conf` no arquivo que se aplicam especificamente aos LUNs ONTAP. Sem essa correção, os LUNs ONTAP podem não funcionar como esperado. Você só deve substituir esses padrões em consulta com o NetApp, o fornecedor do sistema operacional ou ambos, e apenas quando o impactos for totalmente compreendido.
+A tabela a seguir demonstra os parâmetros críticos `multipathd` para LUNs ONTAP e os valores necessários. Se um host estiver conetado a LUNs de outros fornecedores e qualquer um desses parâmetros for substituído, ele precisará ser corrigido por estrofes posteriores `multipath.conf` no arquivo que se aplicam especificamente aos LUNs ONTAP. Se isso não for feito, os LUNs do ONTAP podem não funcionar como esperado. Você só deve substituir esses padrões em consulta com o NetApp e/ou um fornecedor de SO e somente quando o impactos for totalmente compreendido.
 
 [cols="2"]
 |===

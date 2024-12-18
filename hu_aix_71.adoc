@@ -54,7 +54,7 @@ O diretório a seguir é criado quando você descompacta o arquivo: `ntap_aix_ho
 
 == Kit de ferramentas SAN
 
-O kit de ferramentas é instalado automaticamente quando você instala o pacote de Utilitários de host do NetApp. Este kit fornece o `sanlun` utilitário, que ajuda você a gerenciar LUNs e HBAs. O `sanlun` comando retorna informações sobre os LUNs mapeados para o seu host, multipathing e informações necessárias para criar grupos de iniciadores.
+Instalar o pacote de utilitários de host NetApp instala automaticamente o kit de ferramentas. Este kit fornece o `sanlun` utilitário, que ajuda a gerenciar LUNs e adaptadores de barramento de host (HBAs). O `sanlun` comando retorna informações sobre os LUNs mapeados para o seu host, multipathing e informações necessárias para criar grupos de iniciadores.
 
 .Exemplo
 No exemplo a seguir, o `sanlun lun show` comando retorna informações de LUN.
@@ -96,7 +96,7 @@ Para o AIX, o módulo de controlo do percurso (PCM) é responsável pelo control
 Para configurações que não sejam ASA, deve haver dois grupos de caminhos com prioridades diferentes. Os caminhos com prioridades mais altas são Ativo/otimizado, o que significa que eles são atendidos pelo controlador onde o agregado está localizado. Os caminhos com prioridades mais baixas estão ativos, mas não são otimizados porque são servidos de um controlador diferente. Os caminhos não otimizados são usados somente quando caminhos otimizados não estão disponíveis.
 
 .Exemplo
-O exemplo a seguir exibe a saída correta para um LUN ONTAP com dois caminhos ativos/otimizados e dois caminhos ativos/não otimizados:
+O exemplo a seguir exibe a saída correta para um LUN ONTAP com dois caminhos ativos/otimizados e dois caminhos ativos/não otimizados.
 
 [listing]
 ----
@@ -123,10 +123,10 @@ up      secondary  path3  fcs1    fc_aix_4        1
 
 === Todas as configurações do SAN Array
 
-Em todas as configurações de storage SAN (ASA), todos os caminhos para um determinado LUN estão ativos e otimizados. Isso melhora a performance atendendo operações de e/S em todos os caminhos ao mesmo tempo.
+Todas as configurações de SAN Array (ASA) otimizam todos os caminhos para um determinado LUN, mantendo-os ativos. Isso melhora a performance atendendo operações de e/S em todos os caminhos ao mesmo tempo.
 
 .Exemplo
-O exemplo a seguir exibe a saída correta para um LUN ONTAP:
+O exemplo a seguir exibe a saída correta para um LUN ONTAP.
 
 
 NOTE: Todas as configurações de SAN Arrays (ASA) são compatíveis a partir do ONTAP 9.8 para hosts AIX.

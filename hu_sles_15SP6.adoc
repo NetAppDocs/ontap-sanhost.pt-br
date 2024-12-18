@@ -99,10 +99,10 @@ As seções a seguir fornecem exemplos de saídas multipath para um LUN mapeado 
 
 === Todas as configurações do SAN Array
 
-Em todas as configurações de storage SAN (ASA), todos os caminhos para um determinado LUN estão ativos e otimizados. Isso melhora a performance atendendo operações de e/S em todos os caminhos ao mesmo tempo.
+Todas as configurações de SAN Array (ASA) otimizam todos os caminhos para um determinado LUN, mantendo-os ativos. Isso melhora a performance atendendo operações de e/S em todos os caminhos ao mesmo tempo.
 
 .Exemplo
-O exemplo a seguir exibe a saída correta para um LUN ONTAP:
+O exemplo a seguir exibe a saída correta para um LUN ONTAP.
 
 [listing]
 ----
@@ -125,7 +125,7 @@ NOTE: Um único LUN não deve exigir mais de quatro caminhos. Ter mais de quatro
 Para configurações que não sejam ASA, deve haver dois grupos de caminhos com prioridades diferentes. Os caminhos com prioridades mais altas são Ativo/otimizado, o que significa que eles são atendidos pelo controlador onde o agregado está localizado. Os caminhos com prioridades mais baixas estão ativos, mas não são otimizados porque são servidos de um controlador diferente. Os caminhos não otimizados são usados somente quando caminhos otimizados não estão disponíveis.
 
 .Exemplo
-O exemplo a seguir exibe a saída correta para um LUN ONTAP com dois caminhos ativos/otimizados e dois caminhos ativos/não otimizados:
+O exemplo a seguir exibe a saída correta para um LUN ONTAP com dois caminhos ativos/otimizados e dois caminhos ativos/não otimizados.
 
 [listing]
 ----
@@ -168,15 +168,18 @@ blacklist {
         devnode "^cciss.*"
 }
 ----
-.Exemplo
-No exemplo a seguir, você determina o WWID de um dispositivo e adiciona ao `multipath.conf` arquivo.
+No exemplo a seguir, você determina o WWID de um dispositivo e adiciona o dispositivo ao `multipath.conf` arquivo.
 
 .Passos
 . Determine o WWID:
 +
 [listing]
 ----
-# /lib/udev/scsi_id -gud /dev/sda
+/lib/udev/scsi_id -gud /dev/sda
+----
++
+[listing]
+----
 360030057024d0730239134810c0cb833
 ----
 +

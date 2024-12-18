@@ -99,10 +99,10 @@ As seções a seguir fornecem exemplos de saídas multipath para um LUN mapeado 
 
 === Todas as configurações do SAN Array
 
-Em todas as configurações de storage SAN (ASA), todos os caminhos para um determinado LUN estão ativos e otimizados. Isso melhora a performance atendendo operações de e/S em todos os caminhos ao mesmo tempo.
+Todas as configurações de SAN Array (ASA) otimizam todos os caminhos para um determinado LUN, mantendo-os ativos. Isso melhora a performance atendendo operações de e/S em todos os caminhos ao mesmo tempo.
 
 .Exemplo
-O exemplo a seguir exibe a saída correta para um LUN ONTAP:
+O exemplo a seguir exibe a saída correta para um LUN ONTAP.
 
 [listing]
 ----
@@ -125,7 +125,7 @@ NOTE: Um único LUN não deve exigir mais de quatro caminhos. Ter mais de quatro
 Para configurações que não sejam ASA, deve haver dois grupos de caminhos com prioridades diferentes. Os caminhos com prioridades mais altas são Ativo/otimizado, o que significa que eles são atendidos pelo controlador onde o agregado está localizado. Os caminhos com prioridades mais baixas estão ativos, mas não são otimizados porque são servidos de um controlador diferente. Os caminhos não otimizados são usados somente quando caminhos otimizados não estão disponíveis.
 
 .Exemplo
-O exemplo a seguir exibe a saída correta para um LUN ONTAP com dois caminhos ativos/otimizados e dois caminhos ativos/não otimizados:
+O exemplo a seguir exibe a saída correta para um LUN ONTAP com dois caminhos ativos/otimizados e dois caminhos ativos/não otimizados.
 
 [listing]
 ----
@@ -152,10 +152,12 @@ O `multipath.conf` arquivo deve existir para o daemon multipath iniciar. Se este
 
 Na primeira vez que você criar o `multipath.conf` arquivo, talvez seja necessário habilitar e iniciar os serviços multipath usando os seguintes comandos:
 
-`# chkconfig multipathd on`
-`# /etc/init.d/multipathd start`
-
-Não é necessário adicionar nada diretamente ao `multipath.conf` arquivo, a menos que você tenha dispositivos que não deseja que o multipath gerencie ou tenha configurações existentes que substituem os padrões. Para excluir dispositivos indesejados, adicione a seguinte sintaxe ao `multipath.conf` arquivo, substituindo o <DevId> pela cadeia WWID do dispositivo que você deseja excluir:
+[listing]
+----
+chkconfig multipathd on
+/etc/init.d/multipathd start
+----
+Não é necessário adicionar nada diretamente ao `multipath.conf` arquivo, a menos que você tenha dispositivos que não deseja que o multipath gerencie ou tenha configurações existentes que substituem os padrões. Para excluir dispositivos indesejados, adicione a seguinte sintaxe ao `multipath.conf` arquivo, substituindo <DevId> pela cadeia de carateres identificador mundial (WWID) do dispositivo que você deseja excluir:
 
 [listing]
 ----
@@ -173,122 +175,94 @@ O exemplo a seguir determina o WWID de um dispositivo e o adiciona ao `multipath
 +
 [listing]
 ----
-# /lib/udev/scsi_id -gud /dev/sda
+/lib/udev/scsi_id -gud /dev/sda
+----
++
+[listing]
+----
+3600a098038314c4a433f5774717a3046
+/lib/udev/scsi_id -gud /dev/sda
+----
++
 360030057024d0730239134810c0cb833
-----
-+
-`sda` É o disco SCSI local que você deseja adicionar à lista negra.
-
-. Adicione a `WWID` à estrofe da lista negra no `/etc/multipath.conf`:
-+
-[listing]
-----
-blacklist {
-     wwid   360030057024d0730239134810c0cb833
-     devnode "^(ram|raw|loop|fd|md|dm-|sr|scd|st)[0-9]*"
-     devnode "^hd[a-z]"
-     devnode "^cciss.*"
-}
-----
 
 
-Você deve sempre verificar seu `/etc/multipath.conf` arquivo, especialmente na seção padrões, para configurações herdadas que podem estar substituindo as configurações padrão.
-
-A tabela a seguir demonstra os parâmetros críticos `multipathd` para LUNs ONTAP e os valores necessários. Se um host estiver conetado a LUNs de outros fornecedores e qualquer um desses parâmetros for substituído, ele precisará ser corrigido por estrofes posteriores `multipath.conf` no arquivo que se aplicam especificamente aos LUNs ONTAP. Sem essa correção, os LUNs ONTAP podem não funcionar como esperado. Você só deve substituir esses padrões em consulta com o NetApp, o fornecedor do sistema operacional ou ambos, e apenas quando o impactos for totalmente compreendido.
-
-[cols="2*"]
-|===
-| Parâmetro | Definição 
-
-
-| detectar_prio | sim 
-
-
-| dev_loss_tmo | "infinito" 
-
-
-| failback | imediato 
-
-
-| fast_io_fail_tmo | 5 
-
-
-| caraterísticas | "3 queue_if_no_path pg_init_retries 50" 
-
-
-| flush_on_last_del | "sim" 
-
-
-| hardware_handler | "0" 
-
-
-| no_path_retry | fila de espera 
-
-
-| path_checker | "tur" 
-
-
-| path_grouing_policy | "group_by_prio" 
-
-
-| path_selector | "tempo de serviço 0" 
-
-
-| polling_interval | 5 
-
-
-| prio | "ONTAP" 
-
-
-| produto | LUN.* 
-
-
-| reter_anexado_hw_handler | sim 
-
-
-| rr_peso | "uniforme" 
-
-
-| user_friendly_names | não 
-
-
-| fornecedor | NetApp 
-|===
-.Exemplo
-O exemplo a seguir mostra como corrigir um padrão substituído. Nesse caso, o `multipath.conf` arquivo define valores para `path_checker` e `no_path_retry` que não são compatíveis com LUNs ONTAP. Se eles não puderem ser removidos devido a outros arrays SAN ainda conetados ao host, esses parâmetros podem ser corrigidos especificamente para LUNs ONTAP com uma estrofe de dispositivo.
 
 [listing]
 ----
-defaults {
-   path_checker      readsector0
-   no_path_retry      fail
-}
++
+`sda` is the local SCSI disk that you want to add to the blacklist.
 
-devices {
-   device {
-      vendor         "NETAPP  "
-      product         "LUN.*"
-      no_path_retry     queue
-      path_checker      tur
-   }
-}
+. Add the `WWID` to the blacklist stanza in `/etc/multipath.conf`:
+[source,cli]
++
+----
+se não 0 for o caso 9, não é necessário utilizar o sistema de controlo de qualidade, o sistema de controlo de qualidade de imagem do sistema de controlo de qualidade de imagem. o sistema de controlo de qualidade de imagem do sistema de controlo de qualidade de imagem do sistema de controlo de qualidade de imagem do sistema de controlo de qualidade de imagem (por exemplo, o sistema de controlo de velocidade de navegação). Selecione
+
+[listing]
 ----
 
+Always check your `/etc/multipath.conf` file, especially in the defaults section, for legacy settings that might be overriding default settings.
 
-=== Definições KVM
+The following table demonstrates the critical `multipathd` parameters for ONTAP LUNs and the required values. If a host is connected to LUNs from other vendors and any of these parameters are overridden, they must be corrected by later stanzas in the `multipath.conf` file that apply specifically to ONTAP LUNs. Without this correction, the ONTAP LUNs might not work as expected. You should only override these defaults in consultation with NetApp, the OS vendor, or both, and only when the impact is fully understood.
 
-Você também pode usar as configurações recomendadas para configurar a máquina virtual baseada no Kernel (KVM). Não são necessárias alterações para configurar o KVM, uma vez que o LUN é mapeado para o hipervisor.
+//ONTAPDOC-2578 9-Dec-2024
+//ONTAPDOC-2561 25-Nov-202
 
-
-
-== Problemas conhecidos
-
-A versão RHEL 7,9 com ONTAP tem os seguintes problemas conhecidos:
-
-[cols="3*"]
+[cols=2*,options="header"]
 |===
-| ID de erro do NetApp | Título | Descrição 
-
-
-| 1440718 | Se você desmarcar ou mapear um LUN sem executar uma nova digitalização SCSI, isso pode levar à corrupção de dados no host. | Quando você define o parâmetro de configuração multipath 'testable_changed_wwwids' como SIM, ele desativa o acesso ao dispositivo de caminho no caso de uma alteração WWID. O multipath desativará o acesso ao dispositivo de caminho até que o WWID do caminho seja restaurado para o WWID do dispositivo multipath. Para saber mais, link:https://kb.netapp.com/Advice_and_Troubleshooting/Flash_Storage/AFF_Series/The_filesystem_corruption_on_iSCSI_LUN_on_the_Oracle_Linux_7["Base de dados de Conhecimento da NetApp: A corrupção do sistema de arquivos no iSCSI LUN no Oracle Linux 7"^]consulte . 
+| Parameter
+| Setting
+| detect_prio | yes
+| dev_loss_tmo | "infinity"
+| failback | immediate
+| fast_io_fail_tmo | 5
+| features | "3 queue_if_no_path pg_init_retries 50"
+| flush_on_last_del | "yes"
+| hardware_handler | "0"
+| no_path_retry | queue
+| path_checker | "tur"
+| path_grouping_policy | "group_by_prio"
+| path_selector | "service-time 0"
+| polling_interval | 5
+| prio | "ontap"
+| product | LUN.*
+| retain_attached_hw_handler | yes
+| rr_weight | "uniform"
+| user_friendly_names | no
+| vendor | NETAPP
 |===
+
+.Example
+
+The following example shows how to correct an overridden default. In this case, the `multipath.conf` file defines values for `path_checker` and `no_path_retry` that are not compatible with ONTAP LUNs. If they cannot be removed because of other SAN arrays still attached to the host, these parameters can be corrected specifically for ONTAP LUNs with a device stanza.
+
+----
+não há nenhuma mensagem com a etiqueta path_checker readsector0
+
+Clique no botão "NetApp" para selecionar o nome DO produto "LUN.*" no_PATH_REtry queue path_checker tur
+
+[listing]
+----
+
+=== Configure KVM settings
+
+You can use the recommended settings to configure Kernel-based Virtual Machine (KVM) as well. There are no changes required to configure KVM because the LUN is mapped to the hypervisor.
+
+//ONTAPDOC-2561 5-Dec-2024
+
+== Known issues
+
+The RHEL 7.9 with ONTAP release has the following known issues:
+
+[cols=3*,options="header"]
+|===
+| NetApp Bug ID
+| Title
+| Description
+| 1440718 | If you unmap or map a LUN without performing a SCSI rescan, it might lead to data corruption on the host. | When you set the 'disable_changed_wwids' multipath configuration parameter to YES, it disables access to the path device in the event of a WWID change. Multipath will disable access to the path device until the WWID of the path is restored to the WWID of the multipath device. To learn more, see  link:https://kb.netapp.com/Advice_and_Troubleshooting/Flash_Storage/AFF_Series/The_filesystem_corruption_on_iSCSI_LUN_on_the_Oracle_Linux_7[NetApp Knowledge Base: The filesystem corruption on iSCSI LUN on the Oracle Linux 7^].
+|===
+
+
+// BURT 1447018, 28-02-2022
+----

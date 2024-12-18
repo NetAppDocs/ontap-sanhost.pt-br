@@ -22,11 +22,9 @@ Você pode usar as configurações de host SAN ONTAP para a versão da base de a
 
 == Instale os utilitários do host unificado do Linux
 
-O pacote de software Utilitários de host unificado do NetApp Linux está disponível no link:https://mysupport.netapp.com/site/products/all/details/hostutilities/downloads-tab/download/61343/7.1/downloads["Site de suporte da NetApp"^]arquivo .rpm de 64 bits.
+Você pode baixar o pacote de software Utilitários unificados de host do NetApp Linux como um arquivo 64-bit.rpm do link:https://mysupport.netapp.com/site/products/all/details/hostutilities/downloads-tab/download/61343/7.1/downloads["Site de suporte da NetApp"^].
 
 O NetApp recomenda fortemente a instalação dos Utilitários de host unificado do Linux, mas não é obrigatório. Os utilitários não alteram nenhuma configuração em seu host Linux. Os utilitários melhoram o gerenciamento e auxiliam o suporte ao cliente da NetApp na coleta de informações sobre sua configuração.
-
-Se você tiver uma versão do Linux Unified Host Utilities atualmente instalada, você deve atualizá-la ou removê-la e seguir estas etapas para instalar a versão mais recente.
 
 .Passos
 . Baixe o pacote de software Linux Unified Host Utilities de 64 bits do https://mysupport.netapp.com/site/products/all/details/hostutilities/downloads-tab/download/61343/7.1/downloads["Site de suporte da NetApp"^] para o seu host.
@@ -40,7 +38,7 @@ Se você tiver uma versão do Linux Unified Host Utilities atualmente instalada,
 
 == Kit de ferramentas SAN
 
-O kit de ferramentas é instalado automaticamente quando você instala o pacote de Utilitários de host do NetApp. Este kit fornece o `sanlun` utilitário, que ajuda você a gerenciar LUNs e HBAs. O `sanlun` comando retorna informações sobre os LUNs mapeados para o seu host, multipathing e informações necessárias para criar grupos de iniciadores.
+Instalar o pacote de utilitários de host NetApp instala automaticamente o kit de ferramentas. Este kit fornece o `sanlun` utilitário, que ajuda a gerenciar LUNs e adaptadores de barramento de host (HBAs). O `sanlun` comando retorna informações sobre os LUNs mapeados para o seu host, multipathing e informações necessárias para criar grupos de iniciadores.
 
 .Exemplo
 Na ilustração a seguir, o `sanlun show` comando retorna informações de LUN.

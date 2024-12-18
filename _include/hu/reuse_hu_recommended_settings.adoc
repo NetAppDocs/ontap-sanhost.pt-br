@@ -6,10 +6,12 @@ O `multipath.conf` arquivo deve existir para o daemon multipath iniciar. Se este
 
 Na primeira vez que você criar o `multipath.conf` arquivo, talvez seja necessário habilitar e iniciar os serviços multipath usando os seguintes comandos:
 
-`# chkconfig multipathd on`
-`# /etc/init.d/multipathd start`
-
-Não é necessário adicionar nada diretamente ao `multipath.conf` arquivo, a menos que você tenha dispositivos que não deseja que o multipath gerencie ou tenha configurações existentes que substituem os padrões. Para excluir dispositivos indesejados, adicione a seguinte sintaxe ao `multipath.conf` arquivo, substituindo o <DevId> pela cadeia WWID do dispositivo que você deseja excluir:
+[listing]
+----
+chkconfig multipathd on
+/etc/init.d/multipathd start
+----
+Não é necessário adicionar nada diretamente ao `multipath.conf` arquivo, a menos que você tenha dispositivos que não deseja que o multipath gerencie ou tenha configurações existentes que substituem os padrões. Para excluir dispositivos indesejados, adicione a seguinte sintaxe ao `multipath.conf` arquivo, substituindo <DevId> pela cadeia de carateres identificador mundial (WWID) do dispositivo que você deseja excluir:
 
 [listing]
 ----
@@ -27,25 +29,37 @@ O exemplo a seguir determina o WWID de um dispositivo e o adiciona ao `multipath
 +
 [listing]
 ----
-# /lib/udev/scsi_id -gud /dev/sda
-360030057024d0730239134810c0cb833
+/lib/udev/scsi_id -gud /dev/sda
 ----
-+
-`sda` É o disco SCSI local que você deseja adicionar à lista negra.
-
-. Adicione a `WWID` à estrofe da lista negra no `/etc/multipath.conf`:
 +
 [listing]
 ----
-blacklist {
-     wwid   360030057024d0730239134810c0cb833
-     devnode "^(ram|raw|loop|fd|md|dm-|sr|scd|st)[0-9]*"
-     devnode "^hd[a-z]"
-     devnode "^cciss.*"
-}
+3600a098038314c4a433f5774717a3046
+/lib/udev/scsi_id -gud /dev/sda
+----
++
+360030057024d0730239134810c0cb833
+
+
+
+[listing]
+----
++
+`sda` is the local SCSI disk that you want to add to the blacklist.
+
+. Add the `WWID` to the blacklist stanza in `/etc/multipath.conf`:
+[source,cli]
++
+----
+se não 0 for o caso 9, não é necessário utilizar o sistema de controlo de qualidade, o sistema de controlo de qualidade de imagem do sistema de controlo de qualidade de imagem. o sistema de controlo de qualidade de imagem do sistema de controlo de qualidade de imagem do sistema de controlo de qualidade de imagem do sistema de controlo de qualidade de imagem (por exemplo, o sistema de controlo de velocidade de navegação). Selecione
+
+[listing]
 ----
 
+Always check your `/etc/multipath.conf` file, especially in the defaults section, for legacy settings that might be overriding default settings.
 
-Você deve sempre verificar seu `/etc/multipath.conf` arquivo, especialmente na seção padrões, para configurações herdadas que podem estar substituindo as configurações padrão.
+The following table demonstrates the critical `multipathd` parameters for ONTAP LUNs and the required values. If a host is connected to LUNs from other vendors and any of these parameters are overridden, they must be corrected by later stanzas in the `multipath.conf` file that apply specifically to ONTAP LUNs. Without this correction, the ONTAP LUNs might not work as expected. You should only override these defaults in consultation with NetApp, the OS vendor, or both, and only when the impact is fully understood.
 
-A tabela a seguir demonstra os parâmetros críticos `multipathd` para LUNs ONTAP e os valores necessários. Se um host estiver conetado a LUNs de outros fornecedores e qualquer um desses parâmetros for substituído, ele precisará ser corrigido por estrofes posteriores `multipath.conf` no arquivo que se aplicam especificamente aos LUNs ONTAP. Sem essa correção, os LUNs ONTAP podem não funcionar como esperado. Você só deve substituir esses padrões em consulta com o NetApp, o fornecedor do sistema operacional ou ambos, e apenas quando o impactos for totalmente compreendido.
+//ONTAPDOC-2578 9-Dec-2024
+//ONTAPDOC-2561 25-Nov-202
+----

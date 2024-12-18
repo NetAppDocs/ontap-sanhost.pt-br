@@ -1,10 +1,10 @@
 ---
 sidebar: sidebar 
-permalink: hu_rhel_82.html 
-keywords: host utilities, red hat, rhel, linux, 8.2, netapp, ontap 
-summary: Descreve como usar o Red Hat Enterprise Linux 8,2 com o ONTAP 
+permalink: hu_rhel_95.html 
+keywords: host utilities, red hat, rhel, linux, 9.5, netapp, ontap, rhel 
+summary: Descreve como usar o Red Hat Enterprise Linux 9,5 com o ONTAP 
 ---
-= Use o Red Hat Enterprise Linux 8,2 com ONTAP
+= Use o Red Hat Enterprise Linux 9,5 com ONTAP
 :hardbreaks:
 :toclevels: 1
 :allow-uri-read: 
@@ -16,7 +16,7 @@ summary: Descreve como usar o Red Hat Enterprise Linux 8,2 com o ONTAP
 
 
 [role="lead"]
-Você pode usar as configurações de host SAN ONTAP para configurar o Red Hat Enterprise Linux 8,2 com ONTAP como destino.
+Você pode usar as configurações de host SAN ONTAP para configurar o Red Hat Enterprise Linux (RHEL) 9,5 com ONTAP como destino.
 
 
 
@@ -36,35 +36,39 @@ O NetApp recomenda fortemente a instalação dos Utilitários de host unificado 
 
 
 
-== Kit de ferramentas SAN
+== Use o SAN Toolkit
 
-O kit de ferramentas é instalado automaticamente quando você instala o pacote de utilitários de host do NetApp. Este kit fornece o `sanlun` utilitário, que ajuda você a gerenciar LUNs e HBAs. O `sanlun` comando retorna informações sobre os LUNs mapeados para o seu host, multipathing e informações necessárias para criar grupos de iniciadores.
+Instalar o pacote de utilitários de host NetApp instala automaticamente o kit de ferramentas. Este kit fornece o `sanlun` utilitário, que ajuda a gerenciar LUNs e adaptadores de barramento de host (HBAs). O `sanlun` comando retorna informações sobre os LUNs mapeados para o seu host, multipathing e informações necessárias para criar grupos de iniciadores.
 
-.Exemplo
 No exemplo a seguir, o `sanlun lun show` comando retorna informações de LUN.
 
 [source, cli]
 ----
-# sanlun lun show all
+sanlun lun show all
 ----
-Exemplo de saída:
-
+.Mostrar exemplo
+[%collapsible]
+====
 [listing]
 ----
-controller(7mode/E-Series)/            device     host               lun
-vserver(cDOT/FlashRay)   lun-pathname  filename   adapter  protocol  size    Product
-------------------------------------------------------------------------------------
-data_vserver          /vol/vol1/lun1   /dev/sdb   host16   FCP       120.0g  cDOT
-data_vserver          /vol/vol1/lun1   /dev/sdc   host15   FCP       120.0g  cDOT
-data_vserver          /vol/vol2/lun2   /dev/sdd   host16   FCP       120.0g  cDOT
-data_vserver          /vol/vol2/lun2   /dev/sde   host15   FCP       120.0g  cDOT
+controller(7mode/E-Series)/                                  device          host                  lun
+vserver(cDOT/FlashRay)        lun-pathname                   filename        adapter    protocol   size    product
+---------------------------------------------------------------------------------------------------------------
+vs_sanboot                    /vol/vol_2742/lun              /dev/sdch       host17     FCP        180g    cDOT
+vs_coexistence_QLE2742        /vol/fc_vol_2_9/dynamic_lun    /dev/sdcg       host17     FCP        10g     cDOT
+vs_coexistence_QLE2742        /vol/fc_vol_2_8/dynamic_lun    /dev/sdcf       host17     FCP        10g     cDOT
+vs_coexistence_QLE2742        /vol/fc_vol_2_7/dynamic_lun    /dev/sdce       host17     FCP        10g     cDOT
+vs_coexistence_QLE2742        /vol/fc_vol_2_6/dynamic_lun    /dev/sdcd       host17     FCP        10g     cDOT
 ----
+====
 
 
-== Inicialização de SAN
+== Ativar a inicialização de SAN
 
-.O que você vai precisar
-Se você decidir usar a inicialização de SAN, ele deve ser suportado por sua configuração. Você pode usar o link:https://mysupport.netapp.com/matrix/imt.jsp?components=96167;&solution=236&isHWU&src=IMT["Ferramenta de Matriz de interoperabilidade do NetApp"^] para verificar se o seu sistema operacional, HBA, HBA firmware e o BIOS de inicialização HBA e a versão ONTAP são suportados.
+Se você decidir usar a inicialização de SAN, ele deve ser suportado por sua configuração.
+
+.Antes de começar
+Use o link:https://mysupport.netapp.com/matrix/imt.jsp?components=91241;&solution=236&isHWU&src=IMT["Ferramenta de Matriz de interoperabilidade do NetApp"^] para verificar se o seu SO, HBA, firmware HBA, BIOS de inicialização HBA e a versão ONTAP são suportados.
 
 .Passos
 . Mapeie o LUN de inicialização SAN para o host.
@@ -82,13 +86,12 @@ Para obter informações sobre como ativar o BIOS HBA, consulte a documentação
 
 
 
-== Multipathing
+== Ativar multipathing
 
-Para Red Hat Enterprise Linux (RHEL) 8,2 o `/etc/multipath.conf` arquivo deve existir, mas você não precisa fazer alterações específicas no arquivo. RHEL 8,2 é compilado com todas as configurações necessárias para reconhecer e gerenciar corretamente LUNs ONTAP.
+Você pode usar multipathing com RHEL 9,5 para gerenciar LUNs ONTAP. Para usar multipathing, o `/etc/multipath.conf` arquivo deve existir. Se o `/etc/multipath.conf` arquivo não existir, você pode criar um arquivo vazio de zero bytes usando o comando touch `/etc/multipath.conf`. Você não precisa fazer alterações no `/etc/multipath.conf` arquivo porque o RHEL 9,5 é compilado com todas as configurações necessárias para reconhecer e gerenciar corretamente LUNs ONTAP.
 
-Você pode usar o `multipath -ll` comando para verificar as configurações dos LUNs do ONTAP.
 
-As seções a seguir fornecem exemplos de saídas multipath para um LUN mapeado para personas ASA e não ASA.
+NOTE: Um único LUN não deve exigir mais de quatro caminhos. Mais de quatro caminhos podem causar problemas de caminho durante falhas de storage.
 
 
 
@@ -99,20 +102,21 @@ Todas as configurações de SAN Array (ASA) otimizam todos os caminhos para um d
 .Exemplo
 O exemplo a seguir exibe a saída correta para um LUN ONTAP.
 
+.Mostrar exemplo
+[%collapsible]
+====
 [listing]
 ----
-# multipath -ll
-3600a098038303634722b4d59646c4436 dm-28 NETAPP,LUN C-Mode
-size=80G features='3 queue_if_no_path pg_init_retries 50' hwhandler='1 alua' wp=rw
+multipath -ll
+3600a098038314c4a433f577471797958 dm-2 NETAPP,LUN C-Mode
+size=180G features='3 queue_if_no_path pg_init_retries 50' hwhandler='1 alua' wp=rw
 `-+- policy='service-time 0' prio=50 status=active
-  |- 11:0:7:1    sdfi   130:64   active ready running
-  |- 11:0:9:1    sdiy   8:288    active ready running
-  |- 11:0:10:1   sdml   69:464   active ready running
-  |- 11:0:11:1   sdpt   131:304  active ready running
+  |- 14:0:0:0  sdc  8:32   active ready running
+  |- 17:0:0:0  sdas 66:192 active ready running
+  |- 14:0:3:0  sdar 66:176 active ready running
+  `- 17:0:3:0  sdch 69:80  active ready running
 ----
-
-NOTE: Um único LUN não deve exigir mais de quatro caminhos. Ter mais de quatro caminhos pode causar problemas de caminho durante falhas de storage.
-
+====
 
 
 === Configurações que não são ASA
@@ -122,27 +126,27 @@ Para configurações que não sejam ASA, deve haver dois grupos de caminhos com 
 .Exemplo
 O exemplo a seguir exibe a saída correta para um LUN ONTAP com dois caminhos ativos/otimizados e dois caminhos ativos/não otimizados.
 
+.Mostrar exemplo
+[%collapsible]
+====
 [listing]
 ----
-# multipath -ll
-3600a098038303634722b4d59646c4436 dm-28 NETAPP,LUN C-Mode
-size=80G features='3 queue_if_no_path pg_init_retries 50' hwhandler='1 alua' wp=rw
+multipath -ll
+3600a0980383149764b5d567257516273 dm-0 NETAPP,LUN C-Mode
+size=150G features='3 queue_if_no_path pg_init_retries 50' hwhandler='1 alua' wp=rw
 |-+- policy='service-time 0' prio=50 status=active
-| |- 16:0:6:35 sdwb 69:624 active ready running
-| |- 16:0:5:35 sdun 66:752 active ready running
+| |- 16:0:3:0  sdcg 69:64  active ready running
+| `- 10:0:0:0  sdb  8:16   active ready running
 `-+- policy='service-time 0' prio=10 status=enabled
-|- 15:0:0:35 sdaj 66:48 active ready running
-|- 15:0:1:35 sdbx 68:176 active ready running
-
+  |- 10:0:1:0  sdc  8:32   active ready running
+  `- 16:0:2:0  sdcf 69:48  active ready running
 ----
-
-NOTE: Um único LUN não deve exigir mais de quatro caminhos. Ter mais de quatro caminhos pode causar problemas de caminho durante falhas de storage.
-
+====
 
 
 == Definições recomendadas
 
-O RHEL 8,2 os é compilado para reconhecer LUNs ONTAP e definir automaticamente todos os parâmetros de configuração corretamente.
+O sistema operacional RHEL 9,5 é compilado para reconhecer LUNs ONTAP e definir automaticamente todos os parâmetros de configuração corretamente para configurações ASA e não ASA. Você pode otimizar ainda mais o desempenho da configuração do seu host com as seguintes configurações recomendadas.
 
 O `multipath.conf` arquivo deve existir para o daemon multipath iniciar. Se este arquivo não existir, você pode criar um arquivo vazio, zero-byte usando o `touch /etc/multipath.conf` comando.
 
@@ -242,7 +246,7 @@ A tabela a seguir demonstra os parâmetros críticos `multipathd` para LUNs ONTA
 | prio | "ONTAP" 
 
 
-| produto | LUN.* 
+| produto | LUN 
 
 
 | reter_anexado_hw_handler | sim 
@@ -257,24 +261,28 @@ A tabela a seguir demonstra os parâmetros críticos `multipathd` para LUNs ONTA
 | fornecedor | NetApp 
 |===
 .Exemplo
-O exemplo a seguir mostra como corrigir um padrão substituído. Nesse caso, o `multipath.conf` arquivo define valores para `path_checker` e `no_path_retry` que não são compatíveis com LUNs ONTAP. Se eles não puderem ser removidos devido a outros arrays SAN ainda conetados ao host, esses parâmetros podem ser corrigidos especificamente para LUNs ONTAP com uma estrofe de dispositivo.
+O exemplo a seguir mostra como corrigir um padrão substituído. Nesse caso, o `multipath.conf` arquivo define valores para `path_checker` e `no_path_retry` que não são compatíveis com LUNs ONTAP. Se outros arrays SAN ainda estiverem conetados ao host, corrija esses parâmetros especificamente para LUNs ONTAP usando uma estrofe de dispositivo.
 
+.Mostrar exemplo
+[%collapsible]
+====
 [listing]
 ----
 defaults {
    path_checker      readsector0
-   no_path_retry      fail
+   no_path_retry     fail
 }
 
 devices {
    device {
-      vendor         "NETAPP  "
-      product         "LUN.*"
-      no_path_retry     queue
-      path_checker      tur
+      vendor         "NETAPP"
+      product         "LUN"
+      no_path_retry    queue
+      path_checker     tur
    }
 }
 ----
+====
 
 
 === Configurar definições KVM
@@ -285,4 +293,4 @@ Você também pode usar as configurações recomendadas para configurar a máqui
 
 == Problemas conhecidos
 
-Não há problemas conhecidos para o RHEL 8,2 com o lançamento do ONTAP.
+Não há problemas conhecidos para a configuração de host FC para RHEL 9,5 com a versão ONTAP.
