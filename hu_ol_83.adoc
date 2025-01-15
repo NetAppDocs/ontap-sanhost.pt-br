@@ -179,74 +179,111 @@ O exemplo a seguir determina o WWID de um dispositivo e o adiciona ao `multipath
 [listing]
 ----
 3600a098038314c4a433f5774717a3046
-/lib/udev/scsi_id -gud /dev/sda
 ----
 +
-360030057024d0730239134810c0cb833
+`sda` É o disco SCSI local que você deseja adicionar à lista negra.
 
-
-
-[listing]
-----
+. Adicione a `WWID` à estrofe da lista negra no `/etc/multipath.conf`:
 +
-`sda` is the local SCSI disk that you want to add to the blacklist.
-
-. Add the `WWID` to the blacklist stanza in `/etc/multipath.conf`:
-[source,cli]
-+
+[source, cli]
 ----
-se não 0 for o caso 9, não é necessário utilizar o sistema de controlo de qualidade, o sistema de controlo de qualidade de imagem do sistema de controlo de qualidade de imagem. o sistema de controlo de qualidade de imagem do sistema de controlo de qualidade de imagem do sistema de controlo de qualidade de imagem do sistema de controlo de qualidade de imagem (por exemplo, o sistema de controlo de velocidade de navegação). Selecione
-
-[listing]
+blacklist {
+     wwid   3600a098038314c4a433f5774717a3046
+     devnode "^(ram|raw|loop|fd|md|dm-|sr|scd|st)[0-9]*"
+     devnode "^hd[a-z]"
+     devnode "^cciss.*"
+}
 ----
 
-Always check your `/etc/multipath.conf` file, especially in the defaults section, for legacy settings that might be overriding default settings.
 
-The following table demonstrates the critical `multipathd` parameters for ONTAP LUNs and the required values. If a host is connected to LUNs from other vendors and any of these parameters are overridden, they must be corrected by later stanzas in the `multipath.conf` file that apply specifically to ONTAP LUNs. Without this correction, the ONTAP LUNs might not work as expected. You should only override these defaults in consultation with NetApp, the OS vendor, or both, and only when the impact is fully understood.
+Sempre verifique o `/etc/multipath.conf` arquivo, especialmente na seção padrões, para configurações herdadas que podem estar substituindo as configurações padrão.
 
-//ONTAPDOC-2578 9-Dec-2024
-//ONTAPDOC-2561 25-Nov-202
+A tabela a seguir demonstra os parâmetros críticos `multipathd` para LUNs ONTAP e os valores necessários. Se um host estiver conetado a LUNs de outros fornecedores e qualquer um desses parâmetros for substituído, ele precisará ser corrigido por estrofes posteriores `multipath.conf` no arquivo que se aplicam especificamente aos LUNs ONTAP. Sem essa correção, os LUNs ONTAP podem não funcionar como esperado. Você só deve substituir esses padrões em consulta com o NetApp, o fornecedor do sistema operacional ou ambos, e apenas quando o impactos for totalmente compreendido.
 
-
-[cols=2*,options="header"]
+[cols="2*"]
 |===
-| Parameter
-| Setting
-| detect_prio | yes
-| dev_loss_tmo | infinity
-| failback | immediate
-| fast_io_fail_tmo | 5
-| features | 2 pg_init_retries 50
-| flush_on_last_del | yes
-| hardware_handler | 0
-| no_path_retry | queue
-| path_checker | tur
-| path_grouping_policy | group_by_prio
-| path_selector | service-time 0
-| polling_interval | 5
-| prio | ontap
-| product | LUN.*
-| retain_attached_hw_handler | yes
-| rr_weight | uniform
-| user_friendly_names | no
-| vendor | NETAPP
+| Parâmetro | Definição 
+
+
+| detectar_prio | sim 
+
+
+| dev_loss_tmo | infinito 
+
+
+| failback | imediato 
+
+
+| fast_io_fail_tmo | 5 
+
+
+| caraterísticas | 2 pg_init_retries 50 
+
+
+| flush_on_last_del | sim 
+
+
+| hardware_handler | 0 
+
+
+| no_path_retry | fila de espera 
+
+
+| path_checker | tur 
+
+
+| path_grouing_policy | group_by_prio 
+
+
+| path_selector | tempo de serviço 0 
+
+
+| polling_interval | 5 
+
+
+| prio | ONTAP 
+
+
+| produto | LUN.* 
+
+
+| reter_anexado_hw_handler | sim 
+
+
+| rr_peso | uniforme 
+
+
+| user_friendly_names | não 
+
+
+| fornecedor | NetApp 
 |===
-
-.Example
-
-The following example shows how to correct an overridden default. In this case, the `multipath.conf` file defines values for `path_checker` and `no_path_retry` that are not compatible with ONTAP LUNs. If they cannot be removed because of other SAN arrays still attached to the host, these parameters can be corrected specifically for ONTAP LUNs with a device stanza.
-
-----
-Clique em "NetApp" product "LUN.*" no_path_retry queue path_checker tur." no_path_retry queue path_checker tur readsector0
+.Exemplo
+O exemplo a seguir mostra como corrigir um padrão substituído. Nesse caso, o `multipath.conf` arquivo define valores para `path_checker` e `no_path_retry` que não são compatíveis com LUNs ONTAP. Se eles não puderem ser removidos devido a outros arrays SAN ainda conetados ao host, esses parâmetros podem ser corrigidos especificamente para LUNs ONTAP com uma estrofe de dispositivo.
 
 [listing]
 ----
-
-NOTE: To configure Oracle Linux 8.3 Red Hat Enterprise Kernel (RHCK), use the link:hu_rhel_83.html#recommended-settings[recommended settings] for Red Hat Enterprise Linux (RHEL) 8.3.
-
-== Known issues
-
-There are no known issues for the Oracle Linux 8.3 with ONTAP release.
-
-NOTE: For Oracle Linux (Red Hat compatible kernel) known issues, see the link:hu_rhel_83.html#known-problems-and-limitations[known issues] section in the corresponding Red Hat Enterprise Linux release documentation.
+defaults {
+ path_checker readsector0
+ no_path_retry fail
+ }
+devices {
+ device {
+ vendor "NETAPP "
+ product "LUN.*"
+ no_path_retry queue
+ path_checker tur
+ }
+}
 ----
+
+NOTE: Para configurar o Oracle Linux 8,3 Red Hat Enterprise Kernel (RHCK), use o link:hu_rhel_83.html#recommended-settings["definições recomendadas"] para Red Hat Enterprise Linux (RHEL) 8,3.
+
+
+
+== Problemas conhecidos
+
+Não há problemas conhecidos para o Oracle Linux 8,3 com a versão ONTAP.
+
+
+NOTE: Para problemas conhecidos do Oracle Linux (kernel compatível com Red Hat), consulte a link:hu_rhel_83.html#known-problems-and-limitations["problemas conhecidos"] seção na documentação de lançamento do Red Hat Enterprise Linux correspondente.
