@@ -276,7 +276,7 @@ devices {
 }
 ----
 
-NOTE: Para configurar o Oracle Linux 7,9 Red Hat Enterprise Kernel (RHCK), use o link:hu_rhel_79.html#recommended-settings["definições recomendadas"] para Red Hat Enterprise Linux (RHEL) 7,9.
+NOTE: Para configurar o kernel compatível com Red Hat do Oracle Linux 7,9 (RHCK), use o link:hu_rhel_79.html#recommended-settings["definições recomendadas"] para Red Hat Enterprise Linux (RHEL) 7,9.
 
 
 

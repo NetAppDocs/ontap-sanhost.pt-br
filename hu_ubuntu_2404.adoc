@@ -235,9 +235,9 @@ devices {
 ----
 
 
-=== Definições KVM
+== Configurar definições KVM
 
-Você também pode usar as configurações recomendadas para configurar a máquina virtual baseada no Kernel (KVM). Não são necessárias alterações para configurar o KVM, uma vez que o LUN é mapeado para o hipervisor.
+Você não precisa configurar configurações para uma Máquina Virtual baseada em Kernel porque o LUN é mapeado para o hipervisor.
 
 
 

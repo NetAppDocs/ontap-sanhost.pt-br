@@ -253,7 +253,7 @@ devices {
 }
 ----
 
-NOTE: Para configurar o Oracle Linux 6,6 Red Hat Enterprise Kernel (RHCK), use o link:hu_rhel_66.html#recommended-settings["definições recomendadas"] para Red Hat Enterprise Linux (RHEL) 6,6.
+NOTE: Para configurar o kernel compatível com Red Hat do Oracle Linux 6,6 (RHCK), use o link:hu_rhel_66.html#recommended-settings["definições recomendadas"] para Red Hat Enterprise Linux (RHEL) 6,6.
 
 
 
@@ -262,4 +262,4 @@ NOTE: Para configurar o Oracle Linux 6,6 Red Hat Enterprise Kernel (RHCK), use o
 Não há problemas conhecidos para o Oracle Linux 6,6 com a versão ONTAP.
 
 
-NOTE: Para problemas conhecidos do Oracle Linux (kernel compatível com Red Hat), consulte o link:hu_rhel_66.html#known-problems-and-limitations["problemas conhecidos"] para Red Hat Enterprise Linux (RHEL) 6,6.
+NOTE: Para problemas conhecidos do RHCK do Oracle Linux, consulte o link:hu_rhel_66.html#known-problems-and-limitations["problemas conhecidos"] para RHEL 6,6.

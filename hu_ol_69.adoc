@@ -253,7 +253,7 @@ devices {
 }
 ----
 
-NOTE: Para configurar o Oracle Linux 6,9 Red Hat Enterprise Kernel (RHCK), use o link:hu_rhel_69.html#recommended-settings["definições recomendadas"] para Red Hat Enterprise Linux (RHEL) 6,9.
+NOTE: Para configurar o kernel compatível com Red Hat do Oracle Linux 6,9 (RHCK), use o link:hu_rhel_69.html#recommended-settings["definições recomendadas"] para Red Hat Enterprise Linux (RHEL) 6,9.
 
 
 
@@ -269,4 +269,4 @@ O Oracle Linux 6,9 com ONTAP tem os seguintes problemas conhecidos:
 | link:https://mysupport.netapp.com/NOW/cgi-bin/bol?Type=Detail&Display=1082780["1082780"^] | As descargas de firmware são observadas ocasionalmente no hypervisor OL6,9 com a placa QLE8362 | Durante as operações de failover de armazenamento no hypervisor OL6,9 com placa QLE8362, as descargas de firmware são observadas ocasionalmente. Os despejos de firmware podem resultar em uma interrupção de e/S no host, que pode chegar a mil segundos. Depois que o adaptador concluir o despejo de firmware, a operação de e/S é retomada da maneira normal. Nenhum procedimento de recuperação adicional é necessário no host. Para indicar o despejo de firmware, a seguinte mensagem é exibida no arquivo /var/log/message: qla2xxx [0000:0C:00,3]-d001:3: Despejo de firmware salvo no buffer temp (3/ffffc90008901000), sinalizadores de status de despejo (0x3f). 
 |===
 
-NOTE: Para problemas conhecidos do Oracle Linux (kernel compatível com Red Hat), consulte o link:hu_rhel_69.html#known-problems-and-limitations["problemas conhecidos"] para Red Hat Enterprise Linux (RHEL) 6,9.
+NOTE: Para problemas conhecidos do RHCK do Oracle Linux, consulte o link:hu_rhel_69.html#known-problems-and-limitations["problemas conhecidos"] para RHEL 6,9.

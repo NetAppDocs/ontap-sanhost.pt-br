@@ -253,7 +253,7 @@ devices {
 }
 ----
 
-NOTE: Para configurar o Oracle Linux 6,4 Red Hat Enterprise Kernel (RHCK), use o link:hu_rhel_64.html#recommended-settings["definições recomendadas"] para Red Hat Enterprise Linux (RHEL) 6,4.
+NOTE: Para configurar o kernel compatível com Red Hat do Oracle Linux 6,4 (RHCK), use o link:hu_rhel_64.html#recommended-settings["definições recomendadas"] para Red Hat Enterprise Linux (RHEL) 6,4.
 
 
 
@@ -278,4 +278,4 @@ O Oracle Linux 6,4 com ONTAP tem os seguintes problemas conhecidos:
 | link:https://mysupport.netapp.com/NOW/cgi-bin/bol?Type=Detail&Display=739909["739909"^] | A chamada do sistema SG_io ioctl falha em dispositivos dm-multipath após uma falha FC em hosts OL6.x e OL5.x com UEK2 | Um problema é visto em hosts Oracle Linux 6.x com kernel UEK2 e hosts Oracle Linux 5.x com kernel UEK2. Os comandos sg_* em um dispositivo multipath falham com o código de erro EAGAIN (errno) após uma falha de malha que faz todos os caminhos no grupo de caminho ativo diminuírem. Esse problema é visto somente quando não há e/S ocorrendo nos dispositivos multipath. O seguinte é um exemplo: sg_inq -v /dev/mapper/3600a098041764937303f436c75324370 inquérito cdb: 12 00 00 00 24 00 11 ioctl(SG_io v3) falhou com os_err (errno): 11 INQUÉRITO: Passe através de os erro: Resource temporariamente mapHDIO_GET_IDENTITY iocching_ioctl( O problema foi observado nas seguintes versões dos pacotes kernel-uek e device-mapper-multipath: OL6,4 versões: Kernel-uek-2,6 64,0.39-400.17.1.el6uek device-mapper-multipath-0,4.400.17.1-64,0.39.el6 OL5,9 versões: Kernel-uek-2,6.1-9.el5uek device-mapper-multipath-0,4.9.1.el5 
 |===
 
-NOTE: Para problemas conhecidos do Oracle Linux (kernel compatível com Red Hat), consulte o link:hu_rhel_64.html#known-problems-and-limitations["problemas conhecidos"] para Red Hat Enterprise Linux (RHEL) 6,4.
+NOTE: Para problemas conhecidos do RHCK do Oracle Linux, consulte o link:hu_rhel_64.html#known-problems-and-limitations["problemas conhecidos"] para RHEL 6,4.
