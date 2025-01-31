@@ -1,7 +1,7 @@
 ---
 sidebar: sidebar 
 permalink: hu_aix_72.html 
-keywords: host utilities, aix, powervm, vios, 3.1, 7.2 netapp, ontap 
+keywords: Host Utilities, aix, powervm, vios, 3.1, 7.2 netapp, ontap 
 summary: Descreve como usar o IBM AIX 7,2 e/ou PowerVM VIOS 3,1 com o ONTAP 
 ---
 = Use o IBM AIX 7,2 e/ou PowerVM (VIOS 3,1) com o ONTAP
@@ -22,11 +22,11 @@ Você pode usar as configurações do host SAN ONTAP para configurar o IBM AIX 7
 
 == Instale os utilitários de host AIX/VIOS
 
-Você deve instalar o kit de utilitários de host AIX enquanto usa o MPIO AIX com armazenamento NetApp ONTAP.
+Você deve instalar o kit de utilitários de host AIX enquanto usa o e/S Multipath da Microsoft (MPIO) com armazenamento ONTAP.
 
-Pode transferir o ficheiro comprimido que contém os pacotes de software Host Utilities a partir do link:https://mysupport.netapp.com/site/products/all/details/hostutilities/downloads-tab/download/61343/6.1/downloads["Site de suporte da NetApp"^]. Depois de ter o arquivo, você deve descompactá-lo para obter os dois pacotes de software que você precisa para instalar os utilitários host.
+Pode transferir o ficheiro comprimido que contém os pacotes de software Host Utilities a partir do link:https://mysupport.netapp.com/site/products/all/details/hostutilities/downloads-tab/download/61343/6.1/downloads["Site de suporte da NetApp"^]. Depois de ter o arquivo, você deve descompactá-lo para obter os dois pacotes de software necessários para instalar os Utilitários do host.
 
-NetApp AIX Host Utilities 6,1 é a versão mais recente. Esta versão resolve o problema de vazamento de memória que foi relatado nas versões anteriores. Consulte a seção de notas de versão para obter informações adicionais.
+A versão AIX Host Utilities 6,1 resolve o problema de vazamento de memória que foi relatado nas versões anteriores. Consulte a link:hu_aix_rn.html["notas de lançamento"]para obter informações adicionais.
 
 .Passos
 . Faça login no seu host.
@@ -79,8 +79,8 @@ data_vserver      /vol/vol4/lun4    hdisk14     fcs0       FCP       20g    C
 
 == Inicialização de SAN
 
-.O que você vai precisar
-Se você decidir usar a inicialização de SAN, ele deve ser suportado por sua configuração. Você pode usar o link:https://mysupport.netapp.com/matrix/imt.jsp?components=71102;&solution=1&isHWU&src=IMT["Ferramenta de Matriz de interoperabilidade do NetApp"^] para verificar se o seu sistema operacional, HBA, HBA firmware e o BIOS de inicialização HBA e a versão ONTAP são suportados.
+.Antes de começar
+Se você decidir usar a inicialização de SAN, ele deve ser suportado por sua configuração. Você pode usar o link:https://imt.netapp.com/matrix/#welcome["Ferramenta de Matriz de interoperabilidade"^] para verificar se o seu sistema operacional, HBA, HBA firmware e o BIOS de inicialização HBA e a versão ONTAP são suportados.
 
 A inicialização DE SAN é o processo de configuração de um disco conetado a SAN (um LUN) como um dispositivo de inicialização para um host AIX/PowerVM. Você pode configurar um LUN de inicialização SAN para funcionar em um ambiente MPIO AIX que esteja executando os Utilitários de host AIX com o protocolo FC ou FCoE. O método usado para criar um LUN de inicialização SAN e instalar uma nova imagem de SO em um ambiente MPIO AIX pode variar, dependendo do protocolo que você está usando.
 
@@ -242,5 +242,5 @@ O IBM AIX 7,2 e/ou PowerVM (VIOS 3,1) com a versão ONTAP tem os seguintes probl
 | link:https://mysupport.netapp.com/site/bugs-online/product/HOSTUTILITIES/1414700["1414700"^] | O AIX 7,2 TL04 encontrou interrupção de e/S em discos iSCSI virtuais (VIOS 3,1.1.x) durante o failover de armazenamento | A interrupção de e/S pode ocorrer durante operações de failover de armazenamento em hosts AIX 7,2 TL4 nos discos iSCSI virtuais mapeados através do VIOS 3,1.1.x. Por padrão, o `rw_timeout` valor do adaptador vSCSI no VIOC é de 45 segundos. Se ocorrer um atraso de e/S superior a 45 segundos durante um failover de armazenamento, poderá ocorrer uma falha de e/S. Para evitar esta situação, consulte a solução alternativa mencionada no BURT. | NA 
 
 
-| link:https://mysupport.netapp.com/site/bugs-online/product/HOSTUTILITIES/1307653["1307653"^] | Ver problemas de e/S no VIOS 3.1.1.10 durante falhas SFO e e/S retas | Em VIOS 3.1.1 falhas de e/S podem ser vistas no disco cliente NPIV que são suportados por adaptadores FC 16/32GB. Além disso, um `vfchost` driver pode entrar em um estado em que ele pára de processar solicitações de e/S do cliente. Aplicar o IBM APAR IJ22290 IBM APAR IJ23222 corrigirá o problema. | NA 
+| link:https://mysupport.netapp.com/site/bugs-online/product/HOSTUTILITIES/1307653["1307653"^] | Problemas de e/S ocorrem no VIOS 3.1.1.10 durante falhas SFO e e/S retas | No VIOS 3,1.1, falhas de e/S podem ocorrer em discos cliente NPIV com suporte de adaptadores FC de 16 GB ou 32 GB. Além disso, o `vfchost` driver pode parar de processar solicitações de e/S do cliente. Aplicando o IBM APAR IJ22290 o IBM APAR IJ23222 corrige o problema. | NA 
 |===

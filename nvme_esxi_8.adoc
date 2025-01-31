@@ -81,7 +81,7 @@ Se as strings NQN do host não corresponderem, você deve usar o `vserver nvme s
 
  `lpfc`O driver e `qlnativefc` o driver do vSphere 8.x têm a capacidade NVMe/FC habilitada por padrão.
 
-link:https://mysupport.netapp.com/matrix/["Ferramenta de Matriz de interoperabilidade do NetApp"^]Consulte para verificar se a configuração é suportada com o controlador ou firmware.
+link:https://mysupport.netapp.com/matrix/["Ferramenta de Matriz de interoperabilidade"^]Consulte para verificar se a configuração é suportada com o controlador ou firmware.
 
 
 

@@ -16,7 +16,7 @@ summary: Como configurar o host NVMe/FC para AIX com o ONTAP
 
 
 [role="lead"]
-Você pode habilitar o NVMe em Fibre Channel (NVMe/FC) em hosts IBM AIX e VIOS/PowerVM usando o storage ONTAP como destino. Para obter detalhes adicionais sobre as configurações suportadas, consulte o link:https://mysupport.netapp.com/matrix/["Ferramenta de Matriz de interoperabilidade do NetApp"^].
+Você pode habilitar o NVMe em Fibre Channel (NVMe/FC) em hosts IBM AIX e VIOS/PowerVM usando o storage ONTAP como destino. Para obter detalhes adicionais sobre as configurações suportadas, consulte o link:https://mysupport.netapp.com/matrix/["Ferramenta de Matriz de interoperabilidade"^].
 
 O suporte a seguir está disponível para a configuração de host NVMe/FC para um host AIX com ONTAP:
 

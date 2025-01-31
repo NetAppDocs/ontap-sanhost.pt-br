@@ -16,9 +16,9 @@ summary: Como configurar o host NVMe/FC para RHEL 8,2 com o ONTAP
 
 
 [role="lead"]
-O NVMe/FC é compatível com o ONTAP 9.6 ou posterior para o Red Hat Enterprise Linux (RHEL) 8,2. O host RHEL 8,2 executa o tráfego NVMe e SCSI através das mesmas portas do adaptador iniciador de Fibre Channel (FC). Consulte o link:https://hwu.netapp.com/Home/Index["Hardware Universe"^] para obter uma lista de controladores e adaptadores FC compatíveis.
+A partir do ONTAP 9,6, o NVMe/FC é compatível com o Red Hat Enterprise Linux (RHEL) 8,2. O host RHEL 8,2 executa o tráfego NVMe e SCSI através das mesmas portas do adaptador iniciador de Fibre Channel (FC). Consulte o link:https://hwu.netapp.com/Home/Index["Hardware Universe"^] para obter uma lista de controladores e adaptadores FC compatíveis.
 
-Consulte a link:https://mysupport.netapp.com/matrix/["Ferramenta de Matriz de interoperabilidade do NetApp"^] para obter a lista mais atual de configurações suportadas.
+Consulte a link:https://mysupport.netapp.com/matrix/["Ferramenta de Matriz de interoperabilidade"^] para obter a lista atual de configurações suportadas.
 
 
 
@@ -26,7 +26,7 @@ Consulte a link:https://mysupport.netapp.com/matrix/["Ferramenta de Matriz de in
 
 * Começando com RHEL 8,2, `nvme-fc auto-connect` os scripts são incluídos no pacote nativo `nvme-cli`. Você pode usar esses scripts nativos de conexão automática em vez de ter que instalar os scripts externos de conexão automática fornecidos pelo fornecedor externo.
 * A partir do RHEL 8,2, uma regra nativa `udev` já é fornecida como parte `nvme-cli` do pacote que permite o balanceamento de carga round-robin para multipath NVMe. Você não precisa criar manualmente esta regra mais (como foi feito no RHEL 8,1).
-* A partir do RHEL 8,2, o tráfego NVMe e SCSI podem ser executados no mesmo host coexistente. Na verdade, essa é a configuração de host implantada esperada. Portanto, para SCSI, você pode configurar `dm-multipath` como de costume para LUNs SCSI resultando `mpath` em dispositivos, enquanto o multipath NVMe pode ser usado para configurar dispositivos multipath NVMe-of no host.
+* A partir do RHEL 8,2, o tráfego NVMe e SCSI pode ser executado no mesmo host. Na verdade, essa é a configuração de host implantada esperada. Portanto, para SCSI, você pode configurar `dm-multipath` como de costume para LUNs SCSI resultando `mpath` em dispositivos, enquanto o multipath NVMe pode ser usado para configurar dispositivos multipath NVMe-of no host.
 * A partir do RHEL 8,2, o plug-in NetApp no pacote nativo `nvme-cli` é capaz de exibir detalhes do ONTAP para namespaces ONTAP.
 
 
@@ -79,7 +79,7 @@ yum install nvmecli
 4.18.0-193.el8.x86_64
 ----
 +
-Consulte a link:https://mysupport.netapp.com/matrix/["Ferramenta de Matriz de interoperabilidade do NetApp"^] para obter a lista mais atual de versões suportadas.
+Consulte a link:https://mysupport.netapp.com/matrix/["Ferramenta de Matriz de interoperabilidade"^] para obter a lista atual de versões suportadas.
 
 . Instale o pacote nvme-cli.
 +
@@ -115,7 +115,7 @@ Se as strings NQN do host não corresponderem, use o `vserver modify` comando pa
 . Reinicie o host.
 . Atualize a `enable_foreign` definição _(opcional)_.
 +
-Se você pretende executar o tráfego NVMe e SCSI no mesmo host coexistente RHEL 8,2, a NetApp recomenda o uso de multipath NVMe no kernel para namespaces ONTAP e dm-multipath para LUNs ONTAP, respetivamente. Você também deve colocar em lista negra os namespaces do ONTAP no dm-multipath para impedir que o dm-multipath reivindique esses dispositivos de namespace. Pode fazê-lo adicionando a `enable_foreign` definição `/etc/multipath.conf` ao , conforme ilustrado abaixo.
+Se você pretende executar o tráfego NVMe e SCSI no mesmo host RHEL 8,2, a NetApp recomenda o uso de multipath NVMe no kernel para namespaces ONTAP e dm-multipath para LUNs ONTAP, respetivamente. Você também deve colocar em lista negra os namespaces do ONTAP no dm-multipath para impedir que o dm-multipath reivindique esses dispositivos de namespace. Pode fazê-lo adicionando a `enable_foreign` definição `/etc/multipath.conf` ao , conforme ilustrado abaixo.
 
 +
 [listing]
@@ -134,7 +134,7 @@ defaults {
 
 Você pode usar o seguinte procedimento para configurar um adaptador Broadcom FC.
 
-Para obter a lista mais atual de adaptadores suportados, consulte link:https://mysupport.netapp.com/matrix/["Ferramenta de Matriz de interoperabilidade do NetApp"^].
+Para obter a lista atual de adaptadores suportados, consulte link:https://mysupport.netapp.com/matrix/["Ferramenta de Matriz de interoperabilidade"^].
 
 .Passos
 . Verifique se você está usando o adaptador suportado.

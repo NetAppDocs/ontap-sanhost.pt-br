@@ -20,14 +20,14 @@ Você pode usar as configurações de host SAN ONTAP para configurar o Oracle Li
 
 
 
-== Instale os utilitários do host unificado do Linux
+== Instale os Utilitários de host do Linux
 
-Você pode baixar o pacote de software Utilitários unificados de host do NetApp Linux como um arquivo 64-bit.rpm do link:https://mysupport.netapp.com/site/products/all/details/hostutilities/downloads-tab/download/61343/7.1/downloads["Site de suporte da NetApp"^].
+Você pode baixar o pacote de software Utilitários de host do NetApp Linux como um arquivo 64-bit.rpm do link:https://mysupport.netapp.com/site/products/all/details/hostutilities/downloads-tab/download/61343/7.1/downloads["Site de suporte da NetApp"^].
 
-O NetApp recomenda fortemente a instalação dos Utilitários de host unificado do Linux, mas não é obrigatório. Os utilitários não alteram nenhuma configuração em seu host Linux. Os utilitários melhoram o gerenciamento e auxiliam o suporte ao cliente da NetApp na coleta de informações sobre sua configuração.
+O NetApp recomenda fortemente a instalação dos utilitários de host do Linux, mas não é obrigatório. Os utilitários não alteram nenhuma configuração em seu host Linux. Os utilitários melhoram o gerenciamento e auxiliam o suporte ao cliente da NetApp na coleta de informações sobre sua configuração.
 
 .Passos
-. Baixe o pacote de software Linux Unified Host Utilities de 64 bits do https://mysupport.netapp.com/site/products/all/details/hostutilities/downloads-tab/download/61343/7.1/downloads["Site de suporte da NetApp"^] para o seu host.
+. Baixe o pacote de software Linux Host Utilities de 64 bits do https://mysupport.netapp.com/site/products/all/details/hostutilities/downloads-tab/download/61343/7.1/downloads["Site de suporte da NetApp"^] para o seu host.
 . Instale o pacote de software:
 +
 `rpm -ivh netapp_linux_unified_host_utilities-7-1.x86_64`
@@ -38,7 +38,7 @@ O NetApp recomenda fortemente a instalação dos Utilitários de host unificado 
 
 == Kit de ferramentas SAN
 
-O kit de ferramentas é instalado automaticamente quando você instala o pacote de Utilitários de host do NetApp. Este kit fornece o `sanlun` utilitário, que ajuda a gerenciar LUNs e adaptadores de barramento de host (HBAs). O `sanlun` comando retorna informações sobre os LUNs mapeados para o seu host, multipathing e informações necessárias para criar grupos de iniciadores.
+O kit de ferramentas é instalado automaticamente quando você instala o pacote de utilitários de host do NetApp. Este kit fornece o `sanlun` utilitário, que ajuda a gerenciar LUNs e adaptadores de barramento de host (HBAs). O `sanlun` comando retorna informações sobre os LUNs mapeados para o seu host, multipathing e informações necessárias para criar grupos de iniciadores.
 
 No exemplo a seguir, o `sanlun lun show` comando retorna informações de LUN.
 
@@ -61,8 +61,8 @@ data_vserver          /vol/vol2/lun2   /dev/sde   host15   FCP       80.0g  cDOT
 
 == Inicialização de SAN
 
-.O que você vai precisar
-Se você decidir usar a inicialização de SAN, ele deve ser suportado por sua configuração. Você pode usar o link:https://mysupport.netapp.com/matrix/imt.jsp?components=91863;&solution=1&isHWU&src=IMT["Ferramenta de Matriz de interoperabilidade do NetApp"^] para verificar se o seu sistema operacional, HBA, HBA firmware e o BIOS de inicialização HBA e a versão ONTAP são suportados.
+.Antes de começar
+Se você decidir usar a inicialização de SAN, ele deve ser suportado por sua configuração. Você pode usar o link:https://imt.netapp.com/matrix/#welcome["Ferramenta de Matriz de interoperabilidade"^] para verificar se o seu sistema operacional, HBA, HBA firmware e o BIOS de inicialização HBA e a versão ONTAP são suportados.
 
 .Passos
 . Mapeie o LUN de inicialização SAN para o host.
@@ -292,7 +292,7 @@ O Oracle Linux 9,2 com ONTAP tem os seguintes problemas conhecidos:
 
 
 | https://mysupport.netapp.com/site/bugs-online/product/HOSTUTILITIES/BURT/1508554["1508554"^] | Utilitário SAN LUN com Emulex HBA precisa de links simbólicos de pacotes de biblioteca  a| 
-Quando você executa o comando Linux Unified Host Utilities CLI - "sanlun fcp show adapter -v" em um host SAN, o comando falha com uma mensagem de erro exibindo que as dependências de biblioteca necessárias para uma descoberta de adaptador de barramento de host (HBA) não podem ser localizadas:
+Quando você executa o comando Linux Host Utilities CLI - "sanlun fcp show adapter -v" em um host SAN, o comando falha com uma mensagem de erro exibindo que as dependências de biblioteca necessárias para uma descoberta de adaptador de barramento de host (HBA) não podem ser localizadas:
 
 [listing]
 ----

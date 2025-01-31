@@ -24,7 +24,7 @@ O suporte a seguir está disponível para a configuração de host NVMe-of para 
 * Uso do tráfego coexistente NVMe e SCSI no mesmo host em um determinado adaptador de barramento do host (HBA), sem as configurações explícitas de dm-multipath para impedir a reivindicação de namespaces NVMe.
 
 
-Consulte a link:https://mysupport.netapp.com/matrix/["Ferramenta de Matriz de interoperabilidade do NetApp"^]para obter detalhes precisos sobre as configurações suportadas.
+Consulte a link:https://mysupport.netapp.com/matrix/["Ferramenta de Matriz de interoperabilidade"^]para obter detalhes precisos sobre as configurações suportadas.
 
 
 
@@ -46,7 +46,7 @@ Você pode usar o seguinte procedimento para ativar o multipath NVMe no kernel.
 
 .Passos
 . Instale o RHEL 9,1 no servidor.
-. Depois que a instalação estiver concluída, verifique se você está executando o kernel RHEL 9,1 especificado. Consulte a link:https://mysupport.netapp.com/matrix/["Ferramenta de Matriz de interoperabilidade do NetApp"^] para obter a lista mais atual de versões suportadas.
+. Depois que a instalação estiver concluída, verifique se você está executando o kernel RHEL 9,1 especificado. Consulte a link:https://mysupport.netapp.com/matrix/["Ferramenta de Matriz de interoperabilidade"^] para obter a lista atual de versões suportadas.
 +
 Exemplo:
 
@@ -99,7 +99,7 @@ Você pode configurar o NVMe/FC para adaptadores Broadcom/Emulex ou Marvell/Qlog
 .Broadcom/Emulex
 --
 .Passos
-. Verifique se você está usando o adaptador suportado. Consulte a link:https://mysupport.netapp.com/matrix/["Ferramenta de Matriz de interoperabilidade do NetApp"^] para obter a lista mais atual de adaptadores suportados.
+. Verifique se você está usando o adaptador suportado. Consulte a link:https://mysupport.netapp.com/matrix/["Ferramenta de Matriz de interoperabilidade"^] para obter a lista atual de adaptadores suportados.
 +
 [listing]
 ----
@@ -113,7 +113,7 @@ Emulex LightPulse LPe32002-M2 2-Port 32Gb Fibre Channel Adapter
 Emulex LightPulse LPe32002-M2 2-Port 32Gb Fibre Channel Adapter
 
 ----
-. Verifique se você está usando o firmware Broadcom lpfc recomendado e o driver da caixa de entrada. Consulte a link:https://mysupport.netapp.com/matrix/["Ferramenta de Matriz de interoperabilidade do NetApp"^] para obter a lista mais atual de versões de firmware e drivers de adaptador suportados.
+. Verifique se você está usando o firmware Broadcom lpfc recomendado e o driver da caixa de entrada. Consulte a link:https://mysupport.netapp.com/matrix/["Ferramenta de Matriz de interoperabilidade"^] para obter a lista atual de versões de firmware e drivers de adaptador suportados.
 +
 [listing]
 ----
@@ -230,7 +230,7 @@ cat /etc/modprobe.d/lpfc.conf
 options lpfc lpfc_sg_seg_cnt=256
 ----
 . Execute o `dracut -f` comando e reinicie o host.
-. Verifique se o valor esperado de `lpfc_sg_seg_cnt` é 256:
+. Verifique se o valor para `lpfc_sg_seg_cnt` é 256:
 +
 [listing]
 ----

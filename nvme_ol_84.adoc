@@ -34,7 +34,7 @@ NOTE: Pode utilizar as definições de configuração fornecidas neste documento
 * O Oracle Linux 8,4 tem multipath NVMe no kernel habilitado por padrão para namepsaces NVMe.
 * Com o Oracle Linux 8,4, `nvme-fc auto-connect` os scripts estão incluídos no pacote nativo `nvme-cli`. Você pode usar esses scripts nativos de conexão automática em vez de instalar scripts externos de conexão automática fornecidos pelo fornecedor externo.
 * Com o Oracle Linux 8,4, uma regra nativa `udev` é fornecida como parte `nvme-cli` do pacote que permite o balanceamento de carga round-robin para multipath NVMe. Portanto, você não precisa criar manualmente essa regra mais.
-* Com o Oracle Linux 8,4, o tráfego NVMe e SCSI podem ser executados no mesmo host coexistente. Na verdade, espera-se que essa seja a configuração de host comumente implantada. Portanto, você pode configurar o dm-multipath como de costume para LUNs SCSI, resultando em dispositivos mpath, enquanto o NVMe multipath pode ser usado para configurar dispositivos NVMe-of multipath (por exemplo, `/dev/nvmeXnY`) no host.
+* Com o Oracle Linux 8,4, o tráfego NVMe e SCSI podem ser executados no mesmo host. Esta é a configuração de host comumente implantada. Você pode configurar o dm-multipath como de costume para LUNs SCSI resultando em dispositivos mpath e também usar o multipath NVMe para configurar dispositivos NVMe-of multipath (por exemplo, `/dev/nvmeXnY`) no host.
 * Com o Oracle Linux 8,4, o plugin NetApp no pacote nativo `nvme-cli` é capaz de exibir detalhes do ONTAP, bem como namespaces ONTAP.
 
 
@@ -55,7 +55,7 @@ Consulte a link:https://mysupport.netapp.com/matrix/["Matriz de interoperabilida
 == Habilite o NVMe/FC
 
 .Passos
-. Instale o Oracle Linux 8,4 GA no servidor. Depois que a instalação estiver concluída, verifique se você está executando o kernel especificado do Oracle Linux 8,4 GA. Consulte a link:https://mysupport.netapp.com/matrix/["Matriz de interoperabilidade do NetApp"^] para obter a lista mais atual de versões suportadas.
+. Instale o Oracle Linux 8,4 GA no servidor. Depois que a instalação estiver concluída, verifique se você está executando o kernel especificado do Oracle Linux 8,4 GA. Consulte a link:https://mysupport.netapp.com/matrix/["Ferramenta de Matriz de interoperabilidade"^] para obter a lista atual de versões suportadas.
 +
 [listing]
 ----
@@ -89,7 +89,7 @@ NOTE: Se as strings hostnqn não corresponderem, você deve usar o `vserver modi
 +
 [NOTE]
 ====
-Se você pretende executar o tráfego NVMe e SCSI no mesmo host coexistente Oracle Linux 8,4, a NetApp recomenda o uso do multipath NVMe no kernel para namespaces ONTAP e dm-multipath para LUNs ONTAP, respetivamente. Isso também significa que os namespaces ONTAP devem ser listados na lista negra em dm-multipath para evitar que dm-multipath reivindique esses dispositivos de namespace. Isso pode ser feito adicionando a `enable_foreign` configuração ao `/etc/multipath.conf` arquivo:
+Se você pretende executar o tráfego NVMe e SCSI no mesmo host Oracle Linux 8,4, a NetApp recomenda o uso do multipath NVMe no kernel para namespaces ONTAP e dm-multipath para LUNs ONTAP, respetivamente. Isso também significa que os namespaces ONTAP devem ser listados na lista negra em dm-multipath para evitar que dm-multipath reivindique esses dispositivos de namespace. Isso pode ser feito adicionando a `enable_foreign` configuração ao `/etc/multipath.conf` arquivo:
 
 [listing]
 ----
@@ -108,7 +108,7 @@ Reinicie o daemon multipathd executando o `systemctl restart multipathd` comando
 == Configuração do adaptador Broadcom FC para NVMe/FC
 
 .Passos
-. Verifique se você está usando o adaptador suportado. Para obter a lista mais atual de adaptadores suportados, consulte link:https://mysupport.netapp.com/matrix/["Ferramenta de Matriz de interoperabilidade do NetApp"^].
+. Verifique se você está usando o adaptador suportado. Para obter a lista atual de adaptadores suportados, consulte link:https://mysupport.netapp.com/matrix/["Ferramenta de Matriz de interoperabilidade"^].
 +
 [listing]
 ----
@@ -123,7 +123,7 @@ LPe32002-M2
 Emulex LightPulse LPe32002-M2 2-Port 32Gb Fibre Channel Adapter
 Emulex LightPulse LPe32002-M2 2-Port 32Gb Fibre Channel Adapter
 ----
-. Verifique se você está usando o firmware Broadcom lpfc recomendado e o driver da caixa de entrada. Para obter a lista mais atual de versões de firmware e drivers de adaptador compatíveis, consulte link:https://mysupport.netapp.com/matrix/["Ferramenta de Matriz de interoperabilidade do NetApp"^].
+. Verifique se você está usando o firmware Broadcom lpfc recomendado e o driver da caixa de entrada. Para obter a lista atual de versões de firmware e drivers de adaptador suportados, consulte link:https://mysupport.netapp.com/matrix/["Ferramenta de Matriz de interoperabilidade"^].
 +
 [listing]
 ----
@@ -208,7 +208,7 @@ cat /etc/modprobe.d/lpfc.conf
 options lpfc lpfc_sg_seg_cnt=256
 ----
 . Execute o `dracut -f` comando e reinicie o host.
-. Verifique se o valor esperado de `lpfc_sg_seg_cnt` é 256:
+. Verifique se o valor para `lpfc_sg_seg_cnt` é 256:
 +
 [listing]
 ----

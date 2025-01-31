@@ -2,7 +2,7 @@
 sidebar: sidebar 
 permalink: hu-aix-70.html 
 keywords: host utilities, aix, powervm, vios, 3.1, 7.0, netapp, ontap 
-summary: Os Utilitários unificados de host do AIX ajudam você a gerenciar o storage do NetApp ONTAP anexado a um host AIX. 
+summary: Os utilitários de host AIX ajudam você a gerenciar o armazenamento do ONTAP anexado a um host AIX. 
 ---
 = Instale os Utilitários de host AIX 7,0
 :hardbreaks:
@@ -16,7 +16,7 @@ summary: Os Utilitários unificados de host do AIX ajudam você a gerenciar o st
 
 
 [role="lead"]
-Os Utilitários unificados de host do AIX ajudam você a gerenciar o storage do NetApp ONTAP anexado a um host AIX.
+Os utilitários de host AIX ajudam você a gerenciar o armazenamento do ONTAP anexado a um host AIX.
 
 Os Utilitários de host DO AIX suportam os seguintes protocolos:
 
@@ -27,7 +27,7 @@ Os Utilitários de host DO AIX suportam os seguintes protocolos:
 
 Os Utilitários de host DO AIX suportam os seguintes ambientes:
 
-* AIX MPIO (SO NATIVO)
+* AIX Microsoft Multipath I/o (MPIO) (SO nativo)
 * PowerVM
 +
 Para obter mais informações sobre o PowerVM, consulte o Livro Vermelho IBM PowerVM Live Partition Mobility.
@@ -37,13 +37,13 @@ Para obter mais informações sobre o PowerVM, consulte o Livro Vermelho IBM Pow
 .Antes de começar
 * Para uma operação confiável, verifique se toda a configuração iSCSI, FC ou FCoE é suportada.
 +
-Pode utilizar o https://mysupport.netapp.com/matrix/imt.jsp?components=65623%3B64703%3B&solution=1&isHWU&src=IMT["Ferramenta de Matriz de interoperabilidade do NetApp"^] para verificar a sua configuração.
+Pode utilizar o https://imt.netapp.com/matrix/#welcome["Ferramenta de Matriz de interoperabilidade"^] para verificar a sua configuração.
 
 * O rastreamento dinâmico deve estar habilitado para todos os iniciadores FC e FCoE.
 
 
 
-NOTE: O pacote de software de utilitários de host NetApp AIX está disponível no link:https://mysupport.netapp.com/site/products/all/details/hostutilities/downloads-tab/download/61343/7.0["Site de suporte da NetApp"^]em um arquivo tar.gz compactado. Você deve instalar o kit de utilitários de host AIX ao usar o MPIO AIX com armazenamento NetApp ONTAP.
+NOTE: O pacote de software de utilitários de host do NetApp AIX está disponível no link:https://mysupport.netapp.com/site/products/all/details/hostutilities/downloads-tab/download/61343/7.0["Site de suporte da NetApp"^]em um comprimido `tar.gz file`. Você deve instalar o kit de utilitários de host AIX ao usar o MPIO AIX com armazenamento ONTAP.
 
 .Passos
 . Faça login no seu host.
@@ -54,7 +54,7 @@ NOTE: O pacote de software de utilitários de host NetApp AIX está disponível 
 
 . Aceda ao https://mysupport.netapp.com/site/products/all/details/hostutilities/downloads-tab/download/61343/7.0["Site de suporte da NetApp"^] e transfira o ficheiro comprimido que contém os Utilitários do sistema anfitrião para um diretório do sistema anfitrião.
 . Vá para o diretório que contém o download.
-. Descompacte o arquivo e extraia o pacote de software do kit de ferramentas SAN:
+. Descompacte o arquivo e extraia o pacote de software SAN Toolkit:
 +
 `# tar -xvf ntap_aix_host_utilities_7.0.tar.gz`
 
@@ -65,7 +65,7 @@ O diretório a seguir é criado quando você descompacta o arquivo: `ntap_aix_ho
 +
 `# installp -aXYd /var/tmp/ntap_aix_host_utilities_7.0/MPIO NetApp.MPIO_Host_Utilities_Kit`
 
-. Instale o kit de ferramentas SAN:
+. Instale o SAN Toolkit:
 +
 `# installp -aXYd /var/tmp/ntap_aix_host_utilities_7.0/SAN_Tool_Kit/NetApp.SAN_toolkit`
 
@@ -152,4 +152,4 @@ data_vserver   /vol/vol3/lun3 hdisk11 fcs0   FCP      20g C
 data_vserver   /vol/vol4/lun4 hdisk14 fcs0   FCP      20g C
 ----
 
-NOTE: Este kit de ferramentas é comum em todas as configurações e protocolos do Host Utilities. Como resultado, alguns de seus conteúdos se aplicam a uma configuração, mas não a outra. Ter componentes não utilizados não afeta o desempenho do sistema. O kit de ferramentas SAN é suportado nas versões AIX e PowerVM/VIOS os.
+NOTE: Este kit de ferramentas é comum em todas as configurações e protocolos do Host Utilities. Como resultado, todos os componentes não se aplicam a todas as configurações. Os componentes não utilizados não afetam o desempenho do sistema. O SAN Toolkit é suportado nas versões AIX e PowerVM/VIOS os

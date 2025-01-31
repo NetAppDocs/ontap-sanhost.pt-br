@@ -18,7 +18,7 @@ summary: Descreve como configurar o NVMe/FC para o SUSE Linux Enterprise Server 
 [role="lead"]
 O NVMe/FC é compatível com o ONTAP 9.6 e superior com o SUSE Linux Enterprise Server 15 SP2. O host SUSE Linux Enterprise Server 15 SP2 pode executar o tráfego NVMe/FC e FCP nas mesmas portas do adaptador do iniciador de Fibre Channel. Consulte o link:https://hwu.netapp.com/Home/Index["Hardware Universe"^] para obter uma lista de controladores e adaptadores FC compatíveis.
 
-Para obter a lista mais atual de configurações e versões suportadas, consulte link:https://mysupport.netapp.com/matrix/["Matriz de interoperabilidade do NetApp"^].
+Para obter a lista atual de configurações e versões suportadas, consulte link:https://mysupport.netapp.com/matrix/["Ferramenta de Matriz de interoperabilidade"^].
 
 
 NOTE: Pode utilizar as definições de configuração fornecidas neste documento para configurar os clientes em nuvem ligados a link:https://docs.netapp.com/us-en/cloud-manager-cloud-volumes-ontap/index.html["Cloud Volumes ONTAP"^] e link:https://docs.netapp.com/us-en/cloud-manager-fsx-ontap/index.html["Amazon FSX para ONTAP"^].
@@ -77,7 +77,7 @@ nqn.2014-08.org.nvmexpress:uuid:c7b07b16-a22e-41a6-a1fd-cf8262c8713f
 
 == Configure o adaptador Broadcom FC para NVMe/FC
 
-. Verifique se você está usando o adaptador suportado. Para obter a lista mais atual de adaptadores suportados, consulte link:https://mysupport.netapp.com/matrix/["Matriz de interoperabilidade do NetApp"^].
+. Verifique se você está usando o adaptador suportado. Para obter a lista atual de adaptadores suportados, consulte link:https://mysupport.netapp.com/matrix/["Ferramenta de Matriz de interoperabilidade"^].
 +
 [listing]
 ----
@@ -257,7 +257,7 @@ cat /etc/modprobe.d/lpfc.conf
 options lpfc lpfc_sg_seg_cnt=256
 ----
 . Execute o `dracut -f` comando e reinicie o host.
-. Verifique se o valor esperado de `lpfc_sg_seg_cnt` é 256:
+. Verifique se o valor para `lpfc_sg_seg_cnt` é 256:
 +
 [listing]
 ----

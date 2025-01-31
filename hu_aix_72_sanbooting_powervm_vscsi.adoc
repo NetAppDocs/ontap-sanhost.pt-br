@@ -30,7 +30,7 @@ O comando cfgdev causa:
 +
 ** Os iniciadores para fazer login no tecido.
 ** O sistema para verificar se existem novos dispositivos.
-** O sistema para criar novas entradas de dispositivo onde os novos LUNs são mapeados como dispositivos MPIO utilizando o PCM predefinido.
+** O sistema para criar novas entradas de dispositivo onde os novos LUNs são mapeados como dispositivos MPIO (Microsoft Multipath I/o) utilizando o PCM predefinido.
 
 
 . Para verificar se os dispositivos hdisk MPIO foram criados, digite o seguinte comando:
@@ -59,7 +59,7 @@ hdisk4   Available   MPIO NetApp FCP Default PCM Disk
 hdisk5   Available   MPIO NetApp FCP Default PCM Disk
 hdisk6   Available   MPIO NetApp FCP Default PCM Disk
 ----
-. Para obter informações sobre a configuração, digite o seguinte comando:
+. Obtenha informações sobre a sua configuração:
 +
 `lsdev -dev hdisk_name -attr`
 
@@ -97,7 +97,7 @@ scsi_id         0xd10001                         SCSI ID                        
 start_timeout   60                               START unit time out value               True
 ww_name         0x500a0984994ae0e0               FC World Wide Name                      False
 ----
-. Se sua configuração não suportar ALUA, você deve executar o utilitário dotpaths para definir as prioridades do caminho. O utilitário dotpaths é instalado quando você instala os Utilitários do host. Não use o utilitário dotpaths se o ALUA estiver habilitado. Mude para o `oem_setup_env` modo para executar os dotpaths inserindo o seguinte comando:
+. Se sua configuração não suportar ALUA, você precisa usar o utilitário dotpaths para definir as prioridades do caminho. O utilitário dotpaths é instalado quando você instala os Utilitários do host. Não use o utilitário dotpaths se o ALUA estiver habilitado. Mude para o `oem_setup_env` modo para executar os dotpaths inserindo o seguinte comando:
 +
 `oem_setup_env`
 
@@ -119,9 +119,9 @@ Quando você entra `oem_setup_env` no modo, o prompt de linha de comando muda de
 
 
 
-. Se sua configuração não suportar ALUA, você deve executar o utilitário dotpaths para definir as prioridades do caminho. O utilitário dotpaths é instalado quando você instala os Utilitários do host. Não use o utilitário dotpaths se o ALUA estiver habilitado.
+. Se sua configuração não suportar ALUA, você precisa usar o utilitário dotpaths para definir as prioridades do caminho. O utilitário dotpaths é instalado quando você instala os Utilitários do host. Não use o utilitário dotpaths se o ALUA estiver habilitado.
 +
-.. Para definir a prioridade para todos os LUNs Data ONTAP, introduza:
+.. Para definir a prioridade para todos os LUNs ONTAP, introduza:
 +
 `dotpaths`
 

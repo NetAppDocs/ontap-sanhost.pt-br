@@ -24,7 +24,7 @@ O suporte a seguir está disponível para a configuração de host NVMe/FC para 
 * Uso do tráfego coexistente NVMe e SCSI no mesmo host em um determinado adaptador de barramento do host (HBA), sem as configurações explícitas de dm-multipath para impedir a reivindicação de namespaces NVMe.
 
 
-Para obter detalhes adicionais sobre as configurações suportadas, consulte o link:https://mysupport.netapp.com/matrix/["Ferramenta de Matriz de interoperabilidade do NetApp"^].
+Para obter detalhes adicionais sobre as configurações suportadas, consulte o link:https://mysupport.netapp.com/matrix/["Ferramenta de Matriz de interoperabilidade"^].
 
 
 
@@ -112,7 +112,7 @@ NOTE: Se as `hostnqn` strings não corresponderem, você pode usar o `vserver mo
 +
 [NOTE]
 ====
-Se você pretende executar o tráfego NVMe e SCSI no mesmo host coexistente Oracle Linux 8,7, a NetApp recomenda o uso do multipath NVMe no kernel para namespaces ONTAP e dm-multipath para LUNs ONTAP, respetivamente. Isso também significa que os namespaces ONTAP devem ser listados na lista negra em dm-multipath para evitar que dm-multipath reivindique esses dispositivos de namespace. Você pode fazer isso adicionando a `enable_foreign` configuração ao `/etc/multipath.conf` arquivo:
+Se você pretende executar o tráfego NVMe e SCSI no mesmo host Oracle Linux 8,7, a NetApp recomenda o uso do multipath NVMe no kernel para namespaces ONTAP e dm-multipath para LUNs ONTAP, respetivamente. Isso também significa que os namespaces ONTAP devem ser listados na lista negra em dm-multipath para evitar que dm-multipath reivindique esses dispositivos de namespace. Você pode fazer isso adicionando a `enable_foreign` configuração ao `/etc/multipath.conf` arquivo:
 
 [listing]
 ----
@@ -180,7 +180,7 @@ Emulex LightPulse LPe32002-M2 2-Port 32Gb Fibre Channel Adapter
 
 ----
 +
-Para obter a lista mais atual de versões de firmware e drivers de adaptador compatíveis, consulte link:https://mysupport.netapp.com/matrix/["Ferramenta de Matriz de interoperabilidade do NetApp"^].
+Para obter a lista atual de versões de firmware e drivers de adaptador suportados, consulte link:https://mysupport.netapp.com/matrix/["Ferramenta de Matriz de interoperabilidade"^].
 
 . Verifique se `lpfc_enable_fc4_type` está definido como `3`:
 +
@@ -288,7 +288,7 @@ cat /etc/modprobe.d/lpfc.conf
 options lpfc lpfc_sg_seg_cnt=256
 ----
 . Execute o `dracut -f` comando e reinicie o host.
-. Verifique se o valor esperado de `lpfc_sg_seg_cnt` é 256:
+. Verifique se o valor para `lpfc_sg_seg_cnt` é 256:
 +
 [listing]
 ----

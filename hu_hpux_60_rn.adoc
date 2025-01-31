@@ -24,4 +24,4 @@ O HP-UX Host Utilities 6,0 continua a suportar as seguintes versões:
 * HP-UX 11iv3
 
 
-Não há novos recursos, aprimoramentos, limitações conhecidas ou advertências para a versão 6,0 dos utilitários de host HP-UX.
+Não há novos recursos, aprimoramentos, limitações conhecidas ou advertências para a versão HP-UX Host Utilities 6,0.

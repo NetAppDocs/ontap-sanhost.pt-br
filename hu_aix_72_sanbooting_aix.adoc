@@ -4,7 +4,7 @@ permalink: hu_aix_72_sanbooting_aix.html
 keywords: host utilities, aix, netapp, ontap, configure, discover, configuring, discovering 
 summary: Descreve como descobrir e configurar LUNS com AIX 
 ---
-= (AIX MPIO sem PowerVM) descobrindo e configurando LUNs com AIX
+= (AIX MPIO sem PowerVM) Descubra e configure LUNs com AIX
 :hardbreaks:
 :toclevels: 1
 :allow-uri-read: 
@@ -16,7 +16,7 @@ summary: Descreve como descobrir e configurar LUNS com AIX
 
 
 [role="lead"]
-Quando você está usando AIX sem PowerVM, você usa o comando cfgmgr para fazer com que o host descubra os LUNs. Não é necessário reiniciar o host para descobrir os LUNs. Para confirmar que o host descobriu os LUNS, você pode usar o utilitário sanlun.
+Quando você usa o AIX sem PowerVM, você pode executar o `cfgmgr` comando para permitir que o host descubra os LUNs. Você não precisa reiniciar o host para descobrir os LUNs. Para confirmar que o host descobriu os LUNS, você pode usar o utilitário sanlun.
 
 
 NOTE: As etapas a seguir não se aplicam a um host que esteja executando um ambiente PowerVM.
@@ -36,7 +36,7 @@ O `cfgmgr` comando ajuda com o seguinte:
 ** O sistema para criar novas entradas de dispositivo.
 
 
-. Para exibir todos os discos AIX, incluindo os LUNs NetApp, digite o seguinte comando:
+. Exibir todos os discos AIX, incluindo os LUNs NetApp:
 +
 `lsdev -Cc disk`
 
@@ -47,9 +47,12 @@ Os LUNs aparecem no host como discos. Você pode usar esses discos da mesma mane
 Anote os números da instância do hdisk. Você os usa quando executa a configuração do caminho.
 
 +
-O seguinte é o tipo de saída que o comando lsdev -cc disk produz em um ambiente usando FC.
+O exemplo a seguir mostra a `lsdev -Cc disk` saída de comando em um ambiente FC.
 
 +
+.Mostrar exemplo de saída
+[%collapsible]
+====
 [listing]
 ----
 # lsdev -Cc disk
@@ -60,14 +63,15 @@ hdisk3 Available 04-08-02  MPIO NetApp FCP Default PCM Disk
 hdisk4 Available 04-08-02  MPIO NetApp FCP Default PCM Disk
 hdisk5 Available 04-08-02  MPIO NetApp FCP Default PCM Disk
 ----
-. Digite o seguinte comando para obter informações sobre sua configuração:
+====
+. Obtenha informações sobre a sua configuração:
 +
 `lsattr -El hdisk_name`
 
 +
-Este comando produz a seguinte saída.
-
-+
+.Mostrar exemplo de saída
+[%collapsible]
+====
 [listing]
 ----
 # lsattr -El hdisk65
@@ -97,6 +101,7 @@ scsi_id         0xd10001                         SCSI ID                        
 start_timeout   60                               START unit time out value               True
 ww_name         0x500a0984994ae0e0               FC World Wide Name                      False
 ----
+====
 . Se a sua configuração suportar ALUA, você pode usá-la para definir a prioridade do caminho. Verifique se o ALUA está ativado:
 +
 `lun igroup show -instance igroup_name`
@@ -108,13 +113,13 @@ ww_name         0x500a0984994ae0e0               FC World Wide Name             
 
 
 
-. Se sua configuração não suportar ALUA, você deve executar o utilitário dotpaths para definir as prioridades do caminho. O utilitário dotpaths é instalado quando você instala os Utilitários do host. Não use o utilitário dotpaths se o ALUA estiver habilitado.
+. Se sua configuração não suportar ALUA, você precisa usar o utilitário dotpaths para definir as prioridades do caminho. O utilitário dotpaths é instalado quando você instala os Utilitários do host. Não use o utilitário dotpaths se o ALUA estiver habilitado.
 +
-.. Para definir a prioridade para todos os LUNs Data ONTAP, introduza:
+.. Defina a prioridade para todos os LUNs ONTAP:
 +
 `dotpaths`
 
-.. Para definir prioridade para um conjunto específico de disco, introduza:
+.. Defina a prioridade para um conjunto específico de discos:
 +
 `dotpaths [-hqv] [hdiskN ...]`
 
@@ -123,15 +128,17 @@ Use a `-v` opção para ativar o modo verboso e exibir todas as prioridades. Use
 
 
 
-. Para verificar se o host descobriu os LUNs, digite o seguinte comando:
+. Verifique se o host descobriu os LUNs:
 +
 `# sanlun lun show`
 
 +
-.Exemplo
-Este exemplo mostra a saída típica `sanlun lun show` do comando em um ambiente multipathing MPIO.
+O exemplo a seguir mostra a saída típica para `sanlun lun show` o comando em um ambiente multipathing Microsoft Multipath I/o (MPIO):
 
 +
+.Mostrar exemplo de saída
+[%collapsible]
+====
 [listing]
 ----
 sanlun lun show -p
@@ -167,4 +174,5 @@ up        secondary   path13 fcs1    4a                                         
 up        primary     path14 fcs1    4b                                             1
 up        primary     path15 fcs1    4a                                             1
 ----
+====
 

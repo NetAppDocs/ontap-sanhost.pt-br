@@ -16,13 +16,13 @@ summary: Este conteúdo fornece orientação específica para distribuição sob
 
 
 [role="lead"]
-Os hosts DE SAN devem ser configurados para multipathing e com parâmetros específicos e configurações essenciais para a operação adequada com LUNs ONTAP. A configuração do host varia dependendo do sistema operacional do host e do protocolo. A configuração correta é importante para o melhor desempenho e o failover bem-sucedido.
+Você deve configurar hosts SAN para multipathing e com parâmetros e configurações específicos críticos para a operação correta com LUNs ONTAP. A configuração do host varia dependendo do sistema operacional do host e do protocolo. A configuração correta é importante para o melhor desempenho e o failover bem-sucedido.
 
-Você deve configurar seus hosts SAN para usar os utilitários de host SAN NetApp. Os utilitários de host SAN ajudam a gerenciar e monitorar LUNs e adaptadores de barramento de host (HBAs). Por exemplo, você pode usar os utilitários de host SAN para recuperar uma lista de todos os LUNs mapeados para um host ou para ver uma lista de todos os atributos de um LUN específico mapeados para um host. O suporte ao cliente da NetApp também pode usar os utilitários de host SAN para coletar informações sobre sua configuração se você tiver um problema que exija assistência.
+Você deve configurar seus hosts SAN para usar os Utilitários de host SAN NetApp. Os utilitários de host SAN ajudam a gerenciar e monitorar LUNs e adaptadores de barramento de host (HBAs). Por exemplo, você pode usar os Utilitários de host SAN para recuperar uma lista de todos os LUNs mapeados para um host ou para ver uma lista de todos os atributos de um LUN específico mapeado para um host. O suporte ao cliente do NetApp também pode usar os Utilitários de host SAN para coletar informações sobre sua configuração se você tiver um problema que exija assistência.
 
-A NetApp recomenda o uso do software de utilitários de host SAN se ele estiver disponível para o seu host SAN.
+A NetApp recomenda o uso do software de utilitários de host SAN, se estiver disponível para seu host SAN.
 
-Se ele for suportado pela configuração de SAN, você também pode configurar seu host para usar a inicialização de SAN para implantação simplificada e escalabilidade aprimorada. Usando a inicialização SAN, você pode implantar vários novos servidores conetando-os à SAN e configurando as configurações de inicialização apropriadas. Isso economiza tempo, eliminando a necessidade de instalar o sistema operacional em cada servidor individualmente.
+Se a sua configuração de SAN suportar a inicialização de SAN, você também pode configurar seu host para usar a inicialização de SAN para simplificar a implantação e melhorar a escalabilidade. Usando a inicialização SAN, você pode implantar vários novos servidores conetando-os à SAN e configurando as configurações de inicialização apropriadas. Isso economiza tempo, eliminando a necessidade de instalar o sistema operacional em cada servidor individualmente.
 
 Seus hosts SAN e o storage ONTAP podem residir no local, na nuvem ou em ambos.
 
@@ -32,8 +32,8 @@ NOTE: Em um ambiente de nuvem, os hosts são normalmente chamados de clientes. T
 Por exemplo, você pode configurar o storage ONTAP no local para se conectar a hosts SAN no local ou a clientes de nuvem SAN. Você também pode configurar serviços de storage em execução em um ambiente de nuvem, como link:https://docs.netapp.com/us-en/bluexp-cloud-volumes-ontap/index.html["Cloud Volumes ONTAP"^] ou link:https://docs.netapp.com/us-en/bluexp-fsx-ontap/index.html["Amazon FSX para NetApp ONTAP"^] para se conetar a hosts SAN no local ou a clientes de nuvem SAN.
 
 .Informações relacionadas
-* A link:https://docs.netapp.com/us-en/ontap/san-config/index.html["Configuração SAN ONTAP"^] para a sua versão do ONTAP
-* A link:https://docs.netapp.com/us-en/ontap/san-management/index.html["Guia de administração de SAN ONTAP"^] para a sua versão do ONTAP
-* A link:https://library.netapp.com/ecm/ecm_download_file/ECMLP2492508["Notas de versão do ONTAP"^] para a sua versão do ONTAP
-* link:https://docs.netapp.com/us-en/e-series/index.html["Documentação do e-Series"^]Para encontrar a documentação relacionada ao SANtricity.
+* link:https://docs.netapp.com/us-en/ontap/san-config/index.html["Referência de configuração de SAN ONTAP"^]
+* link:https://docs.netapp.com/us-en/ontap/san-management/index.html["Gerenciamento de storage SAN ONTAP"^]
+* link:https://library.netapp.com/ecm/ecm_download_file/ECMLP2492508["Notas de versão do ONTAP 9"^]
+* Documentação relacionada com o SANtricity no link:https://docs.netapp.com/us-en/e-series/index.html["Documentação dos sistemas e-Series"^]
 

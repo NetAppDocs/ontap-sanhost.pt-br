@@ -18,7 +18,7 @@ summary: Como configurar o host NVMe-of para RHEL 9,0 com o ONTAP
 [role="lead"]
 O NVMe-of (incluindo NVMe/FC e NVMe/TCP) é compatível com o RHEL 9,0 com acesso de namespace assimétrico (ANA) necessário para sobreviverem a failovers de storage (SFOs) no array ONTAP. ANA é o equivalente a ALUA no ambiente NVM-of e atualmente é implementado com o NVMe Multipath no kernel. Usando esse procedimento, você pode habilitar o NVMe-of com o Multipath NVMe no kernel usando ANA no RHEL 9,0 e ONTAP como destino.
 
-Para obter detalhes adicionais sobre as configurações suportadas, consulte o link:https://mysupport.netapp.com/matrix/["Ferramenta de Matriz de interoperabilidade do NetApp"^].
+Para obter detalhes adicionais sobre as configurações suportadas, consulte o link:https://mysupport.netapp.com/matrix/["Ferramenta de Matriz de interoperabilidade"^].
 
 
 
@@ -42,7 +42,7 @@ Você pode usar o seguinte procedimento para ativar o multipath NVMe no kernel.
 
 .Passos
 . Instale o RHEL 9,0 no servidor.
-. Depois que a instalação estiver concluída, verifique se você está executando o kernel RHEL 9,0 especificado. Consulte link:https://mysupport.netapp.com/matrix/["Matriz de interoperabilidade do NetApp"^] para obter a lista mais atual de versões suportadas.
+. Depois que a instalação estiver concluída, verifique se você está executando o kernel RHEL 9,0 especificado. Consulte link:https://mysupport.netapp.com/matrix/["Ferramenta de Matriz de interoperabilidade"^] para obter a lista atual de versões suportadas.
 +
 [listing]
 ----
@@ -89,7 +89,7 @@ Você pode configurar o NVMe/FC para adaptadores Broadcom/Emulex ou Marvell/Qlog
 .Broadcom/Emulex
 --
 .Passos
-. Verifique se você está usando o adaptador suportado. Para obter detalhes adicionais sobre os adaptadores suportados, consulte o link:https://mysupport.netapp.com/matrix/["Ferramenta de Matriz de interoperabilidade do NetApp"^].
+. Verifique se você está usando o adaptador suportado. Para obter detalhes adicionais sobre os adaptadores suportados, consulte o link:https://mysupport.netapp.com/matrix/["Ferramenta de Matriz de interoperabilidade"^].
 +
 [listing]
 ----
@@ -104,7 +104,7 @@ LPe32002-M2
 Emulex LightPulse LPe32002-M2 2-Port 32Gb Fibre Channel Adapter
 Emulex LightPulse LPe32002-M2 2-Port 32Gb Fibre Channel Adapter
 ----
-. Verifique se você está usando o firmware Broadcom lpfc recomendado e o driver da caixa de entrada. Para obter a lista mais atual de versões de firmware e drivers de adaptador compatíveis, link:https://mysupport.netapp.com/matrix/["Matriz de interoperabilidade do NetApp"^]consulte .
+. Verifique se você está usando o firmware Broadcom lpfc recomendado e o driver da caixa de entrada. Para obter a lista atual de versões de firmware e drivers de adaptador compatíveis, link:https://mysupport.netapp.com/matrix/["Ferramenta de Matriz de interoperabilidade"^]consulte .
 +
 [listing]
 ----
@@ -220,7 +220,7 @@ cat /etc/modprobe.d/lpfc.conf
 options lpfc lpfc_sg_seg_cnt=256
 ----
 . Execute o `dracut -f` comando e reinicie o host.
-. Verifique se o valor esperado de `lpfc_sg_seg_cnt` é 256:
+. Verifique se o valor para `lpfc_sg_seg_cnt` é 256:
 +
 [listing]
 ----

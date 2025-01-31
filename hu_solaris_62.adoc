@@ -2,9 +2,9 @@
 sidebar: sidebar 
 permalink: hu_solaris_62.html 
 keywords: host utilities, unified, oracle, linux, 7.1, netapp, ontap 
-summary: Descreve como usar os Utilitários unificados de host do Linux 7,1 com ONTAP 
+summary: Descreve como usar os Utilitários de host Solaris 6,2 com ONTAP 
 ---
-= Instale os Utilitários do Solaris Host 6,2
+= Instalar os Utilitários de host Solaris 6,2 para armazenamento ONTAP
 :hardbreaks:
 :toclevels: 1
 :allow-uri-read: 
@@ -16,25 +16,25 @@ summary: Descreve como usar os Utilitários unificados de host do Linux 7,1 com 
 
 
 [role="lead"]
-Os Utilitários unificados de host do Solaris ajudam você a gerenciar o armazenamento do NetApp ONTAP anexado a um host Solaris.
+Os Utilitários de host do Solaris ajudam você a gerenciar o armazenamento do ONTAP anexado a um host do Solaris.
 
-O Solaris Host Utilities 6,2 suporta vários ambientes Solaris e vários protocolos. Os principais ambientes de utilitários de host são:
+O Solaris Host Utilities 6,2 suporta vários ambientes Solaris e vários protocolos. Os ambientes principais de Utilitários de host são:
 
 * SO nativo com MPxIO com o protocolo Fibre Channel (FC) ou iSCSI em um sistema que usa um processador SPARC ou um processador x86/64.
 * Veritas Dynamic Multipathing (DMP) com o protocolo FC ou iSCSI em um sistema que usa um processador SPARC, ou o protocolo iSCSI em um sistema que usa um processador x86/64.
 
 
-O Solaris Unified Host Utilities 6,2 continua a suportar as seguintes versões do Solaris:
+O Solaris Host Utilities 6,2 continua a suportar as seguintes versões do Solaris:
 
 * Solaris série 11.x.
 * Solaris série 10.x.
 
 
-.O que você vai precisar
+.Antes de começar
 * Para uma operação confiável, verifique se toda a configuração iSCSI, FC ou FCoE é suportada.
 
 
-Pode utilizar o link:https://mysupport.netapp.com/matrix/imt.jsp?components=71102;&solution=1&isHWU&src=IMT["Ferramenta de Matriz de interoperabilidade do NetApp"^] para verificar a sua configuração.
+Pode utilizar o link:https://imt.netapp.com/matrix/#welcome["Ferramenta de Matriz de interoperabilidade"^] para verificar a sua configuração.
 
 
 NOTE: O pacote de software Utilitários de host do NetApp está disponível no link:https://mysupport.netapp.com/site/products/all/details/hostutilities/downloads-tab/download/61343/6.2/downloads["Site de suporte da NetApp"^]em um formato de arquivo compactado para o processador. Pode transferir o pacote de software Host Utilities para o seu ambiente a partir do site de suporte.
@@ -55,13 +55,16 @@ No momento em que esta documentação foi preparada, os arquivos compatados fora
 +
 `# gunzip netapp_solaris_host_utilities_6_2_sparc.tar.gz`
 
-. Descompacte o ficheiro. Você pode usar o `tar xvf` comando para fazer isso.
+. Descompacte o arquivo usando o `tar xvf` comando:
 +
 `# tar xvf netapp_solaris_host_utilities_6_2_sparc.tar`
 
-. Adicione os pacotes que você extraiu do arquivo tar ao seu host. Você pode usar o `pkgadd` comando para fazer isso.
+. Adicione os pacotes que você extraiu do arquivo tar ao seu host usando o `pkgadd` comando.
 +
-Os pacotes são adicionados ao `/opt/NTAP/SANToolkit/bin` diretório. O exemplo a seguir usa o `pkgadd` comando para instalar o pacote de instalação do Solaris:
+Os pacotes são adicionados ao `/opt/NTAP/SANToolkit/bin` diretório.
+
++
+O exemplo a seguir usa o `pkgadd` comando para instalar o pacote de instalação do Solaris:
 
 +
 `# pkgadd -d ./NTAPSANTool.pkg`
@@ -126,4 +129,4 @@ data_vserver                     /vol/vol3/lun4     /dev/rdsk/c0t600A09803830443
 
 ----
 
-NOTE: Este kit de ferramentas é comum em todas as configurações e protocolos do Host Utilities. Como resultado, algum conteúdo de kit de ferramentas pode se aplicar a uma configuração, mas não a outra. Ter componentes não utilizados não afeta o desempenho do sistema.
+NOTE: Este kit de ferramentas é comum em todas as configurações e protocolos do Host Utilities. Como resultado, todos os componentes não se aplicam a todas as configurações. Os componentes não utilizados não afetam o desempenho do sistema. O SAN Toolkit é suportado nas versões AIX e PowerVM/VIOS os.

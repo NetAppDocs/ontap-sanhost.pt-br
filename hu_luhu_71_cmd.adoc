@@ -2,9 +2,9 @@
 sidebar: sidebar 
 permalink: hu_luhu_71_cmd.html 
 keywords: host utilities, unified, oracle, linux, 7.1, netapp, ontap 
-summary: Descreve como usar os Utilitários unificados de host do Linux 7,1 com ONTAP 
+summary: Descreve como usar os utilitários de host Linux 7,1 com ONTAP 
 ---
-= Referência de comando Linux Unified Host Utilities 7,1
+= Linux Host Utilities 7,1 referência de comando
 :hardbreaks:
 :toclevels: 1
 :allow-uri-read: 
@@ -16,7 +16,7 @@ summary: Descreve como usar os Utilitários unificados de host do Linux 7,1 com 
 
 
 [role="lead"]
-Você pode usar a referência de comando de exemplo de utilitários de host unificado Linux 7,1 para uma validação completa da configuração de armazenamento NetApp usando a ferramenta de utilitários de host.
+Você pode usar a referência de exemplo de comando Utilitários de host Linux 7,1 para uma validação completa da configuração de armazenamento NetApp usando a ferramenta Utilitários de host.
 
 
 

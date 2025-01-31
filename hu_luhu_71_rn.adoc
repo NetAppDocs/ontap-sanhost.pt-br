@@ -2,9 +2,9 @@
 sidebar: sidebar 
 permalink: hu_luhu_71_rn.html 
 keywords: host utilities, linux, 7.1, netapp, ontap, release, notes, linux 
-summary: Notas de versão para Linux Unified Host Utilities 7,1 
+summary: Notas de versão para Linux Host Utilities 7,1 
 ---
-= Notas de versão do Linux Unified Host Utilities 7,1
+= Linux Host Utilities 7,1 Notas de lançamento
 :hardbreaks:
 :toclevels: 1
 :allow-uri-read: 
@@ -18,7 +18,7 @@ summary: Notas de versão para Linux Unified Host Utilities 7,1
 [role="lead"]
 As notas de versão descrevem novos recursos e aprimoramentos, problemas e limitações conhecidos e precauções importantes para configurar e gerenciar seu host específico com seu sistema de armazenamento ONTAP.
 
-Para obter informações específicas sobre as versões e atualizações do sistema operacional compatíveis com os Utilitários do host, consulte link:https://mysupport.netapp.com/matrix/imt.jsp?components=65623;64703;&solution=1&isHWU&src=IMT["Ferramenta de Matriz de interoperabilidade do NetApp"^].
+Para obter informações específicas sobre as versões e atualizações do sistema operacional compatíveis com os Utilitários do host, consulte link:https://imt.netapp.com/matrix/#welcome["Ferramenta de Matriz de interoperabilidade"^].
 
 
 
@@ -47,7 +47,7 @@ NOTE: Qualquer menção a Utilitários de host ou utilitários de host Linux nes
 
 
 
-NOTE: O NetApp continua a trabalhar com os Utilitários do host para adicionar suporte a recursos após o lançamento inicial. Para obter informações mais recentes sobre os recursos suportados e os novos recursos adicionados, consulte o link:https://mysupport.netapp.com/matrix/imt.jsp?components=65623;64703;&solution=1&isHWU&src=IMT["Ferramenta de Matriz de interoperabilidade do NetApp"^].
+NOTE: O NetApp continua a trabalhar com os Utilitários do host para adicionar suporte a recursos após o lançamento inicial. Para obter informações mais recentes sobre os recursos suportados e os novos recursos adicionados, consulte o link:https://imt.netapp.com/matrix/#welcome["Ferramenta de Matriz de interoperabilidade"^].
 
 
 
@@ -66,6 +66,9 @@ A versão Linux Host Utilities 7,1 tem os seguintes problemas e limitações con
 | ID de erro do NetApp | Título | Descrição 
 
 
-| 1457017 |  `sanlun` problemas de instalação mensagens de aviso relacionadas a `libdevmapper.so` bibliotecas e `libnl.so`. Estes avisos não afetam a funcionalidade `sanlun` do kit. | Quando você executa o comando CLI de utilitários de host unificados do Linux - "sanlun fcp show adapter -v" em um host SAN, o comando falha com uma mensagem de erro exibindo que as dependências de biblioteca necessárias para uma descoberta de adaptador de barramento de host (HBA) não podem ser localizadas lib64 NetApp:link:https://mysupport.netapp.com/site/bugs-online/product/HOSTUTILITIES/1508554["1508554"^] 
+| 1457017 |  `sanlun` problemas de instalação mensagens de aviso relacionadas a `libdevmapper.so` bibliotecas e `libnl.so`. Estes avisos não afetam a funcionalidade `sanlun` do kit. | Quando você executa o comando CLI de utilitários de host Linux - "sanlun fcp show adapter -v" em um host SAN, o comando falha com uma mensagem de erro exibindo que as dependências de biblioteca necessárias para uma descoberta de adaptador de barramento de host (HBA) não podem ser localizadas: 
+`[root@hostname ~]# sanlun fcp show adapter -v
+Unable to locate /usr/lib64/libHBAAPI.so library
+Make sure the package installing the library is installed & loaded` Consulte NetApp Bugs Online - link:https://mysupport.netapp.com/site/bugs-online/product/HOSTUTILITIES/1508554["1508554"^]. 
 |===
 link:https://mysupport.netapp.com/site/bugs-online/product["NetApp Bugs Online"^] fornece informações completas para a maioria dos problemas conhecidos, incluindo soluções alternativas sugeridas sempre que possível.

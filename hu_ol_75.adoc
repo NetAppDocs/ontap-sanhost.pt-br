@@ -20,16 +20,16 @@ Você pode usar as configurações de host SAN ONTAP para configurar o Oracle Li
 
 
 
-== Instale os utilitários do host unificado do Linux
+== Instale os Utilitários de host do Linux
 
-O pacote de software Utilitários de host unificado do NetApp Linux está disponível no link:https://mysupport.netapp.com/site/products/all/details/hostutilities/downloads-tab/download/61343/7.1/downloads["Site de suporte da NetApp"^]em um arquivo .rpm de 32 e 64 bits. Se não souber qual é o ficheiro adequado para a sua configuração, utilize o link:https://mysupport.netapp.com/matrix/#welcome["Ferramenta de Matriz de interoperabilidade do NetApp"^] para verificar qual necessita.
+O pacote de software de utilitários de host NetApp está disponível no link:https://mysupport.netapp.com/site/products/all/details/hostutilities/downloads-tab/download/61343/7.1/downloads["Site de suporte da NetApp"^]em um arquivo .rpm de 32 e 64 bits. Se não souber qual é o ficheiro adequado para a sua configuração, utilize o link:https://mysupport.netapp.com/matrix/#welcome["Ferramenta de Matriz de interoperabilidade"^] para verificar qual necessita.
 
-O NetApp recomenda fortemente a instalação dos Utilitários de host unificado do Linux, mas não é obrigatório. Os utilitários não alteram nenhuma configuração em seu host Linux. Os utilitários melhoram o gerenciamento e auxiliam o suporte ao cliente da NetApp na coleta de informações sobre sua configuração.
+O NetApp recomenda fortemente a instalação dos utilitários de host do Linux, mas não é obrigatório. Os utilitários não alteram nenhuma configuração em seu host Linux. Os utilitários melhoram o gerenciamento e auxiliam o suporte ao cliente da NetApp na coleta de informações sobre sua configuração.
 
-Se você tiver o Linux Unified Host Utilities atualmente instalado, você deve atualizá-lo para a versão mais recente ou removê-lo e siga estas etapas para instalar a versão mais recente.
+Se você tiver Linux Host Utilities atualmente instalado, você deve atualizá-lo para a versão mais recente ou removê-lo e siga estas etapas para instalar a versão mais recente.
 
 .Passos
-. Faça o download do pacote de software Linux Unified Host Utilities de 32 ou 64 bits do link:https://mysupport.netapp.com/site/products/all/details/hostutilities/downloads-tab/download/61343/7.1/downloads["Site de suporte da NetApp"^] para o seu host.
+. Baixe o pacote de software Linux Host Utilities de 32 ou 64 bits do link:https://mysupport.netapp.com/site/products/all/details/hostutilities/downloads-tab/download/61343/7.1/downloads["Site de suporte da NetApp"^] para o seu host.
 . Instale o pacote de software:
 +
 `rpm -ivh netapp_linux_unified_host_utilities-7-1.x86_64`
@@ -68,8 +68,8 @@ data_vserver          /vol/vol2/lun2   /dev/sde   host15   FCP       120.0g  cDO
 
 == Inicialização de SAN
 
-.O que você vai precisar
-Se você decidir usar a inicialização de SAN, ele deve ser suportado por sua configuração. Você pode usar o link:https://mysupport.netapp.com/matrix/imt.jsp?components=83635;&solution=1&isHWU&src=IMT["Ferramenta de Matriz de interoperabilidade do NetApp"^] para verificar se o seu sistema operacional, HBA, HBA firmware e o BIOS de inicialização HBA e a versão ONTAP são suportados.
+.Antes de começar
+Se você decidir usar a inicialização de SAN, ele deve ser suportado por sua configuração. Você pode usar o link:https://imt.netapp.com/matrix/#welcome["Ferramenta de Matriz de interoperabilidade"^] para verificar se o seu sistema operacional, HBA, HBA firmware e o BIOS de inicialização HBA e a versão ONTAP são suportados.
 
 .Passos
 . Mapeie o LUN de inicialização SAN para o host.

@@ -121,7 +121,7 @@ LS: Xmt 0000000000000006 Cmpl 0000000000000006
 FCP: Rd 0000000000000073 Wr 0000000000000005 IO 0000000000000031
 Cmpl 00000000000000a8 Outstanding 0000000000000001
 ----
-* Se os LIFs de destino não forem exibidos como acima na `nvme_info` saída do comando, verifique as `/var/log/messages` saídas de comando e `dmesg` para verificar se há falhas suspeitas de NVMe/FC e informe ou corrija adequadamente.
+* Se a `nvme_info` saída do comando não exibir os LIFs de destino como mostrado no exemplo acima, verifique as `/var/log/messages` saídas de comando e `dmesg` para verificar se há falhas suspeitas de NVMe/FC e relate ou corrija adequadamente.
 
 
 

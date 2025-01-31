@@ -2,7 +2,7 @@
 :allow-uri-read: 
 
 
-Se você optar por usar a inicialização de SAN, ele deve ser suportado por sua configuração. Você pode usar a ferramenta Matriz de interoperabilidade do NetApp para verificar se o seu sistema operacional, HBA, firmware HBA e o BIOS de inicialização HBA e a versão do ONTAP são suportados.
+Se você optar por usar a inicialização de SAN, ele deve ser suportado por sua configuração. Você pode usar a ferramenta Matriz de interoperabilidade para verificar se o seu sistema operacional, HBA, firmware HBA e o BIOS de inicialização HBA e a versão ONTAP são suportados.
 
 . Mapeie o LUN de inicialização SAN para o host.
 . Verifique se há vários caminhos disponíveis.

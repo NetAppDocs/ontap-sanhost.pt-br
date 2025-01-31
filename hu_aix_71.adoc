@@ -22,9 +22,9 @@ Você pode usar as configurações de host SAN ONTAP para configurar o IBM AIX 7
 
 == Instale os Utilitários de host AIX
 
-Você deve instalar o kit de utilitários de host AIX enquanto usa o MPIO AIX com armazenamento NetApp ONTAP.
+Você deve instalar o kit de utilitários de host AIX enquanto usa o e/S Multipath da Microsoft (MPIO) com armazenamento ONTAP.
 
-Pode transferir o ficheiro comprimido que contém os pacotes de software Host Utilities a partir do link:https://mysupport.netapp.com/site/products/all/details/hostutilities/downloads-tab/download/61343/6.1/downloads["Site de suporte da NetApp"^]. Depois de ter o arquivo, você deve extraí-lo para obter os dois pacotes de software que você precisa para instalar os Utilitários do host.
+Pode transferir o ficheiro comprimido que contém os pacotes de software Host Utilities a partir do link:https://mysupport.netapp.com/site/products/all/details/hostutilities/downloads-tab/download/61343/6.1/downloads["Site de suporte da NetApp"^]. Depois de baixar o arquivo, você precisa extraí-lo para obter os dois pacotes de software necessários para instalar os Utilitários do host.
 
 .Passos
 . Faça login no seu host.
@@ -76,8 +76,8 @@ data_vserver      /vol/vol4/lun4    hdisk14     fcs0       FCP       20g    C
 
 == Inicialização de SAN
 
-.O que você vai precisar
-Se você decidir usar a inicialização de SAN, ele deve ser suportado por sua configuração. Você pode usar o link:https://mysupport.netapp.com/matrix/imt.jsp?components=71102;&solution=1&isHWU&src=IMT["Ferramenta de Matriz de interoperabilidade do NetApp"^] para verificar se o seu sistema operacional, HBA, HBA firmware e o BIOS de inicialização HBA e a versão ONTAP são suportados.
+.Antes de começar
+Se você decidir usar a inicialização de SAN, ele deve ser suportado por sua configuração. Você pode usar o link:https://imt.netapp.com/matrix/#welcome["Ferramenta de Matriz de interoperabilidade"^] para verificar se o seu sistema operacional, HBA, HBA firmware e o BIOS de inicialização HBA e a versão ONTAP são suportados.
 
 A inicialização DE SAN é o processo de configuração de um disco conetado a SAN (um LUN) como um dispositivo de inicialização para um host AIX. Você pode configurar um LUN de inicialização SAN para funcionar em um ambiente MPIO AIX que esteja executando os Utilitários de host AIX com o protocolo FC ou FCoE. O método usado para criar um LUN de inicialização SAN e instalar uma nova imagem de SO em um ambiente MPIO AIX pode variar, dependendo do protocolo que você está usando.
 
@@ -155,7 +155,7 @@ up     primary  path3  fcs1    fc_aix_4     1
 
 == Definições recomendadas
 
-A seguir estão algumas configurações de parâmetros recomendadas para LUNs ONTAP. Os parâmetros críticos para LUNs do ONTAP são definidos automaticamente após a instalação do Kit de utilitários do host do NetApp.
+A NetApp recomenda as seguintes configurações de parâmetros para LUNs ONTAP. Os parâmetros críticos para LUNs do ONTAP são definidos automaticamente após a instalação do Kit de utilitários do host do NetApp.
 
 [cols="4*"]
 |===

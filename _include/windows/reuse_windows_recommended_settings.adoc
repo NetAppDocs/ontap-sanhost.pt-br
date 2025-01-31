@@ -29,4 +29,4 @@ Para HBAs Fibre Channel QLogic:
 | PortDownRetryCount | 10 
 |===
 
-NOTE: O Utilitário de host unificado do Windows definirá esses valores. Para obter as configurações recomendadas detalhadas, consulte link:https://docs.netapp.com/us-en/ontap-sanhost/hu_wuhu_71_rn.html["Documentação dos Utilitários do sistema anfitrião do Windows"] e selecione o procedimento de instalação para a versão do Windows Unified Host Utilities.
+NOTE: O Utilitário de host do Windows define esses valores. Para obter as configurações recomendadas detalhadas, consulte link:https://docs.netapp.com/us-en/ontap-sanhost/hu_wuhu_71_rn.html["Documentação dos Utilitários do sistema anfitrião do Windows"] e selecione o procedimento de instalação para a versão dos Utilitários de host do Windows.
