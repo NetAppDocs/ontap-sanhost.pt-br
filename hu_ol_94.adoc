@@ -75,7 +75,7 @@ Use o link:https://imt.netapp.com/matrix/#welcome["Ferramenta de Matriz de inter
 . Verifique se há vários caminhos disponíveis.
 +
 
-NOTE: Vários caminhos ficam disponíveis depois que o sistema operacional host estiver ativo e em execução nos caminhos.
+NOTE: Vários caminhos ficam disponíveis depois que o sistema operacional do host estiver ativo e em execução nos caminhos.
 
 . Ative a inicialização SAN no BIOS do servidor para as portas às quais o LUN de inicialização SAN está mapeado.
 +
@@ -121,7 +121,7 @@ size=10G features='3 queue_if_no_path pg_init_retries 50' hwhandler='1 alua' wp=
 
 === Configurações que não são ASA
 
-Para configurações que não sejam ASA, deve haver dois grupos de caminhos com prioridades diferentes. Os caminhos com prioridades mais altas são Ativo/otimizado, o que significa que eles são atendidos pelo controlador onde o agregado está localizado. Os caminhos com prioridades mais baixas estão ativos, mas não são otimizados porque são servidos de um controlador diferente. Os caminhos não otimizados são usados somente quando caminhos otimizados não estão disponíveis.
+Para configurações que não sejam ASA, deve haver dois grupos de caminhos com prioridades diferentes. Os caminhos com prioridades mais altas são Ativo/otimizado. Isso significa que eles são atendidos pelo controlador onde o agregado está localizado. Os caminhos com prioridades mais baixas estão ativos, mas não otimizados, porque são servidos de um controlador diferente. Os caminhos não otimizados são usados somente quando caminhos otimizados não estão disponíveis.
 
 .Exemplo
 O exemplo a seguir exibe a saída correta para um LUN ONTAP com dois caminhos ativos/otimizados e dois caminhos ativos/não otimizados.

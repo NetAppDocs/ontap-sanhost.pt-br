@@ -4,43 +4,52 @@
 
 Depois de executar `mbralign` em discos para corrigir o alinhamento do MBR com o PowerShell Toolkit em sistemas operacionais Linux Guest usando o Loader de inicialização do GRUB, você deve reinstalar o GRUB para garantir que o sistema operacional convidado seja inicializado corretamente.
 
-O cmdlet do PowerShell Toolkit foi concluído no arquivo VHD da máquina virtual. Este tópico aplica-se apenas a sistemas operacionais Linux Guest usando o GRUB boot Loader e `SystemRescueCd`.
+.Sobre esta tarefa
+O cmdlet do PowerShell Toolkit foi concluído no arquivo VHD da máquina virtual. Este procedimento aplica-se apenas a sistemas operacionais Linux Guest usando o GRUB boot Loader e `SystemRescueCd`.
 
+.Passos
 . Monte a imagem ISO do disco 1 dos CDs de instalação para a versão correta do Linux para a máquina virtual.
 . Abra o console da máquina virtual no Gerenciador do Hyper-V.
-. Se a VM estiver em execução e pendurada na tela GRUB, clique na área de exibição para se certificar de que está ativa e clique no ícone da barra de ferramentas *Ctrl-Alt-Delete* para reinicializar a VM. Se a VM não estiver em execução, inicie-a e, em seguida, clique imediatamente na área de visualização para se certificar de que está ativa.
+. Se a VM estiver em execução e congelada na tela GRUB, clique na área de exibição para se certificar de que está ativa e selecione o ícone da barra de ferramentas *Ctrl-Alt-Delete* para reinicializar a VM. Se a VM não estiver em execução, inicie-a e, em seguida, clique imediatamente na área de visualização para se certificar de que está ativa.
 . Assim que você vir a tela inicial do VMware BIOS, pressione a tecla *Esc* uma vez. É apresentado o menu de arranque.
 . No menu de arranque, selecione *CD-ROM*.
 . Na tela de inicialização do Linux, digite: `linux rescue`
 . Tome as predefinições para Anaconda (os ecrãs de configuração azul/vermelho). A rede é opcional.
 . Inicie o GRUB introduzindo: `grub`
-. Se houver apenas um disco virtual nesta VM, ou se houver vários discos, mas o primeiro for o disco de inicialização, execute os seguintes comandos GRUB:
-
-
+. Se houver apenas um disco virtual nesta VM, ou se houver vários discos e o primeiro for o disco de inicialização, execute os seguintes comandos GRUB:
++
 [listing]
 ----
 root (hd0,0)
 setup (hd0)
 quit
 ----
++
 Se você tiver vários discos virtuais na VM, e o disco de inicialização não for o primeiro disco, ou você estiver corrigindo o GRUB inicializando a partir do VHD de backup desalinhado, digite o seguinte comando para identificar o disco de inicialização:
 
++
 [listing]
 ----
 find /boot/grub/stage1
 ----
++
 Em seguida, execute os seguintes comandos:
 
++
 [listing]
 ----
 root (boot_disk,0)
 setup (boot_disk)
 quit
 ----
++
 
-NOTE: Observe que `boot_disk`, acima, é um espaço reservado para o identificador de disco real do disco de inicialização.
+NOTE: No `setup (boot_disk)`, `boot_disk` é um espaço reservado para o identificador de disco real do disco de inicialização.
+
+
 
 . Pressione *Ctrl-D* para sair.
-
-
++
 O resgate do Linux desliga e, em seguida, reinicia.
+
+

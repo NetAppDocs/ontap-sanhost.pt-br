@@ -2,7 +2,7 @@
 :allow-uri-read: 
 
 
-Siga estas etapas para habilitar o FC/NVMe no host iniciador do Windows:
+Habilite o FC/NVMe no host iniciador do Windows.
 
 .Passos
 . Instale o utilitário OneCommand Manager no host do Windows.
@@ -10,7 +10,6 @@ Siga estas etapas para habilitar o FC/NVMe no host iniciador do Windows:
 +
 ** EnableNVMe: 1
 ** NVMEMode (modo NVMEMode): 0
-** LimTransferSize 1
 
 
 . Reinicie o host.

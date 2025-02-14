@@ -1,0 +1,7 @@
+= 
+:allow-uri-read: 
+
+
+O cluster de failover do Windows não é compatível com NVMe/FC porque o ONTAP não oferece suporte a reservas persistentes com NVMe/FC.
+
+A Broadcom envia um driver externo para Windows NVMe/FC que é um driver SCSI ⇄ NVMe translacional e não um verdadeiro driver NVMe/FC. A sobrecarga translacional não afeta necessariamente o desempenho, mas nega os benefícios de desempenho do NVMe/FC. Como resultado, a performance de NVMe/FC e FCP é a mesma em servidores Windows, ao contrário de outros sistemas operacionais, como o Linux, em que a performance de NVMe/FC é significativamente melhor do que a do FCP.

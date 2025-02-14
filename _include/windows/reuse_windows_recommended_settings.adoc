@@ -2,9 +2,13 @@
 :allow-uri-read: 
 
 
-Em sistemas que usam FC, os seguintes valores de tempo limite para HBAs Emulex e QLogic FC são necessários quando MPIO é selecionado.
+Quando você seleciona MPIO em sistemas que usam FC, o instalador de Utilitários de host define os valores de tempo limite necessários para HBAs Emulex e QLogic FC.
 
-Para HBAs Fibre Channel Emulex:
+[role="tabbed-block"]
+====
+.Emulex FC
+--
+Os valores de tempo limite para HBAs Emulex FC:
 
 [cols="2*"]
 |===
@@ -16,7 +20,10 @@ Para HBAs Fibre Channel Emulex:
 
 | NodeTimeOut | 10 
 |===
-Para HBAs Fibre Channel QLogic:
+--
+.QLogic FC
+--
+Os valores de tempo limite para HBAs QLogic FC:
 
 [cols="2*"]
 |===
@@ -28,5 +35,7 @@ Para HBAs Fibre Channel QLogic:
 
 | PortDownRetryCount | 10 
 |===
+--
+====
 
-NOTE: O Utilitário de host do Windows define esses valores. Para obter as configurações recomendadas detalhadas, consulte link:https://docs.netapp.com/us-en/ontap-sanhost/hu_wuhu_71_rn.html["Documentação dos Utilitários do sistema anfitrião do Windows"] e selecione o procedimento de instalação para a versão dos Utilitários de host do Windows.
+NOTE: Para obter mais informações sobre as configurações recomendadas, link:hu_wuhu_hba_settings.html["Configure as configurações de Registro para os Utilitários de host do Windows"]consulte .

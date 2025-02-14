@@ -1,7 +1,0 @@
-= 
-:allow-uri-read: 
-
-
-Você deve instalar o software Microsoft Multipath I/o (MPIO) e ter multipathing configurado se seu host Windows tiver mais de um caminho para o sistema de armazenamento. Sem o software MPIO, o sistema operacional pode ver cada caminho como um disco separado, o que pode levar à corrupção de dados. O software MPIO apresenta um único disco para o sistema operativo para todos os caminhos, e um módulo específico do dispositivo (DSM) gere o failover de caminho.
-
-Em um sistema Windows, os dois componentes principais de qualquer solução MPIO são um DSM e o Windows MPIO. MPIO não é suportado para Windows XP ou Windows Vista em execução em uma máquina virtual Hyper- V.

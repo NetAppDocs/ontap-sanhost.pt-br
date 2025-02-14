@@ -37,7 +37,7 @@ Se você tiver Linux Host Utilities atualmente instalado, você deve atualizá-l
 
 
 
-NOTE: Pode utilizar as definições de configuração fornecidas neste documento para configurar os clientes em nuvem ligados a link:https://docs.netapp.com/us-en/cloud-manager-cloud-volumes-ontap/index.html["Cloud Volumes ONTAP"^] e link:https://docs.netapp.com/us-en/cloud-manager-fsx-ontap/index.html["Amazon FSX para ONTAP"^].
+NOTE: Pode utilizar as definições de configuração fornecidas neste procedimento para configurar os clientes em nuvem ligados a link:https://docs.netapp.com/us-en/cloud-manager-cloud-volumes-ontap/index.html["Cloud Volumes ONTAP"^] e link:https://docs.netapp.com/us-en/cloud-manager-fsx-ontap/index.html["Amazon FSX para ONTAP"^].
 
 
 
@@ -76,7 +76,7 @@ Se você decidir usar a inicialização de SAN, ele deve ser suportado por sua c
 . Verifique se há vários caminhos disponíveis.
 +
 
-NOTE: Vários caminhos ficam disponíveis depois que o sistema operacional host estiver ativo e em execução nos caminhos.
+NOTE: Vários caminhos ficam disponíveis depois que o sistema operacional do host estiver ativo e em execução nos caminhos.
 
 . Ative a inicialização SAN no BIOS do servidor para as portas às quais o LUN de inicialização SAN está mapeado.
 +
@@ -109,7 +109,7 @@ kernel /vmlinuz-3.8.13-68.1.2.el6uek.x86_64 ro root=/dev/mapper/vg_ibmx3550m4210
 .Configuração do Oracle Linux 7,2 UEK R4
 Para Oracle Linux 7,2 UEK R4 o arquivo /etc/multipath.conf deve existir, mas você não precisa fazer alterações específicas no arquivo. O Oracle Linux 7,2 é compilado com todas as configurações necessárias para reconhecer e gerenciar corretamente LUNs ONTAP.
 
-Você pode usar o `multipath -ll` comando para verificar as configurações dos LUNs do ONTAP. Deve haver dois grupos de caminhos com prioridades diferentes. Os caminhos com prioridades mais altas são Ativo/otimizado, o que significa que eles são atendidos pelo controlador onde o agregado está localizado. Os caminhos com prioridades mais baixas estão ativos, mas não são otimizados porque são servidos de um controlador diferente. Os caminhos não otimizados são usados somente quando caminhos otimizados não estão disponíveis.
+Você pode usar o `multipath -ll` comando para verificar as configurações dos LUNs do ONTAP. Deve haver dois grupos de caminhos com prioridades diferentes. Os caminhos com prioridades mais altas são Ativo/otimizado. Isso significa que eles são atendidos pelo controlador onde o agregado está localizado. Os caminhos com prioridades mais baixas estão ativos, mas não otimizados, porque são servidos de um controlador diferente. Os caminhos não otimizados são usados somente quando caminhos otimizados não estão disponíveis.
 
 .Exemplo
 O exemplo a seguir exibe a saída correta para um LUN ONTAP com dois caminhos ativos/otimizados e dois caminhos ativos/não otimizados:

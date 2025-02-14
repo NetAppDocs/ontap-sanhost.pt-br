@@ -1,10 +1,10 @@
 ---
 sidebar: sidebar 
-permalink: hu_windows_2022.html 
+permalink: hu-windows-2025.html 
 keywords: windows, enterprise 
-summary: Usando o Windows Server 2022 com ONTAP 
+summary: Você pode usar as configurações de host SAN ONTAP para configurar o Windows Server 2025 para operação com armazenamento ONTAP. 
 ---
-= Use o Windows Server 2022 com ONTAP
+= Configure o Windows Server 2025 para armazenamento ONTAP
 :hardbreaks:
 :toclevels: 1
 :allow-uri-read: 
@@ -16,7 +16,7 @@ summary: Usando o Windows Server 2022 com ONTAP
 
 
 [role="lead"]
-Você pode usar as configurações de host SAN ONTAP para configurar o Windows Server 2022 para operação com armazenamento ONTAP.
+Você pode usar as configurações de host SAN ONTAP para configurar o Windows Server 2025 para operação com armazenamento ONTAP.
 
 
 
@@ -64,7 +64,7 @@ Para obter informações sobre como ativar o BIOS HBA, consulte a documentação
 A NetApp recomenda a instalação da *última atualização cumulativa* disponível no Catálogo de atualizações da Microsoft no servidor host.
 
 .Passos
-. Faça o download dos hotfixes no link:https://www.catalog.update.microsoft.com/Search.aspx?q=update%20%22windows%20server%202022%22["Catálogo do Microsoft Update 2022"^].
+. Faça o download dos hotfixes no link:https://www.catalog.update.microsoft.com/Search.aspx?q=update%20%22windows%20server%202025%22["Catálogo do Microsoft Update 2025"^].
 
 
 
@@ -86,7 +86,7 @@ Os Utilitários de host do Windows são um conjunto de programas de software com
 
 == Multipathing
 
-Você precisa instalar o software Microsoft Multipath I/o (MPIO) e ativar multipathing se seu host Windows tiver mais de um caminho para o sistema de armazenamento. Quando você seleciona suporte MPIO, os Utilitários de host do Windows ativa o recurso MPIO incluído no Windows Server 2022. Se você não estiver usando os Utilitários de host do Windows, será necessário habilitar a multipathing manualmente.
+Você precisa instalar o software Microsoft Multipath I/o (MPIO) e ativar multipathing se seu host Windows tiver mais de um caminho para o sistema de armazenamento.
 
 O software MPIO apresenta um único disco para o sistema operacional Windows para todos os caminhos, e um módulo específico de dispositivo (DSM) gerencia failover de caminho. Em um sistema Windows, os dois componentes principais em qualquer solução MPIO são o DSM e o Windows MPIO.
 
@@ -168,4 +168,4 @@ NOTE: Para obter mais informações sobre as configurações recomendadas, link:
 
 == Problemas conhecidos
 
-Não há problemas conhecidos para o Windows Server 2022 com a versão ONTAP.
+Não há problemas conhecidos para o Windows Server 2025 com a versão ONTAP.

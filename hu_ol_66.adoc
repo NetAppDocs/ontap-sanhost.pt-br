@@ -37,7 +37,7 @@ Se você tiver Linux Host Utilities atualmente instalado, você deve atualizá-l
 
 
 
-NOTE: Pode utilizar as definições de configuração fornecidas neste documento para configurar os clientes em nuvem ligados a link:https://docs.netapp.com/us-en/cloud-manager-cloud-volumes-ontap/index.html["Cloud Volumes ONTAP"^] e link:https://docs.netapp.com/us-en/cloud-manager-fsx-ontap/index.html["Amazon FSX para ONTAP"^].
+NOTE: Pode utilizar as definições de configuração fornecidas neste procedimento para configurar os clientes em nuvem ligados a link:https://docs.netapp.com/us-en/cloud-manager-cloud-volumes-ontap/index.html["Cloud Volumes ONTAP"^] e link:https://docs.netapp.com/us-en/cloud-manager-fsx-ontap/index.html["Amazon FSX para ONTAP"^].
 
 
 
@@ -76,7 +76,7 @@ Se você decidir usar a inicialização de SAN, ele deve ser suportado por sua c
 . Verifique se há vários caminhos disponíveis.
 +
 
-NOTE: Vários caminhos ficam disponíveis depois que o sistema operacional host estiver ativo e em execução nos caminhos.
+NOTE: Vários caminhos ficam disponíveis depois que o sistema operacional do host estiver ativo e em execução nos caminhos.
 
 . Ative a inicialização SAN no BIOS do servidor para as portas às quais o LUN de inicialização SAN está mapeado.
 +
@@ -101,7 +101,7 @@ kernel /vmlinuz-3.8.13-68.1.2.el6uek.x86_64 ro root=/dev/mapper/vg_ibmx3550m4210
 ....
 . Use o `mkinitrd` comando para recriar a imagem initrd. O Oracle 6xi e versões posteriores usam: O comando `mkinitrd -f /boot/ initrd-"uname -r".img uname -r`: Ou o comando: `dracut -f`
 . Reinicie o host.
-. Verifique a saída do `cat /proc/cmdline` comando para garantir que a configuração esteja concluída. Você pode usar o `multipath -ll` comando para verificar as configurações dos LUNs do ONTAP. Deve haver dois grupos de caminhos com prioridades diferentes. Os caminhos com prioridades mais altas são Ativo/otimizado, o que significa que eles são atendidos pelo controlador onde o agregado está localizado. Os caminhos com prioridades mais baixas estão ativos, mas não são otimizados porque são servidos de um controlador diferente. Os caminhos não otimizados são usados somente quando caminhos otimizados não estão disponíveis.
+. Verifique a saída do `cat /proc/cmdline` comando para garantir que a configuração esteja concluída. Você pode usar o `multipath -ll` comando para verificar as configurações dos LUNs do ONTAP. Deve haver dois grupos de caminhos com prioridades diferentes. Os caminhos com prioridades mais altas são Ativo/otimizado. Isso significa que eles são atendidos pelo controlador onde o agregado está localizado. Os caminhos com prioridades mais baixas estão ativos, mas não otimizados, porque são servidos de um controlador diferente. Os caminhos não otimizados são usados somente quando caminhos otimizados não estão disponíveis.
 
 
 .Exemplo

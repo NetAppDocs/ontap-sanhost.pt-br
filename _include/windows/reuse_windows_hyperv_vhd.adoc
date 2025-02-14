@@ -4,7 +4,7 @@
 
 Se os limites de bloco de dados de uma partição de disco não se alinharem com os limites de bloco do LUN subjacente, o sistema de armazenamento geralmente precisa completar duas leituras ou gravações de bloco para cada leitura ou gravação de bloco de sistema operacional. As leituras e gravações de bloco adicionais causadas pelo desalinhamento podem criar sérios problemas de desempenho.
 
-O desalinhamento é causado pela localização do setor inicial para cada partição definida pelo Registro mestre de inicialização.
+A localização do setor inicial para cada partição definida pelo Registro de inicialização principal causa desalinhamento.
 
 
 NOTE: As partições criadas pelo Windows Server 2016 devem ser alinhadas por padrão.

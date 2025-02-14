@@ -30,7 +30,7 @@ Se você decidir usar a inicialização de SAN, ele deve ser suportado por sua c
 . Verifique se há vários caminhos disponíveis.
 +
 
-NOTE: Vários caminhos ficam disponíveis depois que o sistema operacional host estiver ativo e em execução nos caminhos.
+NOTE: Vários caminhos ficam disponíveis depois que o sistema operacional do host estiver ativo e em execução nos caminhos.
 
 . Ative a inicialização SAN no BIOS do servidor para as portas às quais o LUN de inicialização SAN está mapeado.
 +
@@ -49,7 +49,7 @@ Para o Citrix Hypervisor (CH) 8.x, o `/etc/multipath.conf` arquivo deve existir,
 
 === Configuração de todas as matrizes SAN (ASA)
 
-Para todas as configurações de storage SAN (ASA), deve haver um grupo de caminhos com prioridades únicas. Todos os caminhos são ativos/otimizados, o que significa que são atendidos pelo controlador e e/S é enviado em todos os caminhos ativos.
+Para todas as configurações de storage SAN (ASA), deve haver um grupo de caminhos com prioridades únicas. Todos os caminhos estão ativos/otimizados. Isso significa que eles são atendidos pelo controlador e e/S é enviado em todos os caminhos ativos.
 
 .Exemplo
 O exemplo a seguir exibe a saída correta para um LUN ONTAP com quatro caminhos ativos/otimizados:
@@ -71,7 +71,7 @@ NOTE: Não use um número excessivo de caminhos para um único LUN. Não mais de
 
 === Configurações que não são ASA
 
-Para configurações que não sejam ASA, deve haver dois grupos de caminhos com prioridades diferentes. Os caminhos com prioridades mais altas são Ativo/otimizado, o que significa que eles são atendidos pelo controlador onde o agregado está localizado. Os caminhos com prioridades mais baixas estão ativos, mas não são otimizados porque são servidos de um controlador diferente. Os caminhos não otimizados são usados somente quando caminhos otimizados não estão disponíveis.
+Para configurações que não sejam ASA, deve haver dois grupos de caminhos com prioridades diferentes. Os caminhos com prioridades mais altas são Ativo/otimizado. Isso significa que eles são atendidos pelo controlador onde o agregado está localizado. Os caminhos com prioridades mais baixas estão ativos, mas não otimizados, porque são servidos de um controlador diferente. Os caminhos não otimizados são usados somente quando caminhos otimizados não estão disponíveis.
 
 .Exemplo
 O exemplo a seguir exibe a saída correta para um LUN ONTAP com dois caminhos ativos/otimizados e dois caminhos ativos/não otimizados.

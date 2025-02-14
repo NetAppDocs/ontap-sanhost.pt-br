@@ -1,6 +1,111 @@
-= 
+---
+sidebar: sidebar 
+permalink: nvme-windows-2025.html 
+keywords: nvme, windows, enterprise 
+summary: Configuração de host NVMe/FC para Windows Server 2052 com ONTAP 
+---
+= Configurar o Windows Server 2025 com NVMe/FC para ONTAP
+:hardbreaks:
+:toclevels: 1
 :allow-uri-read: 
+:toclevels: 1
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./media/
 
+
+[role="lead"]
+Você pode configurar o NVMe em Fibre Channel (NVMe/FC) em hosts que executam o Windows Server 2025 para operação com LUNs ONTAP.
+
+.Sobre esta tarefa
+Você pode usar o suporte a seguir com a configuração de host NVMe/FC para Windows 2025. Você também deve rever as limitações conhecidas antes de iniciar o processo de configuração.
+
+* Suporte disponível:
++
+A partir do ONTAP 9.10.1, o NVMe/FC é compatível com o Windows Server 2025.
+
++
+Para obter uma lista de adaptadores e controladores FC compatíveis, consulte link:https://hwu.netapp.com/Home/Index["Hardware Universe"^]. Para obter a lista atual de configurações e versões suportadas, consulte link:https://mysupport.netapp.com/matrix/["Ferramenta de Matriz de interoperabilidade"^].
+
+* Limitações conhecidas:
++
+O cluster de failover do Windows não é compatível com NVMe/FC porque o ONTAP não oferece suporte a reservas persistentes com NVMe/FC.
+
++
+
+NOTE: A Broadcom envia um driver externo para Windows NVMe/FC que é um driver SCSI ⇄ NVMe translacional e não um verdadeiro driver NVMe/FC. A sobrecarga translacional não afeta necessariamente o desempenho, mas nega os benefícios de desempenho do NVMe/FC. Como resultado, a performance de NVMe/FC e FCP é a mesma em servidores Windows, ao contrário de outros sistemas operacionais, como o Linux, em que a performance de NVMe/FC é significativamente melhor do que a do FCP.
+
+
+
+
+
+== Habilite o NVMe/FC
+
+Habilite o FC/NVMe no host iniciador do Windows.
+
+.Passos
+. Instale o utilitário OneCommand Manager no host do Windows.
+. Em cada uma das portas do iniciador HBA, defina os seguintes parâmetros do controlador HBA:
++
+** EnableNVMe: 1
+** NVMEMode (modo NVMEMode): 0
+
+
+. Reinicie o host.
+
+
+
+
+== Configure o adaptador Broadcom FC
+
+O iniciador Broadcom pode atender ao tráfego NVMe/FC e FCP nas mesmas portas de adaptador de FC de 32G GB. Para FCP e FC/NVMe, deve utilizar o módulo específico do dispositivo (DSM) Microsft como a opção Microsoft Multipath I/o (MPIO).
+
+A `+hostnqn+` é associada a cada porta do adaptador de barramento do host (HBA) para o adaptador Broadcom com com FC/NVMe em um ambiente Windows. O `+hostnqn+` é formatado como mostrado no exemplo a seguir:
+
+....
+nqn.2017-01.com.broadcom:ecd:nvmf:fc:100000109b1b9765
+nqn.2017-01.com.broadcom:ecd:nvmf:fc:100000109b1b9766
+....
+
+
+=== Ative o MPIO para dispositivos NVMe
+
+Você precisa habilitar o MPIO para dispositivos NVMe para concluir a configuração NVMe no host do Windows.
+
+.Passos
+. Instale link:https://mysupport.netapp.com/site/products/all/details/hostutilities/downloads-tab/download/61343/7.1/downloads["Kit de utilitário de host do Windows 7,1"] para definir os parâmetros do driver que são comuns ao FC e ao NVMe.
+. Abra as propriedades MPIO.
+. Na guia *Discover Multi-paths*, adicione a ID do dispositivo listada para NVMe.
++
+O MPIO toma conhecimento dos dispositivos NVMe, que são visíveis no gerenciamento de disco.
+
+. Abra *Disk Management* e vá para *Disk Properties*.
+. Na guia *MPIO*, selecione *Detalhes*.
+. Defina as seguintes definições do Microsoft DSM:
++
+** PathVerifiedPeriod: *10*
+** PathVerifyEnabled: *Enable* (Ativar)
+** RetryCount: *6*
+** RetryInterval: *1*
+** PDORemovedPeriod: *130*
+
+
+. Selecione a Política MPIO *Round Robin with Subset*.
+. Altere os valores do registo:
++
+[listing]
+----
+HKLM\SYSTEM\CurrentControlSet\Services\mpio\Parameters\PathRecoveryInterval DWORD -> 30
+
+HKLM\SYSTEM\CurrentControlSet\Services\mpio \Parameters\ UseCustomPathRecoveryInterval  DWORD-> 1
+----
+. Reinicie o host.
+
+
+
+
+== Valide a configuração NVMe/FC
 
 Verifique se os subsistemas NVMe foram descobertos e os namespaces ONTAP estão corretos para a configuração NVMe-of.
 

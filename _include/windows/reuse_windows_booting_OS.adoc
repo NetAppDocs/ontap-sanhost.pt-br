@@ -1,5 +1,0 @@
-= 
-:allow-uri-read: 
-
-
-Há duas opções para inicializar o sistema operacional: Usando inicialização local ou inicialização SAN. Para a inicialização local, você instala o sistema operacional no disco rígido local (SSD, SATA, RAID e assim por diante). Para iniciar SAN, consulte as instruções abaixo.

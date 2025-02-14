@@ -1,0 +1,42 @@
+= 
+:allow-uri-read: 
+
+
+Você pode inicializar o sistema operacional Windows usando uma inicialização local ou uma inicialização SAN. A NetApp recomenda o uso de uma inicialização SAN se for suportada pela configuração.
+
+[role="tabbed-block"]
+====
+.Arranque local
+--
+Execute uma inicialização local instalando o sistema operacional Windows no disco rígido local (SSD, SATA, RAID e assim por diante).
+
+--
+.Inicialização de SAN
+--
+Se você optar por usar a inicialização de SAN, ela deve ser suportada por sua configuração.
+
+
+NOTE: Pode utilizar as definições de configuração fornecidas neste procedimento para configurar os clientes em nuvem ligados a link:https://docs.netapp.com/us-en/cloud-manager-cloud-volumes-ontap/index.html["Cloud Volumes ONTAP"^] e link:https://docs.netapp.com/us-en/cloud-manager-fsx-ontap/index.html["Amazon FSX para ONTAP"^].
+
+.Antes de começar
+Use o https://mysupport.netapp.com/matrix/#welcome["Ferramenta de Matriz de interoperabilidade"^] para verificar se o sistema operacional Windows, o adaptador de barramento do host (HBA), o firmware HBA, o BIOS de inicialização HBA e a versão do ONTAP suportam inicialização por SAN.
+
+.Passos
+. Mapeie o LUN de inicialização SAN para o host.
++
+link:https://docs.netapp.com/us-en/ontap/san-management/index.html["Gerenciamento de STORAGE SAN"^]Consulte .
+
+. Verifique se há vários caminhos disponíveis.
++
+
+NOTE: Vários caminhos só ficam disponíveis após o sistema operacional do host estar ativo e em execução nos caminhos.
+
+. Ative a inicialização SAN no BIOS do servidor para as portas às quais o LUN de inicialização SAN está mapeado.
++
+Para obter informações sobre como ativar o BIOS HBA, consulte a documentação específica do fornecedor.
+
+. Reinicie o host para verificar se a inicialização foi bem-sucedida
+
+
+--
+====

@@ -4,7 +4,7 @@ permalink: nvme_ubuntu_2204.html
 keywords: nvme, linux, rhel, red hat, enterprise 
 summary: Como configurar o host NVMe-of para Ubuntu 22,04 com o ONTAP 
 ---
-= Configuração de host NVMe-of para Ubuntu 22,04 com ONTAP
+= Configuração de host NVMe-of para Ubuntu 24,04 com ONTAP
 :hardbreaks:
 :toclevels: 1
 :allow-uri-read: 

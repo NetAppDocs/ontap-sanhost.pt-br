@@ -2,4 +2,4 @@
 :allow-uri-read: 
 
 
-Os Utilitários de host do Windows são um conjunto de programas de software com documentação que permite conetar computadores host a discos virtuais (LUNs) em uma SAN NetApp. A NetApp recomenda baixar e instalar o kit de utilitário mais recente. Para obter informações e instruções sobre a configuração DO WUHU, consulte link:https://docs.netapp.com/us-en/ontap-sanhost/hu_wuhu_71_rn.html["Documentação dos Utilitários do sistema anfitrião do Windows"]e selecione o procedimento de instalação para a versão do Windows Host Utilities.
+Os Utilitários de host do Windows são um conjunto de programas de software com documentação que permite conetar computadores host a discos virtuais (LUNs) em uma SAN NetApp. A NetApp recomenda baixar e instalar o kit de utilitário mais recente. Para obter informações e instruções de configuração dos Utilitários de host do Windows, consulte link:https://docs.netapp.com/us-en/ontap-sanhost/hu_wuhu_71_rn.html["Documentação dos Utilitários do sistema anfitrião do Windows"]e selecione o procedimento de instalação da versão dos Utilitários de host do Windows.

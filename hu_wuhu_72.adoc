@@ -16,8 +16,9 @@ summary: Os Utilitários de host do Windows incluem um programa de instalação 
 [role="lead"]
 Os Utilitários de host do Windows permitem que você conete um computador host do Windows aos sistemas de armazenamento do NetApp.
 
-Os Utilitários de host do Windows oferecem suporte às seguintes versões do Windows:
+Os Utilitários de host do Windows suportam as seguintes versões do Windows:
 
+* Windows 2025
 * Windows 2022
 * Windows 2019
 * Windows 2016
@@ -62,7 +63,7 @@ Antes de instalar os Utilitários do host, você deve verificar se a versão dos
 . Verifique os hotfixes necessários para o respetivo host no link:https://docs.netapp.com/us-en/ontap-sanhost/index.html["Documentação do Windows de host SAN"].
 +
 
-NOTE: O link:https://docs.netapp.com/us-en/ontap-sanhost/hu_windows_2022.html["Usando o Windows Server 2022 com ONTAP"] documento fornece instruções sobre link:https://docs.netapp.com/us-en/ontap-sanhost/hu_windows_2022.html#installing-windows-hotfixes["Instalando hotfixes do Windows"] para o Windows Server 2022. Consulte os documentos do Windows na categoria configurações de host para encontrar as informações de hotfix relevantes para versões anteriores do servidor Windows.
+NOTE: O link:https://docs.netapp.com/us-en/ontap-sanhost/hu_windows_2022.html["Use o Windows Server 2022 com ONTAP"] documento fornece instruções sobre link:https://docs.netapp.com/us-en/ontap-sanhost/hu_windows_2022.html#installing-windows-hotfixes["Instalando hotfixes do Windows"] para o Windows Server 2022. Consulte os documentos do Windows na categoria configurações de host para encontrar as informações de hotfix relevantes para versões anteriores do servidor Windows.
 
 . Adicione a licença iSCSI, FCP ou NVMe-of e inicie o serviço de destino.
 +

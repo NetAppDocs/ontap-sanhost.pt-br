@@ -597,7 +597,7 @@ NOTE: A partir do RHEL 9,5, a configuração padrão para o tempo limite NVMe/TC
 
 == Validar o NVMe-of
 
-Para dar suporte à operação correta de LUNs ONTAP, verifique se o status multipath NVMe no kernel, o status ANA e os namespaces ONTAP estão corretos para a configuração NVMe-of.
+Verifique se o status multipath do NVMe no kernel, o status ANA e os namespaces do ONTAP estão corretos para a configuração do NVMe-of.
 
 .Passos
 . Verifique se o multipath NVMe no kernel está habilitado:
