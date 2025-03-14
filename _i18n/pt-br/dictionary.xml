@@ -84,7 +84,6 @@
   <block id="85becc53ef98b63dce1fc3e1b356bd02" category="list-text">PDORemovedPeriod: *130*</block>
   <block id="a0ae59a68ecc7cb46a13fb68c3b08410" category="list-text">Selecione a Política MPIO *Round Robin with Subset*.</block>
   <block id="2dca3dab4f027df43c5e5409a002b806" category="list-text">Altere os valores do registo:</block>
-  <block id="410517e1f795e6fa809a7ff5630e2bdd" category="list-text">Instale o utilitário OneCommand Manager no host do Windows.</block>
   <block id="7d182740e5fe1d15ec7f97f69178b4a8" category="list-text">Em cada uma das portas do iniciador HBA, defina os seguintes parâmetros do controlador HBA:</block>
   <block id="1d71ea83cceb2b7470e1c54838adb506" category="list-text">EnableNVMe: 1</block>
   <block id="814e9f528f5fa391cd6774e57a5c651c" category="list-text">NVMEMode (modo NVMEMode): 0</block>
@@ -3719,4 +3718,5 @@
   <block id="446a12d919c8ace091d69571c8964509" category="paragraph">A partir do ONTAP 9,7, o NVMe/FC é compatível com o Windows Server 2022.</block>
   <block id="d26e08171a5072e33fe155b7ad5a5659" category="doc">Saiba mais sobre as configurações de host SAN</block>
   <block id="312351bff07989769097660a56395065" category="sidebar">2025</block>
+  <block id="439a17362d8592514caf19c7e8ec2147" category="list-text">Instale o utilitário Emulex HBA Manager no host do Windows.</block>
 </blocks>
