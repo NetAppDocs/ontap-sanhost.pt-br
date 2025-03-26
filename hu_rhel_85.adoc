@@ -285,6 +285,12 @@ Você não precisa configurar configurações para uma Máquina Virtual baseada 
 
 
 
+== Espelhamento ASM
+
+O espelhamento do Gerenciamento Automático de armazenamento (ASM) pode exigir alterações nas configurações de multipath do Linux para permitir que o ASM reconheça um problema e alterne para um grupo de falhas alternativo. A maioria das configurações ASM no ONTAP usa redundância externa, o que significa que a proteção de dados é fornecida pelo array externo e o ASM não espelha dados. Alguns sites usam ASM com redundância normal para fornecer espelhamento bidirecional, normalmente em diferentes sites. link:https://docs.netapp.com/us-en/ontap-apps-dbs/oracle/oracle-overview.html["Bancos de dados Oracle no ONTAP"^]Consulte para obter mais informações.
+
+
+
 == Problemas conhecidos
 
 Não há problemas conhecidos para o RHEL 8,5 com o lançamento do ONTAP.

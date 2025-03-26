@@ -320,4 +320,4 @@ As VMs Linux que executam o vSphere 8.x e posterior e que usam adaptadores NVMe 
 
 |===
 .Informações relacionadas
-link:https://docs.netapp.com/us-en/netapp-solutions/virtualization/vsphere_ontap_ontap_for_vsphere.html["TR-4597-VMware vSphere com ONTAP"^] link:https://kb.vmware.com/s/article/2031038["Suporte ao VMware vSphere 5.x, 6.x e 7.x com o NetApp MetroCluster (2031038)"^] link:https://kb.vmware.com/s/article/83370["Suporte ao VMware vSphere 6.x e 7.x com sincronização ativa do NetApp SnapMirror"^]
+link:https://docs.netapp.com/us-en/ontap-apps-dbs/vmware/vmware-vsphere-overview.html["VMware vSphere com ONTAP"^] link:https://kb.vmware.com/s/article/2031038["Suporte ao VMware vSphere 5.x, 6.x e 7.x com o NetApp MetroCluster (2031038)"^] link:https://kb.vmware.com/s/article/83370["Suporte ao VMware vSphere 6.x e 7.x com sincronização ativa do NetApp SnapMirror"^]

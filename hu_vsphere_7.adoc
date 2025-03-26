@@ -211,7 +211,7 @@ O NetApp não recomenda alterar as configurações do vVols do padrão no moment
 
 Consulte o https://imt.netapp.com/matrix/#welcome["Ferramenta de Matriz de interoperabilidade"^] para obter versões específicas das ferramentas do ONTAP ou do Fornecedor VASA legado para as suas versões específicas do vSphere e do ONTAP.
 
-Para obter informações detalhadas sobre o provisionamento e o gerenciamento de vVols, consulte as ferramentas do ONTAP para a documentação do VMware vSphere, bem link:https://docs.netapp.com/us-en/netapp-solutions/virtualization/vsphere_ontap_ontap_for_vsphere.html["TR-4597-VMware vSphere com ONTAP"^]como e link:https://www.netapp.com/pdf.html?item=/media/13555-tr4400pdf.pdf["TR-4400"^].
+Para obter informações detalhadas sobre o provisionamento e o gerenciamento de vVols, consulte as ferramentas do ONTAP para a documentação do VMware vSphere, bem link:https://docs.netapp.com/us-en/ontap-apps-dbs/vmware/vmware-vsphere-overview.html["VMware vSphere com ONTAP"^]como e link:https://docs.netapp.com/us-en/ontap-apps-dbs/vmware/vmware-vvols-overview.html["Volumes virtuais (vVols) com as ferramentas do ONTAP 10"^].
 
 
 
@@ -329,7 +329,7 @@ Use o seguinte comando para verificar o QFullSampleSize
 Não há problemas conhecidos para o VMware vSphere 7.x com a versão ONTAP.
 
 .Informações relacionadas
-* link:https://docs.netapp.com/us-en/netapp-solutions/virtualization/vsphere_ontap_ontap_for_vsphere.html["TR-4597-VMware vSphere com ONTAP"^]
+* link:https://docs.netapp.com/us-en/ontap-apps-dbs/vmware/vmware-vsphere-overview.html["VMware vSphere com ONTAP"^]
 * link:https://kb.vmware.com/s/article/2031038["Suporte ao VMware vSphere 5.x, 6.x e 7.x com o NetApp MetroCluster (2031038)"^]
 * link:https://kb.vmware.com/s/article/83370["NetApp ONTAP com sincronização ativa do NetApp SnapMirror com o VMware vSphere Metro Storage Cluster (vMSC)"^]
 
