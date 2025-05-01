@@ -4,7 +4,7 @@ permalink: hu_hpux_60.html
 keywords: host utilities, unified, oracle, linux, 7.1, netapp, ontap 
 summary: Descreve como utilizar os utilitários de anfitrião HP-UX 6,0 com armazenamento ONTAP 
 ---
-= Utilitários de host HP-UX 6,0 para armazenamento ONTAP
+= Instale os utilitários de host HP-UX 6,0 para armazenamento ONTAP
 :hardbreaks:
 :toclevels: 1
 :allow-uri-read: 

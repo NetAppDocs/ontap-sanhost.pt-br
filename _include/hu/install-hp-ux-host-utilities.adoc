@@ -1,0 +1,11 @@
+= Passo 1: Instale os utilitários de host HP-UX
+:allow-uri-read: 
+
+
+
+
+== Passo 1: Instale os utilitários de host HP-UX
+
+A NetApp recomenda fortemente a instalação dos utilitários de host Linux para suportar o gerenciamento de LUN ONTAP e auxiliar o suporte técnico na coleta de dados de configuração.
+
+link:hu_hpux_60.html["Instale os utilitários de host HP-UX 6,0"].
