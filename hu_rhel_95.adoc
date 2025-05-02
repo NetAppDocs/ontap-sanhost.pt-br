@@ -55,7 +55,7 @@ NOTE: A instalação dos Utilitários de host do Linux não altera nenhuma confi
 
 
 
-== Etapa 2: Confirme a configuração multipath do seu host
+== Etapa 3: Confirme a configuração multipath do seu host
 
 Você pode usar multipathing com RHEL 9,5 para gerenciar LUNs ONTAP.
 
