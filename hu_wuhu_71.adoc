@@ -21,7 +21,7 @@ summary: Os Utilitários de host do Windows incluem um programa de instalação 
 [role="lead"]
 Os Utilitários de host do Windows permitem que você conete um computador host do Windows aos sistemas de armazenamento do NetApp.
 
-Os Utilitários de host do Windows oferecem suporte às seguintes versões do Windows:
+O Windows Host Utilities suporta as seguintes versões do Windows:
 
 * Windows 2022
 * Windows 2019
@@ -60,7 +60,7 @@ Os Utilitários de host oferecem suporte a diferentes configurações de host do
 
 == Verifique as configurações do sistema de storage e do host
 
-Antes de instalar os Utilitários do host, você deve verificar se a versão dos Utilitários do host suporta a configuração do sistema de armazenamento e do host para que o software seja instalado corretamente.
+Verifique se a configuração do sistema de host e armazenamento é suportada antes de instalar os Utilitários de host do Windows para o <<supported-windows-versions-71,Versão Windows suportada>>.
 
 .Passos
 . Verifique a configuração suportada no http://mysupport.netapp.com/matrix["Ferramenta de Matriz de interoperabilidade"^].

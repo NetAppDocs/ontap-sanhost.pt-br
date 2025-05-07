@@ -56,7 +56,7 @@ Os Utilitários de host oferecem suporte a diferentes configurações de host do
 
 == Verifique a configuração do host e do sistema de storage
 
-Antes de instalar os Utilitários do host, você deve verificar se a versão dos Utilitários do host suporta a configuração do sistema de armazenamento e do host para que o software seja instalado corretamente.
+Verifique se a configuração do sistema de host e armazenamento é suportada antes de instalar os Utilitários de host do Windows para o <<supported-windows-versions-72,Versão Windows suportada>>.
 
 .Passos
 . Verifique a configuração suportada no http://mysupport.netapp.com/matrix["Ferramenta de Matriz de interoperabilidade"^].

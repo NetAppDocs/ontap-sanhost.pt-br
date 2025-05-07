@@ -1282,7 +1282,6 @@
   <block id="271e95bb5110c34300c9e4e30ad2991d" category="cell"><block ref="95d597fa4b68f57018df6fffa460bc20" prefix="" category="inline-code"></block></block>
   <block id="84fea991fbe5f206bc68a262753c59b8" category="cell">Exibe a versão dos Utilitários do host e HBAs FC.</block>
   <block id="6c8b96accd87b84aaf295fbc85931b98" category="section-title">Verifique as configurações do sistema de storage e do host</block>
-  <block id="700f2514d3d4cc2ed02cb06d8b922b2d" category="paragraph">Antes de instalar os Utilitários do host, você deve verificar se a versão dos Utilitários do host suporta a configuração do sistema de armazenamento e do host para que o software seja instalado corretamente.</block>
   <block id="0165fb41a35ddb937948f77394256403" category="inline-link-macro">Documentação do Windows de host SAN</block>
   <block id="6edf97e112927c25a9a1571ba78c02f9" category="list-text">Verifique os hotfixes necessários para o respetivo host no <block ref="d639dff184f4bf79d87dbc978d26f542" category="inline-link-macro-rx"></block>.</block>
   <block id="eff83cf87307f9f0c4cf876914031ade" category="inline-link-macro">Instalando hotfixes do Windows</block>
@@ -2287,7 +2286,6 @@
   <block id="db9afb1f05f1d6930c84839b76060ccc" category="open-title">Qla2xxx</block>
   <block id="5d58354522165b88ab742ec42aac9161" category="section-title">Quando contactar o suporte técnico</block>
   <block id="5206f5e3d376aae380267b11c8d7e8a0" category="sidebar">Este conteúdo fornece orientação específica para distribuição sobre como configurar clientes SAN conetados ao armazenamento ONTAP. Os clientes SAN e o storage ONTAP podem residir no local ou na nuvem.</block>
-  <block id="d1c811acf82829db30f1d8b3e6c940d6" category="sidebar">HOSTS DE SAN e clientes em nuvem</block>
   <block id="c345c92c1db74865c1b5cb8dad478651" category="sidebar">Este conteúdo fornece orientação específica para distribuição sobre como configurar clientes SAN conetados ao armazenamento ONTAP.</block>
   <block id="be11c74c1dd7f307bb80183a90dc2067" category="sidebar">Comece agora</block>
   <block id="4b983fff716674f120176e09551dd445" category="sidebar">Visão geral do produto</block>
@@ -2303,7 +2301,6 @@
   <block id="dfcc398099d6a64026e51ab282e16253" category="sidebar">Mais recursos</block>
   <block id="8f631f7b4d000947dcf86232c51cf147" category="sidebar">Todas as configurações do software SAN Array</block>
   <block id="587c9aa3c6003c9a9fa1fc9c2ceb2eaa" category="sidebar">Administração da SAN</block>
-  <block id="2275d26c218f9babebe06ed5dcc73dab" category="sidebar">Configurar hosts SAN e clientes em nuvem</block>
   <block id="069c43556e66148f1f1eeabd7e9e7872" category="sidebar">AIX Host Utilities</block>
   <block id="c10866775dae5d5cea46cbcd3d083ef2" category="sidebar">Instale o AIX HU 7,0</block>
   <block id="2ee1fba4400a50245e66ef649b54d588" category="sidebar">Instale o AIX HU 6,1</block>
@@ -3223,7 +3220,6 @@
   <block id="550d5f0555aa2a5e59269c14de819e78" category="summary">Os Utilitários de host do Windows incluem um programa de instalação que define os parâmetros necessários do Registro do Windows e do HBA para que o host do Windows manipule corretamente os comportamentos do sistema de storage para plataformas ONTAP e e-Series.</block>
   <block id="6896363d719a238fdc4b6d2ef8ef5a78" category="doc">Instale os Utilitários de host do Windows 7,1</block>
   <block id="f0ed46888b875cc5c73315cc1272f90b" category="paragraph">Os Utilitários de host do Windows permitem que você conete um computador host do Windows aos sistemas de armazenamento do NetApp.</block>
-  <block id="fd0cfddf11b707411ea1c87986350b1a" category="paragraph">Os Utilitários de host do Windows oferecem suporte às seguintes versões do Windows:</block>
   <block id="0652c88686b5ecfc5bf453239b43dbd5" category="paragraph">Os utilitários de host do Windows incluem um programa de instalação que define os parâmetros necessários do Registro do Windows e do adaptador de barramento do host (HBA) para que um host do Windows possa lidar corretamente com os comportamentos do sistema de armazenamento para plataformas ONTAP e e-Series.</block>
   <block id="2a1a96da7bfe08f1d385743c49246a17" category="paragraph">Os Utilitários de host oferecem suporte a diferentes configurações de host do Windows, protocolos e opções de multipathing. Consulte a<block ref="e29293ebfe5b9174e3113da62e6426ca" category="inline-link-rx"></block> para obter a lista atual de configurações suportadas.</block>
   <block id="440a0a613ea9d79644732dd469b879c6" category="list-text">Verifique a configuração suportada no<block ref="8202e2d9ff186d084c29140284f981f1" category="inline-link-rx"></block>.</block>
@@ -3648,7 +3644,6 @@
   <block id="f3f5e5774254d60ece67c2757e73c5fe" category="summary">Instale os Utilitários de host Linux em um host RHEL 9,5 para gerenciar operações de protocolo FCP e iSCSI com LUNs ONTAP.</block>
   <block id="bf2e2850028a550db4d4777a6c320006" category="doc">Configure o RHEL 9,5 para FCP e iSCSI com armazenamento ONTAP</block>
   <block id="9c2f294f2ce9dacd34475fe6a3fa5c52" category="paragraph">O software Utilitários de host Linux fornece ferramentas de gerenciamento e diagnóstico para hosts Linux que estão conetados ao storage ONTAP. Quando você instala os Utilitários de host do Linux em um host do Red Hat Enterprise Linux (RHEL) 9,5, você pode usar os Utilitários de host para ajudar a gerenciar operações de protocolo FCP e iSCSI com LUNs do ONTAP.</block>
-  <block id="dd8d9457c96c61b509341e8fc9c06a5a" category="section-title">Etapa 2: Confirme a configuração multipath do seu host</block>
   <block id="0f1de05675767624511aae207e8e0251" category="paragraph">Você pode usar multipathing com RHEL 9,5 para gerenciar LUNs ONTAP.</block>
   <block id="df703c7c915219367c5e3f921d60e7af" category="summary">Instale os utilitários de host Linux em um SUSE Linux Enterprise Server 12 para gerenciar operações de protocolo FCP e iSCSI com LUNs ONTAP.</block>
   <block id="43d4d647f16dbd3d230e0439558b88db" category="doc">Configure o SUSE Linux Enterprise Server 12 para FCP e iSCSI com armazenamento ONTAP</block>
@@ -3711,4 +3706,10 @@
   <block id="d29ad9efbcae6053e82420f1cc871c51" category="paragraph">Para obter informações detalhadas sobre o provisionamento e o gerenciamento de vVols, consulte as ferramentas do ONTAP para a documentação do VMware vSphere, bem<block ref="c45840700e4ab6d55371aa3a3251b306" category="inline-link-rx"></block> como e <block ref="506dc68919d50d1567e18d25faf7ae58" category="inline-link-macro-rx"></block>.</block>
   <block id="764c3360f3f7d6cb07c2ff1a79f2cf58" category="paragraph">Para obter informações detalhadas sobre o provisionamento e o gerenciamento de vVols, consulte as ferramentas do ONTAP para a documentação do VMware vSphere, bem <block ref="11b7981a4bc487d4291cc9a0614db625" category="inline-link-macro-rx"></block>como e <block ref="506dc68919d50d1567e18d25faf7ae58" category="inline-link-macro-rx"></block>.</block>
   <block id="d04eb85f6d5ba5f0fcd2c894dea16fe5" category="paragraph">Para obter informações detalhadas sobre o provisionamento e o gerenciamento de vVols, consulte as ferramentas do ONTAP para a documentação do VMware vSphere, <block ref="11b7981a4bc487d4291cc9a0614db625" category="inline-link-macro-rx"></block>e <block ref="506dc68919d50d1567e18d25faf7ae58" category="inline-link-macro-rx"></block>.</block>
+  <block id="db3880822387ba5ff86b2e765ae8e03d" category="paragraph">O Windows Host Utilities suporta as seguintes versões do Windows:</block>
+  <block id="6338107550646e4da84ebb66cf1e3b7e" category="inline-xref">Versão Windows suportada</block>
+  <block id="14aa8f54a503ff6089f17bed95d65cb6" category="paragraph">Verifique se a configuração do sistema de host e armazenamento é suportada antes de instalar os Utilitários de host do Windows para o <block ref="e07b0c094759647153725a704df4b0de" category="inline-xref-macro-rx"></block>.</block>
+  <block id="74464dd5db6f61c62453cee626aca30f" category="paragraph">Verifique se a configuração do sistema de host e armazenamento é suportada antes de instalar os Utilitários de host do Windows para o <block ref="fa2ff82d2dc57012eed1f266cf01842e" category="inline-xref-macro-rx"></block>.</block>
+  <block id="a85fe49c4f48d905593c7bce3b551763" category="sidebar">Hosts SAN ONTAP e clientes em nuvem</block>
+  <block id="6fbaf2334ca5f8d82bd9bd67bc534670" category="sidebar">Configurar hosts SAN ONTAP e clientes em nuvem</block>
 </blocks>
