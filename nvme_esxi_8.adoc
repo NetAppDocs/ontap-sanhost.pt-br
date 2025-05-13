@@ -271,28 +271,25 @@ tcp.vmnic2:34:80:0d:30:ca:e0-tcp.192.168.100.167:4420-uuid.f4f14337c3ad4a639edf0
 
 
 
-== Ativar alocação de espaço
+== NVMe desalocar
 
-A alocação de espaço é suportada para ESXi 8.x e posterior.
+O comando NVMe desalocar é compatível com ESXi 8.0u2 e posterior com o ONTAP 9.16.1 e posterior.
 
-Quando a alocação de espaço está ativada, se um namespace ficar sem espaço, o ONTAP se comunica com o host que nenhum espaço livre está disponível para operações de gravação; o namespace permanece on-line e as operações de leitura continuam sendo atendidas. As operações de gravação são retomadas quando espaço livre adicional se torna disponível. A alocação de espaço também permite que o host execute `UNMAP` (às vezes chamado `TRIM`) operações. As operações DE DESMAPEAMENTO permitem que um host identifique blocos de dados que não são mais necessários porque eles não contêm mais dados válidos. O sistema de armazenamento pode então desalocar esses blocos de dados para que o espaço possa ser consumido em outro lugar.
-
-.Antes de começar
-link:https://docs.netapp.com/us-en/ontap/san-admin/enable-space-allocation.html["Habilite a alocação de espaço no sistema de storage ONTAP"^]. Em seguida, você deve executar as seguintes etapas no host ESXi.
+O suporte a desalocar está sempre habilitado para namespaces NVMe. Desalocar também permite que o SO convidado execute operações de 'UNMAP' (às vezes chamadas de 'TRIM') em datastores VMFS. As operações de desalocar permitem que um host identifique blocos de dados que não são mais necessários porque eles não contêm mais dados válidos. O sistema de storage pode remover esses blocos de dados para que o espaço possa ser consumido em outros lugares.
 
 .Passos
-. No seu anfitrião ESXi, verifique se o DSM está desativado:
+. No seu host ESXi, verifique a configuração para DSM desalocar com suporte a TP4040:
 +
 `esxcfg-advcfg -g /SCSi/NVmeUseDsmTp4040`
 
 +
 O valor esperado é 0.
 
-. Ativar o NVMe DSM:
+. Ative a definição para DSM desalocar com suporte a TP4040:
 +
 `esxcfg-advcfg -s 1 /Scsi/NvmeUseDsmTp4040`
 
-. Verifique se o DSM está ativado:
+. Verifique se a definição para DSM desalocar com suporte a TP4040 está ativada:
 +
 `esxcfg-advcfg -g /SCSi/NVmeUseDsmTp4040`
 
@@ -300,6 +297,8 @@ O valor esperado é 0.
 O valor esperado é 1.
 
 
+
+Para obter mais informações sobre o NVMe desalocar no VMware vSphere, consulte https://techdocs.broadcom.com/us/en/vmware-cis/vsphere/vsphere/8-0/vsphere-storage-8-0/storage-provisioning-and-space-reclamation-in-vsphere/storage-space-reclamation-in-vsphere.html["Recuperação de espaço de armazenamento no vSphere"^]
 
 
 
