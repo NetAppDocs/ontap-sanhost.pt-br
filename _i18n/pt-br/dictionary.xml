@@ -3702,8 +3702,6 @@
   <block id="6338107550646e4da84ebb66cf1e3b7e" category="inline-xref">Versão Windows suportada</block>
   <block id="14aa8f54a503ff6089f17bed95d65cb6" category="paragraph">Verifique se a configuração do sistema de host e armazenamento é suportada antes de instalar os Utilitários de host do Windows para o <block ref="e07b0c094759647153725a704df4b0de" category="inline-xref-macro-rx"></block>.</block>
   <block id="74464dd5db6f61c62453cee626aca30f" category="paragraph">Verifique se a configuração do sistema de host e armazenamento é suportada antes de instalar os Utilitários de host do Windows para o <block ref="fa2ff82d2dc57012eed1f266cf01842e" category="inline-xref-macro-rx"></block>.</block>
-  <block id="a85fe49c4f48d905593c7bce3b551763" category="sidebar">Hosts SAN ONTAP e clientes em nuvem</block>
-  <block id="6fbaf2334ca5f8d82bd9bd67bc534670" category="sidebar">Configurar hosts SAN ONTAP e clientes em nuvem</block>
   <block id="c6c1a6259bdf26d263bd4a9472d66719" category="section-title">NVMe desalocar</block>
   <block id="f384bde747b94f669a3fa94059005a05" category="paragraph">O comando NVMe desalocar é compatível com ESXi 8.0u2 e posterior com o ONTAP 9.16.1 e posterior.</block>
   <block id="098d6b2a9e23cc2be9c1426e0cde97a4" category="paragraph">O suporte a desalocar está sempre habilitado para namespaces NVMe. Desalocar também permite que o SO convidado execute operações de 'UNMAP' (às vezes chamadas de 'TRIM') em datastores VMFS. As operações de desalocar permitem que um host identifique blocos de dados que não são mais necessários porque eles não contêm mais dados válidos. O sistema de storage pode remover esses blocos de dados para que o espaço possa ser consumido em outros lugares.</block>
@@ -3712,4 +3710,6 @@
   <block id="6026c444a91983a6b5a6dcb031503f89" category="list-text">Verifique se a definição para DSM desalocar com suporte a TP4040 está ativada:</block>
   <block id="b666f1fcf3d24bdf8d1596c592783e04" category="inline-link">Recuperação de espaço de armazenamento no vSphere</block>
   <block id="e2b29f49797a2325ae454b80e6aecf4a" category="paragraph">Para obter mais informações sobre o NVMe desalocar no VMware vSphere, consulte<block ref="c446d1e3b484512e9ba1bbe8eab259bf" category="inline-link-rx"></block></block>
+  <block id="e99f28bee3ac5bad6e5414411cd5ffa0" category="sidebar">Utilitários de host SAN ONTAP</block>
+  <block id="2275d26c218f9babebe06ed5dcc73dab" category="sidebar">Configurar hosts SAN e clientes em nuvem</block>
 </blocks>
