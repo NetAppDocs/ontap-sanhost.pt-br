@@ -19,7 +19,7 @@ summary: Instale os Utilitários de host Linux em um host RHEL 9,3 para gerencia
 O software Utilitários de host Linux fornece ferramentas de gerenciamento e diagnóstico para hosts Linux que estão conetados ao storage ONTAP. Quando você instala os Utilitários de host do Linux em um host do Red Hat Enterprise Linux (RHEL) 9,3, você pode usar os Utilitários de host para ajudar a gerenciar operações de protocolo FCP e iSCSI com LUNs do ONTAP.
 
 
-NOTE: Você não precisa configurar as configurações de máquina virtual baseada em Kernel porque os LUNs ONTAP são mapeados automaticamente para o hipervisor KVM.
+NOTE: Você não precisa configurar manualmente as definições da Máquina Virtual baseada em Kernel (KVM) porque os LUNs ONTAP são mapeados automaticamente para o hipervisor.
 
 
 

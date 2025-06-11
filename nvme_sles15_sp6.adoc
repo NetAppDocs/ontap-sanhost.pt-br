@@ -250,7 +250,7 @@ A partir do SUSE Linux Enterprise Server 15 SP6, os `nvmefc-boot-connections.ser
 .Passos
 . Verifique se `nvmf-autoconnect.service` está ativado:
 +
-`# systemctl status nvmf-autoconnect.service`
+`systemctl status nvmf-autoconnect.service`
 
 +
 .Mostrar exemplo de saída
@@ -273,7 +273,7 @@ systemd[1]: Finished Connect NVMe-oF subsystems automatically during boot.
 ====
 . Verifique se `nvmefc-boot-connections.service` está ativado:
 +
-`# systemctl status nvmefc-boot-connections.service`
+`systemctl status nvmefc-boot-connections.service`
 
 +
 .Mostrar exemplo de saída
@@ -413,10 +413,10 @@ nvme discover -t tcp -w <host-traddr> -a <traddr>
 .Exemplo de saída
 [listing]
 ----
-#nvme discover -t tcp -w 192.168.111.79 -a 192.168.111.66
-#nvme discover -t tcp -w 192.168.111.79 -a 192.168.111.67
-#nvme discover -t tcp -w 192.168.211.79 -a 192.168.211.66
-#nvme discover -t tcp -w 192.168.211.79 -a 192.168.211.67
+nvme discover -t tcp -w 192.168.111.79 -a 192.168.111.66
+nvme discover -t tcp -w 192.168.111.79 -a 192.168.111.67
+nvme discover -t tcp -w 192.168.211.79 -a 192.168.211.66
+nvme discover -t tcp -w 192.168.211.79 -a 192.168.211.67
 ----
 . Execute o `nvme connect-all` comando em todos os LIFs de destino iniciador NVMe/TCP suportados nos nós:
 +
@@ -428,10 +428,10 @@ nvme connect-all -t tcp -w <host-traddr> -a <traddr>
 .Exemplo de saída
 [listing]
 ----
-# nvme connect-all -t tcp -w 192.168.111.79 -a 192.168.111.66
-# nvme connect-all -t tcp -w 192.168.111.79 -a 192.168.111.67
-# nvme connect-all -t tcp -w 192.168.211.79 -a 192.168.211.66
-# nvme connect-all -t tcp -w 192.168.211.79 -a 192.168.211.67
+nvme connect-all -t tcp -w 192.168.111.79 -a 192.168.111.66
+nvme connect-all -t tcp -w 192.168.111.79 -a 192.168.111.67
+nvme connect-all -t tcp -w 192.168.211.79 -a 192.168.211.66
+nvme connect-all -t tcp -w 192.168.211.79 -a 192.168.211.67
 ----
 +
 
@@ -808,7 +808,7 @@ No exemplo a seguir, uma chave dhchap aleatória com HMAC definido como 3 (SHA-5
 +
 [listing]
 ----
-# nvme gen-dhchap-key -m 3 -n nqn.2014-08.org.nvmexpress:uuid:d3ca725a- ac8d-4d88-b46a-174ac235139b
+nvme gen-dhchap-key -m 3 -n nqn.2014-08.org.nvmexpress:uuid:d3ca725a- ac8d-4d88-b46a-174ac235139b
 DHHC-1:03:J2UJQfj9f0pLnpF/ASDJRTyILKJRr5CougGpGdQSysPrLu6RW1fGl5VSjbeDF1n1DEh3nVBe19nQ/LxreSBeH/bx/pU=:
 ----
 . No controlador ONTAP, adicione o host e especifique ambas as chaves dhchap:
@@ -837,7 +837,7 @@ cat /sys/class/nvme-subsystem/<nvme-subsysX>/nvme*/dhchap_secret
 =====
 [listing]
 ----
-# cat /sys/class/nvme-subsystem/nvme-subsys1/nvme*/dhchap_secret
+cat /sys/class/nvme-subsystem/nvme-subsys1/nvme*/dhchap_secret
 DHHC-1:03:je1nQCmjJLUKD62mpYbzlpuw0OIws86NB96uNO/t3jbvhp7fjyR9bIRjOHg8wQtye1JCFSMkBQH3pTKGdYR1OV9gx00=:
 DHHC-1:03:je1nQCmjJLUKD62mpYbzlpuw0OIws86NB96uNO/t3jbvhp7fjyR9bIRjOHg8wQtye1JCFSMkBQH3pTKGdYR1OV9gx00=:
 DHHC-1:03:je1nQCmjJLUKD62mpYbzlpuw0OIws86NB96uNO/t3jbvhp7fjyR9bIRjOHg8wQtye1JCFSMkBQH3pTKGdYR1OV9gx00=:
@@ -856,7 +856,7 @@ cat /sys/class/nvme-subsystem/<nvme-subsysX>/nvme*/dhchap_ctrl_secret
 =====
 [listing]
 ----
-# cat /sys/class/nvme-subsystem/nvme-subsys6/nvme*/dhchap_ctrl_secret
+cat /sys/class/nvme-subsystem/nvme-subsys6/nvme*/dhchap_ctrl_secret
 DHHC-1:03:WorVEV83eYO53kV4Iel5OpphbX5LAphO3F8fgH3913tlrkSGDBJTt3crXeTUB8fCwGbPsEyz6CXxdQJi6kbn4IzmkFU=:
 DHHC-1:03:WorVEV83eYO53kV4Iel5OpphbX5LAphO3F8fgH3913tlrkSGDBJTt3crXeTUB8fCwGbPsEyz6CXxdQJi6kbn4IzmkFU=:
 DHHC-1:03:WorVEV83eYO53kV4Iel5OpphbX5LAphO3F8fgH3913tlrkSGDBJTt3crXeTUB8fCwGbPsEyz6CXxdQJi6kbn4IzmkFU=:
@@ -882,7 +882,7 @@ Para gerar o arquivo JSON, você pode usar a `-o` opção. Consulte as páginas 
 =====
 [listing]
 ----
-# cat /etc/nvme/config.json
+cat /etc/nvme/config.json
 [
  {
     "hostnqn":"nqn.2014-08.org.nvmexpress:uuid:12372496-59c4-4d1b-be09-74362c0c1afc",
@@ -944,7 +944,7 @@ NOTE: No exemplo anterior, `dhchap_key` corresponde `dhchap_secret` e `dhchap_ct
 +
 [listing]
 ----
-# nvme connect-all -J /etc/nvme/config.json
+nvme connect-all -J /etc/nvme/config.json
 ----
 +
 .Mostrar exemplo de saída
@@ -972,7 +972,7 @@ traddr=192.168.111.67 is already connected
 +
 [listing]
 ----
-# cat /sys/class/nvme-subsystem/nvme-subsys0/nvme0/dhchap_secret
+cat /sys/class/nvme-subsystem/nvme-subsys0/nvme0/dhchap_secret
 ----
 +
 .Exemplo de saída
@@ -984,7 +984,7 @@ DHHC-1:01:NunEWY7AZlXqxITGheByarwZdQvU4ebZg9HOjIr6nOHEkxJg:
 +
 [listing]
 ----
-# cat /sys/class/nvme-subsystem/nvme-subsys0/nvme0/dhchap_ctrl_secret
+cat /sys/class/nvme-subsystem/nvme-subsys0/nvme0/dhchap_ctrl_secret
 ----
 +
 .Exemplo de saída
@@ -1006,7 +1006,7 @@ DHHC-
 O Transport Layer Security (TLS) fornece criptografia completa segura para conexões NVMe entre hosts NVMe-of e um array ONTAP. A partir do ONTAP 9.16,1, você pode configurar o TLS 1,3 usando a CLI e uma chave pré-compartilhada (PSK) configurada.
 
 .Sobre esta tarefa
-Execute as etapas deste procedimento no host do SUSE Linux Enterprise Server 15 SP6, exceto onde ele especifica que você executa uma etapa no controlador ONTAP.
+Execute as etapas deste procedimento no host do SUSE Linux Enterprise Server, exceto quando for especificado que você execute uma etapa no controlador ONTAP.
 
 .Passos
 . Verifique se você tem os seguintes pacotes ktls-utils, openssl e libopenssl instalados no host:
@@ -1033,7 +1033,7 @@ libopenssl3-3.1.4-150600.5.7.1.x86_64
 +
 [listing]
 ----
-# cat /etc/tlshd.conf
+cat /etc/tlshd.conf
 ----
 +
 .Mostrar exemplo de saída
@@ -1061,13 +1061,13 @@ nl=0
 +
 [listing]
 ----
-# systemctl enable tlshd
+systemctl enable tlshd
 ----
 . Verifique se o `tlshd` daemon está em execução:
 +
 [listing]
 ----
-# systemctl status tlshd
+systemctl status tlshd
 ----
 +
 .Mostrar exemplo de saída
@@ -1089,14 +1089,14 @@ Aug 21 15:46:54 RX2530-M4-17-153 tlshd[961]: Built from ktls-utils 0.11-dev on M
 ====
 . Gere o TLS PSK utilizando o `nvme gen-tls-key`:
 +
-.. `# cat /etc/nvme/hostnqn`
+.. `cat /etc/nvme/hostnqn`
 +
 .Exemplo de saída
 [listing]
 ----
 nqn.2014-08.org.nvmexpress:uuid:e58eca24-faff-11ea-8fee-3a68dd3b5c5f
 ----
-.. `# nvme gen-tls-key --hmac=1 --identity=1 --subsysnqn=nqn.1992-08.com.netapp:sn.1d59a6b2416b11ef9ed5d039ea50acb3:subsystem.sles15`
+.. `nvme gen-tls-key --hmac=1 --identity=1 --subsysnqn=nqn.1992-08.com.netapp:sn.1d59a6b2416b11ef9ed5d039ea50acb3:subsystem.sles15`
 +
 .Exemplo de saída
 [listing]
@@ -1105,17 +1105,17 @@ NVMeTLSkey-1:01:dNcby017axByCko8GivzOO9zGlgHDXJCN6KLzvYoA+NpT1uD:
 ----
 
 
-. No controlador ONTAP, adicione o TLS PSK ao subsistema ONTAP:
+. No array ONTAP, adicione o TLS PSK ao subsistema ONTAP:
 +
 [listing]
 ----
-# nvme subsystem host add -vserver sles15_tls -subsystem sles15 -host-nqn nqn.2014-08.org.nvmexpress:uuid:ffa0c815-e28b-4bb1-8d4c-7c6d5e610bfc -tls-configured-psk NVMeTLSkey-1:01:dNcby017axByCko8GivzOO9zGlgHDXJCN6KLzvYoA+NpT1uD:
+vserver nvme subsystem host add -vserver sles15_tls -subsystem sles15 -host-nqn nqn.2014-08.org.nvmexpress:uuid:e58eca24-faff-11ea-8fee-3a68dd3b5c5f -tls-configured-psk NVMeTLSkey-1:01:dNcby017axByCko8GivzOO9zGlgHDXJCN6KLzvYoA+NpT1uD:
 ----
-. Insira o TLS PSK no chaveiro do kernel do host:
+. No host do SUSE Linux Enterprise Server, insira o TLS PSK no conjunto de chaves do kernel do host:
 +
 [listing]
 ----
-# nvme check-tls-key --identity=1 --subsysnqn=nqn.2014-08.org.nvmexpress:uuid:ffa0c815-e28b-4bb1-8d4c-7c6d5e610bf --keydata=NVMeTLSkey-1:01:dNcby017axByCko8GivzOO9zGlgHDXJCN6KLzvYoA+NpT1uD: --insert
+nvme check-tls-key --identity=1 --subsysnqn =nqn.1992-08.com.netapp:sn.1d59a6b2416b11ef9ed5d039ea50acb3:subsystem.sles15 --keydata=NVMeTLSkey-1:01:dNcby017axByCko8GivzOO9zGlgHDXJCN6KLzvYoA+NpT1uD: --insert
 ----
 +
 .Exemplo de saída
@@ -1131,7 +1131,7 @@ NOTE: O PSK é exibido como "NVMe1R01" porque usa "Identity v1" do algoritmo de 
 +
 [listing]
 ----
-# cat /proc/keys | grep NVMe
+cat /proc/keys | grep NVMe
 ----
 +
 .Exemplo de saída
@@ -1139,16 +1139,16 @@ NOTE: O PSK é exibido como "NVMe1R01" porque usa "Identity v1" do algoritmo de 
 ----
 22152a7e I--Q---     1 perm 3b010000     0     0 psk       NVMe1R01 nqn.2014-08.org.nvmexpress:uuid:ffa0c815-e28b-4bb1-8d4c-7c6d5e610bfc nqn.1992-08.com.netapp:sn.1d59a6b2416b11ef9ed5d039ea50acb3:subsystem.sles15 UoP9dEfvuCUzzpS0DYxnshKDapZYmvA0/RJJ8JAqmAo=: 32
 ----
-. Conete-se ao subsistema ONTAP usando o TLS PSK inserido:
+. No host do SUSE Linux Enterprise Server, conecte-se ao subsistema ONTAP usando o TLS PSK inserido:
 +
-.. `# nvme connect -t tcp -w 20.20.10.80 -a 20.20.10.14 -n nqn.1992-08.com.netapp:sn.1d59a6b2416b11ef9ed5d039ea50acb3:subsystem.sles15 --tls_key=0x22152a7e --tls`
+.. `nvme connect -t tcp -w 20.20.10.80 -a 20.20.10.14 -n nqn.1992-08.com.netapp:sn.1d59a6b2416b11ef9ed5d039ea50acb3:subsystem.sles15 --tls_key=0x22152a7e --tls`
 +
 .Exemplo de saída
 [listing]
 ----
 connecting to device: nvme0
 ----
-.. `# nvme list-subsys`
+.. `nvme list-subsys`
 +
 .Exemplo de saída
 [listing]
@@ -1163,7 +1163,7 @@ nvme-subsys0 - NQN=nqn.1992-08.com.netapp:sn.1d59a6b2416b11ef9ed5d039ea50acb3:su
 
 . Adicione o destino e verifique a conexão TLS ao subsistema ONTAP especificado:
 +
-`# nvme subsystem controller show -vserver sles15_tls -subsystem sles15 -instance`
+`nvme subsystem controller show -vserver sles15_tls -subsystem sles15 -instance`
 
 +
 .Mostrar exemplo de saída
@@ -1206,4 +1206,4 @@ Authentication Diffie-Hellman Group: -
 
 == Problemas conhecidos
 
-Não há problemas conhecidos para o SUSE Linux Enterprise Server 15 SP6 com a versão ONTAP.
+Não há problemas conhecidos.
