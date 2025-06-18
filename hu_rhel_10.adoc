@@ -210,7 +210,7 @@ Se necessário, você pode excluir um dispositivo de multipathing adicionando o 
 +
 [source, cli]
 ----
-# /lib/udev/scsi_id -gud /dev/sda
+/lib/udev/scsi_id -gud /dev/sda
 ----
 +
 "sda" é o disco SCSI local que você deseja adicionar à lista negra.

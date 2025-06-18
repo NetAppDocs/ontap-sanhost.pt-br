@@ -3766,4 +3766,22 @@
   <block id="b4da3417a3bbac7760c5f326458d9927" category="sidebar">RHEL 10</block>
   <block id="63da114c28add40c319de84e3a92a8ed" category="sidebar">RHEL-10-FCP</block>
   <block id="43a1437f7f656cd8be7c996c58719e0a" category="sidebar">10,0</block>
+  <block id="282e82c820d3f500a969ebb9a9054584" category="summary">Instale os Utilitários de host Linux em um host RHEL 9,6 para gerenciar operações de protocolo FCP e iSCSI com LUNs ONTAP.</block>
+  <block id="f4e7617d1cef5f8ab23add41d40625fb" category="doc">Configure o RHEL 9,6 para FCP e iSCSI com armazenamento ONTAP</block>
+  <block id="5cecbf0e006813819e7ea0d92ccca8df" category="paragraph">O software Utilitários de host Linux fornece ferramentas de gerenciamento e diagnóstico para hosts Linux que estão conetados ao storage ONTAP. Quando você instala os Utilitários de host do Linux em um host do Red Hat Enterprise Linux (RHEL) 9,6, você pode usar os Utilitários de host para ajudar a gerenciar operações de protocolo FCP e iSCSI com LUNs do ONTAP.</block>
+  <block id="c655b9821bde0a911428a133bb7ef67f" category="paragraph">Você pode usar multipathing com RHEL 9,6 para gerenciar LUNs ONTAP.</block>
+  <block id="6cbcd68038ece1dbafa173add2c90697" category="summary">Como configurar o host NVMe-of para RHEL 9,6 com o ONTAP</block>
+  <block id="3dff0e4b77025c9e0739e3b02b3ff268" category="doc">Configuração de host NVMe-of para RHEL 9,6 com ONTAP</block>
+  <block id="fdee72360607bede29fc52844f306e62" category="paragraph">Você pode usar o suporte e os recursos a seguir com a configuração de host NVMe-of para Red Hat Enterprise Linux (RHEL) 9,6. Você também deve rever as limitações conhecidas antes de iniciar o processo de configuração.</block>
+  <block id="770bddea589c1a8e5b2541551754b4e4" category="list-text">O RHEL 9,6 habilita o multipath NVMe no kernel para namespaces NVMe por padrão, eliminando a necessidade de configurações explícitas.</block>
+  <block id="e118d7e4742cf0454d407a22991c4f23" category="list-text">A partir do ONTAP 9.12.1, o suporte para autenticação segura em banda é introduzido para NVMe/TCP. Você pode usar autenticação segura em banda para NVMe/TCP com o RHEL 9,6.</block>
+  <block id="027d24fe581a1889d6b5752e3886e380" category="list-text">Não há novos recursos disponíveis.</block>
+  <block id="3b6f23fb41215bfbde13af4b92268902" category="paragraph">Use o procedimento a seguir para validar as versões mínimas de software RHEL 9,6 suportadas.</block>
+  <block id="61e91ca529ce5516397f8af4ff223ab0" category="list-text">Instale o RHEL 9,6 no servidor. Depois que a instalação estiver concluída, verifique se você está executando o kernel RHEL 9,6 especificado:</block>
+  <block id="deeefe26777fb24a155fd5e2eac9f23b" category="paragraph">O exemplo a seguir mostra uma versão do pacote nvme-cli:</block>
+  <block id="a33245ebb2f380b62ab218a312110f3a" category="list-text">No host RHEL 9,6, verifique a string hostnqn em<block ref="7c33f184451a7567af5a5fb5f2bc7ae1" prefix=" " category="inline-code"></block>:</block>
+  <block id="844df812cde8ebcaf9f2cc35022248c6" category="paragraph">Com o RHEL 9.6, o <block ref="0578ea8f8272d56d0053a8f2cddaf7f4" prefix=" " category="inline-code"></block> e <block ref="fbbb90e94554669f250473b3b15ddd4e" prefix=" " category="inline-code"></block> serviços de inicialização incluídos no NVMe/FC <block ref="e1667929105bf030b9f367fc21f8d216" prefix=" " category="inline-code"></block> Os pacotes são habilitados automaticamente para iniciar durante a inicialização do sistema. Após a conclusão da inicialização do sistema, verifique se os serviços de inicialização estão habilitados.</block>
+  <block id="103bbc9741f09ef806d7d9f1ff8e4957" category="paragraph">A partir do ONTAP 9.12.1, a autenticação segura em banda é suportada via NVMe/TCP entre um host RHEL 9,6 e um controlador ONTAP.</block>
+  <block id="c76dae5432bc09fa983706505086692e" category="list-text">Gere a chave dhchap para o host RHEL 9,6.</block>
+  <block id="eaf2f97729e8d5e4d205672da8afc9a5" category="sidebar">9,6</block>
 </blocks>
