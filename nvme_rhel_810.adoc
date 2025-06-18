@@ -36,6 +36,27 @@ Para obter detalhes adicionais sobre as configurações suportadas, consulte o l
 
 
 
+== Ativar a inicialização de SAN
+
+Você pode configurar seu host para usar a inicialização SAN para simplificar a implantação e melhorar a escalabilidade.
+
+.Antes de começar
+Use o link:https://mysupport.netapp.com/matrix/#welcome["Ferramenta de Matriz de interoperabilidade"^] para verificar se o sistema operacional Linux, o adaptador de barramento do host (HBA), o firmware HBA, o BIOS de inicialização HBA e a versão do ONTAP suportam inicialização por SAN.
+
+.Passos
+. Crie um namespace de inicialização SAN e mapeie-o para o host.
++
+ https://docs.netapp.com/us-en/ontap/san-admin/create-nvme-namespace-subsystem-task.html["Provisionamento de storage NVMe"^]Consulte .
+
+. Ative a inicialização SAN no BIOS do servidor para as portas às quais o LUN de inicialização SAN está mapeado.
++
+Para obter informações sobre como ativar o BIOS HBA, consulte a documentação específica do fornecedor.
+
+. Verifique se a configuração foi bem-sucedida reinicializando o host e verificando se o sistema operacional está funcionando.
+
+
+
+
 == Ative o multipath no kernel
 
 Você pode usar o procedimento a seguir para ativar o multipath no kernel.
@@ -285,10 +306,13 @@ NOTE: Essas etapas não se aplicam a hosts Qlogic NVMe/FC.
 .Passos
 . Defina `lpfc_sg_seg_cnt` o parâmetro como 256:
 +
-[listing]
+[source, cli]
 ----
 cat /etc/modprobe.d/lpfc.conf
 ----
++
+Você deverá ver uma saída semelhante ao exemplo a seguir:
+
 +
 [listing]
 ----
@@ -297,7 +321,7 @@ options lpfc lpfc_sg_seg_cnt=256
 . Execute o `dracut -f` comando e reinicie o host.
 . Verifique se o valor para `lpfc_sg_seg_cnt` é 256:
 +
-[listing]
+[source, cli]
 ----
 cat /sys/module/lpfc/parameters/lpfc_sg_seg_cnt
 ----

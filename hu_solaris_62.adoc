@@ -108,7 +108,7 @@ drwxr-xr-x   3 root     sys            4 Jul 22  2019 ..
 
 
 
-== Kit de ferramentas SAN
+== Habilitar kit de ferramentas SAN
 
 Os Utilitários de host do NetApp são um software host que fornece um kit de ferramentas de linha de comando em seu host do Oracle Solaris. O kit de ferramentas é instalado quando você instala o pacote de utilitários de host do NetApp. Este kit fornece o `sanlun` utilitário que ajuda você a gerenciar LUNs e adaptadores de barramento de host (HBAs). O `sanlun` comando retorna informações sobre os LUNs mapeados para o seu host, multipathing e informações necessárias para criar grupos de iniciadores.
 
