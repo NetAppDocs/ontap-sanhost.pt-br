@@ -1,0 +1,145 @@
+= 
+:allow-uri-read: 
+
+
+Para garantir que o multipathing esteja configurado corretamente para o host, verifique se o `/etc/multipath.conf` arquivo está definido e se você tem as configurações recomendadas do NetApp configuradas para os LUNs do ONTAP.
+
+.Passos
+. Verifique se o  `/etc/multipath.conf` arquivo existe. Se o arquivo não existir, crie um arquivo vazio de zero bytes:
++
+[source, cli]
+----
+touch /etc/multipath.conf
+----
+. Na primeira vez que o `multipath.conf` arquivo é criado, talvez seja necessário ativar e iniciar os serviços multipath para carregar as configurações recomendadas:
++
+[source, cli]
+----
+systemctl enable multipathd
+----
++
+[source, cli]
+----
+systemctl start multipathd
+----
+. Cada vez que você inicializar o host, o arquivo vazio de `/etc/multipath.conf` zero byte carrega automaticamente os parâmetros de multipath de host recomendados pelo NetApp como as configurações padrão. Você não deve precisar fazer alterações no `/etc/multipath.conf` arquivo para o seu host porque o sistema operacional do host é compilado com os parâmetros multipath que reconhecem e gerenciam LUNs ONTAP corretamente.
++
+A tabela a seguir mostra as configurações de parâmetros multipath compilados pelo sistema operacional Linux nativo para LUNs ONTAP.
+
++
+.Mostrar definições de parâmetros
+[%collapsible]
+====
+[cols="2"]
+|===
+| Parâmetro | Definição 
+
+
+| detectar_prio | sim 
+
+
+| dev_loss_tmo | "infinito" 
+
+
+| failback | imediato 
+
+
+| fast_io_fail_tmo | 5 
+
+
+| caraterísticas | "3 queue_if_no_path pg_init_retries 50" 
+
+
+| flush_on_last_del | "sim" 
+
+
+| hardware_handler | "0" 
+
+
+| no_path_retry | fila de espera 
+
+
+| path_checker | "tur" 
+
+
+| path_grouing_policy | "group_by_prio" 
+
+
+| path_selector | "tempo de serviço 0" 
+
+
+| polling_interval | 5 
+
+
+| prio | "ONTAP" 
+
+
+| produto | LUN 
+
+
+| reter_anexado_hw_handler | sim 
+
+
+| rr_peso | "uniforme" 
+
+
+| user_friendly_names | não 
+
+
+| fornecedor | NetApp 
+|===
+====
+. Verifique as configurações de parâmetros e o status do caminho para os LUNs do ONTAP:
++
+[source, cli]
+----
+/sbin/mpathutil list
+----
++
+Os parâmetros multipath padrão são compatíveis com configurações ASA, AFF e FAS. Nessas configurações, um único LUN ONTAP não deve exigir mais de quatro caminhos. Se houver mais de quatro caminhos, isso pode causar problemas com os caminhos durante uma falha de storage.
+
++
+As saídas de exemplo a seguir mostram as configurações de parâmetro e o status do caminho corretos para LUNs ONTAP em uma configuração ASA, AFF ou FAS.
+
++
+[role="tabbed-block"]
+====
+.Configuração ASA
+--
+Uma configuração do ASA otimiza todos os caminhos para um determinado LUN, mantendo-os ativos. Isso melhora a performance atendendo operações de e/S em todos os caminhos ao mesmo tempo.
+
+[listing]
+----
+/usr/sbin/mpathutil status
+show topology
+create: 3600a098038315045572b5930646f4b63 dm-1 NETAPP  ,LUN C-Mode
+size=9.0G features='4 queue_if_no_path pg_init_retries 50 retain_attached_hw_handle' hwhandler='1 alua' wp=rw
+`-+- policy='service-time 0' prio=50 status=active
+  |- 15:0:0:0  sdb  8:16    active ready running
+  |- 15:0:1:0  sdc  8:32    active ready running
+  |- 16:0:0:0  sdcf 69:48   active ready running
+  `- 16:0:1:0  sdcg 69:64   active ready running
+----
+--
+.Configuração AFF ou FAS
+--
+Uma configuração AFF ou FAS deve ter dois grupos de caminhos com prioridades maiores e menores. Os caminhos ativos/otimizados de prioridade mais alta são servidos pelo controlador onde o agregado está localizado. Os caminhos de prioridade mais baixa estão ativos, mas não otimizados, porque são servidos por um controlador diferente. Caminhos não otimizados são usados somente quando caminhos otimizados não estão disponíveis.
+
+O exemplo a seguir exibe a saída de um LUN ONTAP com dois caminhos ativos/otimizados e dois caminhos ativos/não otimizados:
+
+[listing]
+----
+/usr/sbin/mpathutil status
+show topology
+create: 3600a098038315045572b5930646f4b63 dm-1 NETAPP  ,LUN C-Mode
+size=9.0G features='4 queue_if_no_path pg_init_retries 50 retain_attached_hw_handle' hwhandler='1 alua' wp=rw
+|-+- policy='service-time 0' prio=50 status=active
+  |- 15:0:0:0  sdb  8:16    active ready running
+  `- 15:0:1:0  sdc  8:32    active ready running
+`-+- policy='service-time 0' prio=50 status=active
+     |- 16:0:0:0  sdcf 69:48   active ready running
+     `- 16:0:1:0  sdcg 69:64   active ready running
+----
+--
+====
+
