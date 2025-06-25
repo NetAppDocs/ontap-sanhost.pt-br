@@ -476,40 +476,8 @@
   <block id="ce3a5b68105f43a3d184859ea230ccb6" category="paragraph">Você pode usar as configurações de host SAN ONTAP para configurar o CentOS 8,5 com ONTAP como destino.</block>
   <block id="60d0d78dbe9bb18e16690c35ce6867e1" category="paragraph">Para o CentOS 8,5 o<block ref="dd5ff67ba72768d33f75e645aa2b8e56" prefix=" " category="inline-code"></block> arquivo deve existir, mas não é necessário fazer alterações específicas no arquivo. O CentOS 8,5 é compilado com todas as configurações necessárias para reconhecer e gerenciar corretamente LUNs ONTAP.</block>
   <block id="fd586a803662833af2a4932bc04d30c2" category="paragraph">O CentOS 8,5 os é compilado para reconhecer LUNs ONTAP e definir automaticamente todos os parâmetros de configuração corretamente para configurações ASA e não-ASA.</block>
-  <block id="33fb3916b5bbccadc7502b97d2b47e0a" category="summary">Descreve como usar o Citrix XenServer 7.x com o ONTAP</block>
-  <block id="9f0988d93d2475f41e07c537ac5637e6" category="doc">Use o Citrix XenServer com ONTAP</block>
-  <block id="4a09c73fa303eedb14779e29343fb862" category="paragraph">Você pode configurar as configurações de host SAN ONTAP para versões do sistema operacional Citrix XenServer série 7 com protocolos FC, FCoE e iSCSI.</block>
-  <block id="a51e3210f96458fa393e6f4bf88caabc" category="paragraph">O suporte de multipath no Citrix XenServer é baseado nos componentes Multipathd do Device Mapper. Os nós de mapeamento de dispositivos não são criados automaticamente para todos os LUNs apresentados ao XenServer e são provisionados somente quando os LUNs são usados ativamente pela camada de gerenciamento de storage (API). O plug-in da API do Citrix XenServer Storage Manager lida com a ativação e desativação automática de nós multipath.</block>
   <block id="dba35953d3af1713968cdc2eba05813a" category="section-title">Configuração de todas as matrizes SAN</block>
   <block id="697675a4c21edc6fc07599249d9fe748" category="paragraph">Em todas as configurações de storage SAN (ASA), todos os caminhos para uma determinada unidade lógica (LUN) estão ativos e otimizados. Isso significa que a e/S pode ser servida por todos os caminhos ao mesmo tempo, permitindo assim um melhor desempenho.</block>
-  <block id="c03432d938277a67cb7c8ce5d783b2ca" category="paragraph">O exemplo a seguir exibe a saída correta para um LUN ONTAP com todos os quatro caminhos ativos/otimizados:</block>
-  <block id="9fc86c956b59ea355d470ac30580447a" category="paragraph">O Citrix XenServer 7.x os é compilado com todas as configurações necessárias para reconhecer e gerenciar corretamente LUNs ONTAP. Para o Citrix XenServer 7.x, um arquivo de zerobyte vazio<block ref="dd5ff67ba72768d33f75e645aa2b8e56" prefix=" " category="inline-code"></block> deve existir, mas você não precisa fazer alterações específicas no arquivo.</block>
-  <block id="410267f88a5f79f5d40838a8e7a35e62" category="paragraph">Ative o serviço multipath do host a partir do *XenCenter Management Portal* e verifique se o serviço multipath está ativado e em execução.</block>
-  <block id="4e6815a5eaf606ab0b37b61763f811c3" category="paragraph">Não há necessidade de anexar conteúdo ao<block ref="dd5ff67ba72768d33f75e645aa2b8e56" prefix=" " category="inline-code"></block> arquivo, a menos que você tenha dispositivos que não deseja que o multipath gerencie ou que você tenha configurações existentes que substituem os padrões. Você pode adicionar a seguinte sintaxe ao<block ref="9ac80d53ede05256c28cf9e043eb423c" prefix=" " category="inline-code"></block> arquivo para excluir os dispositivos indesejados.</block>
-  <block id="b00ab7c17a141468a5921157cdf11ec3" category="admonition">Substitua o *&lt;DevID&gt;* pela cadeia WWID do dispositivo que você deseja excluir.</block>
-  <block id="ff73d7e0f0c6051bbd80575105bb1cb1" category="list-text">Adicione este WWID à estrofe da lista negra no<block ref="dd5ff67ba72768d33f75e645aa2b8e56" prefix=" " category="inline-code"></block>:</block>
-  <block id="ec8b35f300ba884a5dff762db20c0a35" category="paragraph">Consulte a configuração do tempo de execução do parâmetro multipath usando o<block ref="2fe120cfe752873c662c7bf65886ad65" prefix=" " category="inline-code"></block> comando. Você deve sempre verificar a configuração em execução para configurações herdadas que podem estar substituindo as configurações padrão, especialmente na seção padrões.</block>
-  <block id="aea5fd959632948a3225c2ddd5323d43" category="paragraph">A tabela a seguir mostra os parâmetros críticos *multipathd* para LUNs ONTAP e os valores necessários. Se um host estiver conetado a LUNs de outros fornecedores e qualquer um desses parâmetros for substituído, ele precisará ser corrigido por estrofes posteriores no *multipath.conf* que se aplicam especificamente aos LUNs ONTAP. Se isso não for feito, os LUNs do ONTAP podem não funcionar como esperado. Os padrões a seguir devem ser substituídos somente em consulta com o NetApp e/ou o fornecedor do sistema operacional e somente quando o impactos for totalmente compreendido.</block>
-  <block id="093280d0b1b888a2d2861cdc763f5f54" category="cell"><block ref="dbffbd283cd0d9c7937014167893297e" prefix="" category="inline-code"></block></block>
-  <block id="d4f9e6cd04344d6033229cebcf82d8e6" category="cell"><block ref="f92718f463480c9c4b4291e7fd4ef19e" prefix="" category="inline-code"></block></block>
-  <block id="0b45dcda8325354552a9f3f77a81fb12" category="cell"><block ref="a571d3783c8d552371d5e8b486416b18" prefix="" category="inline-code"></block></block>
-  <block id="f723063a7c67a9c4d6dc09fcc9258bc0" category="cell"><block ref="2b0488825c6eb266b344708a7cddcf4f" prefix="" category="inline-code"></block></block>
-  <block id="9b1acf92108be93042969ae0cd15c662" category="cell"><block ref="9f034b63948763d489f944319c2eb3de" prefix="" category="inline-code"></block></block>
-  <block id="51639d9d920527eeeeb339933ef1d388" category="cell"><block ref="8ed3e71dbbc580b4bbaa9dcce8493bc6" prefix="" category="inline-code"></block></block>
-  <block id="dd3d09a74b9822f94f3022c45d6d89eb" category="cell"><block ref="357a02c5f1ac624818eb86d192ef02af" prefix="" category="inline-code"></block></block>
-  <block id="7793f55f663016533cfccea244686d20" category="cell"><block ref="3b07c0a70dc66d6564dcdf2f5ab1ed63" prefix="" category="inline-code"></block></block>
-  <block id="0229f06974ddf0fbb6c8163410252381" category="cell"><block ref="1c51c00662754cd025cb61ff206ae0f1" prefix="" category="inline-code"></block></block>
-  <block id="100ea8f1ede2192d241e4386cfe3c479" category="cell"><block ref="8f95a0e667787fdfd1050c84a0a3242d" prefix="" category="inline-code"></block></block>
-  <block id="06d7756e9ce36c56b9cea270ed31aa7d" category="cell"><block ref="e2f0125c5971e1ce714f86f145386ee3" prefix="" category="inline-code"></block></block>
-  <block id="5b64d224179378eb0872e824614167de" category="cell"><block ref="768ece56ce712f5866156382bfc1361a" prefix="" category="inline-code"></block></block>
-  <block id="dc2ba82454a2923edf99404df680c7ee" category="cell"><block ref="f5bf48aa40cad7891eb709fcf1fde128" prefix="" category="inline-code"></block></block>
-  <block id="aaa74fa881bc5ea07b9b9aef23bb28ab" category="cell"><block ref="900d1935a03e019eab2619da7c009da5" prefix="" category="inline-code"></block></block>
-  <block id="1b1f4bb4b35ee6994917bd6527d2e343" category="cell"><block ref="ba425f4425e634f6ee52c8f273549073" prefix="" category="inline-code"></block></block>
-  <block id="677641ebec419b9c5915ed13974b0c07" category="cell"><block ref="7a435144ffdde744d88ded2e7b6364a5" prefix="" category="inline-code"></block></block>
-  <block id="34fed3385bd742bd2b178de283f371b7" category="cell"><block ref="7c3613dba5171cb6027c67835dd3b9d4" prefix="" category="inline-code"></block></block>
-  <block id="9d5bc46c4aa8d12cf17b1243dea3cdb8" category="paragraph">O exemplo a seguir ilustra como corrigir um padrão substituído. Neste caso, o arquivo *multipath.conf* define valores para *path_checker* e *Detect_prio* que não são compatíveis com LUNs ONTAP. Se eles não puderem ser removidos devido a outros arrays SAN conetados ao host, esses parâmetros podem ser corrigidos especificamente para LUNs ONTAP com uma estrofe de dispositivo.</block>
-  <block id="73087707ff2bdcd46af8a5eca4a750f8" category="admonition">O Citrix XenServer recomenda o uso de ferramentas de VM Citrix para todas as VMs convidadas baseadas em Linux e Windows para uma configuração suportada.</block>
-  <block id="d68505b811ecc342e2c201e1fcd2942d" category="paragraph">Não há problemas conhecidos para o Citrix XenServer com a versão ONTAP.</block>
   <block id="aa89a86e36a09e87ac1e23a259c8d26c" category="admonition">Não use um número excessivo de caminhos para um único LUN. Não mais de 4 caminhos devem ser necessários. Mais de 8 caminhos podem causar problemas de caminho durante falhas de storage.</block>
   <block id="56dcd6f4fc148f38b926523ede2073aa" category="section-title">Configuração sem ASA</block>
   <block id="3b878279a04dc47d60932cb294d96259" category="doc">Visão geral</block>
@@ -2323,7 +2291,6 @@
   <block id="f884cc5c56f9c9a8d4d61568ff64db9c" category="sidebar">6,5</block>
   <block id="ded681fc154529ebbc7562fb0c73ba47" category="sidebar">6,4</block>
   <block id="44259680bd01002134994d85d023710c" category="sidebar">Citrix</block>
-  <block id="095f17ad6c7f706c5fa881fa28d2b0e2" category="sidebar">XenServer 7</block>
   <block id="1aa66ef3a8e34a7a538960a80d2e1e31" category="sidebar">ESXi</block>
   <block id="8d0e68de728c46da62cafb173eb4dabc" category="sidebar">VMware vSphere 8</block>
   <block id="b0781c18fd091c4f9e79ff11eb4b9fc5" category="sidebar">VMware vSphere 7</block>
@@ -2398,7 +2365,6 @@
   <block id="48a57465c9050da3e456de11a1bce0f0" category="list-text">Reinicie o host para verificar se a inicialização foi bem-sucedida.</block>
   <block id="f7de5451f0d12f9de62cf0d59c9695f2" category="admonition">Vários caminhos só ficam disponíveis após o sistema operacional do host estar ativo e em execução nos caminhos.</block>
   <block id="2ba8ced675fff51092484e241860c46e" category="paragraph">O<block ref="273d5cd3ecc9b9ccde8aa81942ced2f2" prefix=" " category="inline-code"></block> comando produz o seguinte tipo de saída. A saída no exemplo a seguir é truncada.</block>
-  <block id="2f4a9005041851e9a64a6509d048aa33" category="paragraph">No exemplo a seguir para Citrix XenServer 7.x,<block ref="59b466fd93164953e56bdd1358dc0044" prefix=" " category="inline-code"></block> é o disco SCSI local que você deseja adicionar à lista negra.</block>
   <block id="fb403c5f670d67ab47637709eb33917d" category="paragraph">O problema intermitente de falha do sistema operacional do host que ocorre ao executar o<block ref="41dc2c94e82e1c56ba876085acf5a974" prefix=" " category="inline-code"></block> comando no SUSE Linux Enterprise Server 12 SP1, OL 7,2, RHEL 7,2 e RHEL 6,8 é corrigido nesta versão.</block>
   <block id="e660061f6ca1690f631875aa9b659f5c" category="paragraph">As seções a seguir fornecem exemplos de saídas multipath para um LUN mapeado para personas não-ASA.</block>
   <block id="f2694c4b7724c227a6fd0a9ab3d8a8f9" category="paragraph">As seções a seguir fornecem exemplos de saídas multipath para um LUN mapeado para todas as configurações de matriz SAN (ASA) e não ASA.</block>
@@ -3085,7 +3051,6 @@
   <block id="65e17e3635aff4a06545ebdec876d723" category="paragraph">As versões do AIX Host Utilities contêm os seguintes novos recursos e aprimoramentos:</block>
   <block id="3a7c6e3d017877edeea93359d3fe1527" category="list-text">AIX Host Utilities 6,1 inclui suporte para o problema de falha de memória que ocorreu em versões anteriores do sistema operacional host AIX. Com AIX Host Utilities 6,1, apenas o binário sanlun mudou. O Microsoft Multipath I/o (MPIO) e o ODM relacionado permanecem inalterados.</block>
   <block id="2a372b892113e198dff50fad53f7c8cf" category="cell">O SCSI DESMAPEIA o suporte para LUNs iSCSI ONTAP</block>
-  <block id="0593445145635811aefe17e2c2c0cee9" category="paragraph">Devido às incompatibilidades com a arquitetura de gerenciamento de múltiplos caminhos integrado, a Citrix recomenda que você use o aplicativo Citrix XenCenter para gerenciar a configuração de armazenamento. Se for necessário consultar manualmente o status das tabelas do Mapeador de dispositivos ou listar os nós multipath de mapper de dispositivos ativos no sistema, você pode usar o<block ref="933a1510d6585bc60786b9db6910db56" prefix=" " category="inline-code"></block> comando para verificar as configurações dos LUNs do ONTAP. Para obter mais informações, consulte a documentação padrão do fornecedor do Citrix XenServer.</block>
   <block id="ad8a44c5166ba0f4232aef9400e09e61" category="cell">O comprimento máximo de transferência de SCSI de 1 MB é aplicado no ONTAP All SAN Array. Para restringir o comprimento máximo de transferência de hosts HP-UX quando conetado a ONTAP All SAN Array, é necessário definir o tamanho máximo de e/S permitido pelo subsistema HP-UX SCSI para 1 MB. Consulte a documentação do fornecedor HP-UX para obter detalhes.</block>
   <block id="09cab502d540fb90ba458ff77a1bf626" category="summary">Descreve como utilizar os utilitários de anfitrião HP-UX 6,0 com armazenamento ONTAP</block>
   <block id="0fc97dd29480cf6d4f2229a9139b99f6" category="paragraph">Os utilitários de host HP-UX da NetApp permitem que você conete um host HP-UX ao armazenamento ONTAP.</block>
@@ -3774,5 +3739,5 @@
   <block id="a2e2d0fcc9350f73f4294c53a7b2fa53" category="paragraph">O software Utilitários de host Linux fornece ferramentas de gerenciamento e diagnóstico para hosts Linux que estão conetados ao storage ONTAP. Ao instalar o Linux Host Utilities em um host Citrix Xenserver 8.4, você pode usá-lo para ajudar a gerenciar operações de protocolo FCP e iSCSI com LUNs ONTAP.</block>
   <block id="405ee507e1b0e20ba609f39dc449664e" category="paragraph">Você pode usar multipathing com o Citrix Xenserver 8.4 para gerenciar LUNs ONTAP.</block>
   <block id="7ef93303f99987d3f82b96411ca41f0f" category="sidebar">XenServer 8,4</block>
-  <block id="df472899f555ad076c9b90f4bd508f91" category="sidebar">Hipervisor 8,2</block>
+  <block id="c4bb680e83ce918749e1d4853b0073d1" category="sidebar">Hipervisor 8.2 (LTSR)</block>
 </blocks>
