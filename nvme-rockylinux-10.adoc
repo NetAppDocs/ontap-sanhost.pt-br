@@ -1,10 +1,10 @@
 ---
 sidebar: sidebar 
-permalink: nvme_rhel_10.html 
-keywords: nvme, linux, rhel, red hat, enterprise 
-summary: Como configurar o host NVMe-of para RHEL 10 com o ONTAP 
+permalink: nvme-rockylinux-10.html 
+keywords: nvme, linux, rocky, linux, red hat, enterprise 
+summary: Como configurar o host NVMe-oF para Rocky Linux 10 com armazenamento ONTAP 
 ---
-= Configuração de host NVMe-of para RHEL 10 com ONTAP
+= Configurar o Rocky Linux 10 para NVMe-oF com armazenamento ONTAP
 :hardbreaks:
 :toclevels: 1
 :allow-uri-read: 
@@ -19,14 +19,13 @@ summary: Como configurar o host NVMe-of para RHEL 10 com o ONTAP
 As configurações de host SAN NetApp dão suporte ao protocolo NVMe over Fabrics (NVMe-of) com acesso a namespace assimétrico (ANA). Em ambientes NVMe-of, o ANA é equivalente a multipathing de acesso de unidade lógica assimétrica (ALUA) em ambientes iSCSI e FCP. A ANA é implementada usando o recurso multipath NVMe no kernel.
 
 .Sobre esta tarefa
-Você pode usar o suporte e os recursos a seguir com a configuração de host NVMe-of para Red Hat Enterprise Linux (RHEL) 10. Você também deve rever as limitações conhecidas antes de iniciar o processo de configuração.
+Você pode usar o seguinte suporte e recursos com a configuração do host NVMe-oF para o Rocky Linux 10. Você também deve rever as limitações conhecidas antes de iniciar o processo de configuração.
 
 * Suporte disponível:
 +
 ** Suporte a NVMe em TCP (NVMe/TCP), além de NVMe em Fibre Channel (NVMe/FC). O plug-in do NetApp no pacote nativo `nvme-cli` exibe detalhes do ONTAP para namespaces NVMe/FC e NVMe/TCP.
 ** Executando o tráfego NVMe e SCSI no mesmo host. Por exemplo, você pode configurar o dm-multipath para dispositivos SCSI mpath para LUNs SCSI e usar o multipath NVMe para configurar dispositivos de namespace NVMe-of no host.
-** Suporte para inicialização SAN usando o protocolo NVMe/FC.
-** A partir do ONTAP 9.12.1, o suporte para autenticação segura em banda é introduzido para NVMe/TCP. Você pode usar autenticação segura em banda para NVMe/TCP com o RHEL 10.
+** A partir do ONTAP 9.12.1, o suporte para autenticação segura em banda é introduzido para NVMe/TCP. Você pode usar autenticação segura em banda para NVMe/TCP com o Rocky Linux 10.
 +
 Para obter detalhes adicionais sobre as configurações suportadas, consulte o link:https://mysupport.netapp.com/matrix/["Ferramenta de Matriz de interoperabilidade"^].
 
@@ -34,7 +33,7 @@ Para obter detalhes adicionais sobre as configurações suportadas, consulte o l
 
 * Caraterísticas disponíveis:
 +
-** A partir do RHEL 10, o multipathing NVMe nativo está sempre habilitado, e o suporte ao multipath DM para NVMe-oF não é suportado.
+** A partir do Rocky Linux 10, o multipathing NVMe nativo está sempre habilitado, e o suporte ao multipath DM para NVMe-oF não é suportado.
 
 
 * Limitações conhecidas:
@@ -66,17 +65,17 @@ Para obter informações sobre como ativar o BIOS HBA, consulte a documentação
 
 == Etapa 2: Validar versões de software
 
-Use o procedimento a seguir para validar as versões mínimas de software RHEL 10 suportadas.
+Use o procedimento a seguir para validar as versões mínimas suportadas do software Rocky Linux 10.
 
 .Passos
-. Instale o RHEL 10 no servidor. Depois que a instalação estiver concluída, verifique se você está executando o kernel RHEL 10 especificado:
+. Instale o Rocky Linux 10 no servidor. Após a conclusão da instalação, verifique se você está executando o kernel especificado do Rocky Linux 10:
 +
 [source, cli]
 ----
 uname -r
 ----
 +
-O exemplo a seguir mostra uma versão do kernel RHEL:
+O exemplo a seguir mostra uma versão do kernel do Rocky Linux:
 
 +
 [listing]
@@ -129,7 +128,7 @@ nqn.2014-08.org.nvmexpress:uuid:4c4c4544-0056-5410-8048-b9c04f425633
 +
 [source, cli]
 ----
-::> vserver nvme subsystem host show -vserver vs_nvme_194_rhel10
+::> vserver nvme subsystem host show -vserver vs_nvme_194_rockylinux10
 ----
 +
 .Mostrar exemplo
@@ -139,7 +138,7 @@ nqn.2014-08.org.nvmexpress:uuid:4c4c4544-0056-5410-8048-b9c04f425633
 ----
 Vserver Subsystem Priority  Host NQN
 ------- --------- --------  ------------------------------------------------
-vs_ nvme_194_rhel10
+vs_ nvme_194_rockylinux10
         nvme4
                   regular   nqn.2014-08.org.nvmexpress:uuid:4c4c4544-0056-5410-8048- c7c04f425633
         nvme_1
@@ -386,7 +385,7 @@ cat /sys/module/lpfc/parameters/lpfc_sg_seg_cnt
 
 == Etapa 5: verificar os serviços de inicialização NVMe
 
-Com o RHEL 10, o  `nvmefc-boot-connections.service` e  `nvmf-autoconnect.service` serviços de inicialização incluídos no NVMe/FC  `nvme-cli` Os pacotes são habilitados automaticamente quando o sistema inicializa. Após a inicialização, verifique se os serviços estão habilitados.
+Com o Rocky Linux 10, o  `nvmefc-boot-connections.service` e  `nvmf-autoconnect.service` serviços de inicialização incluídos no NVMe/FC  `nvme-cli` Os pacotes são ativados automaticamente quando o sistema é inicializado. Após a inicialização, verifique se os serviços estão habilitados.
 
 .Passos
 . Verifique se `nvmf-autoconnect.service` está ativado:
@@ -508,7 +507,7 @@ subtype: *nvme subsystem*
 treq:    not specified
 portid:  4
 trsvcid: 4420
-subnqn:  nqn.1992-08.com.netapp:sn.64e65e6caae711ef9668d039ea951c46:subsystem.rhel10_tcp_subsystem
+subnqn:  nqn.1992-08.com.netapp:sn.64e65e6caae711ef9668d039ea951c46:subsystem.rockylinux10_tcp_subsystem
 traddr:  192.168.21.21
 eflags:  none
 sectype: none
@@ -519,7 +518,7 @@ subtype: *nvme subsystem*
 treq:    not specified
 portid:  2
 trsvcid: 4420
-subnqn:  nqn.1992-08.com.netapp:sn.64e65e6caae711ef9668d039ea951c46:subsystem.rhel10_tcp_subsystem
+subnqn:  nqn.1992-08.com.netapp:sn.64e65e6caae711ef9668d039ea951c46:subsystem.rockylinux10_tcp_subsystem
 traddr:  192.168.20.21
 eflags:  none
 sectype: none
@@ -530,7 +529,7 @@ subtype: *nvme subsystem*
 treq:    not specified
 portid:  3
 trsvcid: 4420
-subnqn:  nqn.1992-08.com.netapp:sn.64e65e6caae711ef9668d039ea951c46:subsystem.rhel10_tcp_subsystem
+subnqn:  nqn.1992-08.com.netapp:sn.64e65e6caae711ef9668d039ea951c46:subsystem.rockylinux10_tcp_subsystem
 traddr:  192.168.21.20
 eflags:  none
 sectype: none
@@ -541,7 +540,7 @@ subtype: *nvme subsystem*
 treq:    not specified
 portid:  1
 trsvcid: 4420
-subnqn:  nqn.1992-08.com.netapp:sn.64e65e6caae711ef9668d039ea951c46:subsystem.rhel10_tcp_subsystem
+subnqn:  nqn.1992-08.com.netapp:sn.64e65e6caae711ef9668d039ea951c46:subsystem.rockylinux10_tcp_subsystem
 traddr:  192.168.20.20
 eflags:  none
 sectype: none
@@ -586,7 +585,7 @@ nvme	connect-all	-t	tcp	-w	192.168.21.1	-a	192.168.21.21
 
 
 
-NOTE: A partir do RHEL 9,5, a configuração padrão para o tempo limite NVMe/TCP `ctrl_loss_tmo` é desativada. Isto significa que não há limite para o número de tentativas (tentativa indefinida). Consequentemente, você não precisa configurar manualmente uma duração específica `ctrl_loss_tmo` de tempo limite ao usar os `nvme connect` comandos ou `nvme connect-all` (opção -l ). Com esse comportamento padrão, as controladoras NVMe/TCP não apresentam timeouts em caso de falha de caminho e permanecem conectadas indefinidamente.
+NOTE: A partir do Rocky Linux 9.5, a configuração padrão para NVMe/TCP  `ctrl_loss_tmo` o tempo limite está desativado. Isto significa que não há limite para o número de tentativas (tentativa indefinida). Consequentemente, você não precisa configurar manualmente uma duração específica `ctrl_loss_tmo` de tempo limite ao usar os `nvme connect` comandos ou `nvme connect-all` (opção -l ). Com esse comportamento padrão, as controladoras NVMe/TCP não apresentam timeouts em caso de falha de caminho e permanecem conectadas indefinidamente.
 
 
 
@@ -642,12 +641,12 @@ nvme list
 [listing]
 ----
 Node         SN                   Model
------------------------------------------------------------
+---------------------------------------------------------
 /dev/nvme4n1 81Ix2BVuekWcAAAAAAAB	NetApp ONTAP Controller
 
 
 Namespace Usage    Format             FW             Rev
------------------------------------------------------------
+---------------------------------------------------------
 1                 21.47 GB / 21.47 GB	4 KiB + 0 B   FFFFFFFF
 ----
 ====
@@ -715,11 +714,11 @@ nvme netapp ontapdevices -o column
 ----
 
 Device        Vserver   Namespace Path
------------------------ ------------------------------
-/dev/nvme10n1     vs_tcp_rhel10       /vol/vol10/ns10
+----------------------- ------------------------------------
+/dev/nvme10n1     vs_tcp_rockylinux10       /vol/vol10/ns10
 
 NSID       UUID                                   Size
------------------------ ------------------------------
+----------------------- ------------------------------------
 1    bbf51146-fc64-4197-b8cf-8a24f6f359b3   21.47GB
 ----
 =====
@@ -739,7 +738,7 @@ nvme netapp ontapdevices -o json
   "ONTAPdevices":[
     {
       "Device":"/dev/nvme10n1",
-      "Vserver":"vs_tcp_rhel10",
+      "Vserver":"vs_tcp_rockylinux10",
       "Namespace_Path":"/vol/vol10/ns10",
       "NSID":1,
       "UUID":"bbf51146-fc64-4197-b8cf-8a24f6f359b3",
@@ -759,7 +758,7 @@ nvme netapp ontapdevices -o json
 
 == Etapa 8: Configurar autenticação segura em banda
 
-A partir do ONTAP 9.12.1, a autenticação segura em banda é suportada via NVMe/TCP entre um host RHEL 10 e um controlador ONTAP.
+A partir do ONTAP 9.12.1, a autenticação segura em banda é suportada via NVMe/TCP entre um host Rocky Linux 10 e um controlador ONTAP.
 
 Cada host ou controlador deve ser associado a um  `DH-HMAC-CHAP` chave para configurar autenticação segura. Uma  `DH-HMAC-CHAP` chave é uma combinação do NQN do host ou controlador NVMe e um segredo de autenticação configurado pelo administrador. Para autenticar seu peer, um host ou controlador NVMe deve reconhecer a chave associada ao peer.
 
@@ -778,7 +777,7 @@ Configure a autenticação segura na banda usando a CLI.
 ----
 cat /etc/nvme/hostnqn
 ----
-. Gere a chave dhchap para o host RHEL 10.
+. Gere a chave dhchap para o host Rocky Linux 10.
 +
 A saída a seguir descreve os `gen-dhchap-key` parâmetros de comando:
 

@@ -1,0 +1,17 @@
+= 
+:allow-uri-read: 
+
+
+Você pode configurar seu host para usar a inicialização SAN para simplificar a implantação e melhorar a escalabilidade.
+
+.Antes de começar
+Use o link:https://mysupport.netapp.com/matrix/#welcome["Ferramenta de Matriz de interoperabilidade"^] para verificar se o sistema operacional Linux, o adaptador de barramento do host (HBA), o firmware HBA, o BIOS de inicialização HBA e a versão do ONTAP suportam inicialização por SAN.
+
+.Passos
+. https://docs.netapp.com/us-en/ontap/san-admin/create-nvme-namespace-subsystem-task.html["Crie um namespace de inicialização SAN e mapeie-o para o host"^].
+. Habilite a inicialização SAN no BIOS do servidor para as portas para as quais o namespace de inicialização SAN está mapeado.
++
+Para obter informações sobre como ativar o BIOS HBA, consulte a documentação específica do fornecedor.
+
+. Verifique se a configuração foi bem-sucedida reinicializando o host e verificando se o sistema operacional está funcionando.
+

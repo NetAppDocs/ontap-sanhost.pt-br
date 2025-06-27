@@ -4,7 +4,7 @@ permalink: nvme_rhel_95.html
 keywords: nvme, linux, rhel, red hat, enterprise 
 summary: Como configurar o host NVMe-of para RHEL 9,5 com o ONTAP 
 ---
-= Configuração de host NVMe-of para RHEL 9,5 com ONTAP
+= Configurar RHEL 9.5 para NVMe-oF com armazenamento ONTAP
 :hardbreaks:
 :toclevels: 1
 :allow-uri-read: 
@@ -34,7 +34,6 @@ Para obter detalhes adicionais sobre as configurações suportadas, consulte o l
 +
 ** A partir do ONTAP 9.12.1, o suporte para autenticação segura na banda é apresentado ao NVMe-of. Você pode usar autenticação segura na banda para NVMe-of com RHEL 9,5.
 ** O RHEL 9,5 habilita o multipath NVMe no kernel para namespaces NVMe por padrão, eliminando a necessidade de configurações explícitas.
-** Suporte para inicialização SAN usando o protocolo NVMe/FC.
 
 
 * Limitações conhecidas:
@@ -54,10 +53,7 @@ Você pode configurar seu host para usar a inicialização SAN para simplificar 
 Use o link:https://mysupport.netapp.com/matrix/#welcome["Ferramenta de Matriz de interoperabilidade"^] para verificar se o sistema operacional Linux, o adaptador de barramento do host (HBA), o firmware HBA, o BIOS de inicialização HBA e a versão do ONTAP suportam inicialização por SAN.
 
 .Passos
-. Crie um namespace de inicialização SAN e mapeie-o para o host.
-+
- https://docs.netapp.com/us-en/ontap/san-admin/create-nvme-namespace-subsystem-task.html["Provisionamento de storage NVMe"^]Consulte .
-
+. https://docs.netapp.com/us-en/ontap/san-admin/create-nvme-namespace-subsystem-task.html["Crie um namespace de inicialização SAN e mapeie-o para o host"^].
 . Ative a inicialização SAN no BIOS do servidor para as portas às quais o LUN de inicialização SAN está mapeado.
 +
 Para obter informações sobre como ativar o BIOS HBA, consulte a documentação específica do fornecedor.

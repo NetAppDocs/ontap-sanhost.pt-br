@@ -1,0 +1,29 @@
+= 
+:allow-uri-read: 
+
+
+Você pode habilitar solicitações de E/S de 1 MB para NVMe/FC configurado com um adaptador Broadcom. O ONTAP relata um Tamanho Máximo de Transferência de Dados (MDTS) de 8 nos dados do Controlador de Identificação. Isso significa que o tamanho máximo da solicitação de e/S pode ser de até 1MBMB. Para emitir solicitações de E/S de 1 MB, você precisa aumentar o valor de lpfc do  `lpfc_sg_seg_cnt` parâmetro para 256 do valor padrão de 64.
+
+
+NOTE: Essas etapas não se aplicam a hosts Qlogic NVMe/FC.
+
+.Passos
+. Defina `lpfc_sg_seg_cnt` o parâmetro como 256:
++
+[listing]
+----
+cat /etc/modprobe.d/lpfc.conf
+----
++
+[listing]
+----
+options lpfc lpfc_sg_seg_cnt=256
+----
+. Execute o `dracut -f` comando e reinicie o host.
+. Verifique se o valor para `lpfc_sg_seg_cnt` é 256:
++
+[listing]
+----
+cat /sys/module/lpfc/parameters/lpfc_sg_seg_cnt
+----
+

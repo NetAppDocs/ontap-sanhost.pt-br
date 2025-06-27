@@ -6,9 +6,9 @@
 
 == Etapa 5: Personalizar parâmetros multipath para LUNs ONTAP
 
-Você deve verificar o `/etc/multipath.conf` arquivo, especialmente na seção padrões, para configurações que podem estar substituindo o <<multipath-parameter-settings,configurações padrão para parâmetros multipath>>.
+Se o seu host estiver conetado a LUNs de outros fornecedores e qualquer configuração de parâmetro multipath for substituída, você precisará corrigi-los adicionando estrofes posteriormente `multipath.conf` no arquivo que se aplicam especificamente aos LUNs ONTAP. Se você não fizer isso, os LUNs do ONTAP podem não funcionar como esperado.
 
-Por exemplo, se o seu host estiver conetado a LUNs de outros fornecedores e qualquer configuração de parâmetro multipath for substituída, você precisará corrigi-los adicionando estrofes posteriormente `multipath.conf` no arquivo que se aplicam especificamente aos LUNs ONTAP. Se você não fizer isso, os LUNs do ONTAP podem não funcionar como esperado.
+Verifique o `/etc/multipath.conf` arquivo, especialmente na seção padrões, para configurações que possam estar substituindo o <<multipath-parameter-settings,configurações padrão para parâmetros multipath>>.
 
 
 CAUTION: Não deve substituir as definições de parâmetros recomendadas para LUNs ONTAP. Essas configurações são necessárias para o desempenho ideal da configuração do seu host. Entre em Contato com o suporte da NetApp, seu fornecedor de sistemas operacionais ou ambos para obter mais informações.
