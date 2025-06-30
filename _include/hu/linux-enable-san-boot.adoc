@@ -12,10 +12,7 @@ Você pode configurar seu host para usar a inicialização SAN para simplificar 
 Use o link:https://mysupport.netapp.com/matrix/#welcome["Ferramenta de Matriz de interoperabilidade"^] para verificar se o sistema operacional Linux, o adaptador de barramento do host (HBA), o firmware HBA, o BIOS de inicialização HBA e a versão do ONTAP suportam inicialização por SAN.
 
 .Passos
-. Crie um LUN de inicialização SAN e mapeie-o para o host.
-+
- https://docs.netapp.com/us-en/ontap/san-admin/provision-storage.html["Provisionamento de storage SAN"^]Consulte .
-
+. link:https://docs.netapp.com/us-en/ontap/san-admin/provision-storage.html["Crie um LUN de inicialização SAN e mapeie-o para o host"^].
 . Ative a inicialização SAN no BIOS do servidor para as portas às quais o LUN de inicialização SAN está mapeado.
 +
 Para obter informações sobre como ativar o BIOS HBA, consulte a documentação específica do fornecedor.
