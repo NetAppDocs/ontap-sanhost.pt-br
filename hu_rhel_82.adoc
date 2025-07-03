@@ -2,7 +2,7 @@
 sidebar: sidebar 
 permalink: hu_rhel_82.html 
 keywords: host utilities, red hat, rhel, linux, 8.2, netapp, ontap 
-summary: Instale os Utilitários de host Linux em um host RHEL 8,2 para gerenciar operações de protocolo FCP e iSCSI com LUNs ONTAP. 
+summary: Instale o Linux Host Utilities em um host RHEL 8.2 para gerenciar operações de protocolo FCP e iSCSI com LUNs ONTAP. 
 ---
 = Configure o RHEL 8,2 para FCP e iSCSI com armazenamento ONTAP
 :hardbreaks:
@@ -162,6 +162,9 @@ As saídas de exemplo a seguir mostram as configurações de parâmetro e o stat
 --
 Uma configuração do ASA otimiza todos os caminhos para um determinado LUN, mantendo-os ativos. Isso melhora a performance atendendo operações de e/S em todos os caminhos ao mesmo tempo.
 
+.Mostrar exemplo
+[%collapsible]
+=====
 [listing]
 ----
 multipath -ll
@@ -173,6 +176,7 @@ size=180G features='3 queue_if_no_path pg_init_retries 50' hwhandler='1 alua' wp
   |- 14:0:3:0  sdar 66:176 active ready running
   `- 17:0:3:0  sdch 69:80  active ready running
 ----
+=====
 --
 .Configuração AFF ou FAS
 --
@@ -180,6 +184,9 @@ Uma configuração AFF ou FAS deve ter dois grupos de caminhos com prioridades m
 
 O exemplo a seguir exibe a saída de um LUN ONTAP com dois caminhos ativos/otimizados e dois caminhos ativos/não otimizados:
 
+.Mostrar exemplo
+[%collapsible]
+=====
 [listing]
 ----
 multipath -ll
@@ -192,6 +199,7 @@ size=150G features='3 queue_if_no_path pg_init_retries 50' hwhandler='1 alua' wp
   |- 10:0:1:0  sdc  8:32   active ready running
   `- 16:0:2:0  sdcf 69:48  active ready running
 ----
+=====
 --
 ====
 

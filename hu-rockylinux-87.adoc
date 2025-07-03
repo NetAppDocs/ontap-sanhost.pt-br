@@ -16,7 +16,7 @@ summary: Instale o Linux Host Utilities em um host Rocky Linux 8.7 para gerencia
 
 
 [role="lead"]
-O software Utilitários de host Linux fornece ferramentas de gerenciamento e diagnóstico para hosts Linux que estão conetados ao storage ONTAP. Ao instalar o Linux Host Utilities em um host Rocky Linux 8.7, você pode usá-lo para ajudar a gerenciar operações de protocolo FCP e iSCSI com LUNs ONTAP.
+O software Utilitários de host Linux fornece ferramentas de gerenciamento e diagnóstico para hosts Linux que estão conetados ao storage ONTAP. Ao instalar o Linux Host Utilities em um host Rocky Linux 8.7, você pode usar o Host Utilities para ajudar a gerenciar operações de protocolo FCP e iSCSI com LUNs ONTAP.
 
 
 NOTE: Você não precisa configurar as configurações de máquina virtual baseada em Kernel porque os LUNs ONTAP são mapeados automaticamente para o hipervisor KVM.
