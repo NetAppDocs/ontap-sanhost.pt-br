@@ -129,8 +129,7 @@ src_addr=192.168.1.31 *live non-optimized*
 --
 ====
 . Verifique se o plug-in NetApp exibe os valores corretos para cada dispositivo de namespace ONTAP:
-
-
++
 [role="tabbed-block"]
 ====
 .Coluna
@@ -184,3 +183,4 @@ nvme netapp ontapdevices -o json
 =====
 --
 ====
+

@@ -163,6 +163,8 @@ Você pode configurar o NVMe/FC com adaptadores Broadcom/Emulex FC ou Marvell/Ql
 [role="tabbed-block"]
 ====
 .Broadcom/Emulex
+Configurar o NVMe/FC para um adaptador Broadcom/Emulex.
+
 --
 .Passos
 . Verifique se você está usando o modelo de adaptador suportado:
@@ -792,8 +794,7 @@ src_addr=192.168.1.31 *live non-optimized*
 --
 ====
 . Verifique se o plug-in NetApp exibe os valores corretos para cada dispositivo de namespace ONTAP:
-
-
++
 [role="tabbed-block"]
 ====
 .Coluna
@@ -847,6 +848,8 @@ nvme netapp ontapdevices -o json
 =====
 --
 ====
+
+
 
 
 == Passo 7: Revise os problemas conhecidos
