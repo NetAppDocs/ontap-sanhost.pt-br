@@ -26,7 +26,7 @@ Você pode usar o seguinte suporte e recursos com a configuração do host NVMe-
 * Suporte disponível:
 +
 ** Suporte a NVMe em TCP (NVMe/TCP), além de NVMe em Fibre Channel (NVMe/FC). O plug-in do NetApp no pacote nativo `nvme-cli` exibe detalhes do ONTAP para namespaces NVMe/FC e NVMe/TCP.
-** Executando o tráfego NVMe e SCSI no mesmo host. Por exemplo, você pode configurar o dm-multipath para dispositivos SCSI mpath para LUNs SCSI e usar o multipath NVMe para configurar dispositivos de namespace NVMe-of no host.
+** Executando o tráfego NVMe e SCSI no mesmo host. Por exemplo, você pode configurar dm-multipath para dispositivos SCSI mpath em LUNs SCSI e usar NVMe multipath para configurar dispositivos de namespace NVMe-oF no host.
 
 
 * Limitações conhecidas:

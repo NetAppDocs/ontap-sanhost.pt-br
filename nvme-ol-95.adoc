@@ -24,9 +24,9 @@ O suporte e os recursos a seguir estão disponíveis com a configuração do hos
 * Suporte disponível:
 +
 ** Suporte a NVMe em TCP (NVMe/TCP), além de NVMe em Fibre Channel (NVMe/FC). O plug-in do NetApp no pacote nvme-cli nativo exibe detalhes do ONTAP para namespaces NVMe/FC e NVMe/TCP.
-** Executando o tráfego NVMe e SCSI no mesmo host. Por exemplo, você pode configurar o dm-multipath para dispositivos SCSI mpath para LUNs SCSI e usar o multipath NVMe para configurar dispositivos de namespace NVMe-of no host.
+** Executando o tráfego NVMe e SCSI no mesmo host. Por exemplo, você pode configurar dm-multipath em dispositivos SCSI mpath para LUNs SCSI e usar NVMe multipath para configurar dispositivos de namespace NVMe-oF no host.
 ** O Oracle Linux 9.5 habilita o multicaminho NVMe no kernel para namespaces NVMe por padrão, eliminando a necessidade de configurações explícitas.
-** A partir do ONTAP 9.12.1, o suporte para autenticação segura em banda é introduzido para NVMe/TCP. Você pode usar autenticação segura em banda para NVMe/TCP com Oracle Linux 9.5
+** A partir do ONTAP 9.12.1, o suporte para autenticação segura em banda é introduzido para NVMe/TCP. Você pode usar autenticação segura em banda para NVMe/TCP com o Oracle Linux 9.5.
 
 
 +
@@ -44,7 +44,7 @@ Para obter detalhes adicionais sobre as configurações suportadas, consulte o l
 
 * Limitações conhecidas:
 +
-** Evite emitir o  `nvme disconnect-all` comando em sistemas inicializados a partir de SAN sobre namespaces NVMe-TCP ou NVMe-FC, pois ele desconecta os sistemas de arquivos raiz e de dados e pode levar à instabilidade do sistema.
+** Evite emitir o  `nvme disconnect-all` comando em sistemas inicializados a partir de SAN sobre namespaces NVMe-TCP ou NVMe-FC porque ele desconecta os sistemas de arquivos raiz e de dados e pode levar à instabilidade do sistema.
 
 
 

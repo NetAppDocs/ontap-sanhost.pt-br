@@ -2395,7 +2395,6 @@
   <block id="a243e92c34f812e7c56005c42a770271" category="summary">Configuração de host NVMe-of para Oracle Linux 9,4 com ONTAP</block>
   <block id="8d7e003d34318d8e9e26f43a6131a1ff" category="paragraph">Os seguintes recursos e suporte estão disponíveis com a configuração de host NVMe-of para Oracle Linux 9,4i com storage ONTAP. Você também deve rever as limitações conhecidas antes de iniciar o processo de configuração.</block>
   <block id="d5eb631f33b53d79f1963a09eca1f9b9" category="list-text">Suporte a NVMe em TCP (NVMe/TCP), além de NVMe em Fibre Channel (NVMe/FC). O plug-in do NetApp no pacote nvme-cli nativo exibe detalhes do ONTAP para namespaces NVMe/FC e NVMe/TCP.</block>
-  <block id="5393f0229b7c28049a490e7e149cce98" category="list-text">Executando o tráfego NVMe e SCSI no mesmo host. Por exemplo, você pode configurar o dm-multipath para dispositivos SCSI mpath para LUNs SCSI e usar o multipath NVMe para configurar dispositivos de namespace NVMe-of no host.</block>
   <block id="26b5a656c86d4a0ae9755158f46fbf98" category="list-text">Suporte para multipath NVMe no kernel habilitado para namespaces NVMe por padrão, portanto, não há necessidade de configurações explícitas.</block>
   <block id="0e40927283df7781be68d00b8accefe1" category="paragraph">Você pode usar o procedimento a seguir para validar as versões mínimas de software Oracle Linux 9,4 suportadas.</block>
   <block id="affce6661ee4cdaf7f19934910191c46" category="list-text">Instale o Oracle Linux 9,4 GA no servidor. Depois que a instalação estiver concluída, verifique se você está executando o kernel especificado do Oracle Linux 9,4 GA.</block>
@@ -3437,7 +3436,6 @@
   <block id="8e628a7900ccbcbe897613470b379397" category="doc">Configurar o Rocky Linux 8.10 com NVMe-oF para armazenamento ONTAP</block>
   <block id="85c8cdeb7264230e3576dcdedf0caad5" category="paragraph">Hosts Rocky Linux 8.10 suportam os protocolos NVMe/FC e NVMe/TCP com Acesso Assimétrico ao Namespace (ANA). ANA é equivalente ao multipathing de acesso assimétrico à unidade lógica (ALUA) em ambientes iSCSI e FCP e é implementado usando o recurso multipath NVMe no kernel.</block>
   <block id="c264db98e31638c1a8a87666a604a58e" category="paragraph">Você pode usar o seguinte suporte e recursos com a configuração do host NVMe-oF para o Rocky Linux 8.10. Você também deve rever as limitações conhecidas antes de iniciar o processo de configuração.</block>
-  <block id="c9e63917edd2644c65c4c83c5f513014" category="list-text">Executando o tráfego NVMe e SCSI no mesmo host. Por exemplo, você pode configurar o dm-multipath para dispositivos SCSI mpath para LUNs SCSI e usar o multipath NVMe para configurar dispositivos de namespace NVMe-of no host.</block>
   <block id="dcccf8a1b4217ccff67e37945ae5e664" category="list-text">O multipath NVMe no kernel é desabilitado por padrão para hosts Rocky Linux 8.10 NVMe-oF. Portanto, você precisa ativá-lo manualmente.</block>
   <block id="46fede53b7d1ee83fe8a87bd6ecb6b28" category="inline-link">Notas de lançamento do Rocky Linux 8.10</block>
   <block id="9ddcffe2b5bcdcca37f41378bd6c4381" category="list-text">Em hosts Rocky Linux 8.10, NVMe/TCP é um recurso de prévia de tecnologia devido a problemas em aberto. Consulte<block ref="47fab428b8102b062e87d7a496d804cc" category="inline-link-rx"></block> para obter mais informações.</block>
@@ -3911,13 +3909,10 @@
   <block id="379e2b5ae5b7c7e267439eb94baea215" category="doc">Configurar o Oracle Linux 9.5 com NVMe-oF para armazenamento ONTAP</block>
   <block id="ac17418128183e6567213b4eb19b624e" category="paragraph">O suporte e os recursos a seguir estão disponíveis com a configuração do host NVMe-oF para Oracle Linux 9.5 com armazenamento ONTAP.</block>
   <block id="da28215a221e368b851dc3287e53bf0d" category="list-text">O Oracle Linux 9.5 habilita o multicaminho NVMe no kernel para namespaces NVMe por padrão, eliminando a necessidade de configurações explícitas.</block>
-  <block id="1daee075c9e11e6f5b20b3967c0df0f7" category="list-text">A partir do ONTAP 9.12.1, o suporte para autenticação segura em banda é introduzido para NVMe/TCP. Você pode usar autenticação segura em banda para NVMe/TCP com Oracle Linux 9.5</block>
-  <block id="1406ed1061bd413045768fa60a774f96" category="list-text">Evite emitir o <block ref="de5ac85ea45047f4dbeea79d7b729b7d" prefix=" " category="inline-code"></block> comando em sistemas inicializados a partir de SAN sobre namespaces NVMe-TCP ou NVMe-FC, pois ele desconecta os sistemas de arquivos raiz e de dados e pode levar à instabilidade do sistema.</block>
   <block id="3d8ffc1ce95181376d3df0b672be1eda" category="paragraph">Use o procedimento a seguir para validar as versões mínimas suportadas do software Oracle Linux 9.5.</block>
   <block id="db6f9dd7f149e36160f14dc375296df9" category="list-text">Instale o Oracle Linux 9,5 no servidor. Após a conclusão da instalação, verifique se você está executando o kernel especificado do Oracle Linux 9.5.</block>
   <block id="3d461fcebb59cefcba884f7f4189554c" category="paragraph">O exemplo a seguir mostra uma versão do kernel do Oracle Linux:</block>
   <block id="1c6fe8f9564a2897108b9a362f664a00" category="list-text">No host Oracle Linux 9,5, verifique a<block ref="24039a6c469b55da1dae1ff1197f8079" prefix=" " category="inline-code"></block> string em<block ref="7c33f184451a7567af5a5fb5f2bc7ae1" prefix=" " category="inline-code"></block>:</block>
-  <block id="941c3de9b4431dee039cdde689dc10a6" category="paragraph">Configure NVMe/FC com adaptadores Broadcom/Emulex FC ou Marvell/Qlogic FC.</block>
   <block id="e18c595831de75294a8d5182a3556728" category="paragraph">O exemplo a seguir mostra as versões do driver e do firmware:</block>
   <block id="414c61d9e5c23d4d8f6cfb11c45d77df" category="paragraph">O valor <block ref="c4ca4238a0b923820dcc509a6f75849b" prefix=" " category="inline-code"></block> verifica que <block ref="a8961a0cb8d5dfd91556db806f0f2cfc" prefix=" " category="inline-code"></block> está definido.</block>
   <block id="41ffb2c5337c2e9742d41439a2a47824" category="section-title">Etapa 4: Opcionalmente, habilite 1 MB de E/S para NVMe/FC</block>
@@ -3944,4 +3939,9 @@
   <block id="73ab7233c5edabec8f510d9bf8812cd1" category="sidebar">Oracle Linux 8</block>
   <block id="1b7514bd57f9cc1b09f9148e93151331" category="sidebar">Oracle Linux 7</block>
   <block id="c60ede747aeb2a1a339beabc79de8ca2" category="sidebar">Oracle Linux 6</block>
+  <block id="6d33793e4362fa404bfbe30d04104eaf" category="list-text">Executando o tráfego NVMe e SCSI no mesmo host. Por exemplo, você pode configurar dm-multipath em dispositivos SCSI mpath para LUNs SCSI e usar NVMe multipath para configurar dispositivos de namespace NVMe-oF no host.</block>
+  <block id="ae032d5b125754c1697aed6e1d8f7432" category="list-text">A partir do ONTAP 9.12.1, o suporte para autenticação segura em banda é introduzido para NVMe/TCP. Você pode usar autenticação segura em banda para NVMe/TCP com o Oracle Linux 9.5.</block>
+  <block id="42cbea0085bea3ec5496d092c502217b" category="paragraph">Configure NVMe/FC com adaptadores Broadcom/Emulex FC ou Marvell/Qlogic FC.</block>
+  <block id="0f2332cb3d4b010b45d6eb9fbbeab96c" category="list-text">Executando o tráfego NVMe e SCSI no mesmo host. Por exemplo, você pode configurar dm-multipath para dispositivos SCSI mpath em LUNs SCSI e usar NVMe multipath para configurar dispositivos de namespace NVMe-oF no host.</block>
+  <block id="c28f1c588b284418e1f1f45095861195" category="list-text">Executando o tráfego NVMe e SCSI no mesmo host. Por exemplo, você pode configurar dm-multipath para dispositivos SCSI mpath em LUNs SCSI e usar NVMe multipath para configurar dispositivos de namespace NVMe-oF no host.</block>
 </blocks>
