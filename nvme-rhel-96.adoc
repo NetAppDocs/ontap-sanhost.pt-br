@@ -27,19 +27,19 @@ Você pode usar o suporte e os recursos a seguir com a configuração de host NV
 ** Executando o tráfego NVMe e SCSI no mesmo host. Por exemplo, você pode configurar o dm-multipath para dispositivos SCSI mpath para LUNs SCSI e usar o multipath NVMe para configurar dispositivos de namespace NVMe-of no host.
 ** O RHEL 9,6 habilita o multipath NVMe no kernel para namespaces NVMe por padrão, eliminando a necessidade de configurações explícitas.
 ** A partir do ONTAP 9.12.1, o suporte para autenticação segura em banda é introduzido para NVMe/TCP. Você pode usar autenticação segura em banda para NVMe/TCP com o RHEL 9,6.
+
+
 +
 Para obter detalhes adicionais sobre as configurações suportadas, consulte o link:https://mysupport.netapp.com/matrix/["Ferramenta de Matriz de interoperabilidade"^].
 
-
-
 * Caraterísticas disponíveis:
 +
-** Não há novos recursos disponíveis.
+** Não há novos recursos nesta versão.
 
 
 * Limitações conhecidas:
 +
-** Evite emitir o  `nvme disconnect-all` comando em sistemas inicializados a partir de SAN sobre namespaces NVMe-TCP ou NVMe-FC, pois ele desconecta os sistemas de arquivos raiz e de dados e pode levar à instabilidade do sistema.
+** Evite emitir o  `nvme disconnect-all` comando em sistemas inicializados a partir de SAN sobre namespaces NVMe-TCP ou NVMe-FC porque ele desconecta os sistemas de arquivos raiz e de dados e pode levar à instabilidade do sistema.
 
 
 
@@ -418,7 +418,9 @@ cat /sys/module/lpfc/parameters/lpfc_sg_seg_cnt
 
 == Etapa 5: verificar os serviços de inicialização NVMe
 
-Com o RHEL 9,6, o  `nvmefc-boot-connections.service` e  `nvmf-autoconnect.service` serviços de inicialização incluídos no NVMe/FC  `nvme-cli` Os pacotes são habilitados automaticamente quando o sistema inicializa. Após a inicialização, verifique se os serviços estão habilitados.
+Com o RHEL 9,6, o  `nvmefc-boot-connections.service` e  `nvmf-autoconnect.service` serviços de inicialização incluídos no NVMe/FC  `nvme-cli` Os pacotes são habilitados automaticamente quando o sistema inicializa.
+
+Após a inicialização ser concluída, verifique se o  `nvmefc-boot-connections.service` e  `nvmf-autoconnect.service` os serviços de inicialização estão habilitados.
 
 .Passos
 . Verifique se `nvmf-autoconnect.service` está ativado:
@@ -749,6 +751,16 @@ nvme	connect-all	-t	tcp	-w	192.168.2.31	-a	192.168.2.25
 ====
 
 
+[NOTE]
+====
+A partir do RHEL 9.4, a configuração para NVMe/TCP  `ctrl_loss_tmo timeout` é automaticamente definido como "desligado". Como resultado:
+
+* Não há limites para o número de tentativas (nova tentativa indefinida).
+* Você não precisa configurar manualmente um específico  `ctrl_loss_tmo timeout` duração ao usar o  `nvme connect` ou  `nvme connect-all` comandos (opção -l).
+* Os controladores NVMe/TCP não sofrem timeouts em caso de falha de caminho e permanecem conectados indefinidamente.
+
+
+====
 
 
 == Etapa 7: Validar NVMe-oF
