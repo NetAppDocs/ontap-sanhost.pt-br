@@ -280,7 +280,7 @@ O suporte a desalocar está sempre habilitado para namespaces NVMe. Desalocar ta
 .Passos
 . No seu host ESXi, verifique a configuração para DSM desalocar com suporte a TP4040:
 +
-`esxcfg-advcfg -g /SCSi/NVmeUseDsmTp4040`
+`esxcfg-advcfg -g /Scsi/NVmeUseDsmTp4040`
 
 +
 O valor esperado é 0.
@@ -291,7 +291,7 @@ O valor esperado é 0.
 
 . Verifique se a definição para DSM desalocar com suporte a TP4040 está ativada:
 +
-`esxcfg-advcfg -g /SCSi/NVmeUseDsmTp4040`
+`esxcfg-advcfg -g /Scsi/NVmeUseDsmTp4040`
 
 +
 O valor esperado é 1.
