@@ -16,7 +16,7 @@ summary: Como configurar o host NVMe-oF para Rocky Linux 9.6 com ONTAP
 
 
 [role="lead"]
-As configurações de host SAN NetApp dão suporte ao protocolo NVMe over Fabrics (NVMe-of) com acesso a namespace assimétrico (ANA). Em ambientes NVMe-of, o ANA é equivalente a multipathing de acesso de unidade lógica assimétrica (ALUA) em ambientes iSCSI e FCP. A ANA é implementada usando o recurso multipath NVMe no kernel.
+Diretiva não resolvida em <stdin> - include::_include/nvme/reuse-nvme-introduction.adoc[]
 
 .Sobre esta tarefa
 Você pode usar o seguinte suporte e recursos com a configuração do host NVMe-oF para o Rocky Linux 9.6. Você também deve rever as limitações conhecidas antes de iniciar o processo de configuração.
@@ -385,34 +385,7 @@ O outptut esperado é 1.
 
 == Etapa 4: opcionalmente, habilite 1 MB de E/S
 
-O ONTAP relata um MDTS (MAX Data Transfer Size) de 8 nos dados do controlador de identificação. Isso significa que o tamanho máximo da solicitação de e/S pode ser de até 1MBMB. Para emitir solicitações de e/S de tamanho 1 MB para um host NVMe/FC Broadcom, você deve aumentar `lpfc` o valor `lpfc_sg_seg_cnt` do parâmetro para 256 do valor padrão 64.
-
-
-NOTE: Essas etapas não se aplicam a hosts Qlogic NVMe/FC.
-
-.Passos
-. Defina `lpfc_sg_seg_cnt` o parâmetro como 256:
-+
-[source, cli]
-----
-cat /etc/modprobe.d/lpfc.conf
-----
-+
-Você deverá ver uma saída semelhante ao exemplo a seguir:
-
-+
-[listing]
-----
-options lpfc lpfc_sg_seg_cnt=256
-----
-. Execute o `dracut -f` comando e reinicie o host.
-. Verifique se o valor para `lpfc_sg_seg_cnt` é 256:
-+
-[source, cli]
-----
-cat /sys/module/lpfc/parameters/lpfc_sg_seg_cnt
-----
-
+Diretiva não resolvida em <stdin> - include::_include/nvme/reuse_nvme_enabling_broadcom_1mb_size.adoc[]
 
 
 
@@ -473,7 +446,7 @@ Jun 10 01:08:36 localhost systemd[1]: Finished Auto-connect to subsystems on FC-
 
 == Etapa 6: Configurar NVMe/TCP
 
-O protocolo NVMe/TCP não suporta a `auto-connect` operação. Em vez disso, você pode descobrir os subsistemas e namespaces NVMe/TCP executando as operações NVMe/TCP `connect` ou `connect-all` manualmente.
+Diretiva não resolvida em <stdin> - include::_include/nvme/reuse-nvme-configure-nvme-tcp.adoc[]
 
 .Passos
 . Verifique se a porta do iniciador pode buscar os dados da página de log de descoberta nas LIFs NVMe/TCP suportadas:
@@ -837,114 +810,6 @@ Namespace Usage    Format             FW             Rev
 -----------------------------------------------------------
 1                 21.47 GB / 21.47 GB	4 KiB + 0 B   FFFFFFFF
 ----
-====
-. Verifique se o estado do controlador de cada caminho está ativo e tem o status ANA correto:
-+
-[role="tabbed-block"]
-====
-.NVMe/FC
---
-[source, cli]
-----
-nvme list-subsys /dev/nvme4n5
-----
-.Mostrar exemplo
-[%collapsible]
-=====
-[listing, subs="+quotes"]
-----
-nvme-subsys4 - NQN=nqn.1992-08.com.netapp:sn.3a5d31f5502c11ef9f50d039eab6cb6d:subsystem.nvme_1
-               hostnqn=nqn.2014-08.org.nvmexpress:uuid:e6dade64-216d-
-11ec-b7bb-7ed30a5482c3
-iopolicy=round-robin\
-+- nvme1 *fc* traddr=nn-0x2082d039eaa7dfc8:pn-0x2088d039eaa7dfc8,host_traddr=nn-0x20000024ff752e6d:pn-0x21000024ff752e6d *live optimized*
-+- nvme12 *fc* traddr=nn-0x2082d039eaa7dfc8:pn-0x208ad039eaa7dfc8,host_traddr=nn-0x20000024ff752e6d:pn-0x21000024ff752e6d *live non-optimized*
-+- nvme10 *fc* traddr=nn-0x2082d039eaa7dfc8:pn-0x2087d039eaa7dfc8,host_traddr=nn-0x20000024ff752e6c:pn-0x21000024ff752e6c *live non-optimized*
-+- nvme3 *fc* traddr=nn-0x2082d039eaa7dfc8:pn-0x2083d039eaa7dfc8,host_traddr=nn-0x20000024ff752e6c:pn-0x21000024ff752e6c *live optimized*
-----
-=====
---
-.NVMe/TCP
---
-[source, cli]
-----
-nvme list-subsys /dev/nvme1n1
-----
-.Mostrar exemplo
-[%collapsible]
-=====
-[listing, subs="+quotes"]
-----
-nvme-subsys5 - NQN=nqn.1992-08.com.netapp:sn.0f4ba1e74eb611ef9f50d039eab6cb6d:subsystem.nvme_tcp_3
-hostnqn=nqn.2014-08.org.nvmexpress:uuid:4c4c4544-0035-5910-804b-b5c04f444d33
-iopolicy=round-robin
-\
-+- nvme13 *tcp* traddr=192.168.2.25,trsvcid=4420,host_traddr=192.168.2.31,
-src_addr=192.168.2.31 *live optimized*
-+- nvme14 *tcp* traddr=192.168.2.24,trsvcid=4420,host_traddr=192.168.2.31,
-src_addr=192.168.2.31 *live non-optimized*
-+- nvme5 *tcp* traddr=192.168.1.25,trsvcid=4420,host_traddr=192.168.1.31,
-src_addr=192.168.1.31 *live optimized*
-+- nvme6 *tcp* traddr=192.168.1.24,trsvcid=4420,host_traddr=192.168.1.31,
-src_addr=192.168.1.31 *live non-optimized*
-----
-=====
---
-====
-. Verifique se o plug-in NetApp exibe os valores corretos para cada dispositivo de namespace ONTAP:
-+
-[role="tabbed-block"]
-====
-.Coluna
---
-[source, cli]
-----
-nvme netapp ontapdevices -o column
-----
-.Mostrar exemplo
-[%collapsible]
-=====
-[listing, subs="+quotes"]
-----
-
-Device        Vserver   Namespace Path
------------------------ ------------------------------
-/dev/nvme1n1     linux_tcnvme_iscsi        /vol/tcpnvme_1_0_0/tcpnvme_ns
-
-NSID       UUID                                   Size
-------------------------------------------------------------
-1    5f7f630d-8ea5-407f-a490-484b95b15dd6   21.47GB
-----
-=====
---
-.JSON
---
-[source, cli]
-----
-nvme netapp ontapdevices -o json
-----
-.Mostrar exemplo
-[%collapsible]
-=====
-[listing, subs="+quotes"]
-----
-{
-  "ONTAPdevices":[
-    {
-      "Device":"/dev/nvme1n1",
-      "Vserver":"linux_tcnvme_iscsi",
-      "Namespace_Path":"/vol/tcpnvme_1_0_0/tcpnvme_ns",
-      "NSID":1,
-      "UUID":"5f7f630d-8ea5-407f-a490-484b95b15dd6",
-      "Size":"21.47GB",
-      "LBA_Data_Size":4096,
-      "Namespace_Size":5242880
-    },
-]
-}
-----
-=====
---
 ====
 
 

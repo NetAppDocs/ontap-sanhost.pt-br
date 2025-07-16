@@ -433,6 +433,79 @@ Verifique se o status multipath do NVMe no kernel, o status ANA e os namespaces 
 .Passos
 . Verifique se o multipath NVMe no kernel está habilitado:
 +
+[source, cli]
+----
+cat /sys/module/nvme_core/parameters/multipath
+----
++
+Você deve ver a seguinte saída:
+
++
+[listing]
+----
+Y
+----
+. Verifique se as configurações de NVMe-of apropriadas (como o modelo definido como controlador NetApp ONTAP e o balanceamento de carga iopolicy definido como round-robin) para os respetivos namespaces ONTAP refletem corretamente no host:
++
+.. Exibir os subsistemas:
++
+[source, cli]
+----
+cat /sys/class/nvme-subsystem/nvme-subsys*/model
+----
++
+Você deve ver a seguinte saída:
+
++
+[listing]
+----
+NetApp ONTAP Controller
+NetApp ONTAP Controller
+----
+.. Exibir a política:
++
+[source, cli]
+----
+cat /sys/class/nvme-subsystem/nvme-subsys*/iopolicy
+----
++
+Você deve ver a seguinte saída:
+
++
+[listing]
+----
+round-robin
+round-robin
+----
+
+
+. Verifique se os namespaces são criados e descobertos corretamente no host:
++
+[source, cli]
+----
+nvme list
+----
++
+.Mostrar exemplo
+[%collapsible]
+====
+[listing]
+----
+Node         SN                   Model
+---------------------------------------------------------
+/dev/nvme4n1 81Ix2BVuekWcAAAAAAAB	NetApp ONTAP Controller
+
+
+Namespace Usage    Format             FW             Rev
+-----------------------------------------------------------
+1                 21.47 GB / 21.47 GB	4 KiB + 0 B   FFFFFFFF
+----
+====
+
+
+.Passos
+. Verifique se o multipath NVMe no kernel está habilitado:
++
 `cat /sys/module/nvme_core/parameters/multipath`
 
 +

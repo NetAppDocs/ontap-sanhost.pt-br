@@ -136,7 +136,7 @@ A tabela a seguir mostra as configurações de parâmetros multipath compilados 
 | prio | "ONTAP" 
 
 
-| produto | LUN.* 
+| produto | LUN 
 
 
 | reter_anexado_hw_handler | sim 
