@@ -1,10 +1,10 @@
 ---
 sidebar: sidebar 
-permalink: hu_aix_61_cmd.html 
+permalink: hu-aix-command-reference.html 
 keywords: host utilities, aix, powervm, vios, 3.1, 7.2, 7.0, netapp, ontap 
 summary: Você pode usar a referência de comando de exemplo de utilitários de host AIX para uma validação completa da configuração de armazenamento do NetApp usando a ferramenta Utilitários de host. 
 ---
-= Referência de comando de exemplo de Utilitários de host AIX
+= Use os comandos do AIX Host Utilities para verificar a configuração de armazenamento ONTAP
 :hardbreaks:
 :toclevels: 1
 :allow-uri-read: 
@@ -26,10 +26,58 @@ Você pode recuperar uma lista de iniciadores de host mapeados para um host.
 
 [source, cli]
 ----
-# sanlun fcp show adapter -v
+sanlun fcp show adapter -v
 ----
-*Exemplo de saída*
-
+[role="tabbed-block"]
+====
+.8,0
+--
+.Mostrar exemplo para AIX Host Utilities 8.0
+[%collapsible]
+=====
+[listing]
+----
+adapter name:      fcs4
+WWPN:              100000109bf606a8
+WWNN:              200000109bf606a8
+driver name:       /usr/lib/drivers/pci/emfcdd
+model:             df1000e31410150
+model description: FC Adapter
+serial number:     Y050HY22L002
+hardware version:  Not Available
+driver version:    7.2.5.201
+firmware version:  00014000000057400007
+Number of ports:   1
+port type:         Fabric
+port state:        Operational
+supported speed:   32 GBit/sec
+negotiated speed:  32 GBit/sec
+OS device name:    fcs4
+adapter name:      fcs5
+WWPN:              100000109bf606a9
+WWNN:              200000109bf606a9
+driver name:       /usr/lib/drivers/pci/emfcdd
+model:             df1000e31410150
+model description: FC Adapter
+serial number:     Y050HY22L002
+hardware version:  Not Available
+driver version:    7.2.5.201
+firmware version:  00014000000057400007
+Number of ports:   1
+port type:         Fabric
+port state:        Operational
+supported speed:   32 GBit/sec
+negotiated speed:  32 GBit/sec
+OS device name:    fcs5
+bash-3.2#
+----
+=====
+--
+.7.0 e 6.1
+--
+.Mostrar exemplo para AIX Host Utilities 7.0 e 6.1
+[%collapsible]
+=====
 [listing]
 ----
 bash-3.2# sanlun fcp show adapter -v
@@ -67,6 +115,9 @@ negotiated speed: Unknown
 OS device name: fcs1
 bash-3.2#
 ----
+=====
+--
+====
 
 
 == Listar todos os LUNs mapeados para o host
@@ -75,10 +126,40 @@ Você pode recuperar uma lista de todos os LUNs mapeados para um host.
 
 [source, cli]
 ----
-# sanlun lun show -p -v all
+sanlun lun show -p -v all
 ----
-*Exemplo de saída*
+[role="tabbed-block"]
+====
+.8,0
+--
+.Mostrar exemplo para AIX Host Utilities 8.0
+[%collapsible]
+=====
+[listing]
+----
+LUN: 88
+LUN Size: 15g
+Host Device: hdisk9
+Mode: C
+Multipath Provider: AIX Native
+Multipathing Algorithm: round_robin
 
+host    vserver  AIX   AIX MPIO
+path    path     MPIO  host      vserver      path
+state   type     path  adapter   LIF          priority
+-----------------------------------------------------
+up     primary   path0   fcs0    fc_aix_1     1
+up     primary   path1   fcs1    fc_aix_2     1
+up     secondary path2   fcs0    fc_aix_3     1
+up     secondary path3   fcs1    fc_aix_4     1
+----
+=====
+--
+.7.0 e 6.1
+--
+.Mostrar exemplo para AIX Host Utilities 7.0 e 6.1
+[%collapsible]
+=====
 [listing]
 ----
 ONTAP Path: vs_aix_clus:/vol/gpfs_205p2_207p1_vol_0_8/aix_205p2_207p1_lun
@@ -98,6 +179,9 @@ up     primary   path1   fcs1    fc_aix_2     1
 up     secondary path2   fcs0    fc_aix_3     1
 up     secondary path3   fcs1    fc_aix_4     1
 ----
+=====
+--
+====
 
 
 == Listar todas as LUNs mapeadas para o host a partir de uma dada SVM
@@ -106,10 +190,15 @@ up     secondary path3   fcs1    fc_aix_4     1
 
 [source, cli]
 ----
-# sanlun lun show -p -v sanboot_unix
+sanlun lun show -p -v sanboot_unix
 ----
-*Exemplo de saída*
-
+[role="tabbed-block"]
+====
+.8,0
+--
+.Mostrar exemplo para AIX Host Utilities 8.0
+[%collapsible]
+=====
 [listing]
 ----
 ONTAP Path: sanboot_unix:/vol/aix_205p2_boot_0/boot_205p2_lun
@@ -129,6 +218,35 @@ up      primary    path1 fcs1    sanboot_2   1
 up      secondary  path2 fcs0    sanboot_3   1
 up      secondary  path3 fcs1    sanboot_4   1
 ----
+=====
+--
+.7.0 e 6.1
+--
+.Mostrar exemplo para AIX Host Utilities 7.0 e 6.1
+[%collapsible]
+=====
+[listing]
+----
+ONTAP Path: sanboot_unix:/vol/aix_205p2_boot_0/boot_205p2_lun
+LUN: 0
+LUN Size: 80.0g
+Host Device: hdisk85
+Mode: C
+Multipath Provider: AIX Native
+Multipathing Algorithm: round_robin
+
+host    vserver    AIX   AIX MPIO
+path    path       MPIO  host    vserver    path
+state   type       path  adapter LIF        priority
+-------------------------------------------------
+up      primary    path0 fcs0    sanboot_1   1
+up      primary    path1 fcs1    sanboot_2   1
+up      secondary  path2 fcs0    sanboot_3   1
+up      secondary  path3 fcs1    sanboot_4   1
+----
+=====
+--
+====
 
 
 == Listar todos os atributos de um determinado LUN mapeados para o host
@@ -137,10 +255,15 @@ Você pode recuperar uma lista de todos os atributos de um LUN especificado mape
 
 [source, cli]
 ----
-# sanlun lun show -p -v vs_aix_clus:/vol/gpfs_205p2_207p1_vol_0_8/aix_205p2_207p1_lun
+sanlun lun show -p -v vs_aix_clus:/vol/gpfs_205p2_207p1_vol_0_8/aix_205p2_207p1_lun
 ----
-*Exemplo de saída*
-
+[role="tabbed-block"]
+====
+.8,0
+--
+.Mostrar exemplo para AIX Host Utilities 8.0
+[%collapsible]
+=====
 [listing]
 ----
 ONTAP Path: vs_aix_clus:/vol/gpfs_205p2_207p1_vol_0_8/aix_205p2_207p1_lun
@@ -160,6 +283,35 @@ up       primary   path1 fcs1    fc_aix_2   1
 up       secondary path2 fcs0    fc_aix_3   1
 up       secondary path3 fcs1    fc_aix_4   1
 ----
+=====
+--
+.7.0 e 6.1
+--
+.Mostrar exemplo para AIX Host Utilities 7.0 e 6.1
+[%collapsible]
+=====
+[listing]
+----
+ONTAP Path: vs_aix_clus:/vol/gpfs_205p2_207p1_vol_0_8/aix_205p2_207p1_lun
+LUN: 88
+LUN Size: 15g
+Host Device: hdisk9
+Mode: C
+Multipath Provider: AIX Native
+Multipathing Algorithm: round_robin
+
+host     vserver   AIX   AIX MPIO
+path     path      MPIO  host     vserver   path
+state    type      path  adapter  LIF       priority
+---------------------------------------------------------
+up       primary   path0 fcs0    fc_aix_1   1
+up       primary   path1 fcs1    fc_aix_2   1
+up       secondary path2 fcs0    fc_aix_3   1
+up       secondary path3 fcs1    fc_aix_4   1
+----
+=====
+--
+====
 
 
 == Listar atributos LUN ONTAP por nome de arquivo do dispositivo host
@@ -168,10 +320,15 @@ Você pode recuperar uma lista de atributos LUN do ONTAP especificando um nome d
 
 [source, cli]
 ----
-#sanlun lun show -d /dev/hdisk1
+sanlun lun show -d /dev/hdisk1
 ----
-*Exemplo de saída*
-
+[role="tabbed-block"]
+====
+.8,0
+--
+.Mostrar exemplo para AIX Host Utilities 8.0
+[%collapsible]
+=====
 [listing]
 ----
 controller(7mode)/
@@ -184,6 +341,28 @@ filename adapter protocol size mode
 -----------------------------------
 hdisk1    fcs0    FCP     15g  C
 ----
+=====
+--
+.7.0 e 6.1
+--
+.Mostrar exemplo para AIX Host Utilities 7.0 e 6.1
+[%collapsible]
+=====
+[listing]
+----
+controller(7mode)/
+device host lun
+vserver(Cmode)     lun-pathname
+-----------------------------------------------------------------------------
+vs_aix_clus       /vol/gpfs_205p2_207p1_vol_0_0/aix_205p2_207p1_lun
+
+filename adapter protocol size mode
+-----------------------------------
+hdisk1    fcs0    FCP     15g  C
+----
+=====
+--
+====
 
 
 == Listar todas as WWPNs de LIF de destino SVM conetadas ao host
@@ -192,10 +371,15 @@ Você pode recuperar uma lista de todas as WWPNs de LIF de destino SVM conetadas
 
 [source, cli]
 ----
-# sanlun lun show -wwpn
+sanlun lun show -wwpn
 ----
-*Exemplo de saída*
-
+[role="tabbed-block"]
+====
+.8,0
+--
+.Mostrar exemplo para AIX Host Utilities 8.0
+[%collapsible]
+=====
 [listing]
 ----
 controller(7mode)/
@@ -215,3 +399,32 @@ hdisk10      fcs0       15g    C
 hdisk11      fcs0       15g    C
 hdisk12      fcs0       15g    C
 ----
+=====
+--
+.7.0 e 6.1
+--
+.Mostrar exemplo para AIX Host Utilities 7.0 e 6.1
+[%collapsible]
+=====
+[listing]
+----
+controller(7mode)/
+target device host lun
+vserver(Cmode)          wwpn            lun-pathname
+--------------------------------------------------------------------------------
+
+vs_aix_clus          203300a098ba7afe  /vol/gpfs_205p2_207p1_vol_0_0/aix_205p2_207p1_lun
+vs_aix_clus          203300a098ba7afe  /vol/gpfs_205p2_207p1_vol_0_9/aix_205p2_207p1_lun
+vs_aix_clus          203300a098ba7afe  /vol/gpfs_205p2_207p1_vol_en_0_0/aix_205p2_207p1_lun_en
+vs_aix_clus          202f00a098ba7afe  /vol/gpfs_205p2_207p1_vol_en_0_1/aix_205p2_207p1_lun_en
+
+filename     adapter    size  mode
+-----------------------------------
+hdisk1       fcs0       15g    C
+hdisk10      fcs0       15g    C
+hdisk11      fcs0       15g    C
+hdisk12      fcs0       15g    C
+----
+=====
+--
+====

@@ -16,50 +16,63 @@ summary: Descreve como usar os Utilitários de host Solaris 6,2 com ONTAP
 
 
 [role="lead"]
-Os Utilitários de host do Solaris ajudam você a gerenciar o armazenamento do ONTAP anexado a um host do Solaris.
+Os utilitários de host Solaris ajudam você a gerenciar o armazenamento ONTAP conectado a um host Solaris e auxiliam o suporte técnico na coleta de dados de configuração.
 
-O Solaris Host Utilities 6,2 suporta vários ambientes Solaris e vários protocolos. Os ambientes principais de Utilitários de host são:
+Os utilitários de host Solaris oferecem suporte a vários ambientes Solaris e vários protocolos de transporte.  Estes são os principais ambientes do Solaris Host Utilities:
 
-* SO nativo com MPxIO com o protocolo Fibre Channel (FC) ou iSCSI em um sistema que usa um processador SPARC ou um processador x86/64.
+* O sistema operacional nativo com MPxIO e o protocolo Fibre Channel (FC) ou iSCSI em um sistema usando um processador SPARC ou um processador x86/64.
 * Veritas Dynamic Multipathing (DMP) com o protocolo FC ou iSCSI em um sistema que usa um processador SPARC, ou o protocolo iSCSI em um sistema que usa um processador x86/64.
 
 
-O Solaris Host Utilities 6,2 continua a suportar as seguintes versões do Solaris:
+O Solaris Host Utilities 6.2 oferece suporte às seguintes séries Solaris:
 
-* Solaris série 11.x.
-* Solaris série 10.x.
+* Solaris 11.x
+* Solaris 10.x
 
 
 .Antes de começar
-* Para uma operação confiável, verifique se toda a configuração iSCSI, FC ou FCoE é suportada.
-
-
-Pode utilizar o link:https://imt.netapp.com/matrix/#welcome["Ferramenta de Matriz de interoperabilidade"^] para verificar a sua configuração.
-
-
-NOTE: O pacote de software Utilitários de host do NetApp está disponível no link:https://mysupport.netapp.com/site/products/all/details/hostutilities/downloads-tab/download/61343/6.2/downloads["Site de suporte da NetApp"^]em um formato de arquivo compactado para o processador. Pode transferir o pacote de software Host Utilities para o seu ambiente a partir do site de suporte.
+Verifique se sua configuração iSCSI, FC ou FCoE é suportada.  Você pode usar olink:https://imt.netapp.com/matrix/#welcome["Ferramenta de Matriz de interoperabilidade"^] para verificar sua configuração.
 
 .Passos
-. Faça login no seu host como root.
-. Faça o download de uma cópia do arquivo compactado que contém os Utilitários do host do link:https://mysupport.netapp.com/site/products/all/details/hostutilities/downloads-tab/download/61343/6.2/downloads["Site de suporte da NetApp"^] para um diretório em seu host.
+. Efetue login no seu host como root.
+. Baixe uma cópia do arquivo compactado contendo os utilitários do host dolink:https://mysupport.netapp.com/site/products/all/details/hostutilities/downloads-tab/download/61343/6.2/downloads["Site de suporte da NetApp"^] para um diretório no seu host Solaris:
 +
-No momento em que esta documentação foi preparada, os arquivos compatados foram chamados:
-
-+
-** CPU SPARC: `netapp_solaris_host_utilities_6_2_sparc.tar.gz`
-** CPU x86/x64: `netapp_solaris_host_utilities_6_2_amd.tar.gz`
-
-
-. Vá para o diretório que contém o download.
+[role="tabbed-block"]
+====
+.CPU SPARC
+--
+[source, cli]
+----
+netapp_solaris_host_utilities_6_2_sparc.tar.gz
+----
+--
+.CPU x86/x64
+--
+[source, cli]
+----
+netapp_solaris_host_utilities_6_2_amd.tar.gz
+----
+--
+====
+. Vá para o diretório no seu host Solaris que contém o download.
 . Descompacte o arquivo usando o `gunzip` comando:
 +
-`# gunzip netapp_solaris_host_utilities_6_2_sparc.tar.gz`
-
-. Descompacte o arquivo usando o `tar xvf` comando:
+[source, cli]
+----
+gunzip netapp_solaris_host_utilities_6_2_sparc.tar.gz
+----
+. Extraia o arquivo usando o `tar xvf` comando:
 +
-`# tar xvf netapp_solaris_host_utilities_6_2_sparc.tar`
-
-. Adicione os pacotes que você extraiu do arquivo tar ao seu host usando o `pkgadd` comando.
+[source, cli]
+----
+tar xvf netapp_solaris_host_utilities_6_2_sparc.tar
+----
+. Adicione os pacotes que você extraiu do arquivo tar ao seu host
++
+[source, cli]
+----
+pkgadd
+----
 +
 Os pacotes são adicionados ao `/opt/NTAP/SANToolkit/bin` diretório.
 
@@ -67,10 +80,25 @@ Os pacotes são adicionados ao `/opt/NTAP/SANToolkit/bin` diretório.
 O exemplo a seguir usa o `pkgadd` comando para instalar o pacote de instalação do Solaris:
 
 +
-`# pkgadd -d ./NTAPSANTool.pkg`
-
-. Confirme se o kit de ferramentas foi instalado com sucesso usando o `pkginfo` comando ou o `ls - al` comando.
+[source, cli]
+----
+pkgadd -d ./NTAPSANTool.pkg
+----
+. Confirme se o kit de ferramentas foi instalado com sucesso usando um dos seguintes comandos:
 +
+[source, cli]
+----
+pkginfo
+----
++
+[source, cli]
+----
+ls - al
+----
++
+.Mostrar exemplos de saídas
+[%collapsible]
+====
 [listing]
 ----
 # ls -alR /opt/NTAP/SANToolkit
@@ -94,39 +122,23 @@ drwxr-xr-x   3 root     sys            4 Jul 22  2019 ..
 -r-xr-xr-x   1 root     sys        12266 Sep 13  2017 host_config.1
 -r-xr-xr-x   1 root     sys         9044 Sep 13  2017 sanlun.1
 ----
-. Depois de terminar, configure os parâmetros do host para o seu ambiente usando o `/opt/NTAP/SANToolkit/bin/host_config` comando:
+====
+. Configure os parâmetros do host para seu ambiente MPxIO ou Veritas DMP:
 +
-** MPxIO
-** Veritas DMP
-
-
+[source, cli]
+----
+/opt/NTAP/SANToolkit/bin/host_config
+----
 . Verifique a instalação:
 +
-`sanlun version`
-
-
-
-
-
-== Habilitar kit de ferramentas SAN
-
-Os Utilitários de host do NetApp são um software host que fornece um kit de ferramentas de linha de comando em seu host do Oracle Solaris. O kit de ferramentas é instalado quando você instala o pacote de utilitários de host do NetApp. Este kit fornece o `sanlun` utilitário que ajuda você a gerenciar LUNs e adaptadores de barramento de host (HBAs). O `sanlun` comando retorna informações sobre os LUNs mapeados para o seu host, multipathing e informações necessárias para criar grupos de iniciadores.
-
-.Exemplo
-No exemplo a seguir, o `sanlun lun show` comando retorna as informações de LUN.
-
-[listing]
+[source, cli]
 ----
-#sanlun lun show all
-controller(7mode)/ device host lun
-vserver(Cmode)                     lun-pathname       filename                                       adapter protocol size mode
------------------------------------------------------------------------------------------------------------------------------------
-data_vserver                     /vol/vol1/lun1     /dev/rdsk/c0t600A098038304437522B4E694E49792Dd0s2 qlc3   FCP       10g cDOT
-data_vserver                     /vol/vol0/lun2     /dev/rdsk/c0t600A098038304437522B4E694E497938d0s2 qlc3   FCP       10g cDOT
-data_vserver                     /vol/vol2/lun3     /dev/rdsk/c0t600A098038304437522B4E694E497939d0s2 qlc3   FCP       10g cDOT
-data_vserver                     /vol/vol3/lun4     /dev/rdsk/c0t600A098038304437522B4E694E497941d0s2 qlc3   FCP       10g cDOT
-
-
+sanlun version
 ----
 
-NOTE: Este kit de ferramentas é comum em todas as configurações e protocolos do Host Utilities. Como resultado, todos os componentes não se aplicam a todas as configurações. Os componentes não utilizados não afetam o desempenho do sistema. O SAN Toolkit é suportado nas versões AIX e PowerVM/VIOS os.
+
+
+
+== O que se segue?
+
+link:hu-solaris-san-toolkit.html["Saiba mais sobre o SAN Toolkit"] .

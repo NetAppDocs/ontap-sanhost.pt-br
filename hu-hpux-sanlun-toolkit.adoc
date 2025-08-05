@@ -1,0 +1,47 @@
+---
+sidebar: sidebar 
+permalink: hu-hpux-sanlun-toolkit.html 
+keywords: host utilities, unified, oracle, linux, 7.1, netapp, ontap 
+summary: Descreve como utilizar os utilitários de anfitrião HP-UX 6,0 com armazenamento ONTAP 
+---
+= Saiba mais sobre o SAN Toolkit para armazenamento ONTAP
+:hardbreaks:
+:toclevels: 1
+:allow-uri-read: 
+:toclevels: 1
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./media/
+
+
+[role="lead"]
+O HP-UX Host Utilities é um software host da NetApp que fornece um kit de ferramentas de linha de comando no seu host HP-UX.  O kit de ferramentas é instalado quando você instala o pacote NetApp Host Utilities.  Este kit fornece o `sanlun` utilitário, que ajuda você a gerenciar LUNs ONTAP e adaptadores de barramento de host.  O `sanlun` O comando retorna informações sobre os LUNs mapeados para seu host, multipathing e informações necessárias para criar grupos de iniciadores.
+
+No exemplo a seguir, o `sanlun lun show` O comando retorna informações do LUN ONTAP .
+
+[listing]
+----
+# sanlun lun show all
+
+controller(7mode)/ device host lun
+vserver(Cmode)           lun-pathname                   filename          adapter    protocol   size   mode
+------------------------------------------------------------------------------------------------------------
+sanboot_unix         /vol/hpux_boot/boot_hpux_lun      /dev/rdsk/c34t0d0  fclp1      FCP        150g    C
+sanboot_unix         /vol/hpux_boot/boot_hpux_lun      /dev/rdsk/c23t0d0  fclp1      FCP        150g    C
+sanboot_unix         /vol/hpux_boot/boot_hpux_lun      /dev/rdsk/c12t0d0  fclp0      FCP        150g    C
+sanboot_unix         /vol/hpux_boot/boot_hpux_lun      /dev/rdsk/c81t0d0  fclp0      FCP        150g    C
+
+----
+[NOTE]
+====
+Este kit de ferramentas SAN é comum a todas as configurações e protocolos do Host Utilities.  Como resultado, todos os componentes não se aplicam a todas as configurações.  Componentes não utilizados não afetam o desempenho do sistema.
+
+O SAN Toolkit é compatível com versões de sistema operacional AIX e PowerVM/VIOS.
+
+====
+
+
+== O que se segue?
+
+link:hu_hpux_60_cmd.html["Saiba mais sobre como usar a ferramenta HP-UX Host Utilities"] .

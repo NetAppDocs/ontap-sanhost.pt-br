@@ -1,0 +1,12 @@
+= Etapa 2: instalar os utilitários do host Solaris
+:allow-uri-read: 
+
+
+
+
+== Etapa 2: instalar os utilitários do host Solaris
+
+A NetApp recomenda fortemente a instalação do Solaris Host Utilities para dar suporte ao gerenciamento do ONTAP LUN e auxiliar o suporte técnico na coleta de dados de configuração.
+
+
+NOTE: A instalação do Solaris Host Utilities altera algumas das configurações de tempo limite no seu host Solaris.

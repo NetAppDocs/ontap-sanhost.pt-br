@@ -1,0 +1,9 @@
+= O que vem a seguir?
+:allow-uri-read: 
+
+
+
+
+== O que se segue?
+
+link:hu_wuhu_hba_settings.html["Configurar as definições do registro para os utilitários de host do Windows"] .

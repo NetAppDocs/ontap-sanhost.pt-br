@@ -278,7 +278,7 @@ O host CentOS 7.6 com armazenamento ONTAP tem os seguintes problemas conhecidos:
 
 == O que se segue?
 
-* link:hu_luhu_71_cmd.html["Saiba mais sobre como usar a ferramenta Linux Host Utilities"].
+* link:hu-luhu-command-reference.html["Saiba mais sobre como usar a ferramenta Linux Host Utilities"] .
 * Saiba mais sobre o espelhamento ASM.
 +
 O espelhamento do Gerenciamento Automático de armazenamento (ASM) pode exigir alterações nas configurações de multipath do Linux para permitir que o ASM reconheça um problema e alterne para um grupo de falhas alternativo. A maioria das configurações ASM no ONTAP usa redundância externa, o que significa que a proteção de dados é fornecida pelo array externo e o ASM não espelha dados. Alguns sites usam ASM com redundância normal para fornecer espelhamento bidirecional, normalmente em diferentes sites. link:https://docs.netapp.com/us-en/ontap-apps-dbs/oracle/oracle-overview.html["Bancos de dados Oracle no ONTAP"^]Consulte para obter mais informações.

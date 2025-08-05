@@ -1,0 +1,28 @@
+= Passo 1: Opcionalmente, ative a inicialização de SAN
+:allow-uri-read: 
+
+
+
+
+== Passo 1: Opcionalmente, ative a inicialização de SAN
+
+Você pode configurar seu host para usar a inicialização SAN para simplificar a implantação e melhorar a escalabilidade.  Se sua configuração não suportar inicialização SAN, você poderá usar uma inicialização local.
+
+[role="tabbed-block"]
+====
+.Inicialização de SAN
+--
+A inicialização SAN é o processo de configuração de um disco conectado à SAN (um LUN) como um dispositivo de inicialização para um host Solaris.  Você pode configurar um LUN de inicialização SAN para funcionar em um ambiente Solaris MPxIO que esteja usando o protocolo FC e executando o Solaris Host Utilities.  O método usado para configurar um LUN de inicialização SAN depende do seu gerenciador de volume e sistema de arquivos.
+
+.Passos
+. Use olink:https://mysupport.netapp.com/matrix/#welcome["Ferramenta de Matriz de interoperabilidade"^] para verificar se o seu sistema operacional Solaris, protocolo e versão do ONTAP oferecem suporte à inicialização SAN.
+. Siga as práticas recomendadas para configurar uma inicialização SAN na documentação do fornecedor do Solaris.
+
+
+--
+.Arranque local
+--
+Execute uma inicialização local instalando o sistema operacional Solaris no disco rígido local, por exemplo, instalando em um SSD, SATA ou RAID.
+
+--
+====

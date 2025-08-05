@@ -7,5 +7,10 @@ O software MPIO apresenta um único disco para o sistema operacional Windows par
 
 CAUTION: Se você não instalar o software MPIO, o sistema operacional Windows pode ver cada caminho como um disco separado. Isso pode levar à corrupção de dados.
 
+[NOTE]
+====
+* No Windows Host Utilities 8.0, o recurso MPIO é ativado automaticamente quando você seleciona o suporte a MPIO.
+* O Windows XP ou o Windows Vista executado em uma máquina virtual Hyper-V não oferece suporte a MPIO.
 
-NOTE: O Windows XP ou o Windows Vista em execução numa máquina virtual Hyper-V não suporta MPIO.
+
+====

@@ -45,7 +45,7 @@ Para obter informações sobre como ativar o BIOS HBA, consulte a documentação
 
 A NetApp recomenda fortemente a instalação dos utilitários de host Linux para suportar o gerenciamento de LUN ONTAP e auxiliar o suporte técnico na coleta de dados de configuração.
 
-link:hu_luhu_71.html["Instale o Linux Host Utilities 7,1"].
+link:hu-luhu-80.html["Instalar o Linux Host Utilities 8.0"] .
 
 
 NOTE: A instalação dos Utilitários de host do Linux não altera nenhuma configuração de tempo limite do host no seu host Linux.
@@ -282,7 +282,7 @@ O RHEL 9,1 com a versão de armazenamento ONTAP tem o seguinte problema conhecid
 
 == O que se segue?
 
-* link:hu_luhu_71_cmd.html["Saiba mais sobre como usar a ferramenta Linux Host Utilities"].
+* link:hu-luhu-command-reference.html["Saiba mais sobre como usar a ferramenta Linux Host Utilities"] .
 * Saiba mais sobre o espelhamento ASM.
 +
 O espelhamento do Gerenciamento Automático de armazenamento (ASM) pode exigir alterações nas configurações de multipath do Linux para permitir que o ASM reconheça um problema e alterne para um grupo de falhas alternativo. A maioria das configurações ASM no ONTAP usa redundância externa, o que significa que a proteção de dados é fornecida pelo array externo e o ASM não espelha dados. Alguns sites usam ASM com redundância normal para fornecer espelhamento bidirecional, normalmente em diferentes sites. link:https://docs.netapp.com/us-en/ontap-apps-dbs/oracle/oracle-overview.html["Bancos de dados Oracle no ONTAP"^]Consulte para obter mais informações.

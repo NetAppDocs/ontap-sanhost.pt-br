@@ -23,10 +23,12 @@ NOTE: As etapas a seguir não se aplicam a um host que esteja executando um ambi
 
 .Passos
 . Faça login como root no host.
-. No host AIX, digite o seguinte comando para descobrir os LUNs recém-criados:
+. No host AIX, descubra os LUNs recém-criados:
 +
-`cfgmgr`
-
+[source, cli]
+----
+cfgmgr
+----
 +
 O `cfgmgr` comando ajuda com o seguinte:
 
@@ -38,8 +40,10 @@ O `cfgmgr` comando ajuda com o seguinte:
 
 . Exibir todos os discos AIX, incluindo os LUNs NetApp:
 +
-`lsdev -Cc disk`
-
+[source, cli]
+----
+lsdev -Cc disk
+----
 +
 Os LUNs aparecem no host como discos. Você pode usar esses discos da mesma maneira que usa discos locais no host. O arquivo ODM de configurações do host instalado como parte dos Utilitários do host faz com que os LUNs sejam exibidos como discos FCP do NetApp.
 
@@ -66,8 +70,10 @@ hdisk5 Available 04-08-02  MPIO NetApp FCP Default PCM Disk
 ====
 . Obtenha informações sobre a sua configuração:
 +
-`lsattr -El hdisk_name`
-
+[source, cli]
+----
+lsattr -El hdisk_name
+----
 +
 .Mostrar exemplo de saída
 [%collapsible]
@@ -104,25 +110,33 @@ ww_name         0x500a0984994ae0e0               FC World Wide Name             
 ====
 . Se a sua configuração suportar ALUA, você pode usá-la para definir a prioridade do caminho. Verifique se o ALUA está ativado:
 +
-`lun igroup show -instance igroup_name`
-
+[source, cli]
+----
+lun igroup show -instance igroup_name
+----
 +
 .. Se o ALUA não estiver ativado, ative-o:
 +
-`igroup set igroup_name alua yes`
-
+[source, cli]
+----
+igroup set igroup_name alua yes
+----
 
 
 . Se sua configuração não suportar ALUA, você precisa usar o utilitário dotpaths para definir as prioridades do caminho. O utilitário dotpaths é instalado quando você instala os Utilitários do host. Não use o utilitário dotpaths se o ALUA estiver habilitado.
 +
 .. Defina a prioridade para todos os LUNs ONTAP:
 +
-`dotpaths`
-
+[source, cli]
+----
+dotpaths
+----
 .. Defina a prioridade para um conjunto específico de discos:
 +
-`dotpaths [-hqv] [hdiskN ...]`
-
+[source, cli]
+----
+dotpaths [-hqv] [hdiskN ...]
+----
 +
 Use a `-v` opção para ativar o modo verboso e exibir todas as prioridades. Use a `-q` opção para consultar todas as prioridades de disco ou individuais.
 
@@ -130,8 +144,10 @@ Use a `-v` opção para ativar o modo verboso e exibir todas as prioridades. Use
 
 . Verifique se o host descobriu os LUNs:
 +
-`# sanlun lun show`
-
+[source, cli]
+----
+sanlun lun show
+----
 +
 O exemplo a seguir mostra a saída típica para `sanlun lun show` o comando em um ambiente multipathing Microsoft Multipath I/o (MPIO):
 

@@ -80,7 +80,7 @@ TIP: Muitos hotfixes requerem uma reinicialização do seu host Windows. Você p
 
 == Instale os Utilitários do sistema anfitrião do Windows
 
-Os Utilitários de host do Windows são um conjunto de programas de software com documentação que permite conetar computadores host a discos virtuais (LUNs) em uma SAN NetApp. A NetApp recomenda baixar e instalar o kit de utilitário mais recente. Para obter informações e instruções de configuração dos Utilitários de host do Windows, consulte link:https://docs.netapp.com/us-en/ontap-sanhost/hu_wuhu_71_rn.html["Documentação dos Utilitários do sistema anfitrião do Windows"]e selecione o procedimento de instalação da versão dos Utilitários de host do Windows.
+Os Utilitários de Host do Windows são um conjunto de programas de software com documentação que permite conectar computadores host a discos virtuais (LUNs) em uma SAN da NetApp .  A NetApp recomenda baixar e instalar o kit de utilitários mais recente.  Para obter informações e instruções sobre a configuração dos utilitários do host do Windows, consulte olink:https://docs.netapp.com/us-en/ontap-sanhost/hu-wuhu-release-notes.html["Documentação dos Utilitários do sistema anfitrião do Windows"] e selecione o procedimento de instalação para sua versão do Windows Host Utilities.
 
 
 
@@ -93,9 +93,13 @@ O software MPIO apresenta um único disco para o sistema operacional Windows par
 
 CAUTION: Se você não instalar o software MPIO, o sistema operacional Windows pode ver cada caminho como um disco separado. Isso pode levar à corrupção de dados.
 
+[NOTE]
+====
+* No Windows Host Utilities 8.0, o recurso MPIO é ativado automaticamente quando você seleciona o suporte a MPIO.
+* O Windows XP ou o Windows Vista executado em uma máquina virtual Hyper-V não oferece suporte a MPIO.
 
-NOTE: O Windows XP ou o Windows Vista em execução numa máquina virtual Hyper-V não suporta MPIO.
 
+====
 
 
 == Configuração SAN

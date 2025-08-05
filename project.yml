@@ -20,51 +20,75 @@ sidebar:
     - title: AIX Host Utilities
       entries:
       - title: Notas de lançamento
-        url: "/hu_aix_rn.html"
-      - title: Instale o AIX HU 7,0
-        url: "/hu-aix-70.html"
-      - title: Instale o AIX HU 6,1
-        url: "/hu_aix_61.html"
-      - title: Exemplo de referência do comando
-        url: "/hu_aix_61_cmd.html"
+        url: "/hu-aix-release-notes.html"
+      - title: Instalar utilitários de host do AIX
+        entries:
+        - title: Instalar o AIX Host Utilities 8.0
+          url: "/hu-aix-80.html"
+        - title: Instale os Utilitários de host AIX 7,0
+          url: "/hu-aix-70.html"
+        - title: Instalar o AIX Host Utilities 6.1
+          url: "/hu_aix_61.html"
+      - title: Saiba mais sobre o AIX SAN Tollkit
+        url: "/hu-aix-san-toolkit.html"
+      - title: Referência de comando do AIX Host Utilities
+        url: "/hu-aix-command-reference.html"
     - title: Utilitários de host HP-UX
       entries:
       - title: Notas de lançamento
-        url: "/hu_hpux_60_rn.html"
-      - title: INSTALE O HP-UX HU 6,0
+        url: "/hu-hpux-release-notes.html"
+      - title: Instale os utilitários de host HP-UX 6,0
         url: "/hu_hpux_60.html"
-      - title: Exemplo de referência do comando
+      - title: Saiba mais sobre o SAN Toolkit
+        url: "/hu-hpux-sanlun-toolkit.html"
+      - title: Saiba mais sobre a referência de comando do HP-UX
         url: "/hu_hpux_60_cmd.html"
     - title: Utilitários de host Linux
       entries:
       - title: Notas de lançamento
-        url: "/hu_luhu_71_rn.html"
-      - title: Instale o Linux Host Utilities 7,1
-        url: "/hu_luhu_71.html"
-      - title: Exemplo de referência do comando
-        url: "/hu_luhu_71_cmd.html"
+        url: "/hu-luhu-release-notes.html"
+      - title: Instalar utilitários de host Linux
+        entries:
+        - title: Instalar o Linux Host Utilities 8.0
+          url: "/hu-luhu-80.html"
+        - title: Instale o Linux Host Utilities 7,1
+          url: "/hu_luhu_71.html"
+      - title: Saiba mais sobre o utilitário sanlun
+        url: "/hu-luhu-sanlun-utility.html"
+      - title: Referência de comandos do Linux Host Utilities
+        url: "/hu-luhu-command-reference.html"
     - title: Utilitários do Solaris Host
       entries:
       - title: Notas de lançamento
-        url: "/hu_solaris_62_rn.html"
-      - title: Instale o Solaris HU 6,2
-        url: "/hu_solaris_62.html"
-      - title: Exemplo de referência do comando
-        url: "/hu_solaris_62_cmd.html"
+        url: "/hu-solaris-release-notes.html"
+      - title: Instale os Utilitários do Solaris Host
+        entries:
+        - title: Instalar o Solaris Host Utilities 8.0
+          url: "/hu-solaris-80.html"
+        - title: Instalar o Solaris Host Utilities 6.2
+          url: "/hu_solaris_62.html"
+      - title: Saiba mais sobre o SAN Toolkit
+        url: "/hu-solaris-san-toolkit.html"
+      - title: Saiba mais sobre a referência de comando do Solaris
+        url: "/hu-solaris-command-reference.html"
     - title: Utilitários de host do Windows
       entries:
       - title: Notas de lançamento
-        url: "/hu_wuhu_71_rn.html"
-      - title: Instale os Utilitários de host do Windows 7,2
-        url: "/hu_wuhu_72.html"
-      - title: Instale os Utilitários de host do Windows 7,1
-        url: "/hu_wuhu_71.html"
+        url: "/hu-wuhu-release-notes.html"
+      - title: Instalar utilitários de host do Windows
+        entries:
+        - title: Instalar o Windows Host Utilities 8.0
+          url: "/hu-wuhu-80.html"
+        - title: Instale os Utilitários de host do Windows 7,2
+          url: "/hu_wuhu_72.html"
+        - title: Instale os Utilitários de host do Windows 7,1
+          url: "/hu_wuhu_71.html"
+      - title: Configurar definições para utilitários de host do Windows
+        url: "/hu_wuhu_hba_settings.html"
       - title: Atualize os Utilitários do sistema anfitrião do Windows
         url: "/hu_wuhu_upgrade.html"
       - title: Repare e remova os Utilitários de host do Windows
         url: "/hu_wuhu_repair_remove.html"
-      - title: Configure as definições do registo
-        url: "/hu_wuhu_hba_settings.html"
       - title: Solucionar problemas
         url: "/hu_wuhu_troubleshoot.html"
   - title: Configurar hosts com FCP e iSCSI
@@ -73,6 +97,8 @@ sidebar:
       url: "/hu_fcp_scsi_index.html"
     - title: AIX e PowerVM/VIOS
       entries:
+      - title: 7.3/4.x
+        url: "/hu-aix-73.html"
       - title: 7,2/3,1
         url: "/hu_aix_72.html"
       - title: '7,1'
@@ -364,7 +390,7 @@ sidebar:
     - title: Solaris
       entries:
       - title: '11,4'
-        url: "/hu_solaris_114.html"
+        url: "/hu-solaris-114.html"
       - title: '11,3'
         url: "/hu_solaris_113.html"
     - title: SUSE Linux Enterprise Server

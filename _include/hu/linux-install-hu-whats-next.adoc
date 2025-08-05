@@ -1,0 +1,14 @@
+= O que vem a seguir?
+:allow-uri-read: 
+
+
+
+
+== O que se segue?
+
+* Configurações de driver recomendadas com kernel Linux
++
+Quando você configura um ambiente FC que usa drivers de caixa de entrada nativos que são empacotados com o kernel Linux, você pode usar os valores padrão para os drivers.
+
+* link:hu-luhu-sanlun-utility.html["Saiba mais sobre o utilitário "sanlun""] .
+

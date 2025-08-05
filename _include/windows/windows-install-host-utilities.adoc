@@ -1,0 +1,29 @@
+= Etapa 3: instalar os utilitários do host do Windows
+:allow-uri-read: 
+
+
+
+
+== Etapa 3: instalar os utilitários do host do Windows
+
+O programa de instalação instala o pacote Windows Host Utilities e define o registro do Windows e as configurações do HBA.
+
+.Sobre esta tarefa
+Opcionalmente, você pode incluir suporte a múltiplos caminhos ao instalar o pacote de software Windows Host Utilities.  O instalador solicitará as seguintes opções:
+
+* Escolha `MPIO` se você tiver mais de um caminho do host do Windows ou da máquina virtual para o sistema de armazenamento.
+* Escolher `no MPIO` somente se você estiver usando um único caminho para o sistema de armazenamento.
+
+
+Você também pode escolher o suporte a múltiplos caminhos usando um prompt de linha de comando do Windows.
+
+Para convidados do Hyper-V, os discos brutos (pass-through) não aparecem no sistema operacional convidado se você escolher o suporte a múltiplos caminhos.  Você pode usar discos brutos ou MPIO, mas não pode usar ambos no sistema operacional convidado.
+
+
+CAUTION: Se você não instalar o software MPIO, o sistema operacional Windows pode ver cada caminho como um disco separado. Isso pode levar à corrupção de dados.
+
+
+NOTE: O Windows XP ou o Windows Vista em execução numa máquina virtual Hyper-V não suporta MPIO.
+
+.Passos
+Você pode instalar o Host Utilities interativamente ou usando a linha de comando do Windows.  O novo pacote de instalação do Host Utilities deve estar em um caminho acessível ao host Windows.

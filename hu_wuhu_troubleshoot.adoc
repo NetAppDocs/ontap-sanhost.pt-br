@@ -4,7 +4,7 @@ permalink: hu_wuhu_troubleshoot.html
 keywords: windows, host, utilities, 7.1, hba, fibre, channel, SANtricity, netapp, san, host, e-series, platform 
 summary: Os Utilitários de host do Windows incluem um programa de instalação que define os parâmetros necessários do Registro do Windows e do HBA para que o host do Windows manipule corretamente os comportamentos do sistema de storage para plataformas ONTAP e e-Series. 
 ---
-= Solucionar problemas
+= Solucionar problemas de utilitários de host do Windows com configuração de armazenamento ONTAP
 :toc: macro
 :hardbreaks:
 :toclevels: 1
@@ -19,7 +19,7 @@ summary: Os Utilitários de host do Windows incluem um programa de instalação 
 
 
 [role="lead"]
-Você pode usar as técnicas gerais de solução de problemas para os Utilitários de host do Windows. Certifique-se de verificar as notas de versão mais recentes para problemas e soluções conhecidos.
+Use as técnicas gerais de solução de problemas para investigar problemas que podem ocorrer em um Windows Host Utilities com configuração de armazenamento ONTAP .  Você também deve verificar olink:hu-wuhu-release-notes.html["Notas de lançamento dos Utilitários do sistema anfitrião do Windows"] para problemas e soluções conhecidos.
 
 Segue-se uma lista das diferentes áreas que pode investigar para potenciais problemas de interoperabilidade:
 
@@ -28,7 +28,7 @@ Segue-se uma lista das diferentes áreas que pode investigar para potenciais pro
 * Se os LUNs iSCSI não estiverem disponíveis após uma reinicialização, verifique se o destino está listado como persistente na guia *alvos persistentes* da GUI do iniciador iSCSI da Microsoft.
 * Se os aplicativos que usam os LUNs exibirem erros na inicialização, verifique se os aplicativos estão configurados para depender do serviço iSCSI.
 * Para caminhos FC para controladores de storage que executam o ONTAP, verifique se os switches FC estão zoneados usando as WWPNs dos LIFs de destino, e não as WWPNs das portas físicas no nó.
-* Consulte o link:hu_wuhu_71_rn.html["Notas de versão"] para ver os Utilitários do sistema anfitrião do Windows para verificar se existem problemas conhecidos. As Notas de versão incluem uma lista de problemas e limitações conhecidos.
+* Revise olink:hu-wuhu-release-notes.html["Notas de versão"] para que os utilitários de host do Windows verifiquem problemas conhecidos.  As notas de versão incluem uma lista de problemas e limitações conhecidos.
 * Revise as informações de solução de problemas na https://docs.netapp.com/us-en/ontap/san-admin/index.html["Administração de SAN ONTAP"^] documentação.
 * Procure https://mysupport.netapp.com/site/bugs-online/product["NetApp Bugs Online"^] por problemas recentemente descobertos.
 +

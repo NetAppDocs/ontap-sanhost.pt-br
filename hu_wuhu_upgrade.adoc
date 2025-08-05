@@ -4,7 +4,7 @@ permalink: hu_wuhu_upgrade.html
 keywords: windows, host, utilities, 7.1, hba, fibre, channel, SANtricity, netapp, san, host, e-series, platform 
 summary: Os Utilitários de host do Windows incluem um programa de instalação que define os parâmetros necessários do Registro do Windows e do HBA para que o host do Windows manipule corretamente os comportamentos do sistema de storage para plataformas ONTAP e e-Series. 
 ---
-= Atualize os Utilitários do sistema anfitrião do Windows
+= Atualizar os utilitários de host do Windows para armazenamento ONTAP
 :toc: macro
 :hardbreaks:
 :toclevels: 1
@@ -19,13 +19,13 @@ summary: Os Utilitários de host do Windows incluem um programa de instalação 
 
 
 [role="lead"]
-O novo pacote de instalação do Host Utilities deve estar em um caminho acessível pelo host do Windows. Siga as instruções para instalar os Utilitários do host de forma interativa ou a partir da linha de comando do Windows para atualizar o pacote de instalação.
+Você pode atualizar o software Windows Host Utilities na sua configuração de armazenamento ONTAP seguindo as instruções de instalação interativamente ou usando a linha de comando do Windows.  Você precisa instalar o novo software de instalação do Windows Host Utilities em um caminho que seja acessível ao host Windows.
 
 [role="tabbed-block"]
 ====
 .Atualizar de forma interativa
 --
-Para atualizar o pacote de software Host Utilities de forma interativa, você deve executar o programa de instalação Host Utilities e seguir as instruções.
+Atualize o software Windows Host Utilities interativamente executando o programa de instalação do Host Utilities e seguindo as instruções.
 
 .Passos
 . Mude para o diretório onde você baixou o arquivo executável.
@@ -40,15 +40,17 @@ Para atualizar o pacote de software Host Utilities de forma interativa, você de
 
 
 --
-.Atualizar a partir de uma linha de comando
+.Atualizar de forma não interativa
 --
-Você pode executar uma atualização silenciosa (sem supervisão) dos novos Utilitários do host inserindo os comandos apropriados no prompt de comando do Windows.
+Execute uma atualização não interativa do software Windows Host Utilities usando a linha de comando do Windows.
 
 .Passos
 . Digite o seguinte comando no prompt de comando do Windows:
 +
-`msiexec /i installer.msi /quiet MULTIPATHING= {0 | 1} [INSTALLDIR=inst_path]`
-
+[source, cli]
+----
+msiexec /i installer.msi /quiet MULTIPATHING= {0 | 1} [INSTALLDIR=inst_path]
+----
 +
 ** `installer` É o nome do `.msi` arquivo para a arquitetura da CPU.
 ** Especifica se o suporte de e/S Multipath da Microsoft (MPIO) está instalado. Os valores permitidos são "0" para não e "1" para sim.

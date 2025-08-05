@@ -1,0 +1,12 @@
+= Etapa 2: instalar os utilitários do host AIX
+:allow-uri-read: 
+
+
+
+
+== Etapa 2: instalar os utilitários do host AIX
+
+A NetApp recomenda fortemente a instalação do AIX Host Utilities para dar suporte ao gerenciamento de LUN do ONTAP e auxiliar o suporte técnico na coleta de dados de configuração.  O pacote MPIO do Host Utilities fornece suporte MPIO para AIX e VIOS.
+
+
+NOTE: A instalação do AIX Host Utilities fornece configurações de tempo limite adicionais no seu host AIX.

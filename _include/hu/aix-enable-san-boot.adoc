@@ -1,0 +1,28 @@
+= Passo 1: Opcionalmente, ative a inicialização de SAN
+:allow-uri-read: 
+
+
+
+
+== Passo 1: Opcionalmente, ative a inicialização de SAN
+
+Você pode configurar seu host para usar a inicialização SAN para simplificar a implantação e melhorar a escalabilidade.  Se sua configuração não suportar inicialização SAN, você poderá usar uma inicialização local.
+
+[role="tabbed-block"]
+====
+.Inicialização de SAN
+--
+A inicialização SAN é o processo de configuração de um disco conectado à SAN (um LUN) como um dispositivo de inicialização para um host AIX/PowerVM.  Você pode configurar um LUN de inicialização SAN para funcionar em um ambiente AIX Multipath I/O (MPIO) que esteja usando o protocolo FC e executando o AIX Host Utilities com o protocolo FC ou FCoE.  O método usado para criar um LUN de inicialização SAN e instalar uma nova imagem de sistema operacional em um ambiente AIX MPIO depende do protocolo que você está usando.
+
+.Passos
+. Use olink:https://mysupport.netapp.com/matrix/#welcome["Ferramenta de Matriz de interoperabilidade"^] para verificar se o seu sistema operacional AIX, protocolo e versão do ONTAP oferecem suporte à inicialização SAN.
+. Siga as práticas recomendadas para configurar uma inicialização SAN na documentação do fornecedor.
+
+
+--
+.Arranque local
+--
+Execute uma inicialização local instalando o sistema operacional AIX no disco rígido local, por exemplo, em um SSD, SATA ou RAID.
+
+--
+====

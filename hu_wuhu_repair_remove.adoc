@@ -4,7 +4,7 @@ permalink: hu_wuhu_repair_remove.html
 keywords: windows, host, utilities, 7.1, hba, fibre, channel, SANtricity, netapp, san, host, e-series, platform 
 summary: Os Utilitários de host do Windows incluem um programa de instalação que define os parâmetros necessários do Registro do Windows e do HBA para que o host do Windows manipule corretamente os comportamentos do sistema de storage para plataformas ONTAP e e-Series. 
 ---
-= Repare e remova os Utilitários de host do Windows
+= Reparar e remover os utilitários de host do Windows para armazenamento ONTAP
 :toc: macro
 :hardbreaks:
 :toclevels: 1
@@ -19,7 +19,7 @@ summary: Os Utilitários de host do Windows incluem um programa de instalação 
 
 
 [role="lead"]
-Você pode usar a opção *Repair* do programa de instalação do Host Utilities para atualizar as configurações do adaptador de barramento do host (HBA) e do Registro do Windows. Você também pode remover completamente os Utilitários do host, interativamente ou da linha de comando do Windows.
+Use a opção *Reparar* no programa de instalação do Host Utilities para atualizar as configurações do adaptador de barramento do host (HBA) e do registro do Windows.  Você também pode remover os Utilitários de Host completamente, interativamente ou pela linha de comando do Windows.
 
 [role="tabbed-block"]
 ====
@@ -36,15 +36,17 @@ A opção *Repair* atualiza o Registro do Windows e os HBAs FC com as configura�
 
 
 --
-.Repare ou remova da linha de comando
+.Reparar ou remover de forma não interativa
 --
 A opção *Repair* atualiza o Registro do Windows e os HBAs FC com as configurações necessárias. Você também pode remover os Utilitários do host inteiramente de uma linha de comando do Windows.
 
 .Passos
 . Reparar utilitários de host do Windows:
 +
-`msiexec /f installer.msi [/quiet]`
-
+[source, cli]
+----
+msiexec /f installer.msi [/quiet]
+----
 +
 ** `/f` repara a instalação.
 ** `installer.msi` É o nome do programa de instalação do Windows Host Utilities no seu sistema.

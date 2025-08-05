@@ -1,0 +1,179 @@
+---
+sidebar: sidebar 
+permalink: hu-solaris-80.html 
+keywords: host utilities, unified, oracle, linux, 7.1, netapp, ontap 
+summary: Descreve como usar o Solaris Host Utilities 8.0 com ONTAP 
+---
+= Instalar o Solaris Host Utilities 8.0 para armazenamento ONTAP
+:hardbreaks:
+:toclevels: 1
+:allow-uri-read: 
+:toclevels: 1
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./media/
+
+
+[role="lead"]
+Os utilitários de host Solaris ajudam você a gerenciar o armazenamento ONTAP conectado a um host Solaris e auxiliam o suporte técnico na coleta de dados de configuração.
+
+Os utilitários de host Solaris oferecem suporte aos seguintes ambientes Solaris e protocolos de transporte.  Estes são os principais ambientes suportados:
+
+* O sistema operacional nativo com Oracle Solaris I/O Multipathing (MPxIO) e o protocolo FC ou iSCSI em um sistema usando um processador SPARC ou x86/64.
+* Veritas Dynamic Multipathing (DMP) com o protocolo FC ou iSCSI em um sistema usando um processador SPARC.
+
+
+O Solaris Host Utilities 8.0 oferece suporte à série Solaris 11.4.
+
+.Antes de começar
+Verifique se sua configuração iSCSI, FC ou FCoE é suportada.  Você pode usar olink:https://imt.netapp.com/matrix/#welcome["Ferramenta de Matriz de interoperabilidade"^] para verificar sua configuração.
+
+.Passos
+. Efetue login no seu host como root.
+. Faça o download de uma cópia do arquivo compactado que contém os Utilitários do host do link:https://mysupport.netapp.com/site/products/all/details/hostutilities/downloads-tab/download/61343/6.2/downloads["Site de suporte da NetApp"^] para um diretório em seu host.
++
+[role="tabbed-block"]
+====
+.CPU SPARC
+--
+[source, cli]
+----
+netapp_solaris_host_utilities_8_0_sparc.tar.gz
+----
+--
+.CPU x86/x64
+--
+[source, cli]
+----
+netapp_solaris_host_utilities_8_0_amd.tar.gz
+----
+--
+====
+. Vá para o diretório no seu host que contém o download.
+. Descompacte o arquivo usando o `gunzip` comando e, em seguida, extraia o arquivo usando `tar -xvf` :
++
+[source, cli]
+----
+gunzip netapp_solaris_host_utilities_8_0_sparc.tar.gz
+----
++
+[source, cli]
+----
+tar -xvf netapp_solaris_host_utilities_8_0_sparc.tar
+----
+. Adicione os pacotes que você extraiu do arquivo tar ao seu host:
++
+[source, cli]
+----
+pkgadd
+----
++
+Os pacotes são adicionados ao `/opt/NTAP/SANToolkit/bin` diretório.
+
++
+O exemplo a seguir usa o `pkgadd` comando para instalar o pacote de instalação do Solaris:
+
++
+[source, cli]
+----
+pkgadd -d ./NTAPSANTool.pkg
+----
+. Confirme se o kit de ferramentas foi instalado com sucesso usando o seguinte comando no caminho de instalação:
++
+[source, cli]
+----
+pkgchk
+----
++
+.Mostrar exemplo de saída
+[%collapsible]
+====
+[listing]
+----
+# pkgchk -l -p /opt/NTAP/SANToolkit
+
+Pathname: /opt/NTAP/SANToolkit
+Type: directory
+Expected mode: 0755
+Expected owner: root
+Expected group: sys
+Referenced by the following packages: NTAPSANTool
+Current status: installed
+
+# ls -alR /opt/NTAP/SANToolkit
+/opt/NTAP/SANToolkit:
+total 1038
+drwxr-xr-x   3 root     sys            4 Mar  7 13:11 .
+drwxr-xr-x   3 root     sys            3 Mar  7 13:11 ..
+drwxr-xr-x   2 root     sys            6 Mar 17 18:32 bin
+-r-xr-xr-x   1 root     sys       432666 Dec 31 13:23 NOTICES.PDF
+
+/opt/NTAP/SANToolkit/bin:
+total 3350
+drwxr-xr-x   2 root     sys            6 Mar 17 18:32 .
+drwxr-xr-x   3 root     sys            4 Mar  7 13:11 ..
+-r-xr-xr-x   1 root     sys      1297000 Feb  7 22:22 host_config
+-r-xr-xr-x   1 root     root         996 Mar 17 18:32 san_version
+-r-xr-xr-x   1 root     sys       309700 Feb  7 22:22 sanlun
+-r-xr-xr-x   1 root     sys          677 Feb  7 22:22 vidpid.dat
+
+# cd /usr/share/man/man1; ls -al host_config.1 sanlun.1
+-r-xr-xr-x   1 root     sys        12266 Feb  7 22:22 host_config.1
+-r-xr-xr-x   1 root     sys         9044 Feb  7 22:22 sanlun.1
+----
+====
+. Configure os parâmetros do host para seu ambiente "MPxIO" ou "Veritas DMP" usando o `/opt/NTAP/SANToolkit/bin/host_config` comando com a pilha multipath da referência de comando:
++
+`/opt/NTAP/SANToolkit/bin/host_config -setup -protocol fcp|iscsi|mixed -multipath mpxio|dmp|non [-noalua] [-mcc 60|90|120]`
+
++
+[cols="2*"]
+|===
+| Por exemplo, se sua configuração for... | Use o comando... 
+
+
+| FCP com multicaminho como MPxIO | `#/opt/NTAP/SANToolkit/bin/host_config -setup -protocol fcp -multipath mpxio`Para obter informações sobre as alterações de configuração para sincronização ativa do SnapMirror , consulte o artigo da Base de conhecimentolink:https://kb.netapp.com/on-prem/ontap/DP/SnapMirror/SnapMirror-KBs/Solaris_Host_support_recommended_settings_in_SnapMirror_active_sync_formerly_SM_BC_configuration["Configurações recomendadas de suporte ao host Solaris na configuração de sincronização ativa do SnapMirror (antigo SM-BC)"^] . 
+
+
+| FCP com multicaminho como DMP | `#/opt/NTAP/SANToolkit/bin/host_config -setup -protocol fcp -multipath dmp` 
+
+
+| FCP no MetroCluster com multicaminho como MPxIO e o valor All Paths Down definido como 120s.  (Esta é a configuração recomendada para configurações do MetroCluster ). | `#/opt/NTAP/SANToolkit/bin/host_config -setup -protocol fcp -multipath mpxio -mcc 120`Para obter mais informações, consulte o artigo da Base de Conhecimentolink:https://kb.netapp.com/on-prem/ontap/mc/MC-KBs/Solaris_host_support_considerations_in_a_MetroCluster_configuration["Considerações sobre suporte ao host Solaris em uma configuração do MetroCluster"^] . 
+|===
+. Reinicie o host.
++
+Os utilitários de host carregam as seguintes configurações de parâmetros de tempo limite recomendadas pela NetApp para LUNs ONTAP .
+
++
+.Mostrar exemplo
+[%collapsible]
+====
+[listing]
+----
+#prtconf -v |grep NETAPP
+   value='NETAPP  LUN' +
+   physical-block-size:4096,
+   retries-busy:30,
+   retries-reset:30,
+   retries-notready:300,
+   retries-timeout:10,
+   throttle-max:64,
+   throttle-min:8,
+   disksort:false,
+   cache-nonvolatile:true'
+----
+====
+. Verifique a instalação dos utilitários do Host:
++
+[source, cli]
+----
+sanlun version
+----
+
+
+
+
+== O que se segue?
+
+link:hu-solaris-san-toolkit.html["Saiba mais sobre o SAN Toolkit"] .
