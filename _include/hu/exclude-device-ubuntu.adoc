@@ -1,0 +1,35 @@
+= Etapa 3: opcionalmente, exclua um dispositivo do multipathing
+:allow-uri-read: 
+
+
+
+
+== Etapa 3: opcionalmente, exclua um dispositivo do multipathing
+
+Se necessário, você pode excluir um dispositivo de multipathing adicionando o WWID para o dispositivo indesejado à estrofe "lista negra" para o `multipath.conf` arquivo.
+
+.Passos
+. Determine o WWID:
++
+[source, cli]
+----
+/lib/udev/scsi_id -gud /dev/sda
+----
++
+"sda" é o disco SCSI local que você deseja adicionar à lista negra.
+
++
+Um exemplo WWID é `360030057024d0730239134810c0cb833`.
+
+. Adicione o WWID à estrofe "blacklist":
++
+[source, cli]
+----
+blacklist {
+	     wwid   360030057024d0730239134810c0cb833
+        devnode "^(ram|raw|loop|fd|md|dm-|sr|scd|st)[0-9]*"
+        devnode "^hd[a-z]"
+        devnode "^cciss.*"
+}
+----
+

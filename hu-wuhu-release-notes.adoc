@@ -52,3 +52,9 @@ Você deve estar ciente dos seguintes problemas e limitações conhecidos que po
 | A execução `linux_gos_timeout-install.sh` do script não é mais necessária em convidados do Hyper-V que executam o Red Hat Enterprise Linux ou o SUSE Linux Enterprise Server | 7,1 | Não é mais necessário executar `linux_gos_timeout-install.sh` o script para alterar o tempo limite de disco nos convidados Red Hat Enterprise Linux 5, Red Hat Enterprise Linux 6 ou SUSE Linux Enterprise Server 11 Hyper-V porque as configurações de tempo limite padrão estão sendo usadas. O `linux_gos_timeout-install.sh` script que foi incluído em versões anteriores dos Utilitários de host não está mais incluído na versão do Windows Host Utilities 7,1. O Windows Host Utilities 7,1 usa as configurações padrão de tempo limite do disco. | Não aplicável 
 |===
 link:https://mysupport.netapp.com/site/bugs-online/product["NetApp Bugs Online"^] fornece informações completas para a maioria dos problemas conhecidos, incluindo soluções alternativas sugeridas sempre que possível.
+
+
+
+== O que vem a seguir
+
+link:hu-wuhu-80.html["Saiba mais sobre a instalação dos utilitários de host do Windows"]

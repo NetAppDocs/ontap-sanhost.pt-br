@@ -437,4 +437,4 @@ A versão Solaris 11.3 para FCP e iSCSI com armazenamento ONTAP tem os seguintes
 
 == O que se segue?
 
-link:hu-solaris-62-cmd.html["Aprenda a usar a ferramenta Solaris Host Utilities 6.2"] .
+link:hu-solaris-command-reference.html["Saiba mais sobre como usar a ferramenta Solaris Host Utilities"] .

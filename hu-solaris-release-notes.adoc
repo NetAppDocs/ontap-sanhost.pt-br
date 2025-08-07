@@ -49,3 +49,9 @@ Você deve estar ciente dos seguintes problemas e limitações conhecidos que po
 * FCP Geral: Exibe bugs FC e adaptador de barramento de host (HBA) que não estão associados a um host específico.
 * FCP - Solaris
 
+
+
+
+== O que vem a seguir
+
+link:hu-solaris-80.html["Saiba mais sobre a instalação do Solaris Host Utilities"]
