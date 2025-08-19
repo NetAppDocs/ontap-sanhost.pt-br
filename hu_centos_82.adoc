@@ -2,7 +2,7 @@
 sidebar: sidebar 
 permalink: hu_centos_82.html 
 keywords: host utilities, centos, linux, 8.2, netapp, ontap 
-summary: Descreve como usar CentOS 8,2 com ONTAP 
+summary: Instale o Linux Host Utilities em um host CentOS 8.2 para gerenciar operações de protocolo FCP e iSCSI com LUNs ONTAP . 
 ---
 = Configurar o CentOS 8.2 para FCP e iSCSI para armazenamento ONTAP
 :hardbreaks:

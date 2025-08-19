@@ -115,9 +115,9 @@ Você pode instalar o Host Utilities interativamente ou usando a linha de comand
 --
 Instale o pacote de software Windows Host Utilities interativamente executando o programa de instalação e seguindo as instruções.
 
-. Transfira o ficheiro executável a partir do https://mysupport.netapp.com/site/products/all/details/hostutilities/downloads-tab/download/61343/7.2/downloads["Site de suporte da NetApp"^].
+. Baixe o arquivo executável do https://mysupport.netapp.com/site/products/all/details/hostutilities/downloads-tab/download/61343/8.0/downloads["Site de suporte da NetApp"^] .
 . Mude para o diretório onde você baixou o arquivo executável.
-. Execute o `netapp_windows_host_utilities_7.2_x64` arquivo e siga as instruções na tela.
+. Execute o `netapp_windows_host_utilities_8.0.0_x64` arquivo e siga as instruções na tela.
 . Reinicie o host do Windows quando solicitado.
 
 

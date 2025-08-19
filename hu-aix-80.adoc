@@ -63,7 +63,7 @@ oem_setup_env
 
 --
 ====
-. Aceda ao https://mysupport.netapp.com/site/products/all/details/hostutilities/downloads-tab/download/61343/7.0["Site de suporte da NetApp"^] e transfira o ficheiro comprimido que contém os Utilitários do sistema anfitrião para um diretório do sistema anfitrião.
+. Vá para o https://mysupport.netapp.com/site/products/all/details/hostutilities/downloads-tab/download/61343/8.0/downloads["Site de suporte da NetApp"^] e baixe o arquivo compactado contendo os utilitários do host para um diretório no seu host.
 . Vá para o diretório que contém o download.
 . Descompacte o arquivo e extraia o pacote de software SAN Toolkit:
 +

@@ -2,7 +2,7 @@
 sidebar: sidebar 
 permalink: hu-aix-73.html 
 keywords: Host Utilities, aix, powervm, vios, 3.1, 7.2 netapp, ontap 
-summary: Descreve como usar o IBM AIX 7.3 e/ou PowerVM VIOS 4.x com o ONTAP 
+summary: Instale o Linux Host Utilities em um host AIX 7.3/VIOS 4.x para gerenciar operações de protocolo FCP e iSCSI com LUNs ONTAP . 
 ---
 = Configurar AIX 7.3/VIOS 4.x para FCP e iSCSI com armazenamento ONTAP
 :hardbreaks:
@@ -131,12 +131,8 @@ lsdev -Cc disk
 | num_cmd_elems | MPIO / não MPIO | 1024 para AIX | FC EN0G 
 |===
 ====
-. Configure as seguintes configurações para otimizar as operações de E/S para FC e iSCSI.
+. Configure as seguintes configurações para otimizar as operações de E/S para FC.
 +
-[role="tabbed-block"]
-====
-.FCP
---
 [cols="4*"]
 |===
 | Parâmetro | Versões AIX | Valor padrão do sistema operacional AIX | Valor recomendado da NetApp 
@@ -153,9 +149,8 @@ lsdev -Cc disk
 
 | VIOS 4.1 | 30 segundos | 30 segundos 
 |===
---
-.ISCSI
---
+. Configure as seguintes configurações para otimizar as operações de E/S para iSCSI.
++
 [cols="4*"]
 |===
 | Parâmetro | Versões AIX | Valor padrão do sistema operacional AIX | Valor recomendado da NetApp 
@@ -178,8 +173,6 @@ lsdev -Cc disk
 
 | isw_err_recov (iscsi0) | Todos os AIX7.2 e AIX 7.3 autônomos | falha_atrasada | falha_rápida 
 |===
---
-====
 . Se sua configuração de armazenamento incluir sincronização ativa do MetroCluster ou do SnapMirror , altere as configurações padrão:
 +
 [role="tabbed-block"]

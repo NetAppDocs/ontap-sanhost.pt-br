@@ -2,7 +2,7 @@
 sidebar: sidebar 
 permalink: hu_hpux_11iv3.html 
 keywords: host utilities, hp_ux, 11iv3, netapp, ontap 
-summary: Descreve como usar o IBM AIX 7,2 e/ou PowerVM VIOS 3,1 com o ONTAP 
+summary: Instale o Linux Host Utilities em um host HP-UX 11i v3 para gerenciar operações de protocolo FCP e iSCSI com LUNs ONTAP . 
 ---
 = Configurar HP-UX 11i v3 para FCP e iSCSI com armazenamento ONTAP
 :hardbreaks:
@@ -16,8 +16,6 @@ summary: Descreve como usar o IBM AIX 7,2 e/ou PowerVM VIOS 3,1 com o ONTAP
 
 
 [role="lead"]
-Você pode usar as configurações do host SAN ONTAP para configurar o HP-UX 11i v3 com ONTAP como destino.
-
 O software HP-UX Host Utilities fornece ferramentas de gerenciamento e diagnóstico para hosts HP-UX conectados ao armazenamento ONTAP .  Ao instalar o HP-UX Host Utilities em um host HP-UX 11i v3, você pode usá-lo para ajudar a gerenciar operações de protocolo FCP e iSCSI com LUNs ONTAP .
 
 
@@ -52,8 +50,7 @@ Os utilitários de host HP-UX oferecem suporte ao Native Microsoft Multipath I/O
 
 .Passos
 . Quando você instala o HP-UX Host Utilities, as seguintes configurações padrão recomendadas são carregadas automaticamente para LUNs ONTAP .
-
-
++
 .Mostrar definições de parâmetros
 [%collapsible]
 ====
