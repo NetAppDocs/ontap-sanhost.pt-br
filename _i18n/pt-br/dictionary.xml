@@ -3703,7 +3703,6 @@
   <block id="0ea3e528a268f7a469a48d5d8aae4f82" category="paragraph">Consulte a documentação do fornecedor para verificar se os seguintes pacotes estão instalados corretamente.  Esses pacotes são necessários para dar suporte ao<block ref="09a10ae06f964cc0f5c0201377e37384" prefix=" " category="inline-code"></block> comando:</block>
   <block id="291498f8ec1453e277a2e2b46e71ae68" category="list-text">Se você tiver uma versão do Linux Host Utilities instalada, remova-a:</block>
   <block id="a47e489edc31ec3082b9f72fed5a5375" category="list-text">Vá até o diretório onde você baixou o pacote de software e instale-o:</block>
-  <block id="b13f2391541d6900841a6b191f26531d" category="paragraph">Se você estiver usando um sistema operacional host Ubuntu, será necessário vinculá-lo manualmente à biblioteca HBA:</block>
   <block id="bf2fa1be3b14254d86cd9857c8495543" category="doc">Use os comandos do Linux Host Utilities para verificar a configuração de armazenamento ONTAP</block>
   <block id="3a61827896464412c2e42d33f758f4f1" category="paragraph">Você pode usar a referência de comando de exemplo do Linux Host Utilities para uma validação de ponta a ponta da configuração de armazenamento do NetApp usando a ferramenta Host Utilities.</block>
   <block id="509349566982f99a656299d84be158b8" category="summary">Notas de versão para utilitários de host Linux</block>
@@ -4047,4 +4046,11 @@
   <block id="30fe8c509bd758431e60f7f83e9085f0" category="paragraph">O Windows Host Utilities define valores para os seguintes parâmetros se o MS DSM para Windows MPIO for detectado:</block>
   <block id="d7ffc66640801d3b23e6403b53045607" category="paragraph">Verifique as configurações do driver HBA Emulex em sistemas FC. Essas configurações devem existir para cada porta no HBA.</block>
   <block id="0aa9ab84e08417b1d87c1a5606b6b1b4" category="paragraph">Verifique as configurações do driver QLogic HBA em sistemas FC. Essas configurações devem existir para cada porta no HBA.</block>
+  <block id="eb13ea1edb52f2f7cdf4b15544892c06" category="list-text">Red Hat Enterprise Linux (RHEL)</block>
+  <block id="cfe19b0ae08454358fbe515d88fd6095" category="open-title">Hosts Linux</block>
+  <block id="fc474797a9f95d446d20392a22b50563" category="paragraph">Remover Linux Host Utilities de um host RHEL, SUSE Linux Enterprise Server ou Oracle Linux:</block>
+  <block id="2b65cdb03e4760333180898a7c50951b" category="paragraph">Remover Linux Host Utilities de um host Ubuntu:</block>
+  <block id="de3b6129e1e522c8f5cf6e37ce4b9f22" category="paragraph">Instale o Linux Host Utilities 8.0 em um host RHEL, SUSE Linux Enterprise Server ou Oracle Linux:</block>
+  <block id="b9e9a39780b968851bca7471c4bdb04f" category="list-text">Instale o Linux Host Utilities 8.0 em um host Ubuntu:</block>
+  <block id="50a27e0ec26dfc22ecff73b4716eee33" category="list-text">Vincule manualmente o sistema operacional Ubuntu à biblioteca HBA:</block>
 </blocks>
