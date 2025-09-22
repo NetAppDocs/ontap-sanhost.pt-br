@@ -813,17 +813,12 @@
   <block id="36802f99ce8dfda135d0de1e6028852d" category="list-text"><block ref="97384261b8bbf966df16e5ad509922db" prefix="" category="inline-code"></block> É o nome do<block ref="a59ffcba1df1ef37d432a025861b3faa" prefix=" " category="inline-code"></block> arquivo para a arquitetura da CPU.</block>
   <block id="ee6e37793aacac38d4a72b87cc79245b" category="list-text">MULTIPATHING especifica se o suporte MPIO está instalado. Os valores permitidos são "0" para não e "1" para sim.</block>
   <block id="d0d9af2a572791f3904a39e2af6baf53" category="admonition">Para ver as opções padrão do Microsoft Installer (MSI) para Registro e outras funções, digite<block ref="bd4935bc0a796a66582bc993cc9000a8" prefix=" " category="inline-code"></block> no prompt de comando do Windows. Por exemplo, o<block ref="6456408f2074fe8bb9a5d7b28d02ce64" prefix=" " category="inline-code"></block> comando exibe informações de Registro.</block>
-  <block id="ef127e2524262f219434d09112047ee0" category="paragraph">Os Utilitários do host exigem determinadas configurações de Registro e parâmetros para verificar se o host do Windows lida corretamente com o comportamento do sistema de armazenamento.</block>
-  <block id="555c94ad53e123ccc406674df5fbc0ba" category="paragraph">Os Utilitários de host do Windows definem os parâmetros que afetam a forma como o host do Windows responde a um atraso ou perda de dados. Os valores específicos foram selecionados para verificar se o host do Windows manipula corretamente eventos, como o failover de uma controladora no sistema de armazenamento para sua controladora parceira.</block>
-  <block id="5db0ac001d15414764c966da33036c9d" category="paragraph">FC, NVMe/FC e iSCSI HBAs também têm parâmetros que você precisa definir para garantir a melhor performance e gerenciar com sucesso eventos do sistema de storage.</block>
-  <block id="fb08e9e706df430eb21a77dc77a7e2cf" category="paragraph">Tem de definir manualmente os parâmetros iSCSI HBA.</block>
   <block id="c372bc249b31090fc161de15de7b7603" category="admonition">HKLM é a abreviatura<block ref="86565cb5d05fc56046ceb32627a70264" prefix=" " category="inline-code"></block> de .</block>
   <block id="e5e8913907553117e947ccc75671f941" category="cell">Chave de registo</block>
   <block id="2f13ada49ba30a3f17abc7ff1c610656" category="cell">Quando definido</block>
   <block id="353a3cc2e6698fc1eca7603cde3ca48e" category="cell">HKLM SYSTEM/CurrentControlSet/Services parâmetros DsmMaximumRetryTimeDuringStateTransition</block>
   <block id="6393c224d437438785810287f79cf4dc" category="cell">HKLM SYSTEM/CurrentControlSet Serviços/msdsmsm parâmetros DsmMaximumStateTransitionTime</block>
   <block id="507442ae6083cce9fd165274005cd952" category="cell">HKLM/SYSTEM/CurrentControlSet/Services/DsmSupportedDeviceList</block>
-  <block id="4032e28156cfb67550271f983690ac63" category="cell">"NetApp LUN", "NetApp LUN C- Mode" "NVMe NetApp ONTAO Con"</block>
   <block id="5330ff743abc3a4b257865183287aa0f" category="cell">Quando o suporte MPIO é especificado</block>
   <block id="2a10dce2db92496db6490d59d8a30023" category="cell">Parâmetros IPSecConfigTimeout</block>
   <block id="68eec46437c384d8dad18d5464ebc35c" category="cell">Sempre</block>
@@ -832,7 +827,6 @@
   <block id="3f2bc56be3f6b729d16e1597fa8b4941" category="cell">Parâmetros de ID_instância_ID_de_instância_de_Registro_de_Registro_de_Registro_de_Registro_de_Registro_de_Registro_de_Registro_de_Registro_de_Registro_de_Registro_de_Registro</block>
   <block id="89e3d18c3b3f499bebd524c9bb334742" category="cell">Quando nenhum suporte MPIO está selecionado</block>
   <block id="86d63918f540a0e97186b88a4bd8db36" category="cell">HKLM/SYSTEM/CurrentControlSet/Control/MPDEV/MPIOSupportedDeviceList</block>
-  <block id="da30944c1d57c7273e8b0e5b8e7de029" category="cell">"NetApp LUN", "NetApp LUN C- Mode", "NVMe NetApp ONTAO Con"</block>
   <block id="2ba400ac6429dac40a8811781fbb7d9a" category="cell">Parâmetros/PathRecoveryInterval</block>
   <block id="5d9d929fabe754a664cced2d121d7af6" category="cell">HKLM/SYSTEM/CurrentControlSet/Services/mpio parâmetros/PathVerifyEnabled</block>
   <block id="fffbdd4a3dfa058bd69689c2de4779da" category="cell">HKLM/SYSTEM/CurrentControlSet/Services/PathVerifyEnabled</block>
@@ -882,9 +876,6 @@
   <block id="c57dcf0db9f722653d2df0250b192c2f" category="inline-link">Documentos da Microsoft</block>
   <block id="a624f3024f6945790c5f3a01e38649bf" category="paragraph">Consulte<block ref="cc2304a59b5feaeebd0c5646fd22caf0" category="inline-link-rx"></block> a para obter os detalhes dos parâmetros do registo.</block>
   <block id="820c80a71d25737a6640c8135c800297" category="section-title">Valores HBA FC definidos pelos Utilitários de host do Windows</block>
-  <block id="d7b45eaf5a2c22cb7c622ea9675a6f32" category="paragraph">Em sistemas que usam FC, o instalador de Utilitários de host define os valores de tempo limite necessários para HBAs Emulex e QLogic FC.</block>
-  <block id="ed248deb33450195d58919cecd0cf8cd" category="paragraph">Para HBAs Emulex FC, o instalador define os seguintes parâmetros:</block>
-  <block id="9e4350dab47d06fcefddc77af0b6f8d1" category="open-title">Quando MPIO é selecionado</block>
   <block id="8f0fd19a2d99e6260c0b4e6513b7638c" category="inline-link">Emulex</block>
   <block id="bf37856a0dcc40508065787e2d49c8c3" category="inline-link">QLogic</block>
   <block id="b182eae32a0022889eab1f98a5ba3a49" category="admonition">Os nomes dos parâmetros podem variar ligeiramente dependendo do programa. Por exemplo, no programa QLogic QConvergeConsole, o parâmetro é exibido como<block ref="b554d47c6702123b3a28a3e04ed39621" prefix=" " category="inline-code"></block>. O arquivo Utilitários do host<block ref="a49e6041666308abe45789ecfadd593e" prefix=" " category="inline-code"></block> exibe esse parâmetro como<block ref="08a7801aadb2d395506d0735d17dcf62" prefix=" " category="inline-code"></block><block ref="e29ad18354768c222941f5de52fd92c9" prefix=" " category="inline-code"></block> ou , dependendo se o MPIO é especificado. No entanto, todos esses nomes referem-se ao mesmo parâmetro HBA. <block ref="6d63c8366c015331075fa86de38975e8" category="inline-link-rx"></block>Consulte ou<block ref="4399df604c07a452cc084d95811dafae" category="inline-link-rx"></block> para saber mais sobre os parâmetros de tempo limite.</block>
@@ -2413,11 +2404,8 @@
   <block id="1078de040a8679207e1783a9da9e836c" category="cell">Não é mais necessário executar<block ref="1582eea6c0c614d1d444d6dfe1f82f4f" prefix=" " category="inline-code"></block> o script para alterar o tempo limite de disco nos convidados Red Hat Enterprise Linux 5, Red Hat Enterprise Linux 6 ou SUSE Linux Enterprise Server 11 Hyper-V porque as configurações de tempo limite padrão estão sendo usadas. O<block ref="1582eea6c0c614d1d444d6dfe1f82f4f" prefix=" " category="inline-code"></block> script que foi incluído em versões anteriores dos Utilitários de host não está mais incluído na versão do Windows Host Utilities 7,1. O Windows Host Utilities 7,1 usa as configurações padrão de tempo limite do disco.</block>
   <block id="2c1c2305f2baefceb44e8e1b31927d88" category="doc">Instale os Utilitários de host do Windows 7,2</block>
   <block id="b31a86b1dca7dfa1a67b27d591387cdb" category="paragraph">Os Utilitários de host oferecem suporte a diferentes configurações de host do Windows, protocolos e opções de multipathing. Para obter mais informações, consulte<block ref="e29293ebfe5b9174e3113da62e6426ca" category="inline-link-rx"></block> .</block>
-  <block id="a1b5fc21b8f72dca8d1203383f6fcf00" category="paragraph">O programa de instalação fornecido com os Utilitários de host do Windows define os parâmetros HBA do Windows, FC e NVMe/FC para os valores suportados.</block>
-  <block id="c6aa64a3d9475fd563f6e8ab36eafc09" category="paragraph">O instalador define valores diferentes dependendo se você especificar o suporte MPIO (Microsoft Multipath I/o) ao executar o programa de instalação.</block>
   <block id="3160be9723d9dc9c210d8c8b48bd0bcf" category="section-title">Valores de Registro definidos pelos Utilitários de host do Windows 7,2</block>
   <block id="4da5f705a95e0ed235573a4eb64fce01" category="section-title">Valores de Registro definidos pelos Utilitários de host do Windows 7,1</block>
-  <block id="cc28ccfb40f63eafdf4c15d20d5ee4bc" category="paragraph">O instalador do Windows Host Utilities define automaticamente valores de registo baseados nas escolhas que faz durante a instalação. Você deve estar ciente desses valores de Registro, a versão do sistema operacional.</block>
   <block id="125e0f5615cef4db790518b2fd3b4491" category="paragraph">Os valores a seguir são definidos pelo instalador de Utilitários de host do Windows. Todos os valores estão em decimal, a menos que indicado de outra forma.</block>
   <block id="10ce28246e5d07ff8493b9244d2b2aca" category="list-text">Selecione *Utilitários de host do Windows NetApp*.</block>
   <block id="044af269e446bb1cbed59c4821cfa418" category="list-text">Reparar utilitários de host do Windows:</block>
@@ -2606,7 +2594,6 @@
   <block id="fa5c369c0560373ede3332d2508c4819" category="paragraph">O parâmetro LimTransferSize é definido automaticamente como "1" quando você instala os Utilitários de host do Windows 7,2. Após a instalação, você precisa alterar manualmente o valor LimTransferSize para "0" e reinicializar o servidor.</block>
   <block id="70cefc9a608dc188dd16deb1397a1529" category="cell">Quando o suporte MPIO é especificado e o seu servidor é Windows Server 2016, 2012 R2, 2012, 2008 R2 ou 2008, exceto se o Data ONTAP DSM for detetado</block>
   <block id="28c4a2aff9dab89964d88a9594119baa" category="cell">Quando o servidor é Windows Server 2016, 2012 R2, 2012, 2008 R2 ou 2008</block>
-  <block id="88db364807adcc50e3c03e4e7c2eb386" category="paragraph">Para HBAs QLogic FC, o instalador define os seguintes parâmetros:</block>
   <block id="b76b67fa1e708efcaa2d6a257e3dc3a5" category="summary">Configuração de host NVMe/FC para Windows Server 2052 com ONTAP</block>
   <block id="e240b4a9acf4df1925780394d9f14be9" category="doc">Configurar o Windows Server 2025 com NVMe/FC para ONTAP</block>
   <block id="1332a2397f4fcbb21e78a6e3c713af4b" category="paragraph">Você pode configurar o NVMe em Fibre Channel (NVMe/FC) em hosts que executam o Windows Server 2025 para operação com LUNs ONTAP.</block>
@@ -3902,32 +3889,23 @@
   <block id="50b0de549390e9fd0aff72d2cc76922d" category="paragraph">Instale o pacote de software Host Utilities interativamente executando o programa de instalação do Host Utilities e seguindo as instruções.</block>
   <block id="d539640f2a8ad84ff2b6b210b3c82a8b" category="doc">Instalar o Windows Host Utilities 7.2 para armazenamento ONTAP</block>
   <block id="62113ee23a34404b1f086b7ed1df786b" category="doc">Configurar definições de registro para utilitários de host do Windows com armazenamento ONTAP</block>
-  <block id="4d1f74f34674eef0c5bdd0068e40ee04" category="paragraph">Nem todos os valores se aplicam ao módulo específico do dispositivo (DSM) para o SANtricity Storage Manager; no entanto, qualquer sobreposição de valores definidos pelos Utilitários de Host e aqueles definidos pelo DSM para o SANtricity Storage Manager não resulta em conflitos.</block>
   <block id="80fecb40ffb39e22d2139bf9886132bc" category="inline-xref">Parâmetros NVME</block>
   <block id="40bd27b40d44b862091d49e4f0538774" category="paragraph">Você precisa alterar o valor do parâmetro LimTransferSize após instalar o Windows Host Utilities 7.2. Ver <block ref="f34264ec923664aedfb2a9ccd6257931" category="inline-xref-macro-rx"></block> .</block>
   <block id="05371652e7984167bbb3f85201a5b89b" category="paragraph">Para todos os outros parâmetros e chaves de registro do Windows Host Utilities 8.0, 7.2 ou 7.1, você não precisa alterar os valores, a menos que o suporte técnico o recomende.</block>
   <block id="3552ff32d73200dbe48fb217ccbdfe65" category="section-title">Valores de registro definidos pelo Windows Host Utilities 8.0</block>
-  <block id="ec995b0ce5d8e95aabbe85d2749a66ea" category="paragraph">O instalador do Windows Host Utilities define automaticamente os valores do registro e os parâmetros NVMe com base nas escolhas feitas durante a instalação.  Você deve estar ciente desses valores e da versão do sistema operacional.</block>
   <block id="a254beadccf36a8b85672cf8419d64d8" category="open-title">Valores HKLM</block>
-  <block id="919cb244d228a3f71854b3231f8cff0c" category="paragraph">Os seguintes valores de registro são definidos pelo instalador do Windows Host Utilities.  Todos os valores estão em decimais, salvo indicação em contrário.</block>
   <block id="071b3c301587fc461b5b5db6056fea64" category="cell">Quando o suporte MPIO é especificado e seu servidor é Windows Server 2025, 2022, 2019 ou 2016</block>
   <block id="213770055804b675ffe14467be7be594" category="cell">Quando seu servidor for Windows Server 2025, 2022, 2019 ou 2016</block>
   <block id="ef7643028f04a4cac8da8e05df5237b1" category="cell">Quando o suporte MPIO é especificado e seu servidor é Windows Server 2025, 2022, 2019 ou 2016</block>
-  <block id="4be4845df45475c63e7fef3544b5e46d" category="paragraph">Os seguintes parâmetros do driver NVMe Emulex são atualizados quando você instala o Windows Host Utilities 8.0:</block>
   <block id="408cf458ebdd52832b74587ec65fee92" category="paragraph">Os seguintes parâmetros do driver NVMe Emulex são atualizados quando você instala o Windows Host Utilities 7.2:</block>
-  <block id="53ece88e8d0752adafe41f998a3f679e" category="open-title">Quando MPIO não é selecionado</block>
   <block id="20aac534719ebb4b8d33960d910552ae" category="section-title">Saiba mais sobre as alterações do Host Utilities nas configurações do driver FC HBA</block>
-  <block id="903900c64c64e66749538a5ee0627e74" category="paragraph">Durante a instalação dos drivers Emulex ou QLogic HBA necessários em um sistema FC, vários parâmetros são verificados e, em alguns casos, modificados pelos Utilitários de Host do Windows.</block>
-  <block id="00c6b6db42cf4f18229789d1bbfc4392" category="paragraph">Os utilitários de host do Windows definem valores para os seguintes parâmetros se o MS DSM para Windows MPIO for detectado:</block>
   <block id="290855c6daac5448d222f3c661f749fb" category="list-text">*LinkTimeOut*: define o tempo em segundos que a porta do host aguarda antes de retomar a E/S após um link físico estar inativo.</block>
   <block id="9e02085844efecca4159003505f0e34a" category="list-text">*NodeTimeOut*: define o tempo em segundos antes que a porta do host reconheça que uma conexão com o dispositivo de destino está inativa.</block>
   <block id="31544e277536e777e9c3f798fd5e0913" category="list-text">Se você estiver usando o software MPIO.</block>
   <block id="62c6d5921cc25fa2fecef7c94356c189" category="inline-link-macro">executando a opção Reparar</block>
   <block id="7eaaf936e50fb533dab6ae4ba3b589bc" category="paragraph">Você pode corrigir as configurações do HBA por<block ref="262b15737127f72127997ad6784b0e26" category="inline-link-macro-rx"></block> no instalador do Windows Host Utilities.</block>
-  <block id="b43c94ea962672d4a5f84fbdbc6b42a8" category="paragraph">Se você tiver um sistema FC, verifique as configurações do driver HBA do Emulex.  Essas configurações devem existir para cada porta no HBA.</block>
   <block id="623dcbddc542817cdcdf36e9ce6846ce" category="list-text">Selecione o HBA apropriado na lista e selecione a aba *Parâmetros do Driver*.</block>
   <block id="713471818764991427fe06a02c382d7c" category="list-text">Se você não estiver usando o software MPIO, certifique-se de ter as seguintes configurações de driver:</block>
-  <block id="de1f703ddcd801c8b7ae8fb7d88721b9" category="paragraph">Em sistemas FC, verifique as configurações do driver QLogic HBA.  Essas configurações devem existir para cada porta no HBA.</block>
   <block id="d36746d8149fbda72e2e4e6b5a18add7" category="list-text">Abra o QConvergeConsole e selecione *Conectar* na barra de ferramentas.</block>
   <block id="de65582b3d66343f81547ddec20392d3" category="list-text">Se você não estiver usando o software MPIO, verifique se possui as seguintes configurações de driver:</block>
   <block id="4986650d14b24086d20a38215ecb279e" category="doc">Reparar e remover os utilitários de host do Windows para armazenamento ONTAP</block>
@@ -4048,4 +4026,25 @@
   <block id="3d4de8befb0eddb7be95b9eb899bcd21" category="summary">Instale o Linux Host Utilities em um host Ubuntu 24.04 para gerenciar operações de protocolo FCP e iSCSI com LUNs ONTAP .</block>
   <block id="faed4c9c8188f7390b773fb64e42fc29" category="paragraph">O software Linux Host Utilities fornece ferramentas de gerenciamento e diagnóstico para hosts Linux conectados ao armazenamento ONTAP .  Ao instalar o Linux Host Utilities em um host Ubuntu 22.04, você pode usá-lo para ajudar a gerenciar operações de protocolo FCP e iSCSI com LUNs ONTAP .</block>
   <block id="3b2ad8d11d49615d3cb062774e116630" category="paragraph">O software Linux Host Utilities fornece ferramentas de gerenciamento e diagnóstico para hosts Linux conectados ao armazenamento ONTAP .  Ao instalar o Linux Host Utilities em um host Ubuntu 24.04, você pode usá-lo para ajudar a gerenciar operações de protocolo FCP e iSCSI com LUNs ONTAP .</block>
+  <block id="876d8d634dabd3b4faa05168e2953c68" category="paragraph">Os utilitários de host do Windows exigem determinadas configurações de registro e parâmetros para verificar se o host do Windows manipula corretamente o comportamento do sistema de armazenamento.</block>
+  <block id="3187b1de6020504a9ef2201371f4ddfb" category="paragraph">O Windows Host Utilities define valores de parâmetros que afetam como o host Windows responde a um atraso ou perda de dados.  Esses valores verificam se o host do Windows manipula corretamente eventos como o failover de um controlador no sistema de armazenamento para seu controlador parceiro.</block>
+  <block id="5761ec5c04ac77cb295ddef5c5adf39f" category="paragraph">Alguns valores não se aplicam ao módulo específico do dispositivo (DSM) do SANtricity Storage Manager.  A sobreposição entre valores definidos pelos Utilitários de Host do Windows e o DSM para o SANtricity Storage Manager não resulta em conflitos.</block>
+  <block id="1c45b11e7112ae3015b6528aac98db47" category="paragraph">Você também precisa definir parâmetros FC, NVMe/FC e iSCSI HBAs para otimizar o desempenho e lidar com sucesso com eventos do sistema de armazenamento.</block>
+  <block id="ac299bbbaa386f926bfeffd61f3f329a" category="paragraph">O instalador do Windows Host Utilities define os parâmetros Windows, FC e NVMe/FC HBA para os valores suportados.  Você precisa definir manualmente os parâmetros do iSCSI HBA.</block>
+  <block id="0600911da7c2ed3e4c75b35a8383464b" category="paragraph">O instalador define valores diferentes quando você especifica o suporte ao Microsoft Multipath I/O (MPIO) durante a instalação.</block>
+  <block id="1289e36ad9af025f92a68eeb71942e45" category="paragraph">O instalador do Windows Host Utilities define automaticamente os valores do registro e os parâmetros NVMe com base nas escolhas feitas durante a instalação.  Você precisa revisar esses valores e a versão do sistema operacional.</block>
+  <block id="05ca7c309c201d00d9edda26c29f1814" category="paragraph">O instalador do Windows Host Utilities define os seguintes valores de registro. Todos os valores estão em decimais, salvo indicação em contrário.</block>
+  <block id="9315284a762c1471b85be43158649395" category="cell">"NETAPP LUN", "NETAPP LUN C-Mode" "NVMe NetApp ONTAP Con"</block>
+  <block id="f43fc70fd90855c7e4c4c9cba7d7f1fd" category="cell">"NETAPP LUN", "NETAPP LUN C-Mode", "NVMe NetApp ONTAP Con"</block>
+  <block id="65d5481255e5037a619c921fafb15def" category="paragraph">O Windows Host Utilities 8.0 atualiza os seguintes parâmetros do driver NVMe Emulex durante a instalação:</block>
+  <block id="ab51b6ada28fc394eb4698434eaf6668" category="paragraph">O instalador do Windows Host Utilities define automaticamente os valores do registro com base nas escolhas que você faz durante a instalação.  Você precisa revisar esses valores de registro e a versão do sistema operacional.</block>
+  <block id="619778ebb1defb58b2f571d8beed6661" category="paragraph">O instalador do Windows Host Utilities define os valores de tempo limite necessários para HBAs Emulex e QLogic FC em sistemas que usam FC.</block>
+  <block id="ca146b673983ec595aae317e1a1e764a" category="paragraph">O instalador define os seguintes parâmetros para os HBAs do Emulex FC:</block>
+  <block id="187c9ec598092d65351eaf4f361d83f7" category="open-title">Quando você seleciona MPIO</block>
+  <block id="17f9a8611eed107aecf0406db4a2b59d" category="open-title">Quando você não seleciona MPIO</block>
+  <block id="d915a9fedab871eb41a22f16bfb69c64" category="paragraph">O instalador define os seguintes parâmetros para QLogic FC HBAs:</block>
+  <block id="2ff89f8cd6f01614cdfc9aff8ff7a2a4" category="paragraph">Durante a instalação dos drivers Emulex ou QLogic HBA necessários em um sistema FC, vários parâmetros são verificados e, em alguns casos, modificados pelos Utilitários de Host do Windows.</block>
+  <block id="30fe8c509bd758431e60f7f83e9085f0" category="paragraph">O Windows Host Utilities define valores para os seguintes parâmetros se o MS DSM para Windows MPIO for detectado:</block>
+  <block id="d7ffc66640801d3b23e6403b53045607" category="paragraph">Verifique as configurações do driver HBA Emulex em sistemas FC. Essas configurações devem existir para cada porta no HBA.</block>
+  <block id="0aa9ab84e08417b1d87c1a5606b6b1b4" category="paragraph">Verifique as configurações do driver QLogic HBA em sistemas FC. Essas configurações devem existir para cada porta no HBA.</block>
 </blocks>
