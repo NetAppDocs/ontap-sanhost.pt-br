@@ -2,6 +2,10 @@
 :allow-uri-read: 
 
 
+O `nvmefc-boot-connections.service` e `nvmf-autoconnect.service` serviços de inicialização incluídos no NVMe/FC `nvme-cli` Os pacotes são ativados automaticamente quando o sistema é inicializado.
+
+Após a inicialização ser concluída, verifique se o  `nvmefc-boot-connections.service` e  `nvmf-autoconnect.service` os serviços de inicialização estão habilitados.
+
 .Passos
 . Verifique se `nvmf-autoconnect.service` está ativado:
 +

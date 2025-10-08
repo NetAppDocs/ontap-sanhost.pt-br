@@ -16,7 +16,7 @@ summary: Configuração de host NVMe-of para Oracle Linux 9,5 com ONTAP
 
 
 [role="lead"]
-As configurações de host SAN NetApp dão suporte ao protocolo NVMe over Fabrics (NVMe-of) com acesso a namespace assimétrico (ANA). Em ambientes NVMe-of, o ANA é equivalente a multipathing de acesso de unidade lógica assimétrica (ALUA) em ambientes iSCSI e FCP. A ANA é implementada usando o recurso multipath NVMe no kernel.
+Os hosts Red Hat Enterprise Linux (RHEL) oferecem suporte aos protocolos NVMe sobre Fibre Channel (NVMe/FC) e NVMe sobre TCP (NVMe/TCP) com acesso assimétrico ao namespace (ANA).  O ANA fornece funcionalidade de múltiplos caminhos equivalente ao acesso de unidade lógica assimétrica (ALUA) em ambientes iSCSI e FCP.
 
 .Sobre esta tarefa
 O suporte e os recursos a seguir estão disponíveis com a configuração do host NVMe-oF para Oracle Linux 9.5 com armazenamento ONTAP.
@@ -53,18 +53,15 @@ Para obter detalhes adicionais sobre as configurações suportadas, consulte o l
 
 == Passo 1: Opcionalmente, ative a inicialização de SAN
 
-Você pode configurar seu host para usar a inicialização SAN para simplificar a implantação e melhorar a escalabilidade.
-
-.Antes de começar
-Use o link:https://mysupport.netapp.com/matrix/#welcome["Ferramenta de Matriz de interoperabilidade"^] para verificar se o sistema operacional Linux, o adaptador de barramento do host (HBA), o firmware HBA, o BIOS de inicialização HBA e a versão do ONTAP suportam inicialização por SAN.
+Você pode configurar seu host para usar a inicialização SAN para simplificar a implantação e melhorar a escalabilidade. Use olink:https://mysupport.netapp.com/matrix/#welcome["Ferramenta de Matriz de interoperabilidade"^] para verificar se o seu sistema operacional Linux, adaptador de barramento de host (HBA), firmware HBA, BIOS de inicialização HBA e versão ONTAP oferecem suporte à inicialização SAN.
 
 .Passos
-. https://docs.netapp.com/us-en/ontap/san-admin/create-nvme-namespace-subsystem-task.html["Crie um namespace de inicialização SAN e mapeie-o para o host"^].
+. https://docs.netapp.com/us-en/ontap/san-admin/create-nvme-namespace-subsystem-task.html["Crie um namespace NVMe e mapeie-o para o host"^] .
 . Habilite a inicialização SAN no BIOS do servidor para as portas para as quais o namespace de inicialização SAN está mapeado.
 +
 Para obter informações sobre como ativar o BIOS HBA, consulte a documentação específica do fornecedor.
 
-. Verifique se a configuração foi bem-sucedida reinicializando o host e verificando se o sistema operacional está funcionando.
+. Reinicie o host e verifique se o sistema operacional está ativo e funcionando.
 
 
 
@@ -359,7 +356,7 @@ O valor  `1` verifica que  `ql2xnvmeenable` está definido.
 
 == Etapa 4: Opcionalmente, habilite 1 MB de E/S para NVMe/FC
 
-O ONTAP relata um MDTS (MAX Data Transfer Size) de 8 nos dados do controlador de identificação. Isso significa que o tamanho máximo da solicitação de e/S pode ser de até 1MBMB. Para emitir solicitações de e/S de tamanho 1 MB para um host NVMe/FC Broadcom, você deve aumentar `lpfc` o valor `lpfc_sg_seg_cnt` do parâmetro para 256 do valor padrão 64.
+O ONTAP relata um Tamanho Máximo de Transferência de Dados (MDTS) de 8 nos dados do Controlador de Identificação.  Isso significa que o tamanho máximo da solicitação de E/S pode ser de até 1 MB.  Para emitir solicitações de E/S de tamanho 1 MB para um host Broadcom NVMe/FC, você deve aumentar o `lpfc` valor do `lpfc_sg_seg_cnt` parâmetro para 256 do valor padrão de 64.
 
 
 NOTE: Essas etapas não se aplicam a hosts Qlogic NVMe/FC.
