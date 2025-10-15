@@ -19,20 +19,20 @@ summary: Descreve como configurar o NVMe/FC para o SUSE Linux Enterprise Server 
 
 
 [role="lead"]
-Os hosts Red Hat Enterprise Linux (RHEL) oferecem suporte aos protocolos NVMe sobre Fibre Channel (NVMe/FC) e NVMe sobre TCP (NVMe/TCP) com acesso assimétrico ao namespace (ANA).  O ANA fornece funcionalidade de múltiplos caminhos equivalente ao acesso de unidade lógica assimétrica (ALUA) em ambientes iSCSI e FCP.
+Os hosts do SUSE Linux Enterprise Server oferecem suporte aos protocolos NVMe sobre Fibre Channel (NVMe/FC) e NVMe sobre TCP (NVMe/TCP) com Asymmetric Namespace Access (ANA).  O ANA fornece funcionalidade de múltiplos caminhos equivalente ao acesso de unidade lógica assimétrica (ALUA) em ambientes iSCSI e FCP.
 
 .Sobre esta tarefa
-Você pode usar o suporte e os recursos a seguir com a configuração do host NVMe-oF para o SUSE Linux Enterprise Server 15 SP7 (SLES15 SP7). Você também deve rever as limitações conhecidas antes de iniciar o processo de configuração.
+Você pode usar o suporte e os recursos a seguir com a configuração do host NVMe-oF para o SUSE Linux Enterprise Server 15 SP7. Você também deve revisar as limitações conhecidas antes de iniciar o processo de configuração.
 
 * Suporte disponível:
 +
 ** Suporte a NVMe em TCP (NVMe/TCP), além de NVMe em Fibre Channel (NVMe/FC). O plug-in do NetApp no pacote nativo `nvme-cli` exibe detalhes do ONTAP para namespaces NVMe/FC e NVMe/TCP.
 ** Executando o tráfego NVMe e SCSI no mesmo host. Por exemplo, você pode configurar o dm-multipath para dispositivos SCSI mpath para LUNs SCSI e usar o multipath NVMe para configurar dispositivos de namespace NVMe-of no host.
 ** Suporte para inicialização SAN usando o protocolo NVMe/FC.
-** A partir do ONTAP 9.12.1, o suporte para autenticação segura em banda é introduzido para NVMe/TCP e NVMe/FC. Você pode usar autenticação segura em banda para NVMe/TCP e NVMe/FC com o SLES15 SP7.
+** A partir do ONTAP 9.12.1, o suporte para autenticação segura em banda é introduzido para NVMe/TCP e NVMe/FC.  Você pode usar autenticação segura em banda para NVMe/TCP e NVMe/FC com o SUSE Linux Enterprise Server 15 SP7.
 ** Suporte para controladores de descoberta persistentes (PDCs) usando um NQN de descoberta exclusivo.
 ** Suporte à criptografia TLS 1.3 para NVMe/TCP.
-** NetApp  `sanlun` O suporte ao utilitário host não está disponível para NVMe-oF em um host SLES15 SP7. Em vez disso, você pode confiar no plug-in NetApp incluído no pacote nativo `nvme-cli` para todos os transportes NVMe-of.
+** NetApp `sanlun` O suporte ao utilitário host não está disponível para NVMe-oF em um host SUSE Linux Enterprise Server15 SP7.  Em vez disso, você pode contar com o plug-in NetApp incluído no nativo `nvme-cli` pacote para todos os transportes NVMe-oF.
 +
 Para obter detalhes adicionais sobre as configurações suportadas, consulte o link:https://mysupport.netapp.com/matrix/["Ferramenta de Matriz de interoperabilidade"^].
 
@@ -75,17 +75,17 @@ Para obter informações sobre como ativar o BIOS HBA, consulte a documentação
 
 == Etapa 2: Validar versões de software
 
-Use o procedimento a seguir para validar as versões mínimas suportadas do software SLES15 SP7.
+Use o procedimento a seguir para validar as versões mínimas suportadas do software SUSE Linux Enterprise Server 15 SP7.
 
 .Passos
-. Instale o SLES15 SP7 no servidor. Após a conclusão da instalação, verifique se você está executando o kernel especificado do SLES15 SP7:
+. Instale o SUSE Linux Enterprise Server15 SP7 no servidor.  Após a conclusão da instalação, verifique se você está executando o kernel especificado do SUSE Linux Enterprise Server 15 SP7:
 +
 [source, cli]
 ----
 uname -r
 ----
 +
-O exemplo a seguir mostra uma versão do kernel SLES:
+O exemplo a seguir mostra uma versão do kernel do SUSE Linux Enterprise Server:
 
 +
 [listing]
@@ -405,7 +405,7 @@ cat /sys/module/lpfc/parameters/lpfc_sg_seg_cnt
 
 == Etapa 5: verificar os serviços de inicialização NVMe
 
-Com o SLES 15 SP7, o  `nvmefc-boot-connections.service` e  `nvmf-autoconnect.service` serviços de inicialização incluídos no NVMe/FC  `nvme-cli` Os pacotes são habilitados automaticamente para iniciar durante a inicialização do sistema. Após a conclusão da inicialização do sistema, verifique se os serviços de inicialização estão habilitados.
+Com o SUSE Linux Enterprise Server 15 SP7, o `nvmefc-boot-connections.service` e `nvmf-autoconnect.service` serviços de inicialização incluídos no NVMe/FC `nvme-cli` os pacotes são habilitados automaticamente para iniciar durante a inicialização do sistema.  Após a conclusão da inicialização do sistema, verifique se os serviços de inicialização estão habilitados.
 
 .Passos
 . Verifique se `nvmf-autoconnect.service` está ativado:
@@ -607,7 +607,7 @@ nvme	connect-all	-t	tcp	-w	192.168.211.80	-a	192.168.211.67
 
 
 
-NOTE: A partir do SLES 15 SP6, a configuração padrão para NVMe/TCP  `ctrl-loss-tmo` O tempo limite está desativado. Isso significa que não há limite para o número de tentativas (repetição indefinida) e você não precisa configurar manualmente um  `ctrl-loss-tmo` duração do tempo limite ao usar o  `nvme connect` ou  `nvme connect-all` comandos (opção  `-l` ). Além disso, as controladoras NVMe/TCP não apresentam timeouts em caso de falha de caminho e permanecem conetadas indefinidamente.
+NOTE: A partir do SUSE Linux Enterprise Server 15 SP6, a configuração padrão para o NVMe/TCP `ctrl-loss-tmo` o tempo limite está desativado.  Isso significa que não há limite para o número de tentativas (repetições indefinidas) e você não precisa configurar manualmente uma `ctrl-loss-tmo` duração do tempo limite ao usar o `nvme connect` ou `nvme connect-all` comandos (opção `-l` ).  Além disso, os controladores NVMe/TCP não sofrem timeouts em caso de falha de caminho e permanecem conectados indefinidamente.
 
 
 
@@ -786,7 +786,7 @@ nvme netapp ontapdevices -o json
 
 == Etapa 8: Criar um controlador de descoberta persistente
 
-A partir do ONTAP 9.11.1, você pode criar um controlador de descoberta persistente (PDC) para um host SLES 15 SP7. Um PDC é necessário para detetar automaticamente um subsistema NVMe adicionar ou remover operações e alterações nos dados da página de log de descoberta.
+A partir do ONTAP 9.11.1, você pode criar um controlador de descoberta persistente (PDC) para um host SUSE Linux Enterprise Server 15 SP7.  Um PDC é necessário para detectar automaticamente uma operação de adição ou remoção de subsistema NVMe e alterações nos dados da página de log de descoberta.
 
 .Passos
 . Verifique se os dados da página de log de descoberta estão disponíveis e podem ser recuperados por meio da combinação de porta do iniciador e LIF de destino:

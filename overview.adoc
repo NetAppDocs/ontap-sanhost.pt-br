@@ -29,7 +29,7 @@ Seus hosts SAN e o storage ONTAP podem residir no local, na nuvem ou em ambos.
 
 NOTE: Em um ambiente de nuvem, os hosts são normalmente chamados de clientes. Todas as informações específicas do host neste conteúdo também se aplicam a clientes na nuvem.
 
-Por exemplo, você pode configurar o storage ONTAP no local para se conectar a hosts SAN no local ou a clientes de nuvem SAN. Você também pode configurar serviços de storage em execução em um ambiente de nuvem, como link:https://docs.netapp.com/us-en/bluexp-cloud-volumes-ontap/index.html["Cloud Volumes ONTAP"^] ou link:https://docs.netapp.com/us-en/bluexp-fsx-ontap/index.html["Amazon FSX para NetApp ONTAP"^] para se conetar a hosts SAN no local ou a clientes de nuvem SAN.
+Por exemplo, você pode configurar o armazenamento ONTAP local para se conectar a hosts SAN locais ou clientes de nuvem SAN.  Você também pode configurar serviços de armazenamento em execução em um ambiente de nuvem, comolink:https://docs.netapp.com/us-en/cloud-volumes-ontap/index.html["Cloud Volumes ONTAP"^] oulink:https://docs.netapp.com/us-en/storage-management-fsx-ontap/index.html["Amazon FSX para NetApp ONTAP"^] para se conectar a hosts SAN locais ou clientes de nuvem SAN.
 
 .Informações relacionadas
 * link:https://docs.netapp.com/us-en/ontap/san-config/index.html["Referência de configuração de SAN ONTAP"^]
