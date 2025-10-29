@@ -9,4 +9,4 @@ NOTE: Você precisa entrar em Contato com o suporte da Microsoft para obter os h
 
 
 
-TIP: Muitos hotfixes requerem uma reinicialização do seu host Windows. Você pode optar por esperar para reiniciar o host até que _After_ você instale ou atualize os Utilitários do host.
+TIP: Muitas correções de software exigem a reinicialização do host Windows.  Você pode aguardar para reiniciar o host até _depois_ de instalar ou atualizar os Utilitários do Host.

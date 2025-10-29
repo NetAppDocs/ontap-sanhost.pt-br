@@ -1,0 +1,11 @@
+= Etapa 3: instalar os utilitários do host do Windows
+:allow-uri-read: 
+
+
+
+
+== Etapa 3: instalar os utilitários do host do Windows
+
+Os utilitários de host do Windows são um conjunto de programas de software com documentação que permitem conectar computadores host a discos virtuais (LUNs) em um SAN NetApp .  A NetApp recomenda baixar e instalar os utilitários de host do Windows mais recentes para dar suporte ao gerenciamento de LUNs do ONTAP e ajudar o suporte técnico a coletar dados de configuração.
+
+Para obter informações sobre a configuração e instalação dos utilitários do host Windows, consulte olink:https://docs.netapp.com/us-en/ontap-sanhost/hu_wuhu_71_rn.html["Utilitários de host do Windows"] documente e selecione o procedimento de instalação para a sua versão do Windows Host Utilities.

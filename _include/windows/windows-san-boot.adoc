@@ -1,0 +1,35 @@
+= Passo 1: Opcionalmente, ative a inicialização de SAN
+:allow-uri-read: 
+
+
+
+
+== Passo 1: Opcionalmente, ative a inicialização de SAN
+
+Você pode inicializar o sistema operacional Windows usando uma inicialização local ou uma inicialização SAN.  A NetApp recomenda o uso de um SAN boot para simplificar a implementação e melhorar a escalabilidade.
+
+[role="tabbed-block"]
+====
+.Inicialização de SAN
+--
+Se você optar por usar a inicialização de SAN, ela deve ser suportada por sua configuração.
+
+.Antes de começar
+Use o https://mysupport.netapp.com/matrix/#welcome["Ferramenta de Matriz de interoperabilidade"^] para verificar se o sistema operacional Windows, o adaptador de barramento do host (HBA), o firmware HBA, o BIOS de inicialização HBA e a versão do ONTAP suportam inicialização por SAN.
+
+.Passos
+. link:https://docs.netapp.com/us-en/ontap/san-management/index.html["Crie um LUN de inicialização SAN e mapeie-o para o host"^].
+. Ative a inicialização SAN no BIOS do servidor para as portas às quais o LUN de inicialização SAN está mapeado.
++
+Para obter informações sobre como ativar o BIOS HBA, consulte a documentação específica do fornecedor.
+
+. Verifique se a configuração foi bem-sucedida reinicializando o host e verificando se o sistema operacional está funcionando.
+
+
+--
+.Arranque local
+--
+Efetue uma inicialização local instalando o sistema operacional Windows no disco rígido local, por exemplo, em um SSD, SATA ou RAID.
+
+--
+====

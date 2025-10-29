@@ -1,10 +1,10 @@
 ---
 sidebar: sidebar 
 permalink: hu_windows_2022.html 
-keywords: windows, enterprise 
-summary: Usando o Windows Server 2022 com ONTAP 
+keywords: fcp, iscsi, windows, host, utilities, 2022, ontp, luns, configure 
+summary: Instale os Utilitários de Host do Windows em um host Windows Server 2022 para ajudar no gerenciamento das operações dos protocolos FCP e iSCSI com LUNs ONTAP . 
 ---
-= Use o Windows Server 2022 com ONTAP
+= Configure o Windows Server 2022 para FCP e iSCSI com armazenamento ONTAP.
 :hardbreaks:
 :toclevels: 1
 :allow-uri-read: 
@@ -16,21 +16,16 @@ summary: Usando o Windows Server 2022 com ONTAP
 
 
 [role="lead"]
-Você pode usar as configurações de host SAN ONTAP para configurar o Windows Server 2022 para operação com armazenamento ONTAP.
+Os utilitários de host do Windows permitem conectar hosts Windows a discos virtuais (LUNs) em um SAN NetApp .  Instale os Utilitários de Host do Windows em um host Windows Server 2022 para ajudar no gerenciamento das operações dos protocolos FCP e iSCSI com LUNs ONTAP .
 
 
 
-== Inicialize o sistema operacional Windows
+== Passo 1: Opcionalmente, ative a inicialização de SAN
 
-Você pode inicializar o sistema operacional Windows usando uma inicialização local ou uma inicialização SAN. A NetApp recomenda o uso de uma inicialização SAN se for suportada pela configuração.
+Você pode inicializar o sistema operacional Windows usando uma inicialização local ou uma inicialização SAN.  A NetApp recomenda o uso de um SAN boot para simplificar a implementação e melhorar a escalabilidade.
 
 [role="tabbed-block"]
 ====
-.Arranque local
---
-Execute uma inicialização local instalando o sistema operacional Windows no disco rígido local (SSD, SATA, RAID e assim por diante).
-
---
 .Inicialização de SAN
 --
 Se você optar por usar a inicialização de SAN, ela deve ser suportada por sua configuração.
@@ -39,27 +34,24 @@ Se você optar por usar a inicialização de SAN, ela deve ser suportada por sua
 Use o https://mysupport.netapp.com/matrix/#welcome["Ferramenta de Matriz de interoperabilidade"^] para verificar se o sistema operacional Windows, o adaptador de barramento do host (HBA), o firmware HBA, o BIOS de inicialização HBA e a versão do ONTAP suportam inicialização por SAN.
 
 .Passos
-. Mapeie o LUN de inicialização SAN para o host.
-+
-link:https://docs.netapp.com/us-en/ontap/san-management/index.html["Gerenciamento de STORAGE SAN"^]Consulte .
-
-. Verifique se há vários caminhos disponíveis.
-+
-
-NOTE: Vários caminhos só ficam disponíveis após o sistema operacional do host estar ativo e em execução nos caminhos.
-
+. link:https://docs.netapp.com/us-en/ontap/san-management/index.html["Crie um LUN de inicialização SAN e mapeie-o para o host"^].
 . Ative a inicialização SAN no BIOS do servidor para as portas às quais o LUN de inicialização SAN está mapeado.
 +
 Para obter informações sobre como ativar o BIOS HBA, consulte a documentação específica do fornecedor.
 
-. Reinicie o host para verificar se a inicialização foi bem-sucedida
+. Verifique se a configuração foi bem-sucedida reinicializando o host e verificando se o sistema operacional está funcionando.
 
+
+--
+.Arranque local
+--
+Efetue uma inicialização local instalando o sistema operacional Windows no disco rígido local, por exemplo, em um SSD, SATA ou RAID.
 
 --
 ====
 
 
-== Instale os hotfixes do Windows
+== Etapa 2: Instale as correções do Windows
 
 A NetApp recomenda a instalação da *última atualização cumulativa* disponível no Catálogo de atualizações da Microsoft no servidor host.
 
@@ -74,64 +66,34 @@ NOTE: Você precisa entrar em Contato com o suporte da Microsoft para obter os h
 
 
 
-TIP: Muitos hotfixes requerem uma reinicialização do seu host Windows. Você pode optar por esperar para reiniciar o host até que _After_ você instale ou atualize os Utilitários do host.
+TIP: Muitas correções de software exigem a reinicialização do host Windows.  Você pode aguardar para reiniciar o host até _depois_ de instalar ou atualizar os Utilitários do Host.
 
 
 
-== Instale os Utilitários do sistema anfitrião do Windows
+== Etapa 3: instalar os utilitários do host do Windows
 
-Os Utilitários de Host do Windows são um conjunto de programas de software com documentação que permite conectar computadores host a discos virtuais (LUNs) em uma SAN da NetApp .  A NetApp recomenda baixar e instalar o kit de utilitários mais recente.  Para obter informações e instruções sobre a configuração dos utilitários do host do Windows, consulte olink:https://docs.netapp.com/us-en/ontap-sanhost/hu-wuhu-release-notes.html["Documentação dos Utilitários do sistema anfitrião do Windows"] e selecione o procedimento de instalação para sua versão do Windows Host Utilities.
+Os utilitários de host do Windows são um conjunto de programas de software com documentação que permitem conectar computadores host a discos virtuais (LUNs) em um SAN NetApp .  A NetApp recomenda baixar e instalar os utilitários de host do Windows mais recentes para dar suporte ao gerenciamento de LUNs do ONTAP e ajudar o suporte técnico a coletar dados de configuração.
+
+Para obter informações sobre a configuração e instalação dos utilitários do host Windows, consulte olink:https://docs.netapp.com/us-en/ontap-sanhost/hu_wuhu_71_rn.html["Utilitários de host do Windows"] documente e selecione o procedimento de instalação para a sua versão do Windows Host Utilities.
 
 
 
-== Multipathing
+== Etapa 4: confirme a configuração multipath para seu host
 
-Você precisa instalar o software Microsoft Multipath I/o (MPIO) e ativar multipathing se seu host Windows tiver mais de um caminho para o sistema de armazenamento. Quando você seleciona suporte MPIO, os Utilitários de host do Windows ativa o recurso MPIO incluído no Windows Server 2022. Se você não estiver usando os Utilitários de host do Windows, será necessário habilitar a multipathing manualmente.
+Instale o software Microsoft Multipath I/O (MPIO) e habilite o multipathing se o seu host Windows tiver mais de um caminho para o sistema de armazenamento.
 
-O software MPIO apresenta um único disco para o sistema operacional Windows para todos os caminhos, e um módulo específico de dispositivo (DSM) gerencia failover de caminho. Em um sistema Windows, os dois componentes principais em qualquer solução MPIO são o DSM e o Windows MPIO.
+Em um sistema Windows, os dois componentes principais em uma solução MPIO são o módulo específico do dispositivo (DSM) e o MPIO do Windows.  O MPIO apresenta um único disco para o sistema operacional Windows para todos os caminhos, e o DSM gerencia as transições de caminho em caso de falha.
 
 
 CAUTION: Se você não instalar o software MPIO, o sistema operacional Windows pode ver cada caminho como um disco separado. Isso pode levar à corrupção de dados.
 
-[NOTE]
-====
-* No Windows Host Utilities 8.0, o recurso MPIO é ativado automaticamente quando você seleciona o suporte a MPIO.
-* O Windows XP ou o Windows Vista executado em uma máquina virtual Hyper-V não oferece suporte a MPIO.
 
+NOTE: O Windows XP ou o Windows Vista em execução numa máquina virtual Hyper-V não suporta MPIO.
 
-====
-
-
-== Configuração SAN
-
-Dependendo da configuração de SAN, o host usa todas as configurações de SAN Array (ASA) ou não ASA para acessar LUNs ONTAP. Nas configurações ASA e não ASA, você não deve precisar de mais de quatro caminhos para acessar um único LUN ONTAP. Se você tiver mais de quatro caminhos, isso pode causar problemas com os caminhos durante uma falha de storage.
-
-
-
-=== Toda a configuração de array SAN
-
-Uma configuração do ASA deve ter um grupo de caminhos ativos/otimizados com prioridades únicas. Isso significa que os caminhos são atendidos pelo controlador e a e/S é enviada em todos os caminhos ativos.
-
-O exemplo a seguir exibe a saída correta para um LUN ONTAP com caminhos ativos/otimizados.
-
-image::asa.png[Captura de tela do LUN ONTAP com caminhos ativos/otimizados]
-
-
-
-=== Configuração sem ASA
-
-Uma configuração que não seja ASA deve ter dois grupos de caminhos com prioridades diferentes. Os caminhos com prioridades mais altas são Ativo/otimizado. Isso significa que os caminhos Ativo/otimizado são atendidos pelo controlador onde o agregado está localizado. Os caminhos com prioridades mais baixas estão ativos, mas não otimizados, porque são servidos de um controlador diferente. Os caminhos não otimizados são usados somente quando caminhos otimizados não estão disponíveis.
-
-O exemplo a seguir exibe a saída correta para um LUN ONTAP com dois caminhos ativos/otimizados e dois caminhos ativos/não otimizados.
-
-image::nonasa.png[Captura de tela de um LUN ONTAP com dois caminhos ativos/otimizados e dois caminhos ativos/não otimizados]
-
-
-
-== Definições recomendadas
-
-Quando você seleciona MPIO em sistemas que usam FC, o instalador de Utilitários de host define os valores de tempo limite necessários para HBAs Emulex e QLogic FC.
-
+.Passos
+. Instale o software MPIO e habilite o multipathing.
+. Quando você seleciona MPIO em sistemas que usam FC, o instalador de Utilitários de host define os valores de tempo limite necessários para HBAs Emulex e QLogic FC.
++
 [role="tabbed-block"]
 ====
 .Emulex FC
@@ -165,11 +127,41 @@ Os valores de tempo limite para HBAs QLogic FC:
 |===
 --
 ====
+. Verifique o status do caminho para seus LUNs ONTAP :
++
+Dependendo da configuração da sua SAN, o host usa configurações ASA, AFF ou FAS para acessar os LUNs do ONTAP .  Essas configurações não devem exigir mais de quatro caminhos para acessar um único LUN ONTAP .  Mais de quatro caminhos podem causar problemas durante uma falha de armazenamento.
 
-NOTE: Para obter mais informações sobre as configurações recomendadas, link:hu_wuhu_hba_settings.html["Configure as configurações de Registro para os Utilitários de host do Windows"]consulte .
++
+Os exemplos de saída a seguir mostram as configurações corretas para LUNs ONTAP em uma configuração ASA, AFF ou FAS .
+
++
+[role="tabbed-block"]
+====
+.Configuração ASA
+--
+Uma configuração ASA deve ter um grupo de caminhos Ativos/Otimizados com prioridades únicas.  O controlador gerencia os caminhos e envia comandos de E/S em todos os caminhos ativos.
+
+image::asa.png[Captura de tela do LUN ONTAP com caminhos ativos/otimizados]
+
+--
+.Configuração AFF ou FAS
+--
+Uma configuração AFF ou FAS deve ter dois grupos de caminhos com prioridades diferentes.  Os caminhos com maior prioridade são Ativos/Otimizados e são gerenciados pelo controlador onde o agregado está localizado.  Os caminhos com prioridades mais baixas são atendidos por um controlador diferente.  Eles estão ativos, mas não otimizados, e só são usados ​​quando caminhos otimizados não estão disponíveis.
+
+image::nonasa.png[Captura de tela de um LUN ONTAP com dois caminhos ativos/otimizados e dois caminhos ativos/não otimizados]
+
+--
+====
 
 
 
-== Problemas conhecidos
 
-Não há problemas conhecidos para o Windows Server 2022 com a versão ONTAP.
+== Etapa 5: Analise os problemas conhecidos
+
+Não há problemas conhecidos.
+
+
+
+== O que se segue?
+
+link:hu_wuhu_hba_settings.html["Saiba mais sobre as configurações de registro para Utilitários de Host do Windows."].

@@ -1,0 +1,81 @@
+= Etapa 4: confirme a configuração multipath para seu host
+:allow-uri-read: 
+
+
+
+
+== Etapa 4: confirme a configuração multipath para seu host
+
+Instale o software Microsoft Multipath I/O (MPIO) e habilite o multipathing se o seu host Windows tiver mais de um caminho para o sistema de armazenamento.
+
+Em um sistema Windows, os dois componentes principais em uma solução MPIO são o módulo específico do dispositivo (DSM) e o MPIO do Windows.  O MPIO apresenta um único disco para o sistema operacional Windows para todos os caminhos, e o DSM gerencia as transições de caminho em caso de falha.
+
+
+CAUTION: Se você não instalar o software MPIO, o sistema operacional Windows pode ver cada caminho como um disco separado. Isso pode levar à corrupção de dados.
+
+
+NOTE: O Windows XP ou o Windows Vista em execução numa máquina virtual Hyper-V não suporta MPIO.
+
+.Passos
+. Instale o software MPIO e habilite o multipathing.
+. Quando você seleciona MPIO em sistemas que usam FC, o instalador de Utilitários de host define os valores de tempo limite necessários para HBAs Emulex e QLogic FC.
++
+[role="tabbed-block"]
+====
+.Emulex FC
+--
+Os valores de tempo limite para HBAs Emulex FC:
+
+[cols="2*"]
+|===
+| Tipo de propriedade | Valor da propriedade 
+
+
+| LinkTimeOut | 1 
+
+
+| NodeTimeOut | 10 
+|===
+--
+.QLogic FC
+--
+Os valores de tempo limite para HBAs QLogic FC:
+
+[cols="2*"]
+|===
+| Tipo de propriedade | Valor da propriedade 
+
+
+| LinkDownTimeOut | 1 
+
+
+| PortDownRetryCount | 10 
+|===
+--
+====
+. Verifique o status do caminho para seus LUNs ONTAP :
++
+Dependendo da configuração da sua SAN, o host usa configurações ASA, AFF ou FAS para acessar os LUNs do ONTAP .  Essas configurações não devem exigir mais de quatro caminhos para acessar um único LUN ONTAP .  Mais de quatro caminhos podem causar problemas durante uma falha de armazenamento.
+
++
+Os exemplos de saída a seguir mostram as configurações corretas para LUNs ONTAP em uma configuração ASA, AFF ou FAS .
+
++
+[role="tabbed-block"]
+====
+.Configuração ASA
+--
+Uma configuração ASA deve ter um grupo de caminhos Ativos/Otimizados com prioridades únicas.  O controlador gerencia os caminhos e envia comandos de E/S em todos os caminhos ativos.
+
+image::asa.png[Captura de tela do LUN ONTAP com caminhos ativos/otimizados]
+
+--
+.Configuração AFF ou FAS
+--
+Uma configuração AFF ou FAS deve ter dois grupos de caminhos com prioridades diferentes.  Os caminhos com maior prioridade são Ativos/Otimizados e são gerenciados pelo controlador onde o agregado está localizado.  Os caminhos com prioridades mais baixas são atendidos por um controlador diferente.  Eles estão ativos, mas não otimizados, e só são usados ​​quando caminhos otimizados não estão disponíveis.
+
+image::nonasa.png[Captura de tela de um LUN ONTAP com dois caminhos ativos/otimizados e dois caminhos ativos/não otimizados]
+
+--
+====
+
