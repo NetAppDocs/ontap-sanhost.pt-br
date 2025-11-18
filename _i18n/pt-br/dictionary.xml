@@ -3693,4 +3693,8 @@
   <block id="9871c3e3eef10eb83f1020bf0f40a11c" category="sidebar">RHEL 8.x</block>
   <block id="c4980b39600ff4c0ecb0fa2f23fe5a78" category="sidebar">Rocky Linux 9.x</block>
   <block id="58a2f4956f7990585638b66df29826ba" category="sidebar">Rocky Linux 8.x</block>
+  <block id="3e2ae734ca739ef2f098df9b39b981e1" category="summary">Instale os utilitários do host Linux em um host RHEL 10 para gerenciar as operações dos protocolos FCP e iSCSI com LUNs ONTAP .</block>
+  <block id="d7c1825e0f2407a4d10d399ac78c1f95" category="doc">Configurar o RHEL 10 para FCP e iSCSI com armazenamento ONTAP</block>
+  <block id="d7b201e34bf72ed2024522784d92bd59" category="paragraph">O software Linux Host Utilities fornece ferramentas de gerenciamento e diagnóstico para hosts Linux conectados ao armazenamento ONTAP . Ao instalar os utilitários de host Linux em um host Red Hat Enterprise Linux (RHEL) 10, você pode usá-los para gerenciar operações de protocolo FCP e iSCSI com LUNs ONTAP .</block>
+  <block id="0171e05f7a58a96089d554991286cd67" category="paragraph">Você pode usar o recurso de multipathing com o RHEL 10 para gerenciar LUNs do ONTAP .</block>
 </blocks>

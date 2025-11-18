@@ -1,10 +1,10 @@
 ---
 sidebar: sidebar 
-permalink: hu-ol-9x.html 
-keywords: host utilities, oracle, linux, 9.5, 9.4, 9.3, 9.2, 9.1, 9.0 netapp, ontap 
-summary: Instale os utilitários de host Linux em um host Oracle Linux 9.x para gerenciar operações de protocolo FCP e iSCSI com LUNs ONTAP . 
+permalink: hu-rhel-10.html 
+keywords: host utilities, red hat, rhel, linux, 10, netapp, ontap, rhel 
+summary: Instale os utilitários do host Linux em um host RHEL 10 para gerenciar as operações dos protocolos FCP e iSCSI com LUNs ONTAP . 
 ---
-= Configurar o Oracle Linux 9.x para FCP e iSCSI com armazenamento ONTAP.
+= Configurar o RHEL 10 para FCP e iSCSI com armazenamento ONTAP
 :hardbreaks:
 :toclevels: 1
 :allow-uri-read: 
@@ -16,10 +16,10 @@ summary: Instale os utilitários de host Linux em um host Oracle Linux 9.x para 
 
 
 [role="lead"]
-O software Linux Host Utilities fornece ferramentas de gerenciamento e diagnóstico para hosts Linux conectados ao armazenamento ONTAP . Ao instalar os utilitários de host Linux em um host Oracle Linux 9.x, você pode usá-los para gerenciar operações de protocolo FCP e iSCSI com LUNs ONTAP .
+O software Linux Host Utilities fornece ferramentas de gerenciamento e diagnóstico para hosts Linux conectados ao armazenamento ONTAP . Ao instalar os utilitários de host Linux em um host Red Hat Enterprise Linux (RHEL) 10, você pode usá-los para gerenciar operações de protocolo FCP e iSCSI com LUNs ONTAP .
 
 
-NOTE: Você não precisa configurar as configurações de máquina virtual baseada em Kernel porque os LUNs ONTAP são mapeados automaticamente para o hipervisor KVM.
+NOTE: Você não precisa configurar manualmente as definições da Máquina Virtual baseada em Kernel (KVM) porque os LUNs ONTAP são mapeados automaticamente para o hipervisor.
 
 
 
@@ -54,7 +54,7 @@ NOTE: A instalação dos Utilitários de host do Linux não altera nenhuma confi
 
 == Etapa 3: Confirme a configuração multipath do seu host
 
-Você pode usar o recurso de multipathing com o Oracle Linux 9.x para gerenciar LUNs do ONTAP .
+Você pode usar o recurso de multipathing com o RHEL 10 para gerenciar LUNs do ONTAP .
 
 Para garantir que o multipathing esteja configurado corretamente para o host, verifique se o `/etc/multipath.conf` arquivo está definido e se você tem as configurações recomendadas do NetApp configuradas para os LUNs do ONTAP.
 
@@ -162,21 +162,17 @@ As saídas de exemplo a seguir mostram as configurações de parâmetro e o stat
 --
 Uma configuração do ASA otimiza todos os caminhos para um determinado LUN, mantendo-os ativos. Isso melhora a performance atendendo operações de e/S em todos os caminhos ao mesmo tempo.
 
-.Mostrar exemplo
-[%collapsible]
-=====
 [listing]
 ----
-multipath -ll
-3600a098038303634722b4d59646c4436 dm-28 NETAPP,LUN C-Mode
+# multipath -ll
+3600a098038314e535a24584e4b496252 dm-32 NETAPP,LUN C-Mode
 size=10G features='3 queue_if_no_path pg_init_retries 50' hwhandler='1 alua' wp=rw
-|-+- policy='service-time 0' prio=50 status=active
-  |- 11:0:7:6   sdbz 68:208  active ready running
-  |- 11:0:11:6  sddn 71:80   active ready running
-  |- 11:0:15:6  sdfb 129:208 active ready running
-  |- 12:0:1:6   sdgp 132:80  active ready running
+`-+- policy='service-time 0' prio=50 status=active
+  |- 11:0:0:41 sdan 66:112  active ready running
+  |- 11:0:1:41 sdcb 68:240  active ready running
+  |- 14:0:2:41 sdfd 129:240 active ready running
+  `- 14:0:0:41 sddp 71:112  active ready running
 ----
-=====
 --
 .Configuração AFF ou FAS
 --
@@ -184,22 +180,18 @@ Uma configuração AFF ou FAS deve ter dois grupos de caminhos com prioridades m
 
 O exemplo a seguir exibe a saída de um LUN ONTAP com dois caminhos ativos/otimizados e dois caminhos ativos/não otimizados:
 
-.Mostrar exemplo
-[%collapsible]
-=====
 [listing]
 ----
-multipath -ll
-3600a0980383036347ffb4d59646c4436 dm-28 NETAPP,LUN C-Mode
-size=10G features='3 queue_if_no_path pg_init_retries 50' hwhandler='1 alua' wp=rw
+# multipath -ll
+3600a0980383149764b5d567257516273 dm-0 NETAPP,LUN C-Mode
+size=150G features='3 queue_if_no_path pg_init_retries 50' hwhandler='1 alua' wp=rw
 |-+- policy='service-time 0' prio=50 status=active
-| |- 16:0:6:35 sdwb  69:624  active ready running
-| |- 16:0:5:35 sdun  66:752  active ready running
+| |- 16:0:3:0  sdcg 69:64  active ready running
+| `- 10:0:0:0  sdb  8:16   active ready running
 `-+- policy='service-time 0' prio=10 status=enabled
-  |- 15:0:0:35 sdaj  66:48   active ready running
-  |- 15:0:1:35 sdbx  68:176  active ready running
+  |- 10:0:1:0  sdc  8:32   active ready running
+  `- 16:0:2:0  sdcf 69:48  active ready running
 ----
-=====
 --
 ====
 
@@ -273,15 +265,8 @@ devices {
 
 == Passo 6: Revise os problemas conhecidos
 
-O Oracle Linux 9.3, 9.2, 9.1 e 9.0 com armazenamento ONTAP apresenta o seguinte problema conhecido:
+Não há problemas conhecidos.
 
-[cols="20,40,40"]
-|===
-| ID de erro do NetApp | Título | Descrição 
-
-
-| https://mysupport.netapp.com/site/bugs-online/product/HOSTUTILITIES/BURT/1508554["1508554"^] | Utilitário SAN LUN com Emulex HBA precisa de links simbólicos de pacotes de biblioteca | Ao executar o comando da CLI de utilitários de host do Linux - "sanlun fcp show adapter -v" em um host SAN, o comando falha com uma mensagem de erro informando que as dependências de biblioteca necessárias para a descoberta de um adaptador de barramento de host (HBA) não foram encontradas: ---- [root@hostname ~]# sanlun fcp show adapter -v Não foi possível localizar a biblioteca /usr/lib64/libHBAAPI.so. Certifique-se de que o pacote que instala a biblioteca esteja instalado e carregado. ---- 
-|===
 
 
 == O que se segue?
