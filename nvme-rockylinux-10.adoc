@@ -16,9 +16,9 @@ summary: Como configurar o host NVMe-oF para Rocky Linux 10.0 com armazenamento 
 
 
 [role="lead"]
-Os hosts Red Hat Enterprise Linux (RHEL) oferecem suporte aos protocolos NVMe sobre Fibre Channel (NVMe/FC) e NVMe sobre TCP (NVMe/TCP) com acesso assimétrico ao namespace (ANA).  O ANA fornece funcionalidade de múltiplos caminhos equivalente ao acesso de unidade lógica assimétrica (ALUA) em ambientes iSCSI e FCP.
+Os hosts Rocky Linux suportam os protocolos NVMe sobre Fibre Channel (NVMe/FC) e NVMe sobre TCP (NVMe/TCP) com Acesso Assimétrico ao Espaço de Nomes (ANA). O ANA fornece funcionalidade de múltiplos caminhos equivalente ao acesso de unidade lógica assimétrica (ALUA) em ambientes iSCSI e FCP.
 
-Aprenda a configurar hosts NVMe sobre Fabrics (NVMe-oF) para o Rocky Linux 10.0.  Para obter mais informações sobre suporte e recursos, consultelink:hu-nvme-index.html["Visão geral do NVME-oF"^] .
+Aprenda como configurar hosts NVMe over Fabrics (NVMe-oF) para Rocky Linux 10.0. Para obter mais informações sobre suporte e funcionalidades, consulte link:nvme-rockylinux-overview.html["Suporte e recursos do Rocky Linux ONTAP"].
 
 *NVMe-oF com Rocky Linux 10.0 tem as seguintes limitações conhecidas:*
 
@@ -45,7 +45,7 @@ Para obter informações sobre como ativar o BIOS HBA, consulte a documentação
 
 == Etapa 2: verificar a versão do software e a configuração do NVMe
 
-Verifique se o seu sistema atende aos requisitos de software e verifique as instalações do pacote NVMe e a configuração do host.
+Para configurar seu host para NVMe-oF, você deve instalar os pacotes de software do host e do NVMe, habilitar o multipathing e verificar a configuração NQN do seu host.
 
 .Passos
 . Instale o Rocky Linux 10.0 no servidor.  Após a conclusão da instalação, verifique se você está executando o kernel necessário do Rocky Linux 10.0:

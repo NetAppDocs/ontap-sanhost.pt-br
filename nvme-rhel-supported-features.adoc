@@ -1,0 +1,92 @@
+---
+sidebar: sidebar 
+permalink: nvme-rhel-supported-features.html 
+keywords: nvme, linux, rhel, red hat, enterprise 
+summary: Saiba mais sobre o suporte e os recursos do ONTAP para hosts RHEL. 
+---
+= Saiba mais sobre o suporte e os recursos do ONTAP para hosts RHEL.
+:hardbreaks:
+:toclevels: 1
+:allow-uri-read: 
+:toclevels: 1
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./media/
+
+
+[role="lead"]
+Os recursos suportados para configuração de host com NVMe over Fabrics (NVMe-oF) variam de acordo com a versão do ONTAP e do RHEL.
+
+[cols="50,25,25"]
+|===
+| Recurso | versão do host RHEL | Versão ONTAP 
+
+
+| A autenticação segura em banda é suportada via NVMe/TCP entre um host RHEL e um controlador ONTAP.  a| 
+9.3 ou posterior
+| 9.12.1 ou posterior 
+
+
+| NVMe/TCP fornece namespaces usando o recurso nativo. `nvme-cli` pacote  a| 
+8.2 ou posterior
+| 9.10.1 ou posterior 
+
+
+| NVMe/TCP é um recurso empresarial totalmente suportado.  a| 
+9.0 ou posterior
+| 9.10.1 ou posterior 
+
+
+| O tráfego NVMe e SCSI é suportado no mesmo host usando NVMe multipath para namespaces NVMe-oF e dm-multipath para LUNs SCSI.  a| 
+8.2 ou posterior
+| 9.4 ou posterior 
+|===
+O ONTAP suporta os seguintes recursos de host SAN, independentemente da versão do ONTAP em execução na configuração do seu sistema.
+
+[cols="75,25"]
+|===
+| Recurso | versão do host RHEL 
+
+
+| O multipathing NVMe nativo está ativado por padrão.  a| 
+10.0 ou posterior
+
+
+
+| A inicialização SAN é habilitada usando o protocolo NVMe/FC.  a| 
+9.4 ou posterior
+
+
+
+| O `nvme-cli` O pacote inclui scripts de conexão automática, eliminando a necessidade de scripts de terceiros.  a| 
+8.2 ou posterior
+
+
+
+| A regra udev nativa em `nvme-cli` Este pacote fornece balanceamento de carga round-robin para NVMe multipath.  a| 
+8.2 ou posterior
+
+|===
+
+NOTE: Para obter detalhes sobre as configurações suportadas, consulte olink:https://mysupport.netapp.com/matrix/["Ferramenta de Matriz de interoperabilidade"^] .
+
+
+
+== O que vem a seguir
+
+[cols="50,50"]
+|===
+| Se a sua versão do RHEL for... | Saiba mais sobre... 
+
+
+| Série 10 | link:nvme-rhel-10x.html["Configurando NVMe para RHEL 10x"] 
+
+
+| Série 9 | link:nvme-rhel-9x.html["Configurando NVMe para RHEL 9x"] 
+
+
+| Série 8 | link:nvme-rhel-8x.html["Configurando NVMe para RHEL 8x"] 
+|===
+.Informações relacionadas
+link:https://docs.netapp.com/us-en/ontap/san-admin/start-nvme-fc-service-svm-task.html["Aprenda sobre como gerenciar protocolos NVMe"]
