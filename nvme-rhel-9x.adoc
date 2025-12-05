@@ -866,7 +866,6 @@ Configure a autenticação segura em banda usando a CLI ou um arquivo de configu
 --
 Configure a autenticação segura na banda usando a CLI.
 
-.Passos
 . Obtenha o NQN do host:
 +
 [source, cli]
@@ -961,7 +960,6 @@ Quando vários subsistemas NVMe estão disponíveis no controlador ONTAP , você
 
 Use o `-o` opção para gerar o arquivo JSON.  Consulte as páginas do manual do NVMe connect-all para mais opções de sintaxe.
 
-.Passos
 . Configure o arquivo JSON.
 +
 
@@ -1101,5 +1099,5 @@ Estes são os problemas conhecidos:
 | 1503468 | No RHEL 9.1, o `nvme list-subsys` O comando retorna uma lista repetida de controladores NVMe para um determinado subsistema. | O `nvme list-subsys` O comando retorna uma lista de controladores NVMe para um determinado subsistema.  No RHEL 9.1, este comando mostra controladores com seu estado ANA para todos os namespaces no subsistema.  Como o estado ANA é um atributo por namespace, o comando deve exibir entradas exclusivas do controlador com o estado do caminho para cada namespace. 
 
 
-| link:https://mysupport.netapp.com/site/bugs-online/product/HOSTUTILITIES/BURT/1479047["1479047"^] | Hosts RHEL 9.0 NVMe-oF criam controladores de descoberta persistente (PDCs) duplicados | Em hosts NVMe-oF, você pode usar o comando "nvme discover -p" para criar PDCs.  Quando este comando é usado, apenas um PDC deve ser criado por combinação iniciador-alvo.  No entanto, se você estiver executando o ONTAP 9.10.1 e o RHEL 9.0 com um host NVMe-oF, um PDC duplicado será criado sempre que "nvme discover -p" for executado.  Isso leva ao uso desnecessário de recursos tanto no host quanto no destino. 
+| link:https://mysupport.netapp.com/site/bugs-online/product/HOSTUTILITIES/BURT/1479047["1479047"^] | Hosts RHEL 9.0 NVMe-oF criam controladores de descoberta persistente (PDCs) duplicados | Em hosts NVMe-oF, você pode usar o comando `nvme discover -p`  para criar PDCs. Ao utilizar este comando, apenas um PDC deve ser criado por combinação iniciador-alvo. No entanto, se você estiver executando o Oracle Linux 8x com um host NVMe-oF, um PDC duplicado será criado sempre que `nvme discover -p` for executado. Isso leva ao uso desnecessário de recursos tanto no host quanto no destino. 
 |===
