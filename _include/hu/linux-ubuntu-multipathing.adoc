@@ -96,7 +96,7 @@ A tabela a seguir mostra as configurações de parâmetros multipath compilados 
 multipath -ll
 ----
 +
-Os parâmetros multipath padrão são compatíveis com configurações ASA, AFF e FAS. Nessas configurações, um único LUN ONTAP não deve exigir mais de quatro caminhos. Se houver mais de quatro caminhos, isso pode causar problemas com os caminhos durante uma falha de storage.
+Os parâmetros multipath padrão suportam configurações ASA, AFF e FAS . Nessas configurações, um único LUN ONTAP não deve exigir mais de quatro caminhos. Ter mais de quatro caminhos pode causar problemas durante uma falha de armazenamento.
 
 +
 As saídas de exemplo a seguir mostram as configurações de parâmetro e o status do caminho corretos para LUNs ONTAP em uma configuração ASA, AFF ou FAS.

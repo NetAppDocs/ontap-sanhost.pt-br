@@ -1,0 +1,12 @@
+= Passo 2: Instale os Utilitários de host do Linux
+:allow-uri-read: 
+
+
+
+
+== Passo 2: Instale os Utilitários de host do Linux
+
+A NetApp recomenda enfaticamente link:hu-luhu-release-notes.html["Instalando os utilitários do host Linux"] Para dar suporte ao gerenciamento de LUNs do ONTAP e auxiliar o suporte técnico na coleta de dados de configuração.
+
+
+NOTE: A instalação dos Utilitários de host do Linux não altera nenhuma configuração de tempo limite do host no seu host Linux.

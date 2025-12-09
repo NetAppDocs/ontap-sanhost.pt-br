@@ -1,0 +1,23 @@
+= Passo 1: Opcionalmente, ative a inicialização de SAN
+:allow-uri-read: 
+
+
+
+
+== Passo 1: Opcionalmente, ative a inicialização de SAN
+
+Você pode configurar seu host para usar a inicialização SAN para simplificar a implantação e melhorar a escalabilidade.
+
+.Antes de começar
+* Use o link:https://mysupport.netapp.com/matrix/#welcome["Ferramenta de Matriz de interoperabilidade"^] para verificar se o sistema operacional Linux, o adaptador de barramento do host (HBA), o firmware HBA, o BIOS de inicialização HBA e a versão do ONTAP suportam inicialização por SAN.
+* Consulte o Portal de Suporte da Veritas (Matriz de Produtos, Pesquisa de Plataformas e Matriz HCL) para verificar o suporte à configuração de inicialização SAN e problemas conhecidos.
+
+
+.Passos
+. link:https://docs.netapp.com/us-en/ontap/san-admin/provision-storage.html["Crie um LUN de inicialização SAN e mapeie-o para o host"^].
+. Ative a inicialização SAN no BIOS do servidor para as portas às quais o LUN de inicialização SAN está mapeado.
++
+Para obter informações sobre como ativar o BIOS HBA, consulte a documentação específica do fornecedor.
+
+. Verifique se a configuração foi bem-sucedida reinicializando o host e verificando se o sistema operacional está funcionando.
+

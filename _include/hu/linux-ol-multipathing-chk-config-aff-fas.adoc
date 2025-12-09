@@ -96,7 +96,7 @@ A tabela a seguir mostra as configurações de parâmetros multipath compilados 
 multipath -ll
 ----
 +
-Os parâmetros multipath padrão suportam configurações AFF e FAS. Nessas configurações, um único LUN ONTAP não deve exigir mais de quatro caminhos. Se houver mais de quatro caminhos, isso pode causar problemas com os caminhos durante uma falha de storage.
+Os parâmetros padrão de multipath suportam configurações AFF e FAS . Nessas configurações, um único LUN ONTAP não deve exigir mais de quatro caminhos. Ter mais de quatro caminhos pode causar problemas durante uma falha de armazenamento.
 
 +
 Uma configuração AFF ou FAS deve ter dois grupos de caminhos com prioridades maiores e menores. Os caminhos ativos/otimizados de prioridade mais alta são servidos pelo controlador onde o agregado está localizado. Os caminhos de prioridade mais baixa estão ativos, mas não otimizados, porque são servidos por um controlador diferente. Caminhos não otimizados são usados somente quando caminhos otimizados não estão disponíveis.
