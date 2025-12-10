@@ -3337,4 +3337,5 @@
   <block id="92520caa5da5fd65237a96731d101aee" category="list-text">Verifique se as configurações apropriadas do NVMe-oF (como, por exemplo, o modelo definido como NetApp ONTAP Controller e a política de balanceamento de carga de E/S definida como round-robin) para os respectivos namespaces do ONTAP são exibidas corretamente no host:</block>
   <block id="bf4dbd3d81297258bdb9391343d3d393" category="cell">A regra udev nativa em<block ref="e1667929105bf030b9f367fc21f8d216" prefix=" " category="inline-code"></block> Este pacote fornece balanceamento de carga com base na profundidade da fila para NVMe multipath.</block>
   <block id="b62ae28652ddc6a2c9bb15373668f0d0" category="paragraph">9.6 ou posterior</block>
+  <block id="3bf7b9cd443b3cb0c9b741f8a4deb9dc" category="paragraph">O RHEL 10.0 define a política de E/S padrão para NVMe-oF como<block ref="7b6d85eaafedeee6d733437bf856da7e" prefix=" " category="inline-code"></block> . Se você estiver usando o RHEL 10.0 e quiser alterar a política de E/S para<block ref="f63d19812a9885e12a84d9c2748b701f" prefix=" " category="inline-code"></block> , modifique o arquivo de regras udev da seguinte forma:</block>
 </blocks>
