@@ -2916,10 +2916,7 @@
   <block id="3ac93f7cf1853dfbc16c8472fc66d07d" category="cell">O<block ref="f3d48156832e70ac41335c007fa76798" prefix=" " category="inline-code"></block> O comando retorna uma lista de controladores NVMe para um determinado subsistema.  No RHEL 9.1, este comando mostra controladores com seu estado ANA para todos os namespaces no subsistema.  Como o estado ANA é um atributo por namespace, o comando deve exibir entradas exclusivas do controlador com o estado do caminho para cada namespace.</block>
   <block id="d1137ffaeb3a0ca88e57e0f4130f3134" category="section-title">Etapa 6: Configurar autenticação segura em banda</block>
   <block id="ece25d4c541fbae683416549d3f4ac05" category="list-text">Abra o arquivo de regras do udev em um editor de texto com privilégios de root:</block>
-  <block id="b9908e7dd449843af949631c92e15e09" category="list-text">Localize a linha que define iopolicy para o NetApp ONTAP Controller.</block>
-  <block id="87a7f5650d1515a9aa05f05e2e75e27c" category="paragraph">O exemplo a seguir mostra uma regra de exemplo:</block>
   <block id="1cdf0be14ba09adc81c1095b08aa7aa2" category="list-text">Modifique a regra para que<block ref="7b6d85eaafedeee6d733437bf856da7e" prefix=" " category="inline-code"></block> torna-se<block ref="f63d19812a9885e12a84d9c2748b701f" prefix=" " category="inline-code"></block> :</block>
-  <block id="84acde248a4e307a6672632785153fc4" category="admonition">A nova iopolicy se aplica automaticamente aos dispositivos NetApp ONTAP Controller correspondentes.  Não é necessário reinicializar.</block>
   <block id="8368841b470b6e92a17171fdc50066e4" category="summary">Como configurar o host NVMe-oF para Rocky Linux 10.0 com armazenamento ONTAP</block>
   <block id="3bb0dd42b9baf9976e4fd910388b116d" category="doc">Configurar o Rocky Linux 10.0 para NVMe-oF com armazenamento ONTAP</block>
   <block id="353c5da630e8437465e2bac779b53241" category="paragraph">*NVMe-oF com Rocky Linux 10.0 tem as seguintes limitações conhecidas:*</block>
@@ -3335,4 +3332,9 @@
   <block id="9becfc22d40b1be99a7885f3a6881599" category="paragraph">O software Linux Host Utilities fornece ferramentas de gerenciamento e diagnóstico para hosts Linux conectados ao armazenamento ONTAP . Utilize os utilitários de host Linux com o Veritas Infoscale 6 para hosts Oracle Linux (baseado em kernel compatível com Red Hat), Red Hat Enterprise Linux (RHEL) e SUSE Linux Enterprise Server para oferecer suporte ao gerenciamento de operações de protocolo FC, FCoE e iSCSI com LUNs ONTAP .</block>
   <block id="b1c021b70553fcad383b7575c6548a4d" category="paragraph">Utilize o Veritas Dynamic Multipathing (VxDMP) com o Veritas Infoscale 6 para gerenciar LUNs ONTAP .</block>
   <block id="a51c6ee27ac185032fb4471c829132c2" category="sidebar">Infoscale 9</block>
+  <block id="160316d24f765380a7e2c247ad512d7a" category="list-text">Localize a linha que define a política de E/S (iopolicy) para o controlador NetApp ONTAP , conforme mostrado no exemplo de regra a seguir:</block>
+  <block id="97a0ff99a93f7485dcb82a548fcca4a0" category="admonition">A nova política de E/S (iopolicy) aplica-se automaticamente aos dispositivos NetApp ONTAP Controller correspondentes. Não é necessário reiniciar.</block>
+  <block id="92520caa5da5fd65237a96731d101aee" category="list-text">Verifique se as configurações apropriadas do NVMe-oF (como, por exemplo, o modelo definido como NetApp ONTAP Controller e a política de balanceamento de carga de E/S definida como round-robin) para os respectivos namespaces do ONTAP são exibidas corretamente no host:</block>
+  <block id="bf4dbd3d81297258bdb9391343d3d393" category="cell">A regra udev nativa em<block ref="e1667929105bf030b9f367fc21f8d216" prefix=" " category="inline-code"></block> Este pacote fornece balanceamento de carga com base na profundidade da fila para NVMe multipath.</block>
+  <block id="b62ae28652ddc6a2c9bb15373668f0d0" category="paragraph">9.6 ou posterior</block>
 </blocks>
