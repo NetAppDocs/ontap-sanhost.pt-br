@@ -44,7 +44,7 @@ Para obter informações sobre como ativar o BIOS HBA, consulte a documentação
 
 == Etapa 2: Instale o software RHEL e NVMe e verifique sua configuração.
 
-Para configurar seu host para NVMe-oF, você deve instalar os pacotes de software do host e do NVMe, habilitar o multipathing e verificar a configuração NQN do seu host.
+Para configurar seu host para NVMe-oF, você precisa instalar os pacotes de software do host e do NVMe, habilitar o multipathing e verificar a configuração NQN do seu host.
 
 .Passos
 . Instale o RHEL 10x no servidor.  Após a conclusão da instalação, verifique se você está executando o kernel RHEL 10x necessário:

@@ -1,10 +1,10 @@
 ---
 sidebar: sidebar 
-permalink: nvme-rockylinux-10.html 
+permalink: nvme-rockylinux-10x.html 
 keywords: nvme, linux, rocky, linux, red hat, enterprise 
-summary: Como configurar o host NVMe-oF para Rocky Linux 10.0 com armazenamento ONTAP 
+summary: Como configurar um host NVMe-oF para Rocky Linux 10.x com armazenamento ONTAP 
 ---
-= Configurar o Rocky Linux 10.0 para NVMe-oF com armazenamento ONTAP
+= Configure o Rocky Linux 10.x para NVMe-oF com armazenamento ONTAP.
 :hardbreaks:
 :toclevels: 1
 :allow-uri-read: 
@@ -18,12 +18,11 @@ summary: Como configurar o host NVMe-oF para Rocky Linux 10.0 com armazenamento 
 [role="lead"]
 Os hosts Rocky Linux suportam os protocolos NVMe sobre Fibre Channel (NVMe/FC) e NVMe sobre TCP (NVMe/TCP) com Acesso Assimétrico ao Espaço de Nomes (ANA). O ANA fornece funcionalidade de múltiplos caminhos equivalente ao acesso de unidade lógica assimétrica (ALUA) em ambientes iSCSI e FCP.
 
-Aprenda como configurar hosts NVMe over Fabrics (NVMe-oF) para Rocky Linux 10.0. Para obter mais informações sobre suporte e funcionalidades, consulte link:nvme-rockylinux-supported-features.html["Suporte e recursos do Rocky Linux ONTAP"].
+Aprenda como configurar hosts NVMe over Fabrics (NVMe-oF) para Rocky Linux 10.x. Para obter mais informações sobre suporte e funcionalidades, consulte link:nvme-rockylinux-supported-features.html["Suporte e recursos do Rocky Linux ONTAP"].
 
-*NVMe-oF com Rocky Linux 10.0 tem as seguintes limitações conhecidas:*
+O NVMe-oF com Rocky Linux 10.x apresenta as seguintes limitações conhecidas:
 
-* O suporte multipath do DM para NVMe-oF não é suportado.
-* Evite emitir o  `nvme disconnect-all` comando em sistemas inicializados a partir de SAN sobre namespaces NVMe-TCP ou NVMe-FC porque ele desconecta os sistemas de arquivos raiz e de dados e pode levar à instabilidade do sistema.
+* O `nvme disconnect-all` O comando desconecta os sistemas de arquivos raiz e de dados, o que pode levar à instabilidade do sistema.  Não execute este comando em sistemas que inicializam a partir de SAN através de namespaces NVMe-TCP ou NVMe-FC.
 
 
 
@@ -43,12 +42,12 @@ Para obter informações sobre como ativar o BIOS HBA, consulte a documentação
 
 
 
-== Etapa 2: verificar a versão do software e a configuração do NVMe
+== Passo 2: Instale o Rocky Linux e o software NVMe e verifique sua configuração.
 
-Para configurar seu host para NVMe-oF, você deve instalar os pacotes de software do host e do NVMe, habilitar o multipathing e verificar a configuração NQN do seu host.
+Para configurar seu host para NVMe-oF, você precisa instalar os pacotes de software do host e do NVMe, habilitar o multipathing e verificar a configuração NQN do seu host.
 
 .Passos
-. Instale o Rocky Linux 10.0 no servidor.  Após a conclusão da instalação, verifique se você está executando o kernel necessário do Rocky Linux 10.0:
+. Instale o Rocky Linux 10.x no servidor.  Após a conclusão da instalação, verifique se você está executando o kernel Rocky Linux 10.x necessário:
 +
 [source, cli]
 ----
@@ -104,7 +103,7 @@ O exemplo a seguir mostra um `hostnqn` valor:
 ----
 nqn.2014-08.org.nvmexpress:uuid:4c4c4544-0056-5410-8048-b9c04f425633
 ----
-. Verifique se a `hostnqn` cadeia corresponde à `hostnqn` cadeia para o subsistema correspondente na matriz ONTAP:
+. No sistema ONTAP , verifique se o `hostnqn` A string corresponde à `hostnqn` string para o subsistema correspondente no array ONTAP :
 +
 [source, cli]
 ----
@@ -144,11 +143,10 @@ Configure NVMe/FC com adaptadores Broadcom/Emulex ou Marvell/QLogic, ou configur
 
 [role="tabbed-block"]
 ====
-.FC - Broadcom/Emulex
+.NVMe/FC - Broadcom/Emulex
 --
 Configurar o NVMe/FC para um adaptador Broadcom/Emulex.
 
-.Passos
 . Verifique se você está usando o modelo de adaptador suportado:
 +
 .. Exibir os nomes dos modelos:
@@ -297,11 +295,10 @@ FCP CMPL: xb 000014a5 Err 0002149a
 
 
 --
-.FC - Marvell/QLogic
+.NVMe/FC - Marvell/QLogic
 --
 Configure o NVMe/FC para um adaptador Marvell/QLogic.
 
-.Passos
 . Verifique se você está usando as versões de firmware e driver do adaptador compatíveis:
 +
 [source, cli]
@@ -329,11 +326,10 @@ A saída esperada é 1.
 
 
 --
-.TCP
+.NVMe/TCP
 --
 O protocolo NVMe/TCP não suporta a operação de conexão automática.  Em vez disso, você pode descobrir os subsistemas e namespaces NVMe/TCP executando o NVMe/TCP `connect` ou `connect-all` operações manualmente.
 
-.Passos
 . Verifique se a porta do iniciador pode obter os dados da página de log de descoberta nos LIFs NVMe/TCP suportados:
 +
 [source, cli]
@@ -762,7 +758,7 @@ nvme netapp ontapdevices -o json
 
 == Etapa 7: Configurar autenticação segura em banda
 
-A partir do ONTAP 9.12.1, a autenticação segura em banda é suportada por NVMe/TCP entre um host Rocky Linux 10.0 e um controlador ONTAP .
+A autenticação segura em banda é suportada via NVMe/TCP entre um host Rocky Linux 10.x e um controlador ONTAP .
 
 Cada host ou controlador deve ser associado a um  `DH-HMAC-CHAP` chave para configurar autenticação segura. Uma  `DH-HMAC-CHAP` chave é uma combinação do NQN do host ou controlador NVMe e um segredo de autenticação configurado pelo administrador. Para autenticar seu peer, um host ou controlador NVMe deve reconhecer a chave associada ao peer.
 
@@ -781,7 +777,7 @@ Configure a autenticação segura na banda usando a CLI.
 ----
 cat /etc/nvme/hostnqn
 ----
-. Gere a chave dhchap para o host Rocky Linux 10.0.
+. Gere a chave dhchap para o host Rocky Linux 10.x.
 +
 A saída a seguir descreve o `gen-dhchap-key` parâmetros de comando:
 
@@ -892,38 +888,39 @@ NOTE: No exemplo a seguir,  `dhchap_key` corresponde a  `dhchap_secret` e  `dhch
 ----
 cat /etc/nvme/config.json
 [
-{
-"hostnqn":"nqn.2014-08.org.nvmexpress:uuid:4c4c4544-0035-5910-804b-c2c04f444d33",
-"hostid":"4c4c4544-0035-5910-804b-c2c04f444d33",
-"dhchap_key":"DHHC-1:03:7zf8I9gaRcDWH3tCH5vLGaoyjzPIvwNWusBfKdpJa+hia1aKDKJQ2o53pX3wYM9xdv5DtKNNhJInZ7X8wU2RQpQIngc=:",
-"subsystems":[
-{
-"nqn":"nqn.1992-08.com.netapp:sn.127ade26168811f0a50ed039eab69ad3:subsystem.inband_unidirectional",
-"ports":[
-{
-"transport":"tcp",
-"traddr":"192.168.20.17",
-"host_traddr":"192.168.20.1",
-"trsvcid":"4420"
-},
-{
-"transport":"tcp",
-"traddr":"192.168.20.18",
-"host_traddr":"192.168.20.1",
-"trsvcid":"4420"
-},
-{
-"transport":"tcp",
-"traddr":"192.168.21.18",
-"host_traddr":"192.168.21.1",
-"trsvcid":"4420"
-},
-{
-"transport":"tcp",
-"traddr":"192.168.21.17",
-"host_traddr":"192.168.21.1",
-"trsvcid":"4420"
-}]
+  {
+    "hostnqn":"nqn.2014-08.org.nvmexpress:uuid:4c4c4544-0035-5910-804b-c2c04f444d33",
+    "hostid":"4c4c4544-0035-5910-804b-c2c04f444d33",
+    "dhchap_key":"DHHC-1:03:7zf8I9gaRcDWH3tCH5vLGaoyjzPIvwNWusBfKdpJa+hia1aKDKJQ2o53pX3wYM9xdv5DtKNNhJInZ7X8wU2RQpQIngc=:",
+    "subsystems":[
+      {
+        "nqn":"nqn.1992-08.com.netapp:sn.127ade26168811f0a50ed039eab69ad3:subsystem.inband_unidirectional",
+        "ports":[
+          {
+            "transport":"tcp",
+            "traddr":"192.168.20.17",
+            "host_traddr":"192.168.20.1",
+            "trsvcid":"4420"
+          },
+          {
+            "transport":"tcp",
+            "traddr":"192.168.20.18",
+            "host_traddr":"192.168.20.1",
+            "trsvcid":"4420"
+          },
+          {
+            "transport":"tcp",
+            "traddr":"192.168.21.18",
+            "host_traddr":"192.168.21.1",
+            "trsvcid":"4420"
+          },
+          {
+            "transport":"tcp",
+            "traddr":"192.168.21.17",
+            "host_traddr":"192.168.21.1",
+            "trsvcid":"4420"
+}
+]
 ----
 =====
 . Conete-se ao controlador ONTAP usando o arquivo JSON de configuração:

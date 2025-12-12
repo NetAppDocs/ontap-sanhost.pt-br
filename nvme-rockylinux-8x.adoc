@@ -1,10 +1,10 @@
 ---
 sidebar: sidebar 
-permalink: nvme-rockylinux-810.html 
+permalink: nvme-rockylinux-8x.html 
 keywords: nvme, linux, rocky linux, enterprise 
-summary: Como configurar o host NVMe-oF para Rocky Linux 8.10 com ONTAP 
+summary: Como configurar um host NVMe-oF para Rocky Linux 8.x com ONTAP 
 ---
-= Configurar o Rocky Linux 8.10 para NVMe-oF com armazenamento ONTAP
+= Configure o Rocky Linux 8.x para NVMe-oF com armazenamento ONTAP.
 :hardbreaks:
 :toclevels: 1
 :allow-uri-read: 
@@ -18,38 +18,23 @@ summary: Como configurar o host NVMe-oF para Rocky Linux 8.10 com ONTAP
 [role="lead"]
 Os hosts Rocky Linux suportam os protocolos NVMe sobre Fibre Channel (NVMe/FC) e NVMe sobre TCP (NVMe/TCP) com Acesso Assimétrico ao Espaço de Nomes (ANA). O ANA fornece funcionalidade de múltiplos caminhos equivalente ao acesso de unidade lógica assimétrica (ALUA) em ambientes iSCSI e FCP.
 
-Aprenda como configurar hosts NVMe over Fabrics (NVMe-oF) para Rocky Linux 8.10. Para obter mais informações sobre suporte e funcionalidades, consulte link:nvme-rockylinux-supported-features.html["Suporte e recursos do Rocky Linux ONTAP"].
+Aprenda como configurar hosts NVMe over Fabrics (NVMe-oF) para Rocky Linux 8.x. Para obter mais informações sobre suporte e funcionalidades, consulte link:nvme-rockylinux-supported-features.html["Suporte e recursos do Rocky Linux ONTAP"].
 
-*NVMe-oF com Rocky Linux 8.10 tem as seguintes limitações conhecidas:*
+O NVMe-oF com Rocky Linux 8.x apresenta as seguintes limitações conhecidas:
 
 * A inicialização SAN usando o protocolo NVMe-oF não é suportada atualmente.
-* O multipath NVMe no kernel é desabilitado por padrão em hosts NVMe-oF no Rocky Linux 8.10; você deve habilitá-lo manualmente.
+* O recurso de multipath NVMe no kernel está desativado por padrão em hosts NVMe-oF no Rocky Linux 8.x; você precisa ativá-lo manualmente.
 * NVMe/TCP está disponível como uma prévia de tecnologia devido a problemas conhecidos.
 
 
 
 
-== Passo 1: Opcionalmente, ative a inicialização de SAN
+== Passo 1: Instale o Rocky Linux e o software NVMe e verifique sua configuração.
 
-Você pode configurar seu host para usar a inicialização SAN para simplificar a implantação e melhorar a escalabilidade. Use olink:https://mysupport.netapp.com/matrix/#welcome["Ferramenta de Matriz de interoperabilidade"^] para verificar se o seu sistema operacional Linux, adaptador de barramento de host (HBA), firmware HBA, BIOS de inicialização HBA e versão ONTAP oferecem suporte à inicialização SAN.
-
-.Passos
-. https://docs.netapp.com/us-en/ontap/san-admin/create-nvme-namespace-subsystem-task.html["Crie um namespace NVMe e mapeie-o para o host"^] .
-. Habilite a inicialização SAN no BIOS do servidor para as portas para as quais o namespace de inicialização SAN está mapeado.
-+
-Para obter informações sobre como ativar o BIOS HBA, consulte a documentação específica do fornecedor.
-
-. Reinicie o host e verifique se o sistema operacional está ativo e funcionando.
-
-
-
-
-== Etapa 2: verificar a versão do software e a configuração do NVMe
-
-Para configurar seu host para NVMe-oF, você deve instalar os pacotes de software do host e do NVMe, habilitar o multipathing e verificar a configuração NQN do seu host.
+Para configurar seu host para NVMe-oF, você precisa instalar os pacotes de software do host e do NVMe, habilitar o multipathing e verificar a configuração NQN do seu host.
 
 .Passos
-. Instale o Rocky Linux 8.10 no servidor.  Após a conclusão da instalação, verifique se você está executando o kernel Rocky Linux 8.10 necessário:
+. Instale o Rocky Linux 8.x no servidor.  Após a conclusão da instalação, verifique se você está executando o kernel Rocky Linux 8.x necessário:
 +
 [source, cli]
 ----
@@ -105,7 +90,7 @@ O exemplo a seguir mostra um  `hostnqn` versão:
 ----
 nqn.2014-08.org.nvmexpress:uuid:4c4c4544-0056-5410-8048-b9c04f425633
 ----
-. Verifique se a `hostnqn` cadeia corresponde à `hostnqn` cadeia para o subsistema correspondente na matriz ONTAP:
+. No sistema ONTAP , verifique se o `hostnqn` A string corresponde à `hostnqn` string para o subsistema correspondente no array ONTAP :
 +
 [source, cli]
 ----
@@ -139,17 +124,16 @@ NOTE: Se as `hostnqn` strings não corresponderem, use o `vserver modify` comand
 
 
 
-== Etapa 3: Configurar NVMe/FC e NVMe/TCP
+== Etapa 2: Configurar NVMe/FC e NVMe/TCP
 
 Configure NVMe/FC com adaptadores Broadcom/Emulex ou Marvell/QLogic, ou configure NVMe/TCP usando operações manuais de descoberta e conexão.
 
 [role="tabbed-block"]
 ====
-.FC - Broadcom/Emulex
+.NVMe/FC - Broadcom/Emulex
 --
 Configurar o NVMe/FC para um adaptador Broadcom/Emulex.
 
-.Passos
 . Verifique se você está usando o modelo de adaptador suportado:
 +
 .. Exibir os nomes dos modelos:
@@ -298,11 +282,10 @@ FCP CMPL: xb 000014a5 Err 0002149a
 
 
 --
-.FC - Marvell/QLogic
+.NVMe/FC - Marvell/QLogic
 --
 Configure o NVMe/FC para um adaptador Marvell/QLogic.
 
-.Passos
 . Verifique se você está executando o driver de adaptador e as versões de firmware compatíveis:
 +
 [source, cli]
@@ -330,11 +313,10 @@ A saída esperada é 1.
 
 
 --
-.TCP
+.NVMe/TCP
 --
 O protocolo NVMe/TCP não suporta a operação de conexão automática.  Em vez disso, você pode descobrir os subsistemas e namespaces NVMe/TCP executando o NVMe/TCP `connect` ou `connect-all` operações manualmente.
 
-.Passos
 . Verifique se a porta do iniciador pode obter os dados da página de log de descoberta nos LIFs NVMe/TCP suportados:
 +
 [listing]
@@ -613,7 +595,7 @@ nvme	connect-all	-t	tcp	-w	192.168.2.31	-a	192.168.2.25
 ====
 
 
-== Etapa 4: Opcionalmente, habilite 1 MB de E/S para NVMe/FC
+== Etapa 3: Opcionalmente, habilite a E/S de 1 MB para NVMe/FC.
 
 Você pode habilitar solicitações de E/S de 1 MB para NVMe/FC configurado com um adaptador Broadcom. O ONTAP relata um Tamanho Máximo de Transferência de Dados (MDTS) de 8 nos dados do Controlador de Identificação. Isso significa que o tamanho máximo da solicitação de e/S pode ser de até 1MBMB. Para emitir solicitações de E/S de 1 MB, você precisa aumentar o valor de lpfc do  `lpfc_sg_seg_cnt` parâmetro para 256 do valor padrão de 64.
 
@@ -643,7 +625,7 @@ cat /sys/module/lpfc/parameters/lpfc_sg_seg_cnt
 
 
 
-== Etapa 5: verificar a configuração de multipathing
+== Etapa 4: Verifique a configuração de multipathing
 
 Verifique se o status multipath do NVMe no kernel, o status ANA e os namespaces do ONTAP estão corretos para a configuração do NVMe-of.
 
@@ -829,7 +811,7 @@ nvme netapp ontapdevices -o json
 
 
 
-== Passo 6: Revise os problemas conhecidos
+== Etapa 5: Revise os problemas conhecidos
 
 Estes são os problemas conhecidos:
 
@@ -838,5 +820,5 @@ Estes são os problemas conhecidos:
 | ID de erro do NetApp | Título | Descrição 
 
 
-| link:https://mysupport.netapp.com/site/bugs-online/product/HOSTUTILITIES/BURT/1479047["1479047"^] | Hosts Rocky Linux 8.10 NVMe-oF criam controladores de descoberta persistentes duplicados | Em hosts NVMe-oF, você pode usar o comando "nvme discover -p" para criar Controladores de Descoberta Persistentes (PDCs).  Quando este comando é usado, apenas um PDC deve ser criado por combinação iniciador-alvo.  Entretanto, se você estiver executando o Rocky Linux 8.10 em um host NVMe-oF, um PDC duplicado será criado sempre que "nvme discover -p" for executado.  Isso leva ao uso desnecessário de recursos tanto no host quanto no destino. 
+| link:https://mysupport.netapp.com/site/bugs-online/product/HOSTUTILITIES/BURT/1479047["1479047"^] | Hosts Rocky Linux 8.x NVMe-oF criam controladores de descoberta persistentes duplicados. | Em hosts NVMe-oF, você pode usar o comando "nvme discover -p" para criar Controladores de Descoberta Persistente (PDCs).  No entanto, se você estiver executando o Rocky Linux 8.x em um host NVMe-oF, um PDC duplicado será criado cada vez que o comando "nvme discover -p" for executado. Ao utilizar este comando, apenas um PDC deve ser criado por combinação iniciador-alvo. No entanto, se você estiver executando o Rocky Linux 8.x em um host NVMe-oF, um PDC duplicado será criado cada vez que "nvme discover -p" for executado. Isso leva ao uso desnecessário de recursos tanto no host quanto no destino. 
 |===
