@@ -2,9 +2,9 @@
 sidebar: sidebar 
 permalink: nvme-rhel-8x.html 
 keywords: nvme, linux, rhel, red hat, enterprise 
-summary: Como configurar um host NVMe-oF para RHEL 8x com ONTAP 
+summary: Como configurar um host NVMe-oF para RHEL 8.x com ONTAP 
 ---
-= Configure o RHEL 8x para NVMe-oF com armazenamento ONTAP.
+= Configure o RHEL 8.x para NVMe-oF com armazenamento ONTAP.
 :hardbreaks:
 :toclevels: 1
 :allow-uri-read: 
@@ -18,12 +18,12 @@ summary: Como configurar um host NVMe-oF para RHEL 8x com ONTAP
 [role="lead"]
 Os hosts Red Hat Enterprise Linux (RHEL) oferecem suporte aos protocolos NVMe sobre Fibre Channel (NVMe/FC) e NVMe sobre TCP (NVMe/TCP) com acesso assimétrico ao namespace (ANA).  O ANA fornece funcionalidade de múltiplos caminhos equivalente ao acesso de unidade lógica assimétrica (ALUA) em ambientes iSCSI e FCP.
 
-Aprenda como configurar hosts NVMe over Fabrics (NVMe-oF) para RHEL 8x. Para obter mais informações sobre suporte e funcionalidades, consulte link:nvme-rhel-supported-features.html["Suporte e recursos do RHEL ONTAP"].
+Aprenda como configurar hosts NVMe over Fabrics (NVMe-oF) para RHEL 8.x. Para obter mais informações sobre suporte e funcionalidades, consulte link:nvme-rhel-supported-features.html["Suporte e recursos do RHEL ONTAP"].
 
-O NVMe-oF com RHEL 8x apresenta as seguintes limitações conhecidas:
+O NVMe-oF com RHEL 8.x apresenta as seguintes limitações conhecidas:
 
 * A inicialização SAN usando o protocolo NVMe-oF não é suportada atualmente.
-* O recurso de multipath NVMe no kernel está desativado por padrão em hosts NVMe-oF no RHEL 8x; você precisa ativá-lo manualmente.
+* O recurso de multipath NVMe no kernel está desativado por padrão em hosts NVMe-oF no RHEL 8.x; você precisa ativá-lo manualmente.
 * NVMe/TCP está disponível como uma prévia de tecnologia devido a problemas conhecidos.
 
 
@@ -49,7 +49,7 @@ Para obter informações sobre como ativar o BIOS HBA, consulte a documentação
 Para configurar seu host para NVMe-oF, você precisa instalar os pacotes de software do host e do NVMe, habilitar o multipathing e verificar a configuração NQN do seu host.
 
 .Passos
-. Instale o RHEL 8.x no servidor.  Após a conclusão da instalação, verifique se você está executando o kernel RHEL 8x necessário:
+. Instale o RHEL 8.x no servidor. Após a conclusão da instalação, verifique se você está executando o kernel RHEL 8.x necessário:
 +
 [source, cli]
 ----
@@ -97,7 +97,7 @@ libnvme-1.4-3.el8.x86_64
 ----
 grubby --args=nvme_core.multipath=Y --update-kernel /boot/vmlinuz-4.18.0-553.el8_10.x86_64
 ----
-. No host RHEL 8x, verifique o `hostnqn` corda em `/etc/nvme/hostnqn` :
+. No host RHEL 8.x, verifique o `hostnqn` corda em `/etc/nvme/hostnqn` :
 +
 [source, cli]
 ----
@@ -655,5 +655,5 @@ Estes são os problemas conhecidos:
 | ID de erro do NetApp | Título | Descrição 
 
 
-| link:https://mysupport.netapp.com/site/bugs-online/product/HOSTUTILITIES/BURT/1479047["1479047"^] | Os hosts RHEL 8x NVMe-oF criam controladores de descoberta persistentes (PDCs) duplicados. | Em hosts NVMe-oF, você pode usar o comando "nvme discover -p" para criar PDCs.  Ao utilizar este comando, apenas um PDC deve ser criado por combinação iniciador-alvo.  No entanto, se você estiver executando o RHEL 8x em um host NVMe-oF, um PDC duplicado será criado cada vez que o comando "nvme discover -p" for executado.  Isso leva ao uso desnecessário de recursos tanto no host quanto no destino. 
+| link:https://mysupport.netapp.com/site/bugs-online/product/HOSTUTILITIES/BURT/1479047["1479047"^] | Os hosts RHEL 8.x NVMe-oF criam controladores de descoberta persistentes (PDCs) duplicados. | Em hosts NVMe-oF, você pode usar o comando "nvme discover -p" para criar PDCs. Ao utilizar este comando, apenas um PDC deve ser criado por combinação iniciador-alvo. No entanto, se você estiver executando o RHEL 8.x em um host NVMe-oF, um PDC duplicado será criado cada vez que o comando "nvme discover -p" for executado. Isso leva ao uso desnecessário de recursos tanto no host quanto no destino. 
 |===

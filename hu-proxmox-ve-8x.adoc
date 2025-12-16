@@ -1,10 +1,10 @@
 ---
 sidebar: sidebar 
-permalink: hu-proxmox-ve-9x.html 
-keywords: proxmox, VE, 9.x, netapp, ontap, iscsi, fcp 
-summary: Instale os utilitários de host Linux em um host Proxmox VE 9.x para gerenciar operações de protocolo FCP e iSCSI com LUNs ONTAP . 
+permalink: hu-proxmox-ve-8x.html 
+keywords: host utilities, proxmox, linux, 8.x, netapp, ontap 
+summary: Instale os utilitários de host Linux em um host Proxmox VE 8.x para gerenciar operações de protocolo FCP e iSCSI com LUNs ONTAP . 
 ---
-= Configure o Proxmox VE 9.x para FCP e iSCSI com armazenamento ONTAP.
+= Configure o Proxmox VE 8.x para FCP e iSCSI com armazenamento ONTAP.
 :hardbreaks:
 :toclevels: 1
 :allow-uri-read: 
@@ -16,11 +16,11 @@ summary: Instale os utilitários de host Linux em um host Proxmox VE 9.x para ge
 
 
 [role="lead"]
-Configure o Proxmox VE 9.x para multipathing com parâmetros e configurações específicos para operações de protocolo FCP e iSCSI com armazenamento ONTAP .
+Configure o Proxmox VE 8.x para multipathing com parâmetros e configurações específicos para operações de protocolo FCP e iSCSI com armazenamento ONTAP .
 
-FCP e iSCSI com Proxmox VE 9.x apresentam as seguintes limitações conhecidas:
+FCP e iSCSI com Proxmox VE 8.x apresentam as seguintes limitações conhecidas:
 
-* Os utilitários de host Linux não são compatíveis com os sistemas operacionais Proxmox VE 9.x.
+* Os utilitários de host Linux não são compatíveis com os sistemas operacionais Proxmox VE 8.x.
 * A configuração de inicialização SAN não é suportada.
 
 
@@ -28,7 +28,7 @@ FCP e iSCSI com Proxmox VE 9.x apresentam as seguintes limitações conhecidas:
 
 == Etapa 1: confirme a configuração multipath para seu host
 
-Você pode usar o recurso de multipathing com o Proxmox VE 9.x para gerenciar LUNs do ONTAP .
+Você pode usar o recurso de multipathing com o Proxmox VE 8.x para gerenciar LUNs do ONTAP .
 
 Para garantir que o multipathing esteja configurado corretamente para o host, verifique se o `/etc/multipath.conf` arquivo está definido e se você tem as configurações recomendadas do NetApp configuradas para os LUNs do ONTAP.
 

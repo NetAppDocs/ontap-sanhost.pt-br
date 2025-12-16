@@ -2,9 +2,9 @@
 sidebar: sidebar 
 permalink: nvme-rhel-10x.html 
 keywords: nvme, linux, rhel, red hat, enterprise 
-summary: Como configurar um host NVMe-oF para RHEL 10x com ONTAP 
+summary: Como configurar um host NVMe-oF para RHEL 10.x com ONTAP 
 ---
-= Configure o RHEL 10x para NVMe-oF com armazenamento ONTAP.
+= Configure o RHEL 10.x para NVMe-oF com armazenamento ONTAP.
 :hardbreaks:
 :toclevels: 1
 :allow-uri-read: 
@@ -18,9 +18,9 @@ summary: Como configurar um host NVMe-oF para RHEL 10x com ONTAP
 [role="lead"]
 Os hosts Red Hat Enterprise Linux (RHEL) oferecem suporte aos protocolos NVMe sobre Fibre Channel (NVMe/FC) e NVMe sobre TCP (NVMe/TCP) com acesso assimétrico ao namespace (ANA).  O ANA fornece funcionalidade de múltiplos caminhos equivalente ao acesso de unidade lógica assimétrica (ALUA) em ambientes iSCSI e FCP.
 
-Aprenda como configurar hosts NVMe over Fabrics (NVMe-oF) para RHEL 10x. Para obter mais informações sobre suporte e funcionalidades, consulte link:nvme-rhel-supported-features.html["Suporte e recursos do RHEL ONTAP"].
+Aprenda como configurar hosts NVMe over Fabrics (NVMe-oF) para RHEL 10.x. Para obter mais informações sobre suporte e funcionalidades, consulte link:nvme-rhel-supported-features.html["Suporte e recursos do RHEL ONTAP"].
 
-O NVMe-oF com RHEL 10x apresenta as seguintes limitações conhecidas:
+O NVMe-oF com RHEL 10.x apresenta as seguintes limitações conhecidas:
 
 * O `nvme disconnect-all` O comando desconecta os sistemas de arquivos raiz e de dados, o que pode levar à instabilidade do sistema.  Não execute este comando em sistemas que inicializam a partir de SAN através de namespaces NVMe-TCP ou NVMe-FC.
 
@@ -47,7 +47,7 @@ Para obter informações sobre como ativar o BIOS HBA, consulte a documentação
 Para configurar seu host para NVMe-oF, você precisa instalar os pacotes de software do host e do NVMe, habilitar o multipathing e verificar a configuração NQN do seu host.
 
 .Passos
-. Instale o RHEL 10x no servidor.  Após a conclusão da instalação, verifique se você está executando o kernel RHEL 10x necessário:
+. Instale o RHEL 10.x no servidor. Após a conclusão da instalação, verifique se você está executando o kernel RHEL 10.x necessário:
 +
 [source, cli]
 ----
@@ -808,7 +808,7 @@ nvme netapp ontapdevices -o json
 
 == Etapa 8: Configurar autenticação segura em banda
 
-A autenticação segura em banda é suportada via NVMe/TCP entre um host RHEL 10x e um controlador ONTAP .
+A autenticação segura em banda é suportada via NVMe/TCP entre um host RHEL 10.x e um controlador ONTAP .
 
 Cada host ou controlador deve ser associado a um  `DH-HMAC-CHAP` chave para configurar autenticação segura. Uma  `DH-HMAC-CHAP` chave é uma combinação do NQN do host ou controlador NVMe e um segredo de autenticação configurado pelo administrador. Para autenticar seu peer, um host ou controlador NVMe deve reconhecer a chave associada ao peer.
 
@@ -826,7 +826,7 @@ Configure a autenticação segura na banda usando a CLI.
 ----
 cat /etc/nvme/hostnqn
 ----
-. Gere a chave dhchap para o host RHEL 10x.
+. Gere a chave dhchap para o host RHEL 10.x.
 +
 A saída a seguir descreve o `gen-dhchap-key` parâmetros de comando:
 

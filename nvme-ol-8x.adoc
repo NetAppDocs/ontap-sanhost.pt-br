@@ -1,10 +1,10 @@
 ---
 sidebar: sidebar 
 permalink: nvme-ol-8x.html 
-keywords: nvme, oracle linux, 8x, host configuration 
-summary: Configuração de host NVMe-oF para Oracle Linux 8x com ONTAP 
+keywords: nvme, oracle linux, 8.x, host configuration 
+summary: Configuração de host NVMe-oF para Oracle Linux 8.x com ONTAP 
 ---
-= Configure o Oracle Linux 8x com NVMe-oF para armazenamento ONTAP.
+= Configure o Oracle Linux 8.x com NVMe-oF para armazenamento ONTAP.
 :hardbreaks:
 :toclevels: 1
 :allow-uri-read: 
@@ -18,12 +18,12 @@ summary: Configuração de host NVMe-oF para Oracle Linux 8x com ONTAP
 [role="lead"]
 Os hosts Oracle Linux suportam os protocolos NVMe sobre Fibre Channel (NVMe/FC) e NVMe sobre TCP (NVMe/TCP) com Acesso Assimétrico ao Espaço de Nomes (ANA). O ANA fornece funcionalidade de múltiplos caminhos equivalente ao acesso de unidade lógica assimétrica (ALUA) em ambientes iSCSI e FCP.
 
-Aprenda como configurar hosts NVMe over Fabrics (NVMe-oF) para Oracle Linux 8x. Para obter mais informações sobre suporte e funcionalidades, consulte link:nvme-ol-supported-features.html["Suporte e recursos do Oracle Linux ONTAP"].
+Aprenda como configurar hosts NVMe over Fabrics (NVMe-oF) para Oracle Linux 8.x. Para obter mais informações sobre suporte e funcionalidades, consulte link:nvme-ol-supported-features.html["Suporte e recursos do Oracle Linux ONTAP"].
 
-O NVMe-oF com Oracle Linux 8x apresenta as seguintes limitações conhecidas:
+O NVMe-oF com Oracle Linux 8.x apresenta as seguintes limitações conhecidas:
 
 * A inicialização de SAN usando o protocolo NVMe-oF não é suportada.
-* O utilitário de host NetApp sanlun não oferece suporte a NVMe-oF em um host Oracle Linux 8x. Em vez disso, você pode contar com o plug-in NetApp incluído no nativo `nvme-cli` pacote para todos os transportes NVMe-oF.
+* O utilitário de host NetApp sanlun não oferece suporte a NVMe-oF em um host Oracle Linux 8.x. Em vez disso, você pode contar com o plug-in NetApp incluído no nativo `nvme-cli` pacote para todos os transportes NVMe-oF.
 * Para o Oracle Linux 8.2 e versões anteriores, os scripts nativos de conexão automática NVMe/FC não estão disponíveis no pacote nvme-cli.  Utilize os scripts de conexão automática externa fornecidos pelo fornecedor do HBA.
 * Para o Oracle Linux 8.2 e versões anteriores, o balanceamento de carga round-robin não está habilitado por padrão para multipathing NVMe.  Para ativar essa funcionalidade, vá para a etapa para<<udev-rule,Escrevendo uma regra udev>> .
 
@@ -32,10 +32,10 @@ O NVMe-oF com Oracle Linux 8x apresenta as seguintes limitações conhecidas:
 
 == Passo 1: Instale o Oracle Linux e o software NVMe e verifique sua configuração.
 
-Utilize o procedimento a seguir para validar as versões mínimas de software suportadas pelo Oracle Linux 8x.
+Utilize o procedimento a seguir para validar as versões mínimas de software suportadas pelo Oracle Linux 8.x.
 
 .Passos
-. Instale o Oracle Linux 8.x no servidor.  Após a conclusão da instalação, verifique se você está executando o kernel Oracle Linux 8x especificado.
+. Instale o Oracle Linux 8.x no servidor. Após a conclusão da instalação, verifique se você está executando o kernel Oracle Linux 8.x especificado.
 +
 [source, cli]
 ----
@@ -71,7 +71,7 @@ cat /lib/udev/rules.d/71-nvme-iopolicy-netapp-ONTAP.rules
 Enable round-robin for NetApp ONTAP
 ACTION=="add", SUBSYSTEMS=="nvme-subsystem", ATTRS{model}=="NetApp ONTAP Controller", ATTR{iopolicy}="round-robin"
 ----
-. No host Oracle Linux 8x, verifique o `hostnqn` corda em `/etc/nvme/hostnqn` :
+. No host Oracle Linux 8.x, verifique o `hostnqn` corda em `/etc/nvme/hostnqn` :
 +
 [source, cli]
 ----
@@ -710,5 +710,5 @@ Estes são os problemas conhecidos:
 | ID de erro do NetApp | Título | Descrição 
 
 
-| link:https://mysupport.netapp.com/site/bugs-online/product/HOSTUTILITIES/BURT/1479047["1479047"^] | Os hosts Oracle Linux 8x NVMe-oF criam controladores de descoberta persistente (PDCs) duplicados. | Em hosts NVMe-oF, você pode usar o comando  `nvme discover -p` para criar PDCs. Ao utilizar este comando, apenas um PDC deve ser criado por combinação iniciador-alvo. No entanto, se você estiver executando o Oracle Linux 8x com um host NVMe-oF, um PDC duplicado será criado sempre que `nvme discover -p` for executado. Isso leva ao uso desnecessário de recursos tanto no host quanto no destino. 
+| link:https://mysupport.netapp.com/site/bugs-online/product/HOSTUTILITIES/BURT/1479047["1479047"^] | Os hosts Oracle Linux 8.x NVMe-oF criam controladores de descoberta persistente (PDCs) duplicados. | Em hosts NVMe-oF, você pode usar o comando `nvme discover -p`  para criar PDCs. Ao utilizar este comando, apenas um PDC deve ser criado por combinação iniciador-alvo. No entanto, se você estiver executando o Oracle Linux 8.x com um host NVMe-oF, um PDC duplicado será criado sempre que `nvme discover -p` for executado. Isso leva ao uso desnecessário de recursos tanto no host quanto no destino. 
 |===

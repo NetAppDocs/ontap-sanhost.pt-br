@@ -24,7 +24,7 @@ Os recursos suportados para configuração de host com NVMe over Fabrics (NVMe-o
 
 
 | Fornece detalhes do ONTAP para namespaces NVMe/FC e NVMe/TCP usando o recurso nativo. `nvme-cli` pacote.  a| 
-9,0
+8,0
 | 9.10.1 ou posterior 
 
 
@@ -34,7 +34,7 @@ Os recursos suportados para configuração de host com NVMe over Fabrics (NVMe-o
 
 
 | O tráfego NVMe e SCSI é suportado no mesmo host usando NVMe multipath para namespaces NVMe-oF e dm-multipath para LUNs SCSI.  a| 
-9,0
+8,0
 | 9.4 ou posterior 
 |===
 O ONTAP suporta os seguintes recursos de host SAN, independentemente da versão do ONTAP em execução na configuração do seu sistema.
@@ -45,7 +45,7 @@ O ONTAP suporta os seguintes recursos de host SAN, independentemente da versão 
 
 
 | O multipathing NVMe nativo está ativado por padrão.  a| 
-9,0
+8,0
 
 
 
@@ -65,7 +65,15 @@ NOTE: Para obter detalhes sobre as configurações suportadas, consulte olink:ht
 
 == O que vem a seguir
 
-link:nvme-proxmox-ve-9x.html["Aprenda a configurar o Proxmox VE 9.0"]
+[cols="50,50"]
+|===
+| Se a sua versão do Proxmox VE for... | Saiba mais sobre... 
 
+
+| Série 9 | link:nvme-proxmox-ve-9x.html["Configurando NVMe para Proxmox VE 9.x"] 
+
+
+| Série 8 | link:nvme-proxmox-ve-8x.html["Configurando NVMe para Proxmox VE 8.x"] 
+|===
 .Informações relacionadas
 link:https://docs.netapp.com/us-en/ontap/san-admin/start-nvme-fc-service-svm-task.html["Aprenda sobre como gerenciar protocolos NVMe"^]
