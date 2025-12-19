@@ -19,9 +19,6 @@ summary: Instale o Linux Host Utilities em um SUSE Linux Enterprise Server 12 SP
 O software Utilitários de host Linux fornece ferramentas de gerenciamento e diagnóstico para hosts Linux que estão conetados ao storage ONTAP. Ao instalar os Utilitários de host do Linux em um host do SUSE Linux Enterprise Server 12 SP3, você pode usar os Utilitários de host para ajudar a gerenciar operações de protocolo FCP e iSCSI com LUNs do ONTAP.
 
 
-NOTE: Você não precisa configurar manualmente as definições da Máquina Virtual baseada em Kernel (KVM) porque os LUNs ONTAP são mapeados automaticamente para o hipervisor.
-
-
 
 == Passo 1: Opcionalmente, ative a inicialização de SAN
 
