@@ -28,6 +28,11 @@ Os recursos suportados para configuração de host com NVMe over Fabrics (NVMe-o
 | 9.12.1 ou posterior 
 
 
+| NVMe/TCP é um recurso empresarial totalmente suportado.  a| 
+9.0 ou posterior
+| 9.10.1 ou posterior 
+
+
 | NVMe/TCP fornece namespaces usando o recurso nativo. `nvme-cli` pacote  a| 
 8.2 ou posterior
 | 9.10.1 ou posterior 
@@ -47,13 +52,18 @@ O ONTAP suporta os seguintes recursos de host SAN, independentemente da versão 
 | Recurso | versão do host Oracle Linux 
 
 
-| O gerenciamento de múltiplos caminhos NVMe no kernel para namespaces NVMe está habilitado por padrão.  a| 
-8.3 ou posterior
+| A regra udev nativa em `nvme-cli` Este pacote fornece balanceamento de carga com base na profundidade da fila para NVMe multipath.  a| 
+9.6 ou posterior
 
 
 
 | A inicialização SAN é habilitada usando o protocolo NVMe/FC.  a| 
 9.5 ou posterior
+
+
+
+| O gerenciamento de múltiplos caminhos NVMe no kernel para namespaces NVMe está habilitado por padrão.  a| 
+8.3 ou posterior
 
 
 

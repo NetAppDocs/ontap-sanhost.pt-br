@@ -3199,7 +3199,6 @@
   <block id="63eb478005d7986c9bac6b45cbcc9449" category="summary">Configuração de host NVMe-oF para Oracle Linux 9.x com ONTAP</block>
   <block id="7879597f78ceca93363e3a27f21ebe00" category="doc">Configure o Oracle Linux 9.x com NVMe-oF para armazenamento ONTAP.</block>
   <block id="095844b56178a284b78a75795108d8af" category="paragraph">Aprenda como configurar hosts NVMe over Fabrics (NVMe-oF) para Oracle Linux 9.x. Para obter mais informações sobre suporte e funcionalidades, consulte <block ref="340e41b773bf3515fe22a98049376f83" category="inline-link-macro-rx"></block>.</block>
-  <block id="5acbb00e494e9fe009ff76a65bf2f1ba" category="paragraph">O NVMe-oF com Oracle Linux 9.x apresenta as seguintes limitações conhecidas:</block>
   <block id="4c344c877a57df13c19fd1fd8b66490b" category="paragraph">Utilize o procedimento a seguir para validar as versões mínimas de software suportadas pelo Oracle Linux 9.x.</block>
   <block id="9c912bfe11518dfe915fe7e20a0c6fd8" category="list-text">Instale o Oracle Linux 9.x no servidor. Após a conclusão da instalação, verifique se você está executando o kernel Oracle Linux 9.x especificado.</block>
   <block id="96ee188719f0576170b9005da5ece8a9" category="list-text">No host Oracle Linux 9.x, verifique o<block ref="24039a6c469b55da1dae1ff1197f8079" prefix=" " category="inline-code"></block> corda em<block ref="7c33f184451a7567af5a5fb5f2bc7ae1" prefix=" " category="inline-code"></block> :</block>
@@ -3278,4 +3277,10 @@
   <block id="6a0599385b13d0b4c36d7d2b71c14d0f" category="paragraph">O Ubuntu Linux pode servir como um host KVM. Isso permite executar várias máquinas virtuais em um único servidor físico usando a tecnologia de Máquina Virtual baseada no Kernel do Linux (KVM). O host KVM não requer configurações explícitas de host para LUNs ONTAP .</block>
   <block id="a5c716013078dd15638d6d9cf1466975" category="list-text">Saiba mais sobre Oracle Linux KVM e Virtualização</block>
   <block id="b3e018ca1c4737bdf435a321f361476b" category="paragraph">O Oracle Linux pode funcionar como um host KVM. Isso permite executar várias máquinas virtuais em um único servidor físico usando a tecnologia de Máquina Virtual baseada no Kernel do Linux (KVM). Você pode gerenciar e dar suporte a vários hosts KVM do Oracle Linux usando o Oracle Linux Virtualization Manager, que é baseado no projeto de código aberto oVirt. O host KVM não requer configurações explícitas de host para LUNs ONTAP .</block>
+  <block id="96839076af527faadb578a71a5e32033" category="paragraph">O NVMe-oF com Oracle Linux 9.x apresenta a seguinte limitação conhecida:</block>
+  <block id="01d327bb6410ed7ce1a3a75754002849" category="paragraph">No Oracle Linux 9.x, o host define a política de E/S padrão para NVMe-oF como<block ref="7b6d85eaafedeee6d733437bf856da7e" prefix=" " category="inline-code"></block>. A partir do Oracle Linux 9.6, você pode alterar a política de E/S para<block ref="f63d19812a9885e12a84d9c2748b701f" prefix=" " category="inline-code"></block> modificando o arquivo de regras udev.</block>
+  <block id="b9908e7dd449843af949631c92e15e09" category="list-text">Localize a linha que define a política de E/S (iopolicy) para o controlador NetApp ONTAP .</block>
+  <block id="87a7f5650d1515a9aa05f05e2e75e27c" category="paragraph">O exemplo a seguir mostra um exemplo de regra:</block>
+  <block id="84acde248a4e307a6672632785153fc4" category="admonition">A nova política de E/S (iopolicy) aplica-se automaticamente aos dispositivos NetApp ONTAP Controller correspondentes. Não é necessário reiniciar.</block>
+  <block id="ddc6816922e578aec32d98387b3216d0" category="paragraph">Você deverá ver o valor definido para iopolicy, por exemplo:</block>
 </blocks>
