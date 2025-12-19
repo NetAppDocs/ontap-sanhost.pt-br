@@ -1936,7 +1936,6 @@
   <block id="11b7981a4bc487d4291cc9a0614db625" category="list-text"><block ref="11b7981a4bc487d4291cc9a0614db625" category="inline-link-macro-rx"></block></block>
   <block id="18833e14b5b5c7c59e24b7d84a7675c8" category="paragraph"><block ref="11b7981a4bc487d4291cc9a0614db625" category="inline-link-macro-rx"></block> <block ref="3940cdefc46aa67d16ed6a8e41f9c401" category="inline-link-macro-rx"></block> <block ref="d28f7a65afd9b0a0129dadbafa84555d" category="inline-link-macro-rx"></block></block>
   <block id="75bf2e375bd6a6c261100e60951c4331" category="paragraph"><block ref="11b7981a4bc487d4291cc9a0614db625" category="inline-link-macro-rx"></block> <block ref="3940cdefc46aa67d16ed6a8e41f9c401" category="inline-link-macro-rx"></block> <block ref="5f61a87054f37a4d758972ec77cfdf5e" category="inline-link-macro-rx"></block></block>
-  <block id="60552876cd9a8f6a2b1629563b3efc70" category="list-text">Saiba mais sobre o espelhamento ASM.</block>
   <block id="2042f6b0f24c7e66a0696f995c26649f" category="doc">Passo 4: Opcionalmente, exclua um dispositivo de multipathing</block>
   <block id="613ab33f622153c715120fe35873e05e" category="paragraph">Se necessário, você pode excluir um dispositivo de multipathing adicionando o WWID para o dispositivo indesejado à estrofe "lista negra" para o<block ref="9ac80d53ede05256c28cf9e043eb423c" prefix=" " category="inline-code"></block> arquivo.</block>
   <block id="445d6b5f796f2b279f00ab2c9c5e6254" category="paragraph">"sda" é o disco SCSI local que você deseja adicionar à lista negra.</block>
@@ -3266,4 +3265,17 @@
   <block id="72c86330f335f27ea520136a0d95b881" category="sidebar">VE 9.x</block>
   <block id="af795b652b215e481ae2fd213d8bf52e" category="sidebar">VE 8.x</block>
   <block id="b1db54564fe54a4c74a975b18a791532" category="sidebar">7.x</block>
+  <block id="cf597ee6db6eb5a52e95ed70bc80ea6d" category="list-text">Saiba mais sobre espelhamento ASM</block>
+  <block id="af33896d6f21a4613d34583adf0faeff" category="list-text">Aprenda sobre virtualização Linux CentOS (KVM)</block>
+  <block id="04e58eebcf75cb293377858448959e3c" category="paragraph">O CentOS Linux pode servir como um host KVM. Isso permite executar várias máquinas virtuais em um único servidor físico usando a tecnologia de Máquina Virtual baseada no Kernel do Linux (KVM). O host KVM não requer configurações explícitas de host para LUNs ONTAP .</block>
+  <block id="8c7500032ac19578c2535581b7d4ae63" category="list-text">Saiba mais sobre a virtualização KVM (Kernel VM) do Red Hat Linux.</block>
+  <block id="bab8e45a6b079e3f37a6bed2fcdd6f4a" category="paragraph">O Red Hat Linux pode servir como um host KVM. Isso permite executar várias máquinas virtuais em um único servidor físico usando a tecnologia de Máquina Virtual baseada no Kernel do Linux (KVM). O host KVM não requer configurações explícitas de host para LUNs ONTAP .</block>
+  <block id="7b81b138a443e9332b956961b4a8b183" category="list-text">Saiba mais sobre a virtualização Rocky Linux (KVM)</block>
+  <block id="ed9c9c8fb38c4c92301232a89350fab3" category="paragraph">O Rocky Linux pode funcionar como um host KVM. Isso permite executar várias máquinas virtuais em um único servidor físico usando a tecnologia de Máquina Virtual baseada no Kernel do Linux (KVM). O host KVM não requer configurações explícitas de host para LUNs ONTAP .</block>
+  <block id="a9cae39d57c85b43333af5023c67fd84" category="list-text">Saiba mais sobre a virtualização do SUSE Linux (KVM)</block>
+  <block id="edfddc7a7f5e2a54fe8396a1c2bfc07f" category="paragraph">O SUSE Linux pode servir como um host KVM. Isso permite executar várias máquinas virtuais em um único servidor físico usando a tecnologia de Máquina Virtual baseada no Kernel do Linux (KVM). O host KVM não requer configurações explícitas de host para LUNs ONTAP .</block>
+  <block id="536e79dfb2b6b93dce7117b37985df3a" category="list-text">Aprenda sobre a virtualização do Ubuntu Linux (KVM)</block>
+  <block id="6a0599385b13d0b4c36d7d2b71c14d0f" category="paragraph">O Ubuntu Linux pode servir como um host KVM. Isso permite executar várias máquinas virtuais em um único servidor físico usando a tecnologia de Máquina Virtual baseada no Kernel do Linux (KVM). O host KVM não requer configurações explícitas de host para LUNs ONTAP .</block>
+  <block id="a5c716013078dd15638d6d9cf1466975" category="list-text">Saiba mais sobre Oracle Linux KVM e Virtualização</block>
+  <block id="b3e018ca1c4737bdf435a321f361476b" category="paragraph">O Oracle Linux pode funcionar como um host KVM. Isso permite executar várias máquinas virtuais em um único servidor físico usando a tecnologia de Máquina Virtual baseada no Kernel do Linux (KVM). Você pode gerenciar e dar suporte a vários hosts KVM do Oracle Linux usando o Oracle Linux Virtualization Manager, que é baseado no projeto de código aberto oVirt. O host KVM não requer configurações explícitas de host para LUNs ONTAP .</block>
 </blocks>

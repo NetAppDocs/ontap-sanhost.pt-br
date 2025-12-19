@@ -1,0 +1,9 @@
+= 
+:allow-uri-read: 
+
+
+* Saiba mais sobre Oracle Linux KVM e Virtualização
++
+O Oracle Linux pode funcionar como um host KVM. Isso permite executar várias máquinas virtuais em um único servidor físico usando a tecnologia de Máquina Virtual baseada no Kernel do Linux (KVM). Você pode gerenciar e dar suporte a vários hosts KVM do Oracle Linux usando o Oracle Linux Virtualization Manager, que é baseado no projeto de código aberto oVirt. O host KVM não requer configurações explícitas de host para LUNs ONTAP .
+
+

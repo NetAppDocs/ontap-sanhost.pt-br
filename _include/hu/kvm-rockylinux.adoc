@@ -1,0 +1,9 @@
+= 
+:allow-uri-read: 
+
+
+* Saiba mais sobre a virtualização Rocky Linux (KVM)
++
+O Rocky Linux pode funcionar como um host KVM. Isso permite executar várias máquinas virtuais em um único servidor físico usando a tecnologia de Máquina Virtual baseada no Kernel do Linux (KVM). O host KVM não requer configurações explícitas de host para LUNs ONTAP .
+
+

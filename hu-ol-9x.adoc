@@ -19,9 +19,6 @@ summary: Instale os utilitários de host Linux em um host Oracle Linux 9.x para 
 O software Linux Host Utilities fornece ferramentas de gerenciamento e diagnóstico para hosts Linux conectados ao armazenamento ONTAP . Ao instalar os utilitários de host Linux em um host Oracle Linux 9.x, você pode usá-los para gerenciar operações de protocolo FCP e iSCSI com LUNs ONTAP .
 
 
-NOTE: Você não precisa configurar as configurações de máquina virtual baseada em Kernel porque os LUNs ONTAP são mapeados automaticamente para o hipervisor KVM.
-
-
 
 == Passo 1: Opcionalmente, ative a inicialização de SAN
 
@@ -287,8 +284,12 @@ O Oracle Linux 9.3, 9.2, 9.1 e 9.0 com armazenamento ONTAP apresenta o seguinte 
 == O que se segue?
 
 * link:hu-luhu-command-reference.html["Saiba mais sobre como usar a ferramenta Linux Host Utilities"] .
-* Saiba mais sobre o espelhamento ASM.
+* Saiba mais sobre espelhamento ASM
 +
 O espelhamento do Gerenciamento Automático de armazenamento (ASM) pode exigir alterações nas configurações de multipath do Linux para permitir que o ASM reconheça um problema e alterne para um grupo de falhas alternativo. A maioria das configurações ASM no ONTAP usa redundância externa, o que significa que a proteção de dados é fornecida pelo array externo e o ASM não espelha dados. Alguns sites usam ASM com redundância normal para fornecer espelhamento bidirecional, normalmente em diferentes sites. link:https://docs.netapp.com/us-en/ontap-apps-dbs/oracle/oracle-overview.html["Bancos de dados Oracle no ONTAP"^]Consulte para obter mais informações.
+
+* Saiba mais sobre Oracle Linux KVM e Virtualização
++
+O Oracle Linux pode funcionar como um host KVM. Isso permite executar várias máquinas virtuais em um único servidor físico usando a tecnologia de Máquina Virtual baseada no Kernel do Linux (KVM). Você pode gerenciar e dar suporte a vários hosts KVM do Oracle Linux usando o Oracle Linux Virtualization Manager, que é baseado no projeto de código aberto oVirt. O host KVM não requer configurações explícitas de host para LUNs ONTAP .
 
 
