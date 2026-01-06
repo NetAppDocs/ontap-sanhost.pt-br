@@ -1,10 +1,10 @@
 ---
 sidebar: sidebar 
-permalink: nvme_windows_2022.html 
+permalink: nvme-windows-2019.html 
 keywords: nvme, windows, enterprise 
-summary: 'Você pode configurar o NVMe em Fibre Channel (NVMe/FC) em hosts que executam o Windows Server 2022 para operação com LUNs ONTAP.' 
+summary: 'Você pode configurar o NVMe em Fibre Channel (NVMe/FC) em hosts que executam o Windows Server 2019 para operação com LUNs ONTAP.' 
 ---
-= Configurar o Windows Server 2022 com NVMe/FC para ONTAP
+= Configuração de host NVMe/FC para Windows Server 2019 com ONTAP
 :hardbreaks:
 :toclevels: 1
 :allow-uri-read: 
@@ -16,14 +16,17 @@ summary: 'Você pode configurar o NVMe em Fibre Channel (NVMe/FC) em hosts que e
 
 
 [role="lead"]
-Você pode configurar o NVMe em Fibre Channel (NVMe/FC) em hosts que executam o Windows Server 2022 para operação com LUNs ONTAP.
+Você pode configurar o NVMe em Fibre Channel (NVMe/FC) em hosts que executam o Windows Server 2019 para operação com LUNs ONTAP.
 
 .Sobre esta tarefa
-Você pode usar o suporte a seguir com a configuração de host NVMe/FC para Windows 2022. Você também deve rever as limitações conhecidas antes de iniciar o processo de configuração.
+Você pode usar o suporte a seguir com a configuração de host NVMe/FC para Windows 2019. Você também deve rever as limitações conhecidas antes de iniciar o processo de configuração.
+
+
+NOTE: Pode utilizar as definições de configuração fornecidas neste procedimento para configurar os clientes em nuvem ligados a link:https://docs.netapp.com/us-en/cloud-manager-cloud-volumes-ontap/index.html["Cloud Volumes ONTAP"^] e link:https://docs.netapp.com/us-en/cloud-manager-fsx-ontap/index.html["Amazon FSX para ONTAP"^].
 
 * Suporte disponível:
 +
-A partir do ONTAP 9,7, o NVMe/FC é compatível com o Windows Server 2022.
+A partir do ONTAP 9,7, o NVMe/FC é compatível com o Windows Server 2019.
 
 +
 Para obter uma lista de adaptadores e controladores FC compatíveis, consulte link:https://hwu.netapp.com/Home/Index["Hardware Universe"^]. Para obter a lista atual de configurações e versões suportadas, consulte link:https://mysupport.netapp.com/matrix/["Ferramenta de Matriz de interoperabilidade"^].

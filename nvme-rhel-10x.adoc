@@ -644,7 +644,7 @@ Oct 12 19:40:33 localhost systemd[1]: Finished nvmefc-boot-connections.service -
 Verifique se o status multipath do NVMe no kernel, o status ANA e os namespaces do ONTAP estão corretos para a configuração do NVMe-of.
 
 .Passos
-. Verifique se as configurações apropriadas do NVMe-oF (como, por exemplo, o modelo definido como NetApp ONTAP Controller e a política de balanceamento de carga de E/S definida como round-robin) para os respectivos namespaces do ONTAP são exibidas corretamente no host:
+. Verifique se as configurações apropriadas do NVMe-oF (como, por exemplo, modelo definido como NetApp ONTAP Controller e política de E/S de balanceamento de carga definida como queue-depth) para os respectivos namespaces ONTAP são exibidas corretamente no host:
 +
 .. Exibir os subsistemas:
 +

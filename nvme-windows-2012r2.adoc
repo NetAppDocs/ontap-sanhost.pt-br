@@ -1,6 +1,6 @@
 ---
 sidebar: sidebar 
-permalink: nvme_windows_2012r2.html 
+permalink: nvme-windows-2012r2.html 
 keywords: nvme, windows, enterprise 
 summary: 'Você pode configurar o NVMe em Fibre Channel (NVMe/FC) em hosts que executam o Windows Server 2012 R2 para operação com LUNs ONTAP.' 
 ---
