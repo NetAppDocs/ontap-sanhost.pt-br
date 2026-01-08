@@ -5,17 +5,14 @@ keywords: windows, host, utilities, 7.1, hba, fibre, channel, SANtricity, netapp
 summary: Os Utilitários de host do Windows incluem um programa de instalação que define os parâmetros necessários do Registro do Windows e do HBA para que o host do Windows manipule corretamente os comportamentos do sistema de storage para plataformas ONTAP e e-Series. 
 ---
 = Solucionar problemas de utilitários de host do Windows com configuração de armazenamento ONTAP
-:toc: macro
 :hardbreaks:
 :toclevels: 1
 :allow-uri-read: 
-:toc: 
 :toclevels: 1
 :nofooter: 
 :icons: font
 :linkattrs: 
 :imagesdir: ./media/
-:toc-position: content
 
 
 [role="lead"]

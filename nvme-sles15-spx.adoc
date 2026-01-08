@@ -5,17 +5,14 @@ keywords: nvme, linux, suse, sles, SUSE Linux Enterprise Server, 15, SPx, server
 summary: Descreve como configurar NVMe/FC para SUSE Linux Enterprise Server 15 SPx com ONTAP. 
 ---
 = Configure o SUSE Linux Enterprise Server 15 SPx para NVMe-oF com armazenamento ONTAP.
-:toc: macro
 :hardbreaks:
 :toclevels: 1
 :allow-uri-read: 
-:toc: 
 :toclevels: 1
 :nofooter: 
 :icons: font
 :linkattrs: 
 :imagesdir: ./media/
-:toc-position: content
 
 
 [role="lead"]
