@@ -6,4 +6,4 @@
 
 == O que se segue?
 
-link:hu_wuhu_hba_settings.html["Configurar as definições do registro para os utilitários de host do Windows"] .
+link:hu-wuhu-configuration.html["Saiba mais sobre a configuração dos utilitários do host do Windows para armazenamento ONTAP."]

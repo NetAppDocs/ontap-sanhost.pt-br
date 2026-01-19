@@ -91,8 +91,6 @@
   <block id="da160308e3b4b4a80bf1b72b5bdbedb8" category="inline-link-macro">Hardware Universe</block>
   <block id="e0838e6ee58912186f2b21f886daa80d" category="image-alt">Captura de tela do LUN ONTAP com caminhos ativos/otimizados</block>
   <block id="5a3b43f9090be87b411af7ac82adcb38" category="list-text">Siga as instruções fornecidas pela Microsoft para instalar os hotfixes.</block>
-  <block id="270748dbbd5a9031b10d44f9f16973cf" category="admonition">As partições criadas pelo Windows Server 2016 devem ser alinhadas por padrão.</block>
-  <block id="1104f990ade81e5b4d644288a54cf49a" category="admonition">Para máquinas virtuais Linux usando o Loader de inicialização GRUB em um VHD, você precisa atualizar a configuração de inicialização após executar o Kit de Ferramentas do PowerShell.</block>
   <block id="d485a78eda6522675d5ac87291b0f93b" category="image-alt">Captura de tela de um LUN ONTAP com dois caminhos ativos/otimizados e dois caminhos ativos/não otimizados</block>
   <block id="1dd9d61dc0438fbaf47669042c33c32f" category="cell">Tipo de propriedade</block>
   <block id="4a697eb9fdac91d5651375075c998596" category="cell">Valor da propriedade</block>
@@ -102,17 +100,6 @@
   <block id="d3d9446802a44259755d38e6d163e820" category="cell">10</block>
   <block id="08a7801aadb2d395506d0735d17dcf62" category="cell">LinkDownTimeOut</block>
   <block id="f9c8e6ceed8ad8db75740e78e48a6236" category="cell">PortDownRetryCount</block>
-  <block id="b9ef2c298abb1a6d04513bf9fee94dda" category="paragraph">Depois de executar<block ref="443712b6338e4ce8ada1452812c71300" prefix=" " category="inline-code"></block> em discos para corrigir o alinhamento do MBR com o PowerShell Toolkit em sistemas operacionais Linux Guest usando o Loader de inicialização do GRUB, você deve reinstalar o GRUB para garantir que o sistema operacional convidado seja inicializado corretamente.</block>
-  <block id="972f2c4ba9001b48966c37ef2a152dc0" category="list-text">Monte a imagem ISO do disco 1 dos CDs de instalação para a versão correta do Linux para a máquina virtual.</block>
-  <block id="75cb80233f6f80283591654412489249" category="list-text">Abra o console da máquina virtual no Gerenciador do Hyper-V.</block>
-  <block id="737083ee251b627f57dd05899466dc4b" category="list-text">Assim que você vir a tela inicial do VMware BIOS, pressione a tecla *Esc* uma vez. É apresentado o menu de arranque.</block>
-  <block id="ccc37fa0e9dd606175ec88322d6be351" category="list-text">No menu de arranque, selecione *CD-ROM*.</block>
-  <block id="8fc05f93a1e2b7d0f8e575b13b63b37d" category="list-text">Na tela de inicialização do Linux, digite:<block ref="fd9894972957a47aff050631e9647c6e" prefix=" " category="inline-code"></block></block>
-  <block id="c1dc6d18649b347b978130011d44a49a" category="list-text">Tome as predefinições para Anaconda (os ecrãs de configuração azul/vermelho). A rede é opcional.</block>
-  <block id="241c8b3bd8818322d5fba757a4374a34" category="list-text">Inicie o GRUB introduzindo:<block ref="2d675138350c28dedd2793e2aabf05ff" prefix=" " category="inline-code"></block></block>
-  <block id="e05674955ac595342c4c496ecfbdc101" category="paragraph">Em seguida, execute os seguintes comandos:</block>
-  <block id="501d6d7f3776c626c1ec5d95589d5cca" category="list-text">Pressione *Ctrl-D* para sair.</block>
-  <block id="ec93937c58f140d445e59c5bbc51be26" category="paragraph">O resgate do Linux desliga e, em seguida, reinicia.</block>
   <block id="1f74246c73996c337fbedc14cd7d21b9" category="doc">Instale os Utilitários de host AIX 7,0</block>
   <block id="c791b15d48a2be7d8c6a9c0b2badc362" category="list-text">PowerVM</block>
   <block id="f46d29974d2e1fa7b1fb4f55e009f7c2" category="paragraph">Para obter mais informações sobre o PowerVM, consulte o Livro Vermelho IBM PowerVM Live Partition Mobility.</block>
@@ -702,7 +689,6 @@
   <block id="9c72461f3069d27216e1faab60848be8" category="paragraph">As VMs Linux que executam o vSphere 8.x e posterior e que usam adaptadores NVMe virtuais (vNVME) encontram um erro de e/S porque a operação de repetição do vNVMe está desativada por padrão. Para evitar uma interrupção nas VMs Linux que executam kernels mais antigos durante um APD (All Paths Down) ou uma carga de e/S pesada, a VMware introduziu um "VSCSIDisableNvmeRetry" sintonizável para desativar a operação de repetição do vNVMe.</block>
   <block id="880b9ba9933b6e3ce087d9412e66470b" category="inline-link-macro">Catálogo do Microsoft Update 2012 R2</block>
   <block id="4f27a34799ad8580f67b93c57e242ad0" category="section-title">Configuração SAN</block>
-  <block id="7a0a3a29c4e371b5125adb49cae3a738" category="section-title">Toda a configuração de array SAN</block>
   <block id="f5cba97c30a47867e3649fd136cca68c" category="inline-link-macro">Catálogo do Microsoft Update 2016</block>
   <block id="51da3f0f90428027f2a496d366e696eb" category="inline-link-macro">Catálogo do Microsoft Update 2019</block>
   <block id="8d1d5b8defd8dab28a7e51c7b4ff5d33" category="inline-link-macro">Catálogo do Microsoft Update 2022</block>
@@ -754,7 +740,6 @@
   <block id="d0d9af2a572791f3904a39e2af6baf53" category="admonition">Para ver as opções padrão do Microsoft Installer (MSI) para Registro e outras funções, digite<block ref="bd4935bc0a796a66582bc993cc9000a8" prefix=" " category="inline-code"></block> no prompt de comando do Windows. Por exemplo, o<block ref="6456408f2074fe8bb9a5d7b28d02ce64" prefix=" " category="inline-code"></block> comando exibe informações de Registro.</block>
   <block id="c372bc249b31090fc161de15de7b7603" category="admonition">HKLM é a abreviatura<block ref="86565cb5d05fc56046ceb32627a70264" prefix=" " category="inline-code"></block> de .</block>
   <block id="e5e8913907553117e947ccc75671f941" category="cell">Chave de registo</block>
-  <block id="2f13ada49ba30a3f17abc7ff1c610656" category="cell">Quando definido</block>
   <block id="353a3cc2e6698fc1eca7603cde3ca48e" category="cell">HKLM SYSTEM/CurrentControlSet/Services parâmetros DsmMaximumRetryTimeDuringStateTransition</block>
   <block id="6393c224d437438785810287f79cf4dc" category="cell">HKLM SYSTEM/CurrentControlSet Serviços/msdsmsm parâmetros DsmMaximumStateTransitionTime</block>
   <block id="507442ae6083cce9fd165274005cd952" category="cell">HKLM/SYSTEM/CurrentControlSet/Services/DsmSupportedDeviceList</block>
@@ -814,11 +799,8 @@
   <block id="a5b83cd29ece8eb608d8f558a14aafd2" category="cell">HKLM/SISTEMA/CurrentControlSet Serviços/disco/TimeOutValue</block>
   <block id="c57dcf0db9f722653d2df0250b192c2f" category="inline-link">Documentos da Microsoft</block>
   <block id="a624f3024f6945790c5f3a01e38649bf" category="paragraph">Consulte<block ref="cc2304a59b5feaeebd0c5646fd22caf0" category="inline-link-rx"></block> a para obter os detalhes dos parâmetros do registo.</block>
-  <block id="820c80a71d25737a6640c8135c800297" category="section-title">Valores HBA FC definidos pelos Utilitários de host do Windows</block>
   <block id="8f0fd19a2d99e6260c0b4e6513b7638c" category="inline-link">Emulex</block>
   <block id="bf37856a0dcc40508065787e2d49c8c3" category="inline-link">QLogic</block>
-  <block id="b182eae32a0022889eab1f98a5ba3a49" category="admonition">Os nomes dos parâmetros podem variar ligeiramente dependendo do programa. Por exemplo, no programa QLogic QConvergeConsole, o parâmetro é exibido como<block ref="b554d47c6702123b3a28a3e04ed39621" prefix=" " category="inline-code"></block>. O arquivo Utilitários do host<block ref="a49e6041666308abe45789ecfadd593e" prefix=" " category="inline-code"></block> exibe esse parâmetro como<block ref="08a7801aadb2d395506d0735d17dcf62" prefix=" " category="inline-code"></block><block ref="e29ad18354768c222941f5de52fd92c9" prefix=" " category="inline-code"></block> ou , dependendo se o MPIO é especificado. No entanto, todos esses nomes referem-se ao mesmo parâmetro HBA. <block ref="6d63c8366c015331075fa86de38975e8" category="inline-link-rx"></block>Consulte ou<block ref="4399df604c07a452cc084d95811dafae" category="inline-link-rx"></block> para saber mais sobre os parâmetros de tempo limite.</block>
-  <block id="ab77ead701285f5c525a4af0d02d7113" category="paragraph">Ao solucionar problemas de HBA, verifique se essas configurações têm os valores corretos. Os valores corretos dependem de dois fatores:</block>
   <block id="7b89c0aff4542bf5f5ea1fc402d480ec" category="list-text">O fornecedor HBA</block>
   <block id="670b555082101cc3b01786f63d7cfe63" category="open-title">Emulex HBA drivers</block>
   <block id="c6e28ac86a9fffeb9329e96a567e805d" category="list-text">Abra o Gerenciador de OnCommand.</block>
@@ -1616,9 +1598,6 @@
   <block id="1078de040a8679207e1783a9da9e836c" category="cell">Não é mais necessário executar<block ref="1582eea6c0c614d1d444d6dfe1f82f4f" prefix=" " category="inline-code"></block> o script para alterar o tempo limite de disco nos convidados Red Hat Enterprise Linux 5, Red Hat Enterprise Linux 6 ou SUSE Linux Enterprise Server 11 Hyper-V porque as configurações de tempo limite padrão estão sendo usadas. O<block ref="1582eea6c0c614d1d444d6dfe1f82f4f" prefix=" " category="inline-code"></block> script que foi incluído em versões anteriores dos Utilitários de host não está mais incluído na versão do Windows Host Utilities 7,1. O Windows Host Utilities 7,1 usa as configurações padrão de tempo limite do disco.</block>
   <block id="2c1c2305f2baefceb44e8e1b31927d88" category="doc">Instale os Utilitários de host do Windows 7,2</block>
   <block id="b31a86b1dca7dfa1a67b27d591387cdb" category="paragraph">Os Utilitários de host oferecem suporte a diferentes configurações de host do Windows, protocolos e opções de multipathing. Para obter mais informações, consulte<block ref="e29293ebfe5b9174e3113da62e6426ca" category="inline-link-rx"></block> .</block>
-  <block id="3160be9723d9dc9c210d8c8b48bd0bcf" category="section-title">Valores de Registro definidos pelos Utilitários de host do Windows 7,2</block>
-  <block id="4da5f705a95e0ed235573a4eb64fce01" category="section-title">Valores de Registro definidos pelos Utilitários de host do Windows 7,1</block>
-  <block id="125e0f5615cef4db790518b2fd3b4491" category="paragraph">Os valores a seguir são definidos pelo instalador de Utilitários de host do Windows. Todos os valores estão em decimal, a menos que indicado de outra forma.</block>
   <block id="10ce28246e5d07ff8493b9244d2b2aca" category="list-text">Selecione *Utilitários de host do Windows NetApp*.</block>
   <block id="044af269e446bb1cbed59c4821cfa418" category="list-text">Reparar utilitários de host do Windows:</block>
   <block id="ba03d85ce07f0089b670121f8db9959a" category="list-text">Para identificar possíveis problemas de interoperabilidade, confirme se os Utilitários do host oferecem suporte à combinação de software do sistema operacional host, hardware do host, software ONTAP e hardware do sistema de storage. Consulte<block ref="8202e2d9ff186d084c29140284f981f1" category="inline-link-rx"></block> para obter mais informações.</block>
@@ -1676,28 +1655,12 @@
   <block id="5c715b8fde529251e535a7b4e48f84c2" category="open-title">Inicialização de SAN</block>
   <block id="58d0fc761c647663983ac6b7e586281c" category="paragraph">Se você optar por usar a inicialização de SAN, ela deve ser suportada por sua configuração.</block>
   <block id="47d17b750a3f193d9db742ef86494b1e" category="paragraph">Use o<block ref="b77f230f2effb14751e6164ceee6da3f" category="inline-link-rx"></block> para verificar se o sistema operacional Windows, o adaptador de barramento do host (HBA), o firmware HBA, o BIOS de inicialização HBA e a versão do ONTAP suportam inicialização por SAN.</block>
-  <block id="ba5e9a5307d838817264d934e6080263" category="paragraph">Dependendo da configuração de SAN, o host usa todas as configurações de SAN Array (ASA) ou não ASA para acessar LUNs ONTAP. Nas configurações ASA e não ASA, você não deve precisar de mais de quatro caminhos para acessar um único LUN ONTAP. Se você tiver mais de quatro caminhos, isso pode causar problemas com os caminhos durante uma falha de storage.</block>
-  <block id="df71bac0ba76ff83dcf7e26b1350fe50" category="paragraph">Uma configuração do ASA deve ter um grupo de caminhos ativos/otimizados com prioridades únicas. Isso significa que os caminhos são atendidos pelo controlador e a e/S é enviada em todos os caminhos ativos.</block>
-  <block id="6a25c5df0849f9286646dc1c4746bc77" category="paragraph">O exemplo a seguir exibe a saída correta para um LUN ONTAP com caminhos ativos/otimizados.</block>
   <block id="7e7bd9d92ebb121bcce736b10711ab8c" category="admonition">Você precisa entrar em Contato com o suporte da Microsoft para obter os hotfixes que não estão disponíveis para download no Catálogo do Microsoft Update.</block>
-  <block id="9bd687f53bb8eba834ecb54f33ebf261" category="paragraph">Se os limites de bloco de dados de uma partição de disco não se alinharem com os limites de bloco do LUN subjacente, o sistema de armazenamento geralmente precisa completar duas leituras ou gravações de bloco para cada leitura ou gravação de bloco de sistema operacional. As leituras e gravações de bloco adicionais causadas pelo desalinhamento podem criar sérios problemas de desempenho.</block>
-  <block id="2ff9b2398c78131af0b1d1523781ef19" category="paragraph">A localização do setor inicial para cada partição definida pelo Registro de inicialização principal causa desalinhamento.</block>
-  <block id="6b56b79977ded504f44030c7aacf202c" category="paragraph">Use<block ref="4e1e27349c8a128a19e874bcbd0666b6" prefix=" " category="inline-code"></block> o cmdlet no Toolkit do ONTAP PowerShell para verificar se as partições estão alinhadas com LUNs subjacentes. Se as partições estiverem alinhadas incorretamente, use<block ref="1c425220dcb59c3825f2baed3229bb55" prefix=" " category="inline-code"></block> o cmdlet para criar um novo arquivo VHD com o alinhamento correto. Este cmdlet copia todas as partições para o novo arquivo. O arquivo VHD original não foi modificado ou excluído. A máquina virtual deve ser desligada enquanto os dados são copiados.</block>
-  <block id="67d5317777feed5c5f907721eccb63d1" category="paragraph">Você pode baixar o Toolkit do ONTAP PowerShell em Comunidades do NetApp. Você deve descompactar o<block ref="f9975b70d855f1fce1e9949953ca0e28" prefix=" " category="inline-code"></block> arquivo no local especificado pela variável de ambiente<block ref="105b23cb210b6142f68f0f6f1d8cd1cb" prefix=" " category="inline-code"></block> (ou usar o<block ref="05555c8b844b7e945be8140460ba564c" prefix=" " category="inline-code"></block> script para fazer isso por você). Depois de concluir a instalação, use<block ref="0776c469e94bf86e8f54a0596ac6bd51" prefix=" " category="inline-code"></block> o cmdlet para obter ajuda para os cmdlets.</block>
-  <block id="a0b96a6b218fdba91fb2aacb84bdb32c" category="paragraph">O PowerShell Toolkit suporta apenas arquivos VHD de tamanho fixo com partições do tipo MBR. VHDs usando discos dinâmicos do Windows ou partições GPT não são suportados. Além disso, o PowerShell Toolkit requer um tamanho de partição mínimo de 4 GB. Partições menores não podem ser alinhadas corretamente.</block>
-  <block id="b8e499b30940e319e34a9def3a8277a9" category="paragraph">Uma configuração que não seja ASA deve ter dois grupos de caminhos com prioridades diferentes. Os caminhos com prioridades mais altas são Ativo/otimizado. Isso significa que os caminhos Ativo/otimizado são atendidos pelo controlador onde o agregado está localizado. Os caminhos com prioridades mais baixas estão ativos, mas não otimizados, porque são servidos de um controlador diferente. Os caminhos não otimizados são usados somente quando caminhos otimizados não estão disponíveis.</block>
   <block id="f5c21e4e25a06d31a8e38ae7a1270165" category="paragraph">Quando você seleciona MPIO em sistemas que usam FC, o instalador de Utilitários de host define os valores de tempo limite necessários para HBAs Emulex e QLogic FC.</block>
   <block id="3e575d4c266efc0bf10abf8506bf9fc9" category="open-title">Emulex FC</block>
   <block id="61d5be4d95eb9ed2c2aae574d01274d3" category="paragraph">Os valores de tempo limite para HBAs Emulex FC:</block>
   <block id="2704ea6051977d60de74b19a5d26a552" category="open-title">QLogic FC</block>
   <block id="1e2248ff99196b0abd94b919f10e5087" category="paragraph">Os valores de tempo limite para HBAs QLogic FC:</block>
-  <block id="54695ec579cd9f604542649198e293ff" category="inline-link-macro">Configure as configurações de Registro para os Utilitários de host do Windows</block>
-  <block id="652e337de2c34d4fb20d8d014b085e00" category="admonition">Para obter mais informações sobre as configurações recomendadas, <block ref="b7590f68c328ab26959227c8347d06f0" category="inline-link-macro-rx"></block>consulte .</block>
-  <block id="20b917718e62cc33572b686d2c3ef283" category="paragraph">O cmdlet do PowerShell Toolkit foi concluído no arquivo VHD da máquina virtual. Este procedimento aplica-se apenas a sistemas operacionais Linux Guest usando o GRUB boot Loader e<block ref="601f2f600347fee361e3e2ca8b73a177" prefix=" " category="inline-code"></block>.</block>
-  <block id="df2077261c59032c7739522f829cdb8e" category="list-text">Se a VM estiver em execução e congelada na tela GRUB, clique na área de exibição para se certificar de que está ativa e selecione o ícone da barra de ferramentas *Ctrl-Alt-Delete* para reinicializar a VM. Se a VM não estiver em execução, inicie-a e, em seguida, clique imediatamente na área de visualização para se certificar de que está ativa.</block>
-  <block id="1efd70950af96e10b879896c7e865e47" category="list-text">Se houver apenas um disco virtual nesta VM, ou se houver vários discos e o primeiro for o disco de inicialização, execute os seguintes comandos GRUB:</block>
-  <block id="fcc869a543c1e80be3bdacff22793cf7" category="paragraph">Se você tiver vários discos virtuais na VM, e o disco de inicialização não for o primeiro disco, ou você estiver corrigindo o GRUB inicializando a partir do VHD de backup desalinhado, digite o seguinte comando para identificar o disco de inicialização:</block>
-  <block id="68bccc9f47a1d689c835812de6c7a435" category="admonition">No<block ref="7b530ba82b70d4821bf776b3f3fb778a" prefix=" " category="inline-code"></block>,<block ref="cd096f9e86c0ef0d9e34df35a959627c" prefix=" " category="inline-code"></block> é um espaço reservado para o identificador de disco real do disco de inicialização.</block>
   <block id="6b1a062ab30f453c4d8f30042bd36a0d" category="summary">Você pode usar as configurações de host SAN ONTAP para configurar o Windows Server 2025 para operação com armazenamento ONTAP.</block>
   <block id="6cbabda8de389ba6ce8a60e0359b51b7" category="doc">Configure o Windows Server 2025 para armazenamento ONTAP</block>
   <block id="d211c3930b27be56feb1a5044f105d64" category="paragraph">A NetApp recomenda a instalação da *última atualização cumulativa* disponível no Catálogo de atualizações da Microsoft no servidor host.</block>
@@ -1713,7 +1676,6 @@
   <block id="e1fb3bc85942df243da9db83c85073bd" category="cell">Quando o suporte MPIO é especificado e o servidor é Windows Server 2025, 2022, 2019, 2016 ou 2012 R2</block>
   <block id="e391b693ae84de83009e50a6ff0d773d" category="cell">Quando o servidor é Windows Server 2025, 2022, 2019, 2016 ou 2012 R2</block>
   <block id="10e20033accbc339bb5469c868b2b071" category="cell">Quando o suporte MPIO é especificado e o servidor é Windows Server 2025, 2022, 2019, 2016 ou 2012 R2</block>
-  <block id="fa5c369c0560373ede3332d2508c4819" category="paragraph">O parâmetro LimTransferSize é definido automaticamente como "1" quando você instala os Utilitários de host do Windows 7,2. Após a instalação, você precisa alterar manualmente o valor LimTransferSize para "0" e reinicializar o servidor.</block>
   <block id="70cefc9a608dc188dd16deb1397a1529" category="cell">Quando o suporte MPIO é especificado e o seu servidor é Windows Server 2016, 2012 R2, 2012, 2008 R2 ou 2008, exceto se o Data ONTAP DSM for detetado</block>
   <block id="28c4a2aff9dab89964d88a9594119baa" category="cell">Quando o servidor é Windows Server 2016, 2012 R2, 2012, 2008 R2 ou 2008</block>
   <block id="e240b4a9acf4df1925780394d9f14be9" category="doc">Configurar o Windows Server 2025 com NVMe/FC para ONTAP</block>
@@ -2181,8 +2143,6 @@
   <block id="be397afde57f5c0f38f6ba79ad4ec67a" category="paragraph">Você também pode escolher o suporte a múltiplos caminhos usando um prompt de linha de comando do Windows.</block>
   <block id="211ca7affd0e961ecfb9dbb6b619c8d1" category="paragraph">Para convidados do Hyper-V, os discos brutos (pass-through) não aparecem no sistema operacional convidado se você escolher o suporte a múltiplos caminhos.  Você pode usar discos brutos ou MPIO, mas não pode usar ambos no sistema operacional convidado.</block>
   <block id="e46c793ec4845d376c829db8a8c8446b" category="paragraph">Você pode instalar o Host Utilities interativamente ou usando a linha de comando do Windows.  O novo pacote de instalação do Host Utilities deve estar em um caminho acessível ao host Windows.</block>
-  <block id="c92461f9123dbb33559fcbdc4ccc3632" category="inline-link-macro">Configurar as definições do registro para os utilitários de host do Windows</block>
-  <block id="b22a7cc5777384ac92a13fdcbf02f6a7" category="paragraph"><block ref="bc9181ff5e05a661f25ceabd5067a9d6" category="inline-link-macro-rx"></block> .</block>
   <block id="83fcfb65754825523aa792cb7a6b19ef" category="doc">Instalar o AIX Host Utilities 7.0 para armazenamento ONTAP</block>
   <block id="9ffc109828255a3247f9f7c7f5d76627" category="paragraph">O AIX Host Utilities 7.0 oferece suporte aos seguintes protocolos de transporte e ambientes AIX:</block>
   <block id="eabf58c1495b34b83006649a72fe0cea" category="list-text">FC, FCoE e iSCSI</block>
@@ -2454,16 +2414,12 @@
   <block id="8e3644c7ee6d75b3275b49e4ac92bcd7" category="admonition">Os protocolos FC e iSCSI não exigem licenças em sistemas de armazenamento da série E que usam o SANtricity Storage Manager.</block>
   <block id="50b0de549390e9fd0aff72d2cc76922d" category="paragraph">Instale o pacote de software Host Utilities interativamente executando o programa de instalação do Host Utilities e seguindo as instruções.</block>
   <block id="d539640f2a8ad84ff2b6b210b3c82a8b" category="doc">Instalar o Windows Host Utilities 7.2 para armazenamento ONTAP</block>
-  <block id="62113ee23a34404b1f086b7ed1df786b" category="doc">Configurar definições de registro para utilitários de host do Windows com armazenamento ONTAP</block>
   <block id="80fecb40ffb39e22d2139bf9886132bc" category="inline-xref">Parâmetros NVME</block>
   <block id="40bd27b40d44b862091d49e4f0538774" category="paragraph">Você precisa alterar o valor do parâmetro LimTransferSize após instalar o Windows Host Utilities 7.2. Ver <block ref="f34264ec923664aedfb2a9ccd6257931" category="inline-xref-macro-rx"></block> .</block>
   <block id="05371652e7984167bbb3f85201a5b89b" category="paragraph">Para todos os outros parâmetros e chaves de registro do Windows Host Utilities 8.0, 7.2 ou 7.1, você não precisa alterar os valores, a menos que o suporte técnico o recomende.</block>
-  <block id="3552ff32d73200dbe48fb217ccbdfe65" category="section-title">Valores de registro definidos pelo Windows Host Utilities 8.0</block>
-  <block id="a254beadccf36a8b85672cf8419d64d8" category="open-title">Valores HKLM</block>
   <block id="071b3c301587fc461b5b5db6056fea64" category="cell">Quando o suporte MPIO é especificado e seu servidor é Windows Server 2025, 2022, 2019 ou 2016</block>
   <block id="213770055804b675ffe14467be7be594" category="cell">Quando seu servidor for Windows Server 2025, 2022, 2019 ou 2016</block>
   <block id="ef7643028f04a4cac8da8e05df5237b1" category="cell">Quando o suporte MPIO é especificado e seu servidor é Windows Server 2025, 2022, 2019 ou 2016</block>
-  <block id="408cf458ebdd52832b74587ec65fee92" category="paragraph">Os seguintes parâmetros do driver NVMe Emulex são atualizados quando você instala o Windows Host Utilities 7.2:</block>
   <block id="20aac534719ebb4b8d33960d910552ae" category="section-title">Saiba mais sobre as alterações do Host Utilities nas configurações do driver FC HBA</block>
   <block id="290855c6daac5448d222f3c661f749fb" category="list-text">*LinkTimeOut*: define o tempo em segundos que a porta do host aguarda antes de retomar a E/S após um link físico estar inativo.</block>
   <block id="9e02085844efecca4159003505f0e34a" category="list-text">*NodeTimeOut*: define o tempo em segundos antes que a porta do host reconheça que uma conexão com o dispositivo de destino está inativa.</block>
@@ -2534,7 +2490,6 @@
   <block id="64a317b0ef502066fcd3e75bd699674f" category="sidebar">Saiba mais sobre a referência de comando do Solaris</block>
   <block id="dc5558bf9c4fb0dc5f36d6c135777cf2" category="sidebar">Instalar utilitários de host do Windows</block>
   <block id="d4609abcc5de600b2cd5aa87443c612c" category="sidebar">Instalar o Windows Host Utilities 8.0</block>
-  <block id="390e5244f8ae0a5b4cdd721ad6036cb9" category="sidebar">Configurar definições para utilitários de host do Windows</block>
   <block id="89a348be490d3be0bdc23d43fb585c56" category="sidebar">7.3/4.x</block>
   <block id="f72cfd397ddcffbe2327665e83f6e4fd" category="doc">Etapa 3: opcionalmente, exclua um dispositivo do multipathing</block>
   <block id="2767a9a2ad485daf64375577843d3ba2" category="doc">Etapa 4: personalizar parâmetros multicaminho para LUNs ONTAP</block>
@@ -2584,24 +2539,14 @@
   <block id="3d4de8befb0eddb7be95b9eb899bcd21" category="summary">Instale o Linux Host Utilities em um host Ubuntu 24.04 para gerenciar operações de protocolo FCP e iSCSI com LUNs ONTAP .</block>
   <block id="faed4c9c8188f7390b773fb64e42fc29" category="paragraph">O software Linux Host Utilities fornece ferramentas de gerenciamento e diagnóstico para hosts Linux conectados ao armazenamento ONTAP .  Ao instalar o Linux Host Utilities em um host Ubuntu 22.04, você pode usá-lo para ajudar a gerenciar operações de protocolo FCP e iSCSI com LUNs ONTAP .</block>
   <block id="3b2ad8d11d49615d3cb062774e116630" category="paragraph">O software Linux Host Utilities fornece ferramentas de gerenciamento e diagnóstico para hosts Linux conectados ao armazenamento ONTAP .  Ao instalar o Linux Host Utilities em um host Ubuntu 24.04, você pode usá-lo para ajudar a gerenciar operações de protocolo FCP e iSCSI com LUNs ONTAP .</block>
-  <block id="876d8d634dabd3b4faa05168e2953c68" category="paragraph">Os utilitários de host do Windows exigem determinadas configurações de registro e parâmetros para verificar se o host do Windows manipula corretamente o comportamento do sistema de armazenamento.</block>
-  <block id="3187b1de6020504a9ef2201371f4ddfb" category="paragraph">O Windows Host Utilities define valores de parâmetros que afetam como o host Windows responde a um atraso ou perda de dados.  Esses valores verificam se o host do Windows manipula corretamente eventos como o failover de um controlador no sistema de armazenamento para seu controlador parceiro.</block>
-  <block id="5761ec5c04ac77cb295ddef5c5adf39f" category="paragraph">Alguns valores não se aplicam ao módulo específico do dispositivo (DSM) do SANtricity Storage Manager.  A sobreposição entre valores definidos pelos Utilitários de Host do Windows e o DSM para o SANtricity Storage Manager não resulta em conflitos.</block>
-  <block id="1c45b11e7112ae3015b6528aac98db47" category="paragraph">Você também precisa definir parâmetros FC, NVMe/FC e iSCSI HBAs para otimizar o desempenho e lidar com sucesso com eventos do sistema de armazenamento.</block>
-  <block id="ac299bbbaa386f926bfeffd61f3f329a" category="paragraph">O instalador do Windows Host Utilities define os parâmetros Windows, FC e NVMe/FC HBA para os valores suportados.  Você precisa definir manualmente os parâmetros do iSCSI HBA.</block>
   <block id="0600911da7c2ed3e4c75b35a8383464b" category="paragraph">O instalador define valores diferentes quando você especifica o suporte ao Microsoft Multipath I/O (MPIO) durante a instalação.</block>
-  <block id="1289e36ad9af025f92a68eeb71942e45" category="paragraph">O instalador do Windows Host Utilities define automaticamente os valores do registro e os parâmetros NVMe com base nas escolhas feitas durante a instalação.  Você precisa revisar esses valores e a versão do sistema operacional.</block>
-  <block id="05ca7c309c201d00d9edda26c29f1814" category="paragraph">O instalador do Windows Host Utilities define os seguintes valores de registro. Todos os valores estão em decimais, salvo indicação em contrário.</block>
   <block id="9315284a762c1471b85be43158649395" category="cell">"NETAPP LUN", "NETAPP LUN C-Mode" "NVMe NetApp ONTAP Con"</block>
   <block id="f43fc70fd90855c7e4c4c9cba7d7f1fd" category="cell">"NETAPP LUN", "NETAPP LUN C-Mode", "NVMe NetApp ONTAP Con"</block>
-  <block id="65d5481255e5037a619c921fafb15def" category="paragraph">O Windows Host Utilities 8.0 atualiza os seguintes parâmetros do driver NVMe Emulex durante a instalação:</block>
-  <block id="ab51b6ada28fc394eb4698434eaf6668" category="paragraph">O instalador do Windows Host Utilities define automaticamente os valores do registro com base nas escolhas que você faz durante a instalação.  Você precisa revisar esses valores de registro e a versão do sistema operacional.</block>
   <block id="619778ebb1defb58b2f571d8beed6661" category="paragraph">O instalador do Windows Host Utilities define os valores de tempo limite necessários para HBAs Emulex e QLogic FC em sistemas que usam FC.</block>
   <block id="ca146b673983ec595aae317e1a1e764a" category="paragraph">O instalador define os seguintes parâmetros para os HBAs do Emulex FC:</block>
   <block id="187c9ec598092d65351eaf4f361d83f7" category="open-title">Quando você seleciona MPIO</block>
   <block id="17f9a8611eed107aecf0406db4a2b59d" category="open-title">Quando você não seleciona MPIO</block>
   <block id="d915a9fedab871eb41a22f16bfb69c64" category="paragraph">O instalador define os seguintes parâmetros para QLogic FC HBAs:</block>
-  <block id="2ff89f8cd6f01614cdfc9aff8ff7a2a4" category="paragraph">Durante a instalação dos drivers Emulex ou QLogic HBA necessários em um sistema FC, vários parâmetros são verificados e, em alguns casos, modificados pelos Utilitários de Host do Windows.</block>
   <block id="30fe8c509bd758431e60f7f83e9085f0" category="paragraph">O Windows Host Utilities define valores para os seguintes parâmetros se o MS DSM para Windows MPIO for detectado:</block>
   <block id="d7ffc66640801d3b23e6403b53045607" category="paragraph">Verifique as configurações do driver HBA Emulex em sistemas FC. Essas configurações devem existir para cada porta no HBA.</block>
   <block id="0aa9ab84e08417b1d87c1a5606b6b1b4" category="paragraph">Verifique as configurações do driver QLogic HBA em sistemas FC. Essas configurações devem existir para cada porta no HBA.</block>
@@ -2676,8 +2621,6 @@
   <block id="2668d75d00d2b0c89fc0268c581eea9a" category="paragraph">Uma configuração AFF ou FAS deve ter dois grupos de caminhos com prioridades diferentes.  Os caminhos com maior prioridade são Ativos/Otimizados e são gerenciados pelo controlador onde o agregado está localizado.  Os caminhos com prioridades mais baixas são atendidos por um controlador diferente.  Eles estão ativos, mas não otimizados, e só são usados ​​quando caminhos otimizados não estão disponíveis.</block>
   <block id="778265cdd82e615c65e819202c4f1a45" category="paragraph">Você pode inicializar o sistema operacional Windows usando uma inicialização local ou uma inicialização SAN.  A NetApp recomenda o uso de um SAN boot para simplificar a implementação e melhorar a escalabilidade.</block>
   <block id="9c3530e2722834048b2844c3d51c3f9d" category="paragraph">Efetue uma inicialização local instalando o sistema operacional Windows no disco rígido local, por exemplo, em um SSD, SATA ou RAID.</block>
-  <block id="732f2da8f62b9da0ea923952084874de" category="inline-link-macro">Saiba mais sobre as configurações de registro para Utilitários de Host do Windows.</block>
-  <block id="adb6b5051a1f8d77d4d01917e922a3e4" category="paragraph"><block ref="c1331b771adf93ff52db3f4f543e95b0" category="inline-link-macro-rx"></block>.</block>
   <block id="418566369566c44bb7140916a64786a1" category="admonition">Muitas correções de software exigem a reinicialização do host Windows.  Você pode aguardar para reiniciar o host até _depois_ de instalar ou atualizar os Utilitários do Host.</block>
   <block id="a280834ebf64082d80348b8606fd1022" category="paragraph">Os utilitários de host do Windows são um conjunto de programas de software com documentação que permitem conectar computadores host a discos virtuais (LUNs) em um SAN NetApp .  A NetApp recomenda baixar e instalar os utilitários de host do Windows mais recentes para dar suporte ao gerenciamento de LUNs do ONTAP e ajudar o suporte técnico a coletar dados de configuração.</block>
   <block id="0dbfca139f278e370070260ca86e7bea" category="paragraph">Para obter informações sobre a configuração e instalação dos utilitários do host Windows, consulte o<block ref="0030a0ca2c8a5e3c1ffa16a150ed65f9" category="inline-link-macro-rx"></block> documente e selecione o procedimento de instalação para a sua versão do Windows Host Utilities.</block>
@@ -3101,4 +3044,31 @@
   <block id="643c7133e701780bd200aa43a7ac19d5" category="sidebar">12 SP2</block>
   <block id="a6cf0ca607a76b62fe0393451560cb3e" category="sidebar">12 SP1</block>
   <block id="5b0baa1d297171d8a0eb3e7b4eab041d" category="sidebar">15 SPx</block>
+  <block id="f6cc17830d6056ab4b78496fa45d86c0" category="inline-link-macro">Saiba mais sobre a configuração dos utilitários do host do Windows para armazenamento ONTAP.</block>
+  <block id="a270bf4f8c4b691ce8d28f78e05ad3ce" category="paragraph"><block ref="a270bf4f8c4b691ce8d28f78e05ad3ce" category="inline-link-macro-rx"></block></block>
+  <block id="3ef0124e3a4c499c8d81cf51736e34cf" category="doc">Analise a configuração dos Utilitários de Host do Windows para armazenamento ONTAP.</block>
+  <block id="d163580e6b36094493c3486aa4bd713d" category="paragraph">Os utilitários do host Windows exigem determinadas configurações de registro e parâmetros para que um host Windows lide corretamente com o comportamento do sistema de armazenamento ONTAP .</block>
+  <block id="a7f9e2f7eae7b45e39495e27e2aa0591" category="paragraph">Esses valores de registro e parâmetros afetam a forma como um host Windows responde a um atraso ou perda de dados, por exemplo, lidando corretamente com eventos como uma falha de armazenamento.</block>
+  <block id="4fd88a48c587c319fee5293adbb82370" category="paragraph">Alguns valores de registro e parâmetros não se aplicam ao módulo específico do dispositivo (DSM) do SANtricity Storage Manager. A sobreposição entre os valores definidos pelos utilitários do host do Windows e pelo DSM do SANtricity Storage Manager não causa conflitos.</block>
+  <block id="27369ead3c900cf549518fa5912f3beb" category="paragraph">Um host Windows também requer determinados parâmetros FC, NVMe/FC e HBA iSCSI para lidar com sucesso com eventos do sistema de armazenamento:</block>
+  <block id="3aea2f8ae8a21af7a187a2cbdd12fe62" category="list-text">A partir da versão 7.2 do Windows Host Utilities, o instalador define os parâmetros do Windows, iSCSI, FC e NVMe/FC para os valores suportados.</block>
+  <block id="bb5e85db541a571d5444af86a48295eb" category="list-text">A partir da versão 7.1 do Windows Host Utilities, o instalador define os parâmetros do Windows, FC e NVMe/FC HBA para os valores suportados. Você precisa configurar manualmente os parâmetros do HBA iSCSI.</block>
+  <block id="856b84160c2cd057500cee609f14e2ae" category="section-title">Analise as configurações do Windows Host Utilities 8.0.</block>
+  <block id="72934b5100d49e143a007d3f9658653b" category="paragraph">O instalador do Windows Host Utilities define automaticamente os valores do registro do Windows e os parâmetros do HBA iSCSI e NVMe com base nas opções selecionadas durante a instalação. Analise esses valores e a versão do sistema operacional.</block>
+  <block id="cd3da9fa9d3b1672b6e802d678075159" category="open-title">Valores do registro do Windows</block>
+  <block id="acf633c8ebc059225f934044e1724be4" category="paragraph">Todos os valores do registro do Windows estão em decimal, a menos que seja indicado o contrário.</block>
+  <block id="918d7d296045834b208049633743dada" category="cell">Definir chave de registro...</block>
+  <block id="e51c3c5caf9dc0f70689e54385d6445e" category="open-title">Valores HBA do iSCSI</block>
+  <block id="c92b7987dc07b9fe00ce0d942ac6584c" category="paragraph">Todos os valores de HBA iSCSI estão em decimal, a menos que seja indicado o contrário.</block>
+  <block id="32983f61bd86ff1d53c1e73c98853ea6" category="paragraph">O Windows Host Utilities 8.0 atualiza os seguintes parâmetros do driver NVMe Emulex durante a instalação:</block>
+  <block id="fd122937cb75bf13d0d288a91da427c8" category="section-title">Analise as configurações do Windows Host Utilities 7.2.</block>
+  <block id="b69134c16adc05cd3e2e52ada20808d8" category="paragraph">O Windows Host Utilities 7.2 atualiza os seguintes parâmetros do driver NVMe Emulex durante a instalação:</block>
+  <block id="49552d0a01f8e5c018c36fa7a95672e2" category="paragraph">O parâmetro LimTransferSize é definido automaticamente como "1" ao instalar o Windows Host Utilities 7.2. Após a instalação, altere o valor de LimTransferSize para "0" e reinicie o servidor.</block>
+  <block id="7d1b938dfc7652c1013aa6c87acaa295" category="section-title">Analise as configurações do Windows Host Utilities 7.1.</block>
+  <block id="d3d049b67f764449da9efe56c0f7e37d" category="paragraph">O instalador do Windows Host Utilities define automaticamente os valores do registro com base nas opções selecionadas durante a instalação. Analise esses valores de registro e a versão do sistema operacional. Todos os valores estão em decimal, a menos que seja indicado o contrário.</block>
+  <block id="c996a795ae55a6395f76354e6b7c8da5" category="section-title">Saiba mais sobre os valores FC HBA definidos pelos utilitários de host do Windows.</block>
+  <block id="009df88d79340b8c3b598472557324d8" category="admonition">Os nomes dos parâmetros podem variar ligeiramente dependendo do programa. Por exemplo, no programa QLogic QConvergeConsole, o parâmetro é exibido como<block ref="b554d47c6702123b3a28a3e04ed39621" prefix=" " category="inline-code"></block>. Os utilitários do host<block ref="a49e6041666308abe45789ecfadd593e" prefix=" " category="inline-code"></block> O arquivo exibe esse parâmetro como uma das seguintes opções:<block ref="08a7801aadb2d395506d0735d17dcf62" prefix=" " category="inline-code"></block> ou<block ref="e29ad18354768c222941f5de52fd92c9" prefix=" " category="inline-code"></block>, dependendo se o MPIO estiver especificado. No entanto, todos esses nomes se referem ao mesmo parâmetro HBA. Ver<block ref="6d63c8366c015331075fa86de38975e8" category="inline-link-rx"></block> ou<block ref="4399df604c07a452cc084d95811dafae" category="inline-link-rx"></block> Para saber mais sobre os parâmetros de tempo limite.</block>
+  <block id="82ec7e195e913912e4bf387fbe3d1a1a" category="paragraph">Durante a instalação dos drivers HBA Emulex ou QLogic necessários em um sistema FC, o Utilitário de Host do Windows verifica diversos parâmetros e, em alguns casos, os modifica.</block>
+  <block id="80359a24fbf8546b71fbe0e9a6a30e27" category="paragraph">Ao solucionar problemas com o HBA, verifique se essas configurações possuem os valores corretos. Os valores corretos dependem de dois fatores:</block>
+  <block id="dd1dd5ab98ce86b204797f25e5883980" category="sidebar">Analise a configuração dos utilitários do host do Windows.</block>
 </blocks>

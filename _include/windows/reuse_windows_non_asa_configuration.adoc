@@ -1,9 +1,0 @@
-= 
-:allow-uri-read: 
-
-
-Uma configuração que não seja ASA deve ter dois grupos de caminhos com prioridades diferentes. Os caminhos com prioridades mais altas são Ativo/otimizado. Isso significa que os caminhos Ativo/otimizado são atendidos pelo controlador onde o agregado está localizado. Os caminhos com prioridades mais baixas estão ativos, mas não otimizados, porque são servidos de um controlador diferente. Os caminhos não otimizados são usados somente quando caminhos otimizados não estão disponíveis.
-
-O exemplo a seguir exibe a saída correta para um LUN ONTAP com dois caminhos ativos/otimizados e dois caminhos ativos/não otimizados.
-
-image::nonasa.png[Captura de tela de um LUN ONTAP com dois caminhos ativos/otimizados e dois caminhos ativos/não otimizados]
