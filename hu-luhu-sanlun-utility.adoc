@@ -1,8 +1,8 @@
 ---
 sidebar: sidebar 
 permalink: hu-luhu-sanlun-utility.html 
-keywords: host utilities, unified, oracle, linux, 7.1, netapp, ontap 
-summary: Descreve como usar os utilitários de host Linux 7,1 com ONTAP 
+keywords: host utilities, unified, oracle, linux, 8.0, netapp, ontap 
+summary: Descreve como usar o Linux Host Utilities 8.0 com ONTAP 
 ---
 = Saiba mais sobre o utilitário "sanlun" para armazenamento ONTAP
 :hardbreaks:

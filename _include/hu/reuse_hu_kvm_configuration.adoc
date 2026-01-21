@@ -1,9 +1,0 @@
-= Configurar definições KVM
-:allow-uri-read: 
-
-
-
-
-== Configurar definições KVM
-
-Você não precisa configurar configurações para uma Máquina Virtual baseada em Kernel porque o LUN é mapeado para o hipervisor.

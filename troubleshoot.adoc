@@ -4,7 +4,7 @@ permalink: troubleshoot.html
 keywords: host utilities, veritas, infoscale, 8.x, netapp, ontap, vmware, vspehere 
 summary: Você pode configurar as configurações de host SAN ONTAP para a versão do VMware vSphere 8.x com protocolos FC, FCoE e iSCSI. 
 ---
-= Solucionar problemas
+= Solução de problemas de armazenamento NVMe-oF com ONTAP para utilitários de host Linux
 :hardbreaks:
 :toclevels: 1
 :allow-uri-read: 
@@ -16,10 +16,12 @@ summary: Você pode configurar as configurações de host SAN ONTAP para a vers�
 
 
 [role="lead"]
-Antes de solucionar qualquer falha de NVMe-of para hosts do RHEL, OL e SUSE Linux Enterprise Server, verifique se você está executando uma configuração compatível com as especificações da ferramenta de Matriz de interoperabilidade (IMT) e prossiga com as próximas etapas para depurar quaisquer problemas do lado do host.
+Solucionar problemas de falhas NVMe-oF em hosts Oracle Linux, RHEL, Rocky Linux e SUSE Linux Enterprise Server com armazenamento ONTAP .
+
+Antes de iniciar a resolução de problemas, verifique se você está executando uma configuração compatível com o https://mysupport.netapp.com/matrix/#welcome["Ferramenta de Matriz de interoperabilidade"^] especificações e, em seguida, prossiga com as próximas etapas para depurar quaisquer problemas do lado do host.
 
 
-NOTE: As instruções de solução de problemas não se aplicam aos hosts AIX, Windows e ESXi.
+NOTE: As instruções de resolução de problemas não se aplicam a hosts AIX, ESXi, Proxmox e Windows.
 
 
 
@@ -27,7 +29,8 @@ NOTE: As instruções de solução de problemas não se aplicam aos hosts AIX, W
 
 Se você tiver um problema com sua configuração, o Registro detalhado pode fornecer informações essenciais para a solução de problemas.
 
-O procedimento para definir o registo verboso para Qlogic (qla2xxx) é diferente do procedimento para definir o registo de verbosidade LPFC.
+.Passos
+Ative o registro detalhado para LPFC ou Qlogic (Qla2xxx).
 
 [role="tabbed-block"]
 ====
@@ -35,7 +38,6 @@ O procedimento para definir o registo verboso para Qlogic (qla2xxx) é diferente
 --
 Defina o driver lpfc para NVMe/FC.
 
-.Passos
 . Defina a `lpfc_log_verbose` configuração do driver para qualquer um dos seguintes valores para Registrar eventos NVMe/FC.
 +
 [listing]
@@ -46,9 +48,9 @@ Defina o driver lpfc para NVMe/FC.
 #define LOG_NVME_IOERR 0x00800000 /* NVME IO Error events. */
 ----
 . Depois de definir os valores, execute o `dracut-f` comando e reinicie o host.
-. Verifique as definições.
+. Verifique as configurações:
 +
-[listing]
+[source, cli]
 ----
 # cat /etc/modprobe.d/lpfc.conf options lpfc lpfc_log_verbose=0xf00083
 
@@ -61,17 +63,16 @@ Defina o driver lpfc para NVMe/FC.
 --
 Não há Registro qla2xxx específico para NVMe/FC semelhante ao `lpfc` do driver. Em vez disso, defina o nível geral de log qla2xxx.
 
-.Passos
 . Anexe o `ql2xextended_error_logging=0x1e400000` valor ao arquivo correspondente `modprobe qla2xxx conf`.
 . Execute o `dracut -f` comando e reinicie o host.
 . Após a reinicialização, verifique se o log detalhado foi ativado:
 +
-[listing]
+[source, cli]
 ----
 # cat /etc/modprobe.d/qla2xxx.conf
 ----
 +
-Exemplo de saída:
+Você deverá ver uma saída semelhante ao exemplo a seguir:
 
 +
 [listing]
@@ -86,7 +87,7 @@ options qla2xxx ql2xnvmeenable=1 ql2xextended_error_logging=0x1e400000
 ====
 
 
-=== Erros e soluções alternativas comuns do nvme-cli
+== Erros comuns do "nvme-cli" e soluções alternativas
 
 Os erros exibidos por `nvme-cli` operações durante `nvme discover`, `nvme connect`, ou `nvme connect-all` e as soluções alternativas são mostrados na tabela a seguir:
 
@@ -143,9 +144,9 @@ Nenhum. Tente executar o `nvme discover` comando novamente após algum tempo. Pa
 
 == Quando contactar o suporte técnico
 
-Se você ainda estiver enfrentando problemas, colete os seguintes arquivos e saídas de comando e entre em Contato link:mysupport.netapp.com["Suporte à NetApp"^] para triagem adicional:
+Se os problemas persistirem, reúna os seguintes arquivos e resultados de comando e entre em contato. link:mysupport.netapp.com["Suporte à NetApp"^] para triagem adicional:
 
-[listing]
+[source, cli]
 ----
 cat /sys/class/scsi_host/host*/nvme_info
 /var/log/messages

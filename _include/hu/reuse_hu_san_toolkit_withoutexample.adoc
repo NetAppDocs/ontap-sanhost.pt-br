@@ -1,5 +1,0 @@
-= 
-:allow-uri-read: 
-
-
-Instalar o pacote de utilitários de host NetApp instala automaticamente o kit de ferramentas. Este kit fornece o `sanlun` utilitário, que ajuda a gerenciar LUNs e adaptadores de barramento de host (HBAs). O `sanlun` comando retorna informações sobre os LUNs mapeados para o seu host, multipathing e informações necessárias para criar grupos de iniciadores.

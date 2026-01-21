@@ -1,6 +1,0 @@
-= 
-:allow-uri-read: 
-
-
-
-NOTE: Para problemas conhecidos do Oracle Linux (kernel compatível com Red Hat), consulte a seção problemas conhecidos na documentação correspondente https://mysupport.netapp.com/documentation/productlibrary/index.html?productID=63146["Versão do Red Hat Enterprise Linux"^].
