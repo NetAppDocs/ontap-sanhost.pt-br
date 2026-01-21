@@ -360,8 +360,6 @@
   <block id="b47148f0acf3e7b3db202890d4c8c0c4" category="cell">Portas remotas passam para um estado bloqueado no SLES15SP1 com Emulex LPe12002 8GB FC durante operações de failover de storage.</block>
   <block id="15427ef3cacf89471c2525932d2937ee" category="cell">Portas remotas transitam para um estado bloqueado no SLES15SP1 com Fibre Channel (FC) Emulex LPe12002 8GB durante operações de failover de armazenamento. Quando o nó de armazenamento retorna a um estado ideal, os LIFs também aparecem e o estado da porta remota deve ler "online". Ocasionalmente, o estado da porta remota pode continuar a ser lido como "bloqueado" ou "não presente". Esse estado pode levar a um caminho "com falha" para LUNs na camada multipath, bem como uma interrupção de e/S para esses LUNs. Você pode verificar os detalhes do remoteport em relação aos seguintes comandos de exemplo: ---- Cat/sys/class/fc_host/host*/device/rport*/fc_Remote_ports/rport*/port_name Cat/sys/class/fc_host/host*/device/rport*/fc_Remote_ports/rport*/port*/port*/port*/port_State -------</block>
   <block id="51a4a26e6b1bdae133374d340c097526" category="paragraph">O exemplo a seguir exibe a saída correta para um LUN ONTAP com dois caminhos ativos/otimizados e dois caminhos ativos/não otimizados.</block>
-  <block id="2844e304c2e162332243113572206ac6" category="inline-link-macro">1308744</block>
-  <block id="939827454c3bb8453033ba1bd60c555e" category="cell"><block ref="c8bdc7961e7fb79cc7e51cf734b247fb" category="inline-link-macro-rx"></block></block>
   <block id="9edc8f09fd5b1e5afec2430fd6f561df" category="paragraph">Os pacotes são adicionados ao<block ref="6bc8221bb3f6bd9dbac460ce95dd951f" prefix=" " category="inline-code"></block> diretório.</block>
   <block id="c4cad7deef0c16d999553f9114b69a38" category="inline-link">Instale os Utilitários do Solaris Host</block>
   <block id="689202409e48743b914713f96d93947c" category="cell">Valor</block>
@@ -949,7 +947,6 @@
   <block id="3c9435015579e19dc2fb6312a2258ab5" category="sidebar">11,4</block>
   <block id="b831e71b782a1e06e4e5f24e84680fb6" category="sidebar">11,3</block>
   <block id="c11de2cda31d67ed47c0182334a7ac91" category="sidebar">SLES-15-FCP</block>
-  <block id="1b1e6d45b618db5397c656f0df1d4b85" category="sidebar">15 SP2</block>
   <block id="7ceb3cac51dbf44c807f7e83fabc5016" category="sidebar">15 SP1</block>
   <block id="9bf31c7ff062936a96d3c8bd1f8f2ff3" category="sidebar">15</block>
   <block id="3d945423f8e9496c429a5d8c65b4604f" category="sidebar">Ubuntu</block>
@@ -970,8 +967,6 @@
   <block id="f3478c814fd82f33620059d2d7656ea9" category="list-text">Determine o WWID:</block>
   <block id="48a57465c9050da3e456de11a1bce0f0" category="list-text">Reinicie o host para verificar se a inicialização foi bem-sucedida.</block>
   <block id="2ba8ced675fff51092484e241860c46e" category="paragraph">O<block ref="273d5cd3ecc9b9ccde8aa81942ced2f2" prefix=" " category="inline-code"></block> comando produz o seguinte tipo de saída. A saída no exemplo a seguir é truncada.</block>
-  <block id="1f9090c13a627840d3e8110654671ecd" category="cell">O arranque iSCSI a partir da SAN falha ao arrancar com uma configuração IP estática após concluir uma instalação do SO SUSE Linux Enterprise Server 15S P2</block>
-  <block id="74fe7cde6e68f9607ef6c16f62916dd8" category="paragraph">O LUN sancionado iSCSI falhou ao inicializar depois de concluir uma instalação do SO SUSE Linux Enterprise Server 15 SP2 com uma configuração IP estática. A falha de inicialização ocorre toda vez com a configuração de IP estático. Isso leva o servidor a recusar continuar o processo de inicialização com a seguinte mensagem de erro:</block>
   <block id="adcc6b5e38256f637746539b3d3cb7b3" category="paragraph">O driver nativo da caixa de entrada qla2xxx incluído no kernel do Ubuntu 22,04 GA tem as correções upstream mais recentes. Essas correções são essenciais para o suporte ao ONTAP.</block>
   <block id="896c6d73b474c57fd4a882830cd2a6de" category="sidebar">SUSE Linux Enterprise Server 15</block>
   <block id="587b796170a9abac4701cd8aa1bb38cb" category="listing-title">Exemplo de saída</block>
@@ -1897,7 +1892,6 @@
   <block id="c66e8f141f367b0a5a1d201cc49ccc72" category="paragraph">O ONTAP relata um Tamanho Máximo de Transferência de Dados (MDTS) de 8 nos dados do Controlador de Identificação.  Isso significa que o tamanho máximo da solicitação de E/S pode ser de até 1 MB.  Para emitir solicitações de E/S de tamanho 1 MB para um host Broadcom NVMe/FC, você deve aumentar o<block ref="0de495b1d3c13e53ae08556231d825b9" prefix=" " category="inline-code"></block> valor do<block ref="63a7cb7a86eb0c84641936943496afaf" prefix=" " category="inline-code"></block> parâmetro para 256 do valor padrão de 64.</block>
   <block id="cfa5b6e557299c1ae7c635f08785f365" category="paragraph">Os hosts Red Hat Enterprise Linux (RHEL) oferecem suporte aos protocolos NVMe sobre Fibre Channel (NVMe/FC) e NVMe sobre TCP (NVMe/TCP) com acesso assimétrico ao namespace (ANA).  O ANA fornece funcionalidade de múltiplos caminhos equivalente ao acesso de unidade lógica assimétrica (ALUA) em ambientes iSCSI e FCP.</block>
   <block id="e8584093909cb01d1e4390beaad82a5f" category="paragraph">O<block ref="0578ea8f8272d56d0053a8f2cddaf7f4" prefix=" " category="inline-code"></block> e<block ref="fbbb90e94554669f250473b3b15ddd4e" prefix=" " category="inline-code"></block> serviços de inicialização incluídos no NVMe/FC<block ref="e1667929105bf030b9f367fc21f8d216" prefix=" " category="inline-code"></block> Os pacotes são ativados automaticamente quando o sistema é inicializado.</block>
-  <block id="660bcc8bfdb485b79b7dede726eb2358" category="doc">Aprenda a configurar hosts ONTAP SAN com NVMe-OF</block>
   <block id="be1e5922c13f8cd92deb77a78a07375f" category="paragraph">Você pode configurar hosts SAN suportados para usar o protocolo NVMe over Fabrics (NVMe-oF) com o ONTAP como destino de armazenamento.  NVMe-oF inclui NVMe sobre Fibre Channel (NVMe/FC) e NVMe sobre TCP (NVMe/TCP).  Dependendo do sistema operacional do host e da versão do ONTAP , você configura e valida o protocolo NVMe/FC ou NVMe/TCP, ou ambos no host.</block>
   <block id="b0e0bd8207ba62457f58c3e06f3f7bec" category="section-title">Suporte e recursos do ONTAP</block>
   <block id="3b2a75ebc087c7f3c4fa9ac0e2a92ebe" category="cell">Versão ONTAP</block>
@@ -2403,4 +2397,5 @@
   <block id="79c482cb23c057c0d600ecd3434dbb27" category="section-title">Erros comuns do "nvme-cli" e soluções alternativas</block>
   <block id="c481530fd3180128cebd4b0d3be77c0f" category="paragraph">Se os problemas persistirem, reúna os seguintes arquivos e resultados de comando e entre em contato. <block ref="39332fc74dd50b9d9a8e9919506502c0" category="inline-link-macro-rx"></block> para triagem adicional:</block>
   <block id="0669c03dc492faf8d7b9fc2bd8512b73" category="sidebar">Versões anteriores do Host Utilities</block>
+  <block id="2444d67396b745a440cfa96bf55da9c6" category="doc">Saiba como configurar hosts ONTAP SAN com NVMe-oF</block>
 </blocks>

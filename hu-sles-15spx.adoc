@@ -274,29 +274,6 @@ O SUSE Linux Enterprise Server 15 SPx com armazenamento ONTAP apresenta os segui
 
 [role="tabbed-block"]
 ====
-.15 SP2
---
-[cols="1,3,3"]
-|===
-| ID de erro do NetApp | Título | Descrição 
-
-
-| link:https://mysupport.netapp.com/NOW/cgi-bin/bol?Type=Detail&Display=1308744["1308744"^] | O arranque iSCSI a partir da SAN falha ao arrancar com uma configuração IP estática após concluir uma instalação do SO SUSE Linux Enterprise Server 15S P2  a| 
-O LUN sancionado iSCSI falhou ao inicializar depois de concluir uma instalação do SO SUSE Linux Enterprise Server 15 SP2 com uma configuração IP estática. A falha de inicialização ocorre toda vez com a configuração de IP estático. Isso leva o servidor a recusar continuar o processo de inicialização com a seguinte mensagem de erro:
-
-[listing]
-----
-dracut-cmdline[241]: warning: Empty autoconf values default to dhcp
-
-dracut: FATAL: FATAL: For argument ip=eth4:static, setting client-ip does not make sense for dhcp
-
-dracut: Refusing to continue
-
-reboot: System halted
-
-----
-|===
---
 .15 SP1
 --
 [cols="3"]
