@@ -217,6 +217,7 @@ O driver nativo da caixa de entrada qla2xxx incluído no kernel do Ubuntu 24,04 
 
 Configure o NVMe/FC para um adaptador Marvell/QLogic.
 
+.Passos
 . Verifique se você está executando o driver de adaptador e as versões de firmware compatíveis:
 +
 [listing]

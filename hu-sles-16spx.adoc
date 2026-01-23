@@ -1,10 +1,10 @@
 ---
 sidebar: sidebar 
-permalink: hu-sles-15spx.html 
-keywords: host utilities, suse linux enterprise server 15 sp7, sp6, sp5, sp4, sp3, sp2, sp1, netapp, ontap, fcp, iscsi 
-summary: Instale os utilitários de host Linux em um SUSE Linux Enterprise Server 15 SP7 para gerenciar operações de protocolo FCP e iSCSI com LUNs ONTAP. 
+permalink: hu-sles-16spx.html 
+keywords: host utilities, suse linux enterprise server 16,netapp, ontap, fcp, iscsi 
+summary: Instale os utilitários de host Linux em um servidor SUSE Linux Enterprise Server 16 para gerenciar operações de protocolo FCP e iSCSI com LUNs ONTAP. 
 ---
-= Configure o SUSE Linux Enterprise Server 15 SPx para FCP e iSCSI com armazenamento ONTAP.
+= Configurar o SUSE Linux Enterprise Server 16 para FCP e iSCSI com armazenamento ONTAP
 :hardbreaks:
 :toclevels: 1
 :allow-uri-read: 
@@ -16,7 +16,7 @@ summary: Instale os utilitários de host Linux em um SUSE Linux Enterprise Serve
 
 
 [role="lead"]
-O software Linux Host Utilities fornece ferramentas de gerenciamento e diagnóstico para hosts Linux conectados ao armazenamento ONTAP . Ao instalar os utilitários de host Linux em um host SUSE Linux Enterprise Server 15 SPx, você pode usá-los para gerenciar operações de protocolo FCP e iSCSI com LUNs ONTAP .
+O software Linux Host Utilities fornece ferramentas de gerenciamento e diagnóstico para hosts Linux conectados ao armazenamento ONTAP. Ao instalar o Linux Host Utilities em um host SUSE Linux Enterprise Server 16, você pode usar o Host Utilities para ajudar a gerenciar as operações dos protocolos FCP e iSCSI com LUNs ONTAP.
 
 
 
@@ -36,22 +36,13 @@ Para obter informações sobre como ativar o BIOS HBA, consulte a documentação
 . Verifique se a configuração foi bem-sucedida reinicializando o host e verificando se o sistema operacional está funcionando.
 
 
-
-
-== Passo 2: Instale os Utilitários de host do Linux
-
-A NetApp recomenda fortemente a instalação dos utilitários de host Linux para suportar o gerenciamento de LUN ONTAP e auxiliar o suporte técnico na coleta de dados de configuração.
-
-link:hu-luhu-80.html["Instalar o Linux Host Utilities 8.0"] .
-
-
-NOTE: A instalação dos Utilitários de host do Linux não altera nenhuma configuração de tempo limite do host no seu host Linux.
+Diretiva não resolvida em <stdin> - include::_include/hu/install-linux-host-utilities.adoc[]
 
 
 
 == Etapa 3: Confirme a configuração multipath do seu host
 
-Você pode usar o recurso de multipathing com o SUSE Linux Enterprise Server 15 SPx para gerenciar LUNs do ONTAP .
+Você pode usar o recurso de multipathing com o SUSE Linux Enterprise Server 16 para gerenciar ONTAP LUNs.
 
 Para garantir que o multipathing esteja configurado corretamente para o host, verifique se o `/etc/multipath.conf` arquivo está definido e se você tem as configurações recomendadas do NetApp configuradas para os LUNs do ONTAP.
 
@@ -270,32 +261,8 @@ devices {
 
 == Passo 6: Revise os problemas conhecidos
 
-O SUSE Linux Enterprise Server 15 SPx com armazenamento ONTAP apresenta os seguintes problemas conhecidos.
+Não há problemas conhecidos.
 
-[role="tabbed-block"]
-====
-.15 SP1
---
-[cols="1,2,3"]
-|===
-| ID de erro do NetApp | Título | Descrição 
-
-
-| link:https://mysupport.netapp.com/NOW/cgi-bin/bol?Type=Detail&Display=1246622["1246622"^] | Portas remotas passam para um estado bloqueado no SLES15SP1 com Emulex LPe12002 8GB FC durante operações de failover de storage. | Portas remotas transitam para um estado bloqueado no SLES15SP1 com Fibre Channel (FC) Emulex LPe12002 8GB durante operações de failover de armazenamento. Quando o nó de armazenamento retorna a um estado ideal, os LIFs também aparecem e o estado da porta remota deve ler "online". Ocasionalmente, o estado da porta remota pode continuar a ser lido como "bloqueado" ou "não presente". Esse estado pode levar a um caminho "com falha" para LUNs na camada multipath, bem como uma interrupção de e/S para esses LUNs. Você pode verificar os detalhes do remoteport em relação aos seguintes comandos de exemplo: ---- Cat/sys/class/fc_host/host*/device/rport*/fc_Remote_ports/rport*/port_name Cat/sys/class/fc_host/host*/device/rport*/fc_Remote_ports/rport*/port*/port*/port*/port_State ------- 
-|===
---
-.15
---
-[cols="1,2,3"]
-|===
-| ID de erro do NetApp | Título | Descrição 
-
-
-| link:https://mysupport.netapp.com/NOW/cgi-bin/bol?Type=Detail&Display=1154309["1154309"^] | O host SLES 15 com mais de 20 LUNs mapeados pode entrar no modo de manutenção após uma reinicialização | O host SLES 15 com mais de 20 LUNs mapeados pode entrar no modo de manutenção após uma reinicialização. O modo de manutenção torna-se o modo de utilizador único, seguindo a mensagem:
-`Give root password for maintenance (or press Control-D to continue)` 
-|===
---
-====
 
 
 == O que se segue?

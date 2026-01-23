@@ -54,6 +54,11 @@ O ONTAP suporta os seguintes recursos de host SAN, independentemente da versão 
 
 
 
+| A regra udev nativa em `nvme-cli` Este pacote fornece balanceamento de carga com base na profundidade da fila para NVMe multipath.  a| 
+9.6 ou posterior
+
+
+
 | A inicialização SAN é habilitada usando o protocolo NVMe/FC.  a| 
 9.4 ou posterior
 
@@ -67,11 +72,6 @@ O ONTAP suporta os seguintes recursos de host SAN, independentemente da versão 
 | A regra udev nativa em `nvme-cli` Este pacote fornece balanceamento de carga round-robin para NVMe multipath.  a| 
 8.2 ou posterior
 
-
-
-| A regra udev nativa em `nvme-cli` Este pacote fornece balanceamento de carga com base na profundidade da fila para NVMe multipath.  a| 
-9.6 ou posterior
-
 |===
 
 NOTE: Para obter detalhes sobre as configurações suportadas, consulte olink:https://mysupport.netapp.com/matrix/["Ferramenta de Matriz de interoperabilidade"^] .
@@ -82,7 +82,7 @@ NOTE: Para obter detalhes sobre as configurações suportadas, consulte olink:ht
 
 [cols="50,50"]
 |===
-| Se a sua versão do RHEL for... | Saiba mais sobre... 
+| Se a sua versão do RHEL for ... | Saiba mais sobre ... 
 
 
 | Série 10 | link:nvme-rhel-10x.html["Configurando NVMe para RHEL 10.x"] 
