@@ -1029,7 +1029,6 @@ Configure a autenticação segura em banda usando a CLI ou um arquivo de configu
 --
 Configure a autenticação segura na banda usando a CLI.
 
-.Passos
 . Obtenha o NQN do host:
 +
 [source, cli]
@@ -1122,7 +1121,6 @@ Quando vários subsistemas NVMe estiverem disponíveis na configuração do cont
 
 Use o `-o` opção para gerar o arquivo JSON.  Consulte as páginas do manual do NVMe connect-all para mais opções de sintaxe.
 
-.Passos
 . Configure o arquivo JSON:
 +
 .Mostrar exemplo de saída

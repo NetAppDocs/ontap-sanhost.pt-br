@@ -52,7 +52,7 @@ O ONTAP suporta os seguintes recursos de host SAN, independentemente da versão 
 | Recurso | versão do host Oracle Linux 
 
 
-| A regra udev nativa em `nvme-cli` Este pacote fornece balanceamento de carga com base na profundidade da fila para NVMe multipath.  a| 
+| A regra udev nativa no pacote  `nvme-cli` fornece balanceamento de carga de profundidade de fila para multipathing NVMe  a| 
 9.6 ou posterior
 
 
@@ -72,7 +72,7 @@ O ONTAP suporta os seguintes recursos de host SAN, independentemente da versão 
 
 
 
-| A regra udev nativa em `nvme-cli` Este pacote fornece balanceamento de carga round-robin para NVMe multipath.  a| 
+| A regra udev nativa no pacote  `nvme-cli` fornece balanceamento de carga round-robin para multipathing NVMe  a| 
 8.3 ou posterior
 
 |===

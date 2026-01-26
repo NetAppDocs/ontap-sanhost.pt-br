@@ -774,7 +774,6 @@ Configure a autenticação segura em banda usando a CLI ou um arquivo de configu
 --
 Configure a autenticação segura na banda usando a CLI.
 
-.Passos
 . Obtenha o NQN do host:
 +
 [source, cli]

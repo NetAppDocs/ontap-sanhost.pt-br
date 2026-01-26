@@ -48,9 +48,79 @@ Exemplo de versão do kernel do Rocky Linux:
 ----
 5.14.0-570.12.1.el9_6.x86_64
 ----
+. Instale o `nvme-cli` pacote:
++
+[source, cli]
+----
+rpm -qa|grep nvme-cli
+----
++
+O exemplo a seguir mostra uma versão do pacote nvme-cli:
+
++
+[listing]
+----
+nvme-cli-2.11-5.el9.x86_64
+----
+. Instale o `libnvme` pacote:
++
+[source, cli]
+----
+rpm -qa|grep libnvme
+----
++
+O exemplo a seguir mostra um  `libnvme` versão do pacote:
+
++
+[listing]
+----
+libnvme-1.11.1-1.el9.x86_64
+----
+. No host Rocky Linux, verifique a string hostnqn em  `/etc/nvme/hostnqn` :
++
+[source, cli]
+----
+cat /etc/nvme/hostnqn
+----
++
+O exemplo a seguir mostra um  `hostnqn` versão:
+
++
+[listing]
+----
+nqn.2014-08.org.nvmexpress:uuid:4c4c4544-0056-5410-8048-b9c04f425633
+----
+. No sistema ONTAP , verifique se o `hostnqn` A string corresponde à `hostnqn` string para o subsistema correspondente no array ONTAP :
++
+[source, cli]
+----
+::> vserver nvme subsystem host show -vserver vs_coexistence_LPE36002
+----
++
+.Mostrar exemplo
+[%collapsible]
+====
+[listing]
+----
+Vserver Subsystem Priority  Host NQN
+------- --------- --------  ------------------------------------------------
+vs_coexistence_LPE36002
+        nvme
+                  regular   nqn.2014-08.org.nvmexpress:uuid:4c4c4544-0056-5410-8048-b9c04f425633
+        nvme_1
+                  regular   nqn.2014-08.org.nvmexpress:uuid:4c4c4544-0056-5410-8048-b9c04f425633
+        nvme_2
+                  regular   nqn.2014-08.org.nvmexpress:uuid:4c4c4544-0056-5410-8048-b9c04f425633
+        nvme_3
+                  regular   nqn.2014-08.org.nvmexpress:uuid:4c4c4544-0056-5410-8048-b9c04f425633
+4 entries were displayed.
+----
+====
++
+
+NOTE: Se as `hostnqn` strings não corresponderem, use o `vserver modify` comando para atualizar a `hostnqn` cadeia de carateres no subsistema de matriz ONTAP correspondente para corresponder à `hostnqn` cadeia de carateres `/etc/nvme/hostnqn` do host.
 
 
-Diretiva não resolvida em <stdin> - include::_include/nvme/linux-validate-software-version-rockylinux.adoc[]
 
 
 

@@ -36,7 +36,16 @@ Para obter informações sobre como ativar o BIOS HBA, consulte a documentação
 . Verifique se a configuração foi bem-sucedida reinicializando o host e verificando se o sistema operacional está funcionando.
 
 
-Diretiva não resolvida em <stdin> - include::_include/hu/install-linux-host-utilities.adoc[]
+
+
+== Passo 2: Instale os Utilitários de host do Linux
+
+A NetApp recomenda fortemente a instalação dos utilitários de host Linux para suportar o gerenciamento de LUN ONTAP e auxiliar o suporte técnico na coleta de dados de configuração.
+
+link:hu_luhu_71.html["Instale o Linux Host Utilities 7,1"].
+
+
+NOTE: A instalação dos Utilitários de host do Linux não altera nenhuma configuração de tempo limite do host no seu host Linux.
 
 
 

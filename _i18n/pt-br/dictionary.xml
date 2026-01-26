@@ -2034,7 +2034,6 @@
   <block id="c7c50320ea39956b088be548294af1e0" category="paragraph">10.0 ou posterior</block>
   <block id="5d2e5ee168e90c0595b3cc1eee2ee6dd" category="cell">A inicialização SAN é habilitada usando o protocolo NVMe/FC.</block>
   <block id="9d6d817f456752dac19e4b5c699bd30c" category="cell">O<block ref="e1667929105bf030b9f367fc21f8d216" prefix=" " category="inline-code"></block> O pacote inclui scripts de conexão automática, eliminando a necessidade de scripts de terceiros.</block>
-  <block id="1115310dc5d902646a8153a110b7cbc7" category="cell">A regra udev nativa em<block ref="e1667929105bf030b9f367fc21f8d216" prefix=" " category="inline-code"></block> Este pacote fornece balanceamento de carga round-robin para NVMe multipath.</block>
   <block id="a63480986ae76ec294cfdac303f1cc61" category="cell">Saiba mais sobre...</block>
   <block id="62287eeee3056dc397ebc956062f6d92" category="cell">Série 10</block>
   <block id="2ee39f4f778b47b40d3a961eef85042c" category="cell">Série 9</block>
@@ -2154,7 +2153,6 @@
   <block id="160316d24f765380a7e2c247ad512d7a" category="list-text">Localize a linha que define a política de E/S (iopolicy) para o controlador NetApp ONTAP , conforme mostrado no exemplo de regra a seguir:</block>
   <block id="97a0ff99a93f7485dcb82a548fcca4a0" category="admonition">A nova política de E/S (iopolicy) aplica-se automaticamente aos dispositivos NetApp ONTAP Controller correspondentes. Não é necessário reiniciar.</block>
   <block id="92520caa5da5fd65237a96731d101aee" category="list-text">Verifique se as configurações apropriadas do NVMe-oF (como, por exemplo, o modelo definido como NetApp ONTAP Controller e a política de balanceamento de carga de E/S definida como round-robin) para os respectivos namespaces do ONTAP são exibidas corretamente no host:</block>
-  <block id="bf4dbd3d81297258bdb9391343d3d393" category="cell">A regra udev nativa em<block ref="e1667929105bf030b9f367fc21f8d216" prefix=" " category="inline-code"></block> Este pacote fornece balanceamento de carga com base na profundidade da fila para NVMe multipath.</block>
   <block id="b62ae28652ddc6a2c9bb15373668f0d0" category="paragraph">9.6 ou posterior</block>
   <block id="3bf7b9cd443b3cb0c9b741f8a4deb9dc" category="paragraph">O RHEL 10.0 define a política de E/S padrão para NVMe-oF como<block ref="7b6d85eaafedeee6d733437bf856da7e" prefix=" " category="inline-code"></block> . Se você estiver usando o RHEL 10.0 e quiser alterar a política de E/S para<block ref="f63d19812a9885e12a84d9c2748b701f" prefix=" " category="inline-code"></block> , modifique o arquivo de regras udev da seguinte forma:</block>
   <block id="13c16c386fd131bec830d461d648a36c" category="list-text">No sistema ONTAP , verifique se o<block ref="24039a6c469b55da1dae1ff1197f8079" prefix=" " category="inline-code"></block> A string corresponde à<block ref="24039a6c469b55da1dae1ff1197f8079" prefix=" " category="inline-code"></block> string para o subsistema correspondente no array ONTAP :</block>
@@ -2298,7 +2296,6 @@
   <block id="e32699aee2530a886824102acbc184ef" category="cell"><block ref="e32699aee2530a886824102acbc184ef" category="inline-link-macro-rx"></block></block>
   <block id="7a07a307cffb48040275c1265a29ef15" category="inline-link-macro">Configurando NVMe para RHEL 8.x</block>
   <block id="22cb5c5e0e10037e7d4925ec5d2dbf93" category="cell"><block ref="22cb5c5e0e10037e7d4925ec5d2dbf93" category="inline-link-macro-rx"></block></block>
-  <block id="b6c3e670b2b6b7ef2dc26da47cc59df9" category="paragraph">Diretiva não resolvida em &lt;stdin&gt; - include::_include/nvme/linux-validate-software-version-rockylinux.adoc[]</block>
   <block id="72c86330f335f27ea520136a0d95b881" category="sidebar">VE 9.x</block>
   <block id="af795b652b215e481ae2fd213d8bf52e" category="sidebar">VE 8.x</block>
   <block id="b1db54564fe54a4c74a975b18a791532" category="sidebar">7.x</block>
@@ -2397,7 +2394,6 @@
   <block id="55b4f27e868d94d08cb7b820fb7dcaf4" category="summary">Instale os utilitários de host Linux em um servidor SUSE Linux Enterprise Server 16 para gerenciar operações de protocolo FCP e iSCSI com LUNs ONTAP.</block>
   <block id="651119b7fad3ebe0625718e781b85dbd" category="doc">Configurar o SUSE Linux Enterprise Server 16 para FCP e iSCSI com armazenamento ONTAP</block>
   <block id="536673265ab4b1de9fd943164c12494a" category="paragraph">O software Linux Host Utilities fornece ferramentas de gerenciamento e diagnóstico para hosts Linux conectados ao armazenamento ONTAP. Ao instalar o Linux Host Utilities em um host SUSE Linux Enterprise Server 16, você pode usar o Host Utilities para ajudar a gerenciar as operações dos protocolos FCP e iSCSI com LUNs ONTAP.</block>
-  <block id="c79c0bda7187ef54ad53cb84f69b4995" category="paragraph">Diretiva não resolvida em &lt;stdin&gt; - include::_include/hu/install-linux-host-utilities.adoc[]</block>
   <block id="be0724c20eae9509bfecb55613ead45c" category="paragraph">Você pode usar o recurso de multipathing com o SUSE Linux Enterprise Server 16 para gerenciar ONTAP LUNs.</block>
   <block id="40b573003d21aeb3dbe3d1c46c3c87af" category="cell">Se a sua versão do RHEL for ...</block>
   <block id="8637f659452959aafbb4798db09998d6" category="cell">Saiba mais sobre ...</block>
@@ -2425,4 +2421,7 @@
   <block id="3f52de62927af66bbbcbf9a67e36d63c" category="paragraph">Você pode criar um controlador de descoberta persistente (PDC) para um host SUSE Linux Enterprise Server 16. Um PDC é necessário para detectar automaticamente uma operação de adição ou remoção de subsistema NVMe e alterações nos dados da página de log de descoberta.</block>
   <block id="3c8457e76486b7070b5f16df832bfb55" category="paragraph">A autenticação in-band segura é suportada via NVMe/TCP entre um host SUSE Linux Enterprise Server 16 e um controlador ONTAP.</block>
   <block id="60940bf76e8a6f461e5cdf574e9a3897" category="sidebar">SLES-16-FCP</block>
+  <block id="2f2f70e91ff2172f6a78bf052b441f39" category="paragraph"><block ref="806369b10c4f480029bde19415f580b3" category="inline-link-macro-rx"></block>.</block>
+  <block id="ae3361bffdcc882805368ae077d6fcaf" category="cell">A regra udev nativa no pacote <block ref="e1667929105bf030b9f367fc21f8d216" prefix=" " category="inline-code"></block> fornece balanceamento de carga de profundidade de fila para multipathing NVMe</block>
+  <block id="a30e163e966b967193e35b02c3ab5b4b" category="cell">A regra udev nativa no pacote <block ref="e1667929105bf030b9f367fc21f8d216" prefix=" " category="inline-code"></block> fornece balanceamento de carga round-robin para multipathing NVMe</block>
 </blocks>

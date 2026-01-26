@@ -304,6 +304,7 @@ FCP CMPL: xb 00000008 Err 0000000c
 --
 Configure o NVMe/FC para um adaptador Marvell/QLogic.
 
+.Passos
 . Verifique se você está executando o driver de adaptador e as versões de firmware compatíveis:
 +
 [source, cli]
@@ -822,6 +823,7 @@ A autenticação segura em banda é suportada via NVMe/TCP entre um host Oracle 
 
 Cada host ou controlador deve ser associado a uma chave DH-HMAC-CHAP para configurar a autenticação segura.  Uma chave DH-HMAC-CHAP é uma combinação do NQN do host ou controlador NVMe e um segredo de autenticação configurado pelo administrador.  Para autenticar seu par, um host ou controlador NVMe deve reconhecer a chave associada ao par.
 
+.Passos
 Configure a autenticação segura em banda usando a CLI ou um arquivo JSON de configuração.  Utilize um arquivo JSON de configuração se precisar especificar chaves dhchap diferentes para subsistemas diferentes.
 
 [role="tabbed-block"]
@@ -830,7 +832,6 @@ Configure a autenticação segura em banda usando a CLI ou um arquivo JSON de co
 --
 Configure a autenticação segura na banda usando a CLI.
 
-.Passos
 . Obtenha o NQN do host:
 +
 [source, cli]
@@ -923,7 +924,6 @@ Quando vários subsistemas NVMe estiverem disponíveis na configuração do cont
 
 Use o  `-o` opção para gerar o arquivo JSON. Consulte as páginas do manual do NVMe connect-all para obter mais opções de sintaxe.
 
-.Passos
 . Configure o arquivo JSON:
 +
 .Mostrar exemplo
