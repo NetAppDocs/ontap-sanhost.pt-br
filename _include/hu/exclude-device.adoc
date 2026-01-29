@@ -1,10 +1,6 @@
-= Passo 4: Opcionalmente, exclua um dispositivo de multipathing
+= 
 :allow-uri-read: 
 
-
-
-
-== Passo 4: Opcionalmente, exclua um dispositivo de multipathing
 
 Se necessário, você pode excluir um dispositivo de multipathing adicionando o WWID para o dispositivo indesejado à estrofe "lista negra" para o `multipath.conf` arquivo.
 

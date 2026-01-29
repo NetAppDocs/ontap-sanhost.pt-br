@@ -61,8 +61,6 @@ Você pode usar multipathing com o Solaris 11.3 para gerenciar LUNs ONTAP .
 
 O multipathing permite que você configure vários caminhos de rede entre o host e os sistemas de armazenamento.  Se um caminho falhar, o tráfego continua nos caminhos restantes.
 
-Para garantir que o multipathing e os parâmetros de tempo limite recomendados estejam configurados corretamente para seu host, verifique se você está usando as configurações recomendadas da NetApp para seus LUNs ONTAP .
-
 .Passos
 . Os utilitários de host Solaris carregam as configurações de parâmetros recomendadas da NetApp para processadores SPARC e x86_64.
 +
@@ -195,7 +193,7 @@ NOTE: Depois `scsi-vhci-failover-override` de ter sido aplicado, `conf` é adici
 ====
 . Verifique se a E/S alinhada de 4 KB com zpools usando LUNs ONTAP é suportada:
 +
-.. Verifique se o seu host Solaris está instalado com a atualização mais recente do repositório de suporte (SRU):
+.. Verifique se o seu host Solaris está instalado com a atualização mais recente do Support Repository Update (SRU):
 +
 [source, cli]
 ----

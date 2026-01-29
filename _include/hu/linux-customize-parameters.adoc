@@ -1,10 +1,6 @@
-= Etapa 5: Personalizar parâmetros multipath para LUNs ONTAP
+= 
 :allow-uri-read: 
 
-
-
-
-== Etapa 5: Personalizar parâmetros multipath para LUNs ONTAP
 
 Se o seu host estiver conetado a LUNs de outros fornecedores e qualquer configuração de parâmetro multipath for substituída, você precisará corrigi-los adicionando estrofes posteriormente `multipath.conf` no arquivo que se aplicam especificamente aos LUNs ONTAP. Se você não fizer isso, os LUNs do ONTAP podem não funcionar como esperado.
 

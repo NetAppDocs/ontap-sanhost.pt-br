@@ -4,7 +4,7 @@
 
 . Verifique se a E/S alinhada de 4 KB com zpools usando LUNs ONTAP é suportada:
 +
-.. Verifique se o seu host Solaris está instalado com a atualização mais recente do repositório de suporte (SRU):
+.. Verifique se o seu host Solaris está instalado com a atualização mais recente do Support Repository Update (SRU):
 +
 [source, cli]
 ----

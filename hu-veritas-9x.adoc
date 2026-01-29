@@ -130,7 +130,7 @@ ARRAY_TYPE  ALUA, A/A
 ----
 # vxdmpadm settune dmp_tunable=value
 ----
-. Verifique se os parâmetros ajustáveis estão configurados corretamente:
+. Verifique se as configurações de tunables estão corretas:
 +
 [source, cli]
 ----
@@ -190,8 +190,7 @@ Defina o `replacement_timeout` Valor do parâmetro definido como 120.
 
 O iSCSI `replacement_timeout` Este parâmetro controla por quanto tempo a camada iSCSI deve esperar que um caminho ou sessão com tempo limite expirado se restabeleça antes de falhar em quaisquer comandos nele. A NetApp recomenda definir o valor de `replacement_timeout` para 120 no arquivo de configuração iSCSI.
 
-.Exemplo
-[listing]
+[source, cli]
 ----
 # grep replacement_timeout /etc/iscsi/iscsid.conf
 node.session.timeo.replacement_timeout = 120
