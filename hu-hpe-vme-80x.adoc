@@ -1,10 +1,10 @@
 ---
 sidebar: sidebar 
-permalink: hu-proxmox-ve-8x.html 
-keywords: host utilities, proxmox, linux, 8.x, netapp, ontap 
-summary: Instale os utilitários de host Linux em um host Proxmox VE 8.x para gerenciar operações de protocolo FCP e iSCSI com LUNs ONTAP . 
+permalink: hu-hpe-vme-80x.html 
+keywords: host utilities, red hat, rhel, linux, 20.04, netapp, ontap, ubuntu 
+summary: Instale os utilitários de host Linux em um host HPE VME 8.0.x para gerenciar operações de protocolo FCP e iSCSI com LUNs ONTAP. 
 ---
-= Configure o Proxmox VE 8.x para FCP e iSCSI com armazenamento ONTAP.
+= Configurar o HPE VME 8.0.x para FCP e iSCSI com armazenamento ONTAP
 :hardbreaks:
 :toclevels: 1
 :allow-uri-read: 
@@ -16,19 +16,24 @@ summary: Instale os utilitários de host Linux em um host Proxmox VE 8.x para ge
 
 
 [role="lead"]
-Configure o Proxmox VE 8.x para multipathing com parâmetros e configurações específicos para operações de protocolo FCP e iSCSI com armazenamento ONTAP .
-
-FCP e iSCSI com Proxmox VE 8.x apresentam as seguintes limitações conhecidas:
-
-* Os utilitários de host Linux não são compatíveis com os sistemas operacionais Proxmox VE 8.x.
-* A configuração de inicialização SAN não é suportada.
+O software Linux Host Utilities fornece ferramentas de gerenciamento e diagnóstico para hosts Linux conectados ao armazenamento ONTAP. Ao instalar o Linux Host Utilities em um host HPE VME 8.0.x, você pode usar o Host Utilities para ajudar a gerenciar as operações dos protocolos FCP e iSCSI com LUNs ONTAP.
 
 
 
+== Passo 1: Instalar os utilitários do host Linux
 
-== Etapa 1: confirme a configuração multipath para seu host
+A NetApp recomenda fortemente a instalação dos utilitários de host Linux para suportar o gerenciamento de LUN ONTAP e auxiliar o suporte técnico na coleta de dados de configuração.
 
-Você pode usar o recurso de multipathing com o Proxmox VE 8.x para gerenciar LUNs do ONTAP .
+link:hu-luhu-80.html["Instalar o Linux Host Utilities 8.0"] .
+
+
+NOTE: A instalação dos Utilitários de host do Linux não altera nenhuma configuração de tempo limite do host no seu host Linux.
+
+
+
+== Etapa 2: confirme a configuração multipath para seu host
+
+Você pode usar o recurso de multipathing com o HPE VME 8.0.x para gerenciar ONTAP LUNs.
 
 Para garantir que o multipathing esteja configurado corretamente para o host, verifique se o `/etc/multipath.conf` arquivo está definido e se você tem as configurações recomendadas do NetApp configuradas para os LUNs do ONTAP.
 
@@ -78,10 +83,10 @@ A tabela a seguir mostra as configurações de parâmetros multipath compilados 
 | caraterísticas | "2 pg_init_retries 50" 
 
 
-| flush_on_last_del | "sempre" 
+| flush_on_last_del | "sim" 
 
 
-| hardware_handler | "1" 
+| hardware_handler | "0" 
 
 
 | no_path_retry | fila de espera 
@@ -117,30 +122,6 @@ A tabela a seguir mostra as configurações de parâmetros multipath compilados 
 | fornecedor | NetApp 
 |===
 ====
-. Opcionalmente, substitua o valor padrão para o `find_multipaths` parâmetro para garantir que os LUNs do ONTAP sejam descobertos e gerenciados corretamente pelo multipathd:
-+
---
-.. Definir `find_multipaths` para "não" na seção de padrões de `/etc/multipath.conf` :
-+
-[source, cli]
-----
-defaults {
-    find_multipaths "no"
-}
-----
-.. Recarregue o serviço multipath:
-+
-[source, cli]
-----
-systemctl reload multipathd
-----
-
-
---
-+
-
-NOTE: Por padrão, a configuração multipath nativa do sistema operacional Proxmox é definida. `find_multipaths` para "*strict*" com o byte zero vazio `/etc/multipath.conf` O arquivo de configuração é atualizado a cada inicialização do host.  Isso pode impedir que o host descubra LUNs ONTAP recém-apresentados como dispositivos multipath, o que significa que eles não aparecem automaticamente sob controle multipath.  Os LUNs ONTAP existentes permanecem descobertos e sob controle de múltiplos caminhos após cada reinicialização.
-
 . Verifique as configurações de parâmetros e o status do caminho para os LUNs do ONTAP:
 +
 [source, cli]
@@ -148,7 +129,7 @@ NOTE: Por padrão, a configuração multipath nativa do sistema operacional Prox
 multipath -ll
 ----
 +
-Os parâmetros multipath padrão são compatíveis com configurações ASA, AFF e FAS. Nessas configurações, um único LUN ONTAP não deve exigir mais de quatro caminhos. Se houver mais de quatro caminhos, isso pode causar problemas com os caminhos durante uma falha de storage.
+Os parâmetros multipath padrão suportam configurações ASA, AFF e FAS . Nessas configurações, um único LUN ONTAP não deve exigir mais de quatro caminhos. Ter mais de quatro caminhos pode causar problemas durante uma falha de armazenamento.
 
 +
 As saídas de exemplo a seguir mostram as configurações de parâmetro e o status do caminho corretos para LUNs ONTAP em uma configuração ASA, AFF ou FAS.
@@ -165,15 +146,13 @@ Uma configuração do ASA otimiza todos os caminhos para um determinado LUN, man
 =====
 [listing]
 ----
-multipath -ll
-3600a098038315071592b59713261566d dm-38 NETAPP,LUN C-Mode
-size=100G features='3 queue_if_no_path pg_init_retries 50' hwhandler='1 alua' wp=rw
+# multipath -ll
+3600a098038314c4a433f577471797958 dm-2 NETAPP,LUN C-Mode size=180G features='3 queue_if_no_path pg_init_retries 50' hwhandler='1 alua' wp=rw
 `-+- policy='service-time 0' prio=50 status=active
-  |- 8:0:0:7 sdbv 68:144 active ready running
-  |- 9:0:0:7 sdbx 68:176 active ready running
-  |- 6:0:0:7 sdbr 68:80  active ready running
-  `- 7:0:0:7 sdbt 68:112 active ready running
-
+  |- 14:0:0:0  sdc  8:32   active ready running
+  |- 17:0:0:0  sdas 66:192 active ready running
+  |- 14:0:3:0  sdar 66:176 active ready running
+  `- 17:0:3:0  sdch 69:80  active ready running
 ----
 =====
 --
@@ -181,16 +160,15 @@ size=100G features='3 queue_if_no_path pg_init_retries 50' hwhandler='1 alua' wp
 --
 Uma configuração AFF ou FAS deve ter dois grupos de caminhos com prioridades maiores e menores. Os caminhos ativos/otimizados de prioridade mais alta são servidos pelo controlador onde o agregado está localizado. Os caminhos de prioridade mais baixa estão ativos, mas não otimizados, porque são servidos por um controlador diferente. Caminhos não otimizados são usados somente quando caminhos otimizados não estão disponíveis.
 
-O exemplo a seguir mostra a saída para um LUN ONTAP com dois caminhos ativos/otimizados e dois caminhos ativos/não otimizados:
+O exemplo a seguir exibe a saída de um LUN ONTAP com dois caminhos ativos/otimizados e dois caminhos ativos/não otimizados:
 
 .Mostrar exemplo
 [%collapsible]
 =====
 [listing]
 ----
-multipath -ll
-3600a0980383149764b5d567257516273 dm-0 NETAPP,LUN C-Mode
-size=150G features='3 queue_if_no_path pg_init_retries 50' hwhandler='1 alua' wp=rw
+# multipath -ll
+3600a0980383149764b5d567257516273 dm-0 NETAPP,LUN C-Mode size=150G features='3 queue_if_no_path pg_init_retries 50' hwhandler='1 alua' wp=rw
 |-+- policy='service-time 0' prio=50 status=active
 | |- 16:0:3:0  sdcg 69:64  active ready running
 | `- 10:0:0:0  sdb  8:16   active ready running
@@ -205,7 +183,7 @@ size=150G features='3 queue_if_no_path pg_init_retries 50' hwhandler='1 alua' wp
 
 
 
-== Etapa 2: confirme a configuração iSCSI para o seu host
+== Etapa 3: confirme a configuração iSCSI para o seu host
 
 Certifique-se de que iSCSI esteja configurado corretamente para seu host.
 
@@ -342,7 +320,7 @@ tcp: [4] 192.168.200.199:3260,1049 iqn.1992-08.com.netapp:sn.7cd154a7d35411f0a25
 
 
 
-== Etapa 3: opcionalmente, exclua um dispositivo do multipathing
+== Passo 4: Opcionalmente, exclua um dispositivo de multipathing
 
 Se necessário, você pode excluir um dispositivo de multipathing adicionando o WWID para o dispositivo indesejado à estrofe "lista negra" para o `multipath.conf` arquivo.
 
@@ -374,7 +352,7 @@ blacklist {
 
 
 
-== Etapa 4: personalizar parâmetros multicaminho para LUNs ONTAP
+== Etapa 5: Personalizar parâmetros multipath para LUNs ONTAP
 
 Se o seu host estiver conetado a LUNs de outros fornecedores e qualquer configuração de parâmetro multipath for substituída, você precisará corrigi-los adicionando estrofes posteriormente `multipath.conf` no arquivo que se aplicam especificamente aos LUNs ONTAP. Se você não fizer isso, os LUNs do ONTAP podem não funcionar como esperado.
 
@@ -407,6 +385,14 @@ devices {
 ====
 
 
-== Etapa 5: Revise os problemas conhecidos
+== Passo 6: Revise os problemas conhecidos
 
 Não há problemas conhecidos.
+
+
+
+== O que se segue?
+
+* link:hu-luhu-command-reference.html["Saiba mais sobre como usar a ferramenta Linux Host Utilities"] .
+* Configurar os data stores HPE VME nos LUNs ONTAP, depois configurar a máquina virtual. Consulte a documentação do fornecedor HPE para mais informações.
+

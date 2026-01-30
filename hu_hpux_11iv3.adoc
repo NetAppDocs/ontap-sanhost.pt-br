@@ -96,6 +96,9 @@ Os parâmetros multipath padrão suportam configurações ASA, AFF e FAS .  Os e
 --
 Uma configuração do ASA otimiza todos os caminhos para um determinado LUN, mantendo-os ativos. Isso melhora a performance atendendo operações de e/S em todos os caminhos ao mesmo tempo.
 
+.Mostrar exemplo
+[%collapsible]
+=====
 [listing]
 ----
 # sanlun lun show -p vs39:/vol/hpux_vol_1_1/hpux_lun
@@ -116,6 +119,7 @@ up       primary    /dev/dsk/c6t0d2      fcd0    246_1c_hp
 up       primary    /dev/dsk/c10t0d2     fcd1    246_1d_hp
 up       primary    /dev/dsk/c8t0d2      fcd1    248_1d_hp
 ----
+=====
 --
 .Configuração AFF ou FAS
 --
@@ -123,6 +127,9 @@ Uma configuração AFF ou FAS deve ter dois grupos de caminhos com prioridades m
 
 O exemplo a seguir exibe a saída de um LUN ONTAP com dois caminhos ativos/otimizados e dois caminhos ativos/não otimizados:
 
+.Mostrar exemplo
+[%collapsible]
+=====
 [listing]
 ----
 # sanlun lun show -p vs39:/vol/vol24_3_0/lun24_0
@@ -143,6 +150,7 @@ up       primary    /dev/dsk/c41t4d5   fcd1    hpux_4     0
 up       secondary  /dev/dsk/c40t4d5   fcd0    hpux_3     1
 up       secondary  /dev/dsk/c42t4d5   fcd1    hpux_4     1
 ----
+=====
 --
 ====
 

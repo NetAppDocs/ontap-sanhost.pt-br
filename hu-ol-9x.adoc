@@ -205,7 +205,10 @@ size=10G features='3 queue_if_no_path pg_init_retries 50' hwhandler='1 alua' wp=
 
 == Passo 4: confirme a configuração iSCSI para o seu host
 
-Para garantir que o multipath esteja configurado corretamente para o seu host, defina o  `timeout` parâmetro no seu host e confirme que o serviço iSCSI está em execução e conectando-se aos destinos iSCSI.
+Certifique-se de que iSCSI esteja configurado corretamente para seu host.
+
+.Sobre esta tarefa
+Você executa as seguintes etapas no host iSCSI.
 
 .Passos
 . Verifique se o pacote do iniciador iSCSI (iscsi-initiator-utils) está instalado:

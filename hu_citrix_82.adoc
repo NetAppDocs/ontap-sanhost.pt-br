@@ -153,6 +153,9 @@ As saídas de exemplo a seguir mostram as configurações de parâmetro e o stat
 --
 Uma configuração do ASA otimiza todos os caminhos para um determinado LUN, mantendo-os ativos. Isso melhora a performance atendendo operações de e/S em todos os caminhos ao mesmo tempo.
 
+.Mostrar exemplo
+[%collapsible]
+=====
 [listing]
 ----
 /usr/sbin/mpathutil status
@@ -165,6 +168,7 @@ size=9.0G features='4 queue_if_no_path pg_init_retries 50 retain_attached_hw_han
   |- 16:0:0:0  sdcf 69:48   active ready running
   `- 16:0:1:0  sdcg 69:64   active ready running
 ----
+=====
 --
 .Configuração AFF ou FAS
 --
@@ -172,6 +176,9 @@ Uma configuração AFF ou FAS deve ter dois grupos de caminhos com prioridades m
 
 O exemplo a seguir exibe a saída de um LUN ONTAP com dois caminhos ativos/otimizados e dois caminhos ativos/não otimizados:
 
+.Mostrar exemplo
+[%collapsible]
+=====
 [listing]
 ----
 /usr/sbin/mpathutil status
@@ -185,6 +192,7 @@ size=9.0G features='4 queue_if_no_path pg_init_retries 50 retain_attached_hw_han
      |- 16:0:0:0  sdcf 69:48   active ready running
      `- 16:0:1:0  sdcg 69:64   active ready running
 ----
+=====
 --
 ====
 

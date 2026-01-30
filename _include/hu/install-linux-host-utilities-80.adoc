@@ -1,10 +1,6 @@
-= Passo 2: Instale os Utilitários de host do Linux
+= 
 :allow-uri-read: 
 
-
-
-
-== Passo 2: Instale os Utilitários de host do Linux
 
 A NetApp recomenda fortemente a instalação dos utilitários de host Linux para suportar o gerenciamento de LUN ONTAP e auxiliar o suporte técnico na coleta de dados de configuração.
 
