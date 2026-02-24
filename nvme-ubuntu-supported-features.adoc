@@ -1,0 +1,58 @@
+---
+sidebar: sidebar 
+permalink: nvme-ubuntu-supported-features.html 
+keywords: nvme, linux, ubuntu, red hat, enterprise 
+summary: Saiba mais sobre o suporte e os recursos do ONTAP para hosts Ubuntu 
+---
+= Saiba mais sobre o suporte e os recursos do ONTAP para hosts Ubuntu
+:hardbreaks:
+:toclevels: 1
+:allow-uri-read: 
+:toclevels: 1
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./media/
+
+
+[role="lead"]
+O ONTAP suporta os seguintes recursos de host SAN, independentemente da versão do ONTAP em execução na configuração do seu sistema.
+
+[cols="75,25"]
+|===
+| Recurso | Versão do host Ubuntu 
+
+
+| O NetApp plug-in no pacote nativo exibe detalhes do ONTAP para namespaces NVMe/FC.  a| 
+22.04 ou posterior
+
+
+
+| O tráfego NVMe e SCSI é suportado no mesmo host em um determinado adaptador de barramento de host (HBA), sem as configurações explícitas de dm-multipath para evitar a reivindicação de namespaces NVMe  a| 
+22.04 ou posterior
+
+
+
+| O multipath NVMe in-kernel está habilitado por padrão para namespaces NVMe. Portanto, nenhuma configuração explícita é necessária  a| 
+22.04 ou posterior
+
+|===
+
+NOTE: Para obter detalhes sobre as configurações suportadas, consulte olink:https://mysupport.netapp.com/matrix/["Ferramenta de Matriz de interoperabilidade"^] .
+
+
+
+== O que vem a seguir
+
+[cols="50,50"]
+|===
+| Se a sua versão do Ubuntu for .. | Saiba mais sobre... 
+
+
+| 24,04 | link:nvme-ubuntu-2404.html["Configurando NVMe para Ubuntu 24.04"] 
+
+
+| 22,04 | link:nvme-ubuntu-2204.html["Configurando NVMe para Ubuntu 22.04"] 
+|===
+.Informações relacionadas
+link:https://docs.netapp.com/us-en/ontap/san-admin/start-nvme-fc-service-svm-task.html["Aprenda sobre como gerenciar protocolos NVMe"^]

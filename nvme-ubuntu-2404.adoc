@@ -4,53 +4,38 @@ permalink: nvme-ubuntu-2404.html
 keywords: nvme, linux, rhel, red hat, enterprise 
 summary: Como configurar o host NVMe-of para Ubuntu 24,04 com o ONTAP 
 ---
-= Configuração de host NVMe-of para Ubuntu 24,04 com ONTAP
-:hardbreaks:
-:toclevels: 1
+= Configurar o Ubuntu 24.04 para NVMe-oF com storage ONTAP
 :allow-uri-read: 
-:toclevels: 1
-:nofooter: 
-:icons: font
-:linkattrs: 
-:imagesdir: ./media/
 
 
 [role="lead"]
 O NVMe sobre Fabrics (NVMe-of), incluindo NVMe sobre Fibre Channel (NVMe/FC) e outros transportes, é compatível com Ubuntu 24,04 e Asymmetric namespace Access (ANA). Em ambientes NVMe-of, o ANA é equivalente ao multipathing ALUA em ambientes iSCSI e FC e é implementado com multipath NVMe no kernel.
 
-O suporte a seguir está disponível para a configuração de host NVMe-of para Ubuntu 24,04 com ONTAP:
+Aprenda como configurar hosts NVMe over Fabrics (NVMe-oF) para Ubuntu 24.04. Para obter mais informações sobre suporte e recursos, veja link:nvme-ubuntu-supported-features.html["Suporte e recursos do Ubuntu ONTAP"].
 
-* O plug-in do NetApp no pacote nativo do nvme-cli exibe detalhes do ONTAP para namespaces NVMe/FC.
-* Uso do tráfego coexistente NVMe e SCSI no mesmo host em um determinado adaptador de barramento do host (HBA), sem as configurações explícitas de dm-multipath para impedir a reivindicação de namespaces NVMe.
+NVMe-oF com Ubuntu 24.04 apresenta as seguintes limitações conhecidas:
+
+* A inicialização DA SAN usando o protocolo NVMe-of não é atualmente suportada para o Ubuntu 24,04 com ONTAP.
 
 
 Para obter detalhes adicionais sobre as configurações suportadas, consulte o link:https://mysupport.netapp.com/matrix/["Ferramenta de Matriz de interoperabilidade"^].
 
 
 
-== Caraterísticas
+== Passo 1: Instale o Ubuntu e o software NVMe e verifique sua configuração
 
-O Ubuntu 24,04 tem multipath NVMe no kernel habilitado para namespaces NVMe por padrão. Isso significa que você não precisa de configurações explícitas.
-
-
-
-== Limitações conhecidas
-
-A inicialização DA SAN usando o protocolo NVMe-of não é atualmente suportada para o Ubuntu 24,04 com ONTAP.
-
-
-
-== Validar versões de software
-
-Você pode usar o procedimento a seguir para validar as versões de software Ubuntu 24,04 mínimas suportadas.
+Para configurar seu host para NVMe-oF, você precisa instalar os pacotes de software do host e do NVMe, habilitar o multipathing e verificar a configuração NQN do seu host.
 
 .Passos
 . Instale o Ubuntu 24,04 no servidor. Depois que a instalação estiver concluída, verifique se você está executando o kernel Ubuntu 24,04 especificado:
 +
-[listing]
+[source, cli]
 ----
 uname -r
 ----
++
+Exemplo de versão do kernel do Ubuntu:
+
 +
 [listing]
 ----
@@ -58,10 +43,13 @@ uname -r
 ----
 . Instale o `nvme-cli` pacote:
 +
-[listing]
+[source, cli]
 ----
 apt list | grep nvme
 ----
++
+O exemplo a seguir mostra um  `nvme-cli` versão do pacote:
+
 +
 [listing]
 ----
@@ -69,39 +57,46 @@ nvme-cli/noble-updates 2.8-1ubuntu0.1 amd64
 ----
 . No host Ubuntu 24,04, verifique a string hostnqn em `/etc/nvme/hostnqn`:
 +
-[listing]
+[source, cli]
 ----
 cat /etc/nvme/hostnqn
 ----
++
+O exemplo a seguir mostra um  `hostnqn` versão:
+
 +
 [listing]
 ----
 nqn.2014-08.org.nvmexpress:uuid:ace18dd8-1f5a-11ec-b0c3-3a68dd61a6ff
 ----
-. Verifique se a `hostnqn` cadeia de carateres de `/etc/nvme/hostnqn` corresponde à `hostnqn` cadeia de carateres do subsistema correspondente na matriz ONTAP:
+. No sistema ONTAP, verifique se a  `hostnqn` string de  `/etc/nvme/hostnqn` corresponde à  `hostnqn` string do subsistema correspondente no sistema de storage ONTAP:
 +
-[listing]
+[source, cli]
 ----
 vserver nvme subsystem host show -vserver vs_106_fc_nvme
 ----
 +
+.Mostrar exemplo
+[%collapsible]
+====
 [listing]
 ----
 Vserver     Subsystem          Host NQN
 ----------- --------------- ----------------------------------------------------------
 vs_106_fc_nvme ub_106 nqn.2014-08.org.nvmexpress:uuid:c04702c8-e91e-4353-9995-ba4536214631
 ----
+====
 +
 
-NOTE: Se as `hostnqn` strings não corresponderem, use o `vserver modify` comando para atualizar a `hostnqn` cadeia de carateres no subsistema de matriz ONTAP correspondente para corresponder à `hostnqn` cadeia de carateres `/etc/nvme/hostnqn` do host.
+NOTE: Se as  `hostnqn`strings não coincidirem, use o comando  `vserver modify` para atualizar a string  `hostnqn` no subsistema do sistema de storage ONTAP correspondente para corresponder à string  `hostnqn` de  `/etc/nvme/hostnqn` no host.
 
 
 
 
 
-== Configurar o NVMe/FC
+== Etapa 2: Configurar NVMe/FC e NVMe/TCP
 
-Você pode configurar o NVMe/FC para adaptadores Broadcom/Emulex ou Marvell/Qlogic.
+Configurar NVMe/FC para adaptadores Broadcom/Emulex ou Marvell/Qlogic, ou configurar NVMe/TCP usando descoberta manual e operações de conexão.
 
 [role="tabbed-block"]
 ====
@@ -109,36 +104,67 @@ Você pode configurar o NVMe/FC para adaptadores Broadcom/Emulex ou Marvell/Qlog
 --
 Configurar o NVMe/FC para um adaptador Broadcom/Emulex.
 
+.Passos
 . Verifique se você está usando o modelo de adaptador suportado:
 +
-.. `cat /sys/class/scsi_host/host*/modelname`
+.. Exibir os nomes dos modelos:
++
+[source, cli]
+----
+cat /sys/class/scsi_host/host*/modelname
+----
++
+Você deve ver a seguinte saída:
+
 +
 [listing]
 ----
 LPe36002-M64
 LPe36002-M64
-
 ----
-.. `cat /sys/class/scsi_host/host*/modeldesc`
+.. Exibir as descrições do modelo:
++
+[source, cli]
+----
+cat /sys/class/scsi_host/host*/modeldesc
+----
++
+Você deverá ver uma saída semelhante ao seguinte exemplo:
+
 +
 [listing]
 ----
 Emulex LPe36002-M64 2-Port 64Gb Fibre Channel Adapter
 Emulex LPe36002-M64 2-Port 64Gb Fibre Channel Adapter
-
 ----
 
 
-. Verifique se você está usando o firmware Broadcom recomendado e o driver da `lpfc` caixa de entrada.
+. Verifique se você está usando o firmware e o driver inbox da Broadcom recomendados: `lpfc`
 +
-.. `cat /sys/class/scsi_host/host*/fwrev`
+.. Exibir a versão do firmware:
++
+[source, cli]
+----
+cat /sys/class/scsi_host/host*/fwrev
+----
++
+O comando retorna as versões do firmware:
+
 +
 [listing]
 ----
 14.4.317.10, sli-4:6:d
 14.4.317.10, sli-4:6:d
 ----
-.. `cat /sys/module/lpfc/version`
+.. Exibir a versão do driver da caixa de entrada:
++
+[source, cli]
+----
+cat /sys/module/lpfc/version
+----
++
+O exemplo a seguir mostra uma versão do driver:
+
 +
 [listing]
 ----
@@ -151,30 +177,46 @@ Para obter a lista atual de versões de firmware e drivers de adaptador suportad
 
 . Verifique se `lpfc_enable_fc4_type` está definido como `3`:
 +
-[listing]
+[source, cli]
 ----
 cat /sys/module/lpfc/parameters/lpfc_enable_fc4_type
 ----
+. Verifique se você pode exibir suas portas do iniciador:
 +
-A saída esperada é 3.
+[source, cli]
+----
+cat /sys/class/fc_host/host*/port_name
+----
++
+Você deverá ver uma saída semelhante a:
 
-. Verifique se as portas do iniciador estão ativas e em execução e se você pode ver os LIFs de destino:
-+
-.. `cat /sys/class/fc_host/host*/port_name`
 +
 [listing]
 ----
 0x100000109bf0447b
 0x100000109bf0447c
 ----
-.. `cat /sys/class/fc_host/host*/port_state`
+. Verifique se as portas do iniciador estão online:
++
+[source, cli]
+----
+cat /sys/class/fc_host/host*/port_state
+----
++
+Você deve ver a seguinte saída:
+
 +
 [listing]
 ----
 Online
 Online
 ----
-.. `cat /sys/class/scsi_host/host*/nvme_info`
+. Verifique se as portas do iniciador NVMe/FC estão ativadas e se as portas de destino estão visíveis:
++
+[source, cli]
+----
+cat /sys/class/scsi_host/host*/nvme_info
+----
 +
 .Mostrar exemplo de saída
 [%collapsible]
@@ -208,22 +250,23 @@ FCP CMPL: xb 00000047 Err 00000075
 =====
 
 
-
-
 --
-.Marvell/QLogic
+.NVMe/FC - Marvell/QLogic
 --
 O driver nativo da caixa de entrada qla2xxx incluído no kernel do Ubuntu 24,04 GA tem as correções upstream mais recentes. Essas correções são essenciais para o suporte ao ONTAP.
 
 Configure o NVMe/FC para um adaptador Marvell/QLogic.
 
 .Passos
-. Verifique se você está executando o driver de adaptador e as versões de firmware compatíveis:
+. Verifique se você está usando as versões de firmware e driver do adaptador compatíveis:
 +
-[listing]
+[source, cli]
 ----
 cat /sys/class/fc_host/host*/symbolic_name
 ----
++
+O exemplo a seguir mostra as versões do driver e do firmware:
+
 +
 [listing]
 ----
@@ -232,12 +275,164 @@ QLE2872 FW: v9.15.00 DVR: v10.02.09.100-k
 ----
 . Verifique se `ql2xnvmeenable` está definido. Isso permite que o adaptador Marvell funcione como um iniciador NVMe/FC:
 +
-[listing]
+[source, cli]
 ----
 cat /sys/module/qla2xxx/parameters/ql2xnvmeenable
 ----
 +
-O outptut esperado é 1.
+A saída esperada é 1.
+
+
+
+--
+.NVMe/TCP
+--
+O NVMe/TCP não suporta a operação de conexão automática. Em vez disso, você pode descobrir os subsistemas e namespaces do NVMe/TCP executando as operações NVMe/TCP  `connect` ou  `connect-all` manualmente.
+
+.Passos
+. Verifique se a porta iniciadora consegue obter os dados da página de log de descoberta através das LIFs NVMe/TCP suportadas:
++
+[source, cli]
+----
+nvme discover -t tcp -w <host-traddr> -a <traddr>
+----
++
+.Mostrar exemplo
+[%collapsible]
+=====
+[listing, subs="+quotes"]
+----
+# nvme discover -t tcp -w 192.168.167.150 -a 192.168.167.155
+Discovery Log Number of Records 8, Generation counter 10
+=====Discovery Log Entry 0======
+trtype:  tcp
+adrfam:  ipv4
+subtype: *current discovery subsystem*
+treq:    not specified
+portid:  4
+trsvcid: 8009
+subnqn:  nqn.1992-08.com.netapp:sn.9b7d42b764ff11efb8fed039eabac370:discovery
+traddr:  192.168.167.156
+eflags:  *explicit discovery connections*, *duplicate discovery* information*
+sectype: *none*
+=====Discovery Log Entry 1======
+trtype:  tcp
+adrfam:  ipv4
+subtype: *current discovery subsystem*
+treq:    not specified
+portid:  2
+trsvcid: 8009
+subnqn:  nqn.1992-08.com.netapp:sn.9b7d42b764ff11efb8fed039eabac370:discovery
+traddr:  192.168.166.156
+eflags:  *explicit discovery connections*, *duplicate discovery* information*
+sectype: *none*
+=====Discovery Log Entry 2======
+trtype:  tcp
+adrfam:  ipv4
+subtype: *current discovery subsystem*
+treq:    not specified
+portid:  3
+trsvcid: 8009
+subnqn:  nqn.1992-08.com.netapp:sn.9b7d42b764ff11efb8fed039eabac370:discovery
+traddr:  192.168.167.155
+eflags:  *explicit discovery connections*, *duplicate discovery* information*
+sectype: *none*
+=====Discovery Log Entry 3======
+trtype:  tcp
+adrfam:  ipv4
+subtype: *current discovery subsystem*
+treq:    not specified
+portid:  1
+trsvcid: 8009
+subnqn:  nqn.1992-08.com.netapp:sn.9b7d42b764ff11efb8fed039eabac370:discovery
+traddr:  192.168.166.155
+eflags:  *explicit discovery connections*, *duplicate discovery* information*
+sectype: *none*
+=====Discovery Log Entry 4======
+trtype:  tcp
+adrfam:  ipv4
+subtype: *nvme subsystem*
+treq:    not specified
+portid:  4
+trsvcid: 4420
+subnqn:  nqn.1992-08.com.netapp:sn.9b7d42b764ff11efb8fed039eabac370:subsystem.ubuntu_24.04_tcp_211
+traddr:  192.168.167.156
+eflags:  none
+sectype: none
+=====Discovery Log Entry 5======
+trtype:  tcp
+adrfam:  ipv4
+subtype: *nvme subsystem*
+treq:    not specified
+portid:  2
+trsvcid: 4420
+subnqn:  nqn.1992-08.com.netapp:sn.9b7d42b764ff11efb8fed039eabac370:subsystem.ubuntu_24.04_tcp_211
+traddr:  192.168.166.156
+eflags:  none
+sectype: none
+=====Discovery Log Entry 6======
+trtype:  tcp
+adrfam:  ipv4
+subtype: *nvme subsystem*
+treq:    not specified
+portid:  3
+trsvcid: 4420
+subnqn:  nqn.1992-08.com.netapp:sn.9b7d42b764ff11efb8fed039eabac370:subsystem.ubuntu_24.04_tcp_211
+traddr:  192.168.167.155
+eflags:  none
+sectype: none
+=====Discovery Log Entry 7======
+trtype:  tcp
+adrfam:  ipv4
+subtype: *nvme subsystem*
+treq:    not specified
+portid:  1
+trsvcid: 4420
+subnqn:  nqn.1992-08.com.netapp:sn.9b7d42b764ff11efb8fed039eabac370:subsystem.ubuntu_24.04_tcp_211
+traddr:  192.168.166.155
+eflags:  none
+sectype: none
+----
+=====
+. Verifique se as outras combinações de LIF de iniciador-alvo NVMe/TCP podem recuperar com sucesso os dados da página de log de descoberta:
++
+[source, cli]
+----
+nvme discover -t tcp -w <host-traddr> -a <traddr>
+----
++
+.Mostrar exemplo de saída
+[%collapsible]
+=====
+[listing]
+----
+#nvme discover -t tcp -w 192.168.167.150 -a 192.168.167.155
+#nvme discover -t tcp -w 192.168.167.150 -a 192.168.167.156
+#nvme discover -t tcp -w 192.168.166.150 -a 192.168.166.155
+#nvme discover -t tcp -w 192.168.166.150 -a 192.168.166.156
+----
+=====
+. Execute o `nvme connect-all` comando em todos os LIFs de destino iniciador NVMe/TCP suportados nos nós:
++
+[source, cli]
+----
+nvme connect-all -t tcp -w <host-traddr> -a <traddr>
+----
++
+.Mostrar exemplo
+[%collapsible]
+=====
+[listing]
+----
+#nvme connect-all -t tcp -w 192.168.167.150 -a 192.168.167.155
+#nvme connect-all -t tcp -w 192.168.167.150 -a 192.168.167.156
+#nvme connect-all -t tcp -w 192.168.166.150 -a 192.168.166.155
+#nvme connect-all -t tcp -w 192.168.166.150 -a 192.168.166.156
+----
+=====
++
+
+NOTE: A partir do Ubuntu 24,04.04, a configuração padrão ctrl_loss_tmo timeout para NVMe/TCP é desativada. Isso significa que não há limite no número de tentativas (tentativa indefinida) e você não precisa configurar manualmente uma duração específica de tempo limite de ctrl_loss_tmo ao usar os `nvme connect` comandos ou `nvme connect-all` (opção -l ). Com esse comportamento padrão, as controladoras NVMe/TCP não apresentam timeouts em caso de falha de caminho e permanecem conectadas indefinidamente.
 
 
 
@@ -245,7 +440,7 @@ O outptut esperado é 1.
 ====
 
 
-=== Ativar 1MB I/o (Opcional)
+== Etapa 3: Opcionalmente, habilite a E/S de 1 MB para NVMe/FC.
 
 O ONTAP relata um Tamanho Máximo de Transferência de Dados (MDTS) de 8 nos dados do Controlador de Identificação.  Isso significa que o tamanho máximo da solicitação de E/S pode ser de até 1 MB.  Para emitir solicitações de E/S de tamanho 1 MB para um host Broadcom NVMe/FC, você deve aumentar o `lpfc` valor do `lpfc_sg_seg_cnt` parâmetro para 256 do valor padrão de 64.
 
@@ -278,183 +473,46 @@ cat /sys/module/lpfc/parameters/lpfc_sg_seg_cnt
 
 
 
-== Configurar o NVMe/TCP
+== Etapa 4: verificar a configuração de multipath
 
-O NVMe/TCP não oferece suporte à funcionalidade de conexão automática. Em vez disso, você pode descobrir manualmente os subsistemas e namespaces NVMe/TCP usando os `connect` comandos ou `connect-all`.
-
-.Passos
-. Verifique se a porta do iniciador pode buscar os dados da página de log de descoberta nas LIFs NVMe/TCP suportadas:
-+
-[listing]
-----
-nvme discover -t tcp -w <host-traddr> -a <traddr>
-----
-+
-.Mostrar exemplo
-[%collapsible]
-====
-[listing, subs="+quotes"]
-----
-# nvme discover -t tcp -w 192.168.167.150 -a 192.168.167.155
-Discovery Log Number of Records 8, Generation counter 10
-=====Discovery Log Entry 0======
-trtype:  tcp
-adrfam:  ipv4
-subtype: *current discovery subsystem*
-treq:    not specified
-portid:  4
-trsvcid: 8009
-subnqn:  nqn.1992-08.com.netapp:sn.9b7d42b764ff11efb8fed039eabac370:discovery
-traddr:  192.168.167.156
-eflags:  *explicit discovery connections, duplicate discovery information*
-sectype: *none*
-=====Discovery Log Entry 1======
-trtype:  tcp
-adrfam:  ipv4
-subtype: *current discovery subsystem*
-treq:    not specified
-portid:  2
-trsvcid: 8009
-subnqn:  nqn.1992-08.com.netapp:sn.9b7d42b764ff11efb8fed039eabac370:discovery
-traddr:  192.168.166.156
-eflags:  *explicit discovery connections, duplicate discovery information*
-sectype: *none*
-=====Discovery Log Entry 2======
-trtype:  tcp
-adrfam:  ipv4
-subtype: *current discovery subsystem*
-treq:    not specified
-portid:  3
-trsvcid: 8009
-subnqn:  nqn.1992-08.com.netapp:sn.9b7d42b764ff11efb8fed039eabac370:discovery
-traddr:  192.168.167.155
-eflags:  *explicit discovery connections, duplicate discovery information*
-sectype: *none*
-=====Discovery Log Entry 3======
-trtype:  tcp
-adrfam:  ipv4
-subtype: *current discovery subsystem*
-treq:    not specified
-portid:  1
-trsvcid: 8009
-subnqn:  nqn.1992-08.com.netapp:sn.9b7d42b764ff11efb8fed039eabac370:discovery
-traddr:  192.168.166.155
-eflags:  *explicit discovery connections, duplicate discovery information*
-sectype: *none*
-=====Discovery Log Entry 4======
-trtype:  tcp
-adrfam:  ipv4
-subtype: nvme subsystem
-treq:    not specified
-portid:  4
-trsvcid: 4420
-subnqn:  nqn.1992-08.com.netapp:sn.9b7d42b764ff11efb8fed039eabac370:subsystem.ubuntu_24.04_tcp_211
-traddr:  192.168.167.156
-eflags:  none
-sectype: none
-=====Discovery Log Entry 5======
-trtype:  tcp
-adrfam:  ipv4
-subtype: nvme subsystem
-treq:    not specified
-portid:  2
-trsvcid: 4420
-subnqn:  nqn.1992-08.com.netapp:sn.9b7d42b764ff11efb8fed039eabac370:subsystem.ubuntu_24.04_tcp_211
-traddr:  192.168.166.156
-eflags:  none
-sectype: none
-=====Discovery Log Entry 6======
-trtype:  tcp
-adrfam:  ipv4
-subtype: nvme subsystem
-treq:    not specified
-portid:  3
-trsvcid: 4420
-subnqn:  nqn.1992-08.com.netapp:sn.9b7d42b764ff11efb8fed039eabac370:subsystem.ubuntu_24.04_tcp_211
-traddr:  192.168.167.155
-eflags:  none
-sectype: none
-=====Discovery Log Entry 7======
-trtype:  tcp
-adrfam:  ipv4
-subtype: nvme subsystem
-treq:    not specified
-portid:  1
-trsvcid: 4420
-subnqn:  nqn.1992-08.com.netapp:sn.9b7d42b764ff11efb8fed039eabac370:subsystem.ubuntu_24.04_tcp_211
-traddr:  192.168.166.155
-eflags:  none
-sectype: none
-----
-====
-. Verifique se as outras combinações de LIF entre iniciador e destino do NVMe/TCP podem buscar dados da página de log de descoberta:
-+
-[listing]
-----
-nvme discover -t tcp -w <host-traddr> -a <traddr>
-----
-+
-.Mostrar exemplo de saída
-[%collapsible]
-====
-[listing]
-----
-#nvme discover -t tcp -w 192.168.167.150 -a 192.168.167.155
-#nvme discover -t tcp -w 192.168.167.150 -a 192.168.167.156
-#nvme discover -t tcp -w 192.168.166.150 -a 192.168.166.155
-#nvme discover -t tcp -w 192.168.166.150 -a 192.168.166.156
-----
-====
-. Execute o `nvme connect-all` comando em todos os LIFs de destino iniciador NVMe/TCP suportados nos nós:
-+
-[listing]
-----
-nvme connect-all -t tcp -w <host-traddr> -a <traddr>
-----
-+
-.Mostrar exemplo de saída
-[%collapsible]
-====
-[listing]
-----
-#nvme connect-all -t tcp -w 192.168.167.150 -a 192.168.167.155
-#nvme connect-all -t tcp -w 192.168.167.150 -a 192.168.167.156
-#nvme connect-all -t tcp -w 192.168.166.150 -a 192.168.166.155
-#nvme connect-all -t tcp -w 192.168.166.150 -a 192.168.166.156
-----
-====
-+
-
-NOTE: A partir do Ubuntu 24,04.04, a configuração padrão ctrl_loss_tmo timeout para NVMe/TCP é desativada. Isso significa que não há limite no número de tentativas (tentativa indefinida) e você não precisa configurar manualmente uma duração específica de tempo limite de ctrl_loss_tmo ao usar os `nvme connect` comandos ou `nvme connect-all` (opção -l ). Com esse comportamento padrão, as controladoras NVMe/TCP não apresentam timeouts em caso de falha de caminho e permanecem conectadas indefinidamente.
-
-
-
-
-
-== Validar o NVMe-of
-
-Você pode usar o procedimento a seguir para validar o NVME-of.
+Verifique se o status multipath do NVMe no kernel, o status ANA e os namespaces do ONTAP estão corretos para a configuração do NVMe-of.
 
 .Passos
-. Verifique se o multipath NVMe no kernel está habilitado:
+. Verifique se as configurações apropriadas do NVMe-oF (como, por exemplo, o modelo definido como NetApp ONTAP Controller e a política de balanceamento de carga de E/S definida como round-robin) para os respectivos namespaces do ONTAP são exibidas corretamente no host:
 +
-[listing]
+.. Verifique se o multipath NVMe no kernel está habilitado:
++
+[source, cli]
 ----
 cat /sys/module/nvme_core/parameters/multipath
 ----
 +
 A saída esperada é "Y".
 
-. Verifique se as configurações de NVMe-of apropriadas (como, modelo definido como "controlador NetApp ONTAP" e balanceamento de carga iopolicy definido como "round-robin") para os respetivos namespaces ONTAP são exibidos corretamente no host:
+.. Exibir os subsistemas:
 +
-.. `cat /sys/class/nvme-subsystem/nvme-subsys*/model`
+[source, cli]
+----
+cat /sys/class/nvme-subsystem/nvme-subsys*/model
+----
++
+Você deve ver a seguinte saída:
+
 +
 [listing]
 ----
 NetApp ONTAP Controller
 NetApp ONTAP Controller
 ----
-.. `cat /sys/class/nvme-subsystem/nvme-subsys*/iopolicy`
+.. Exibir a política:
++
+[source, cli]
+----
+cat /sys/class/nvme-subsystem/nvme-subsys*/iopolicy
+----
++
+Você deve ver a seguinte saída:
+
 +
 [listing]
 ----
@@ -465,7 +523,7 @@ round-robin
 
 . Verifique se os namespaces são criados e descobertos corretamente no host:
 +
-[listing]
+[source, cli]
 ----
 nvme list
 ----
@@ -491,7 +549,7 @@ Namespace Usage   Format                FW            Rev
 ====
 .NVMe/FC
 --
-[listing]
+[source, cli]
 ----
 nvme list-subsys /dev/nvme0n1
 ----
@@ -510,7 +568,7 @@ nvme-subsys4 - NQN=nqn.1992-08.com.netapp:sn.8763d311b2ac11ed950ed039ea951c46:su
 --
 .NVMe/TCP
 --
-[listing]
+[source, cli]
 ----
 nvme list-subsys /dev/nvme1n1
 ----
@@ -529,37 +587,37 @@ nvme-subsys0 - NQN=nqn.1992-08.com.netapp:sn.9b7d42b764ff11efb8fed039eabac370:su
 ----
 =====
 --
+.. Verifique se o plug-in NetApp exibe os valores corretos para cada dispositivo de namespace ONTAP:
+
+
 ====
-. Verifique se o plug-in NetApp exibe os valores corretos para cada dispositivo de namespace ONTAP:
-+
-[role="tabbed-block"]
-====
-.Coluna
+
+
 --
-[listing]
+[source, cli]
 ----
 nvme netapp ontapdevices -o column
 ----
 .Mostrar exemplo de saída
 [%collapsible]
-=====
+====
 [listing]
 ----
 Device        Vserver        Namespace Path          NSID UUID                                   Size
 ------------- -------------  ----------------------- ---- -------------------------------------- ---------
 /dev/nvme0n1   vs_211_tcp    /vol/tcpvol1/ns1        1    1cc7bc78-8d7b-4d8e-a3c4-750f9461a6e9   21.47GB
 ----
-=====
+====
 --
 .JSON
 --
-[listing]
+[source, cli]
 ----
 nvme netapp ontapdevices -o json
 ----
 .Mostrar exemplo de saída
 [%collapsible]
-=====
+====
 [listing]
 ----
 {
@@ -579,13 +637,12 @@ nvme netapp ontapdevices -o json
 }
 
 ----
-=====
---
 ====
-
-
-
-
-== Problemas conhecidos
+--
+[]
+====
+== Etapa 5: analise os problemas conhecidos
 
 Não há problemas conhecidos para a configuração de host NVMe-of para Ubuntu 24,04 com a versão ONTAP.
+
+====

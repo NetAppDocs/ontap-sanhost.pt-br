@@ -144,7 +144,7 @@ Nenhum. Tente executar o `nvme discover` comando novamente após algum tempo. Pa
 
 == Quando contactar o suporte técnico
 
-Se os problemas persistirem, reúna os seguintes arquivos e resultados de comando e entre em contato. link:mysupport.netapp.com["Suporte à NetApp"^] para triagem adicional:
+Caso os problemas persistam, colete os seguintes arquivos e resultados de comandos e entre em contato link:https://mysupport.netapp.com["Suporte à NetApp"^] para uma análise mais detalhada:
 
 [source, cli]
 ----

@@ -411,7 +411,7 @@ devices {
 
 Não há problemas conhecidos.
 
-Para problemas conhecidos com kernels compatíveis com CentOS Red Hat, consulte o link:hu-rhel-8x.html#known-problems-and-limitations["problemas conhecidos"] para a série Red Hat Enterprise Linux (RHEL) 8.x.
+Para problemas conhecidos do kernel compatível com CentOS Red Hat, consulte a link:hu-rhel-8x.html#step-7-review-the-known-issues["problemas conhecidos"] para a série Red Hat Enterprise Linux (RHEL) 8.x.
 
 
 

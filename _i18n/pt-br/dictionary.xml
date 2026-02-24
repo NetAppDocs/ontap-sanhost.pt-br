@@ -38,7 +38,6 @@
   <block id="ae2b455a54af72efa36eb66631dcf444" category="list-text">Ative a inicialização SAN no BIOS do servidor para as portas às quais o LUN de inicialização SAN está mapeado.</block>
   <block id="482fb3c22fb491f46c3f0e54cea6b9d1" category="paragraph">Para obter informações sobre como ativar o BIOS HBA, consulte a documentação específica do fornecedor.</block>
   <block id="8637d6c1f3e0436f7f2ec935b829bd22" category="paragraph">Exemplo de saída:</block>
-  <block id="6faca8b2572cd22ef1b619e4be0a8165" category="paragraph">O NVMe/TCP não tem a funcionalidade de conexão automática. Portanto, se um caminho for desativado e não for restaurado dentro do período de tempo limite padrão de 10 minutos, o NVMe/TCP não poderá se reconetar automaticamente. Para evitar um tempo limite, você deve definir o período de repetição para eventos de failover para pelo menos 30 minutos.</block>
   <block id="38022ef96e4c7edb41b89fa3a008c3f6" category="inline-link-macro">Kit de utilitário de host do Windows 7,1</block>
   <block id="0a0990c5ca1e9aa6bb4871721a00290c" category="list-text">Instale <block ref="7e5271dd15da7840bc647fc6451145a6" category="inline-link-macro-rx"></block> para definir os parâmetros do driver que são comuns ao FC e ao NVMe.</block>
   <block id="cc6f38a02ffcad6a7b76b5c9c2a8a868" category="list-text">Abra as propriedades MPIO.</block>
@@ -87,7 +86,6 @@
   <block id="dfeb26940493cf0ca07dfbf198c98918" category="paragraph">O diretório a seguir é criado quando você descompacta o arquivo:<block ref="666ee7336e2d1a70fa06a334c624dce0" prefix=" " category="inline-code"></block>. Este diretório contém um dos seguintes subdiretórios: MPIO, NON_MPIO ou SAN_Tool_Kit.</block>
   <block id="7479ee4eaf5b0a177d10a5a42ff8dc26" category="list-text">Instale o AIX MPIO:</block>
   <block id="71083863a948571a8f27335105fd6269" category="list-text">Confirme a versão do software:</block>
-  <block id="6ca857f7a44a21cfffda914cf9549710" category="paragraph">*Exemplo de saída*</block>
   <block id="1669e5f0b1148e1054b39b7a819b7fdb" category="summary">Descreve como usar o IBM AIX 7,2 e/ou PowerVM VIOS 3,1 com o ONTAP</block>
   <block id="7cfc2a0609811d433edc27220510bde6" category="list-text">Aceda ao<block ref="4885f2a79813769d8236c375fd40eeb7" category="inline-link-rx"></block> e transfira o ficheiro comprimido que contém os Utilitários do sistema anfitrião para um diretório do sistema anfitrião.</block>
   <block id="ee3c9604966f68c69c5d81299e5c5913" category="paragraph">O diretório a seguir é criado quando você descompacta o arquivo:<block ref="0daf21a50f21483f3e2046fc64c5dc61" prefix=" " category="inline-code"></block>. Este diretório terá um dos seguintes subdiretórios: MPIO, NON_MPIO ou SAN_Tool_Kit.</block>
@@ -302,7 +300,6 @@
   <block id="e214de5ea0b1a8eb765598cf4b80a404" category="summary">É possível configurar determinados hosts SAN para o protocolo NVMe sobre Fabrics (NVMe-of).</block>
   <block id="2e8526cbe762cb1b8393d935a3b0bf16" category="section-title">Definições recomendadas</block>
   <block id="cfcd208495d565ef66e7dff9f98764da" category="cell">0</block>
-  <block id="52b5830420efb96c3a91beb52bac3b23" category="paragraph">*Exemplo de saída:*</block>
   <block id="da80aa62fc6cf6b66539a5a3933874a8" category="cell"><block ref="da80aa62fc6cf6b66539a5a3933874a8" category="inline-link-rx"></block></block>
   <block id="675cd8e52ba395fba110b2ae7c90675b" category="cell">Utilitário SAN LUN com Emulex HBA precisa de links simbólicos de pacotes de biblioteca</block>
   <block id="c517a5fb26b575817c996f5b44f027c8" category="inline-link-macro">1238719</block>
@@ -718,7 +715,6 @@
   <block id="f17bfdf5999401bcdd6897f6d5dd675b" category="inline-link-macro">Gerenciando correções provisórias no AIX</block>
   <block id="bcdcf815cb913fe205982051fea55f20" category="paragraph">Para obter mais informações sobre como gerenciar ifixos, <block ref="d0c56d52e1733062faaa4c2667974f7c" category="inline-link-macro-rx"></block>consulte .</block>
   <block id="482723983a4f2af954e36ff41e567451" category="section-title">Limitações conhecidas</block>
-  <block id="c98fed57553daff5a2cf2fa022d54254" category="section-title">Configurar o NVMe/FC</block>
   <block id="9fd88788efc2039d4c86e3d60310b147" category="paragraph">Recuperar uma lista de adaptadores virtuais:</block>
   <block id="955736fca778773f397bfff3fb13554e" category="list-text">Habilite o suporte ao protocolo NVMe/FC em um adaptador executando o<block ref="298944b0d52065fb6d4009e722898415" prefix=" " category="inline-code"></block> comando no VIOS:</block>
   <block id="6cd5c80cb797f1e2d35f1d580ffe6d20" category="list-text">Verifique se o suporte foi ativado no adaptador:</block>
@@ -819,7 +815,6 @@
   <block id="b666f8343a2e41c88c8766775c8dec12" category="paragraph">A configuração de host NVMe-of para ESXi 8.x com ONTAP tem os seguintes problemas conhecidos:</block>
   <block id="85dcf040cfea5e44024dcdee365ef36f" category="cell">O ONTAP 9.9,1 introduziu o suporte para o comando NVMe "abort". Quando o ONTAP recebe o comando "abortar" para abortar um comando NVMe fundido que está aguardando o comando Partner, ocorre uma interrupção do nó ONTAP. O problema é notado somente em hosts que usam comandos fundidos NVMe (por exemplo, ESX) e transporte Fibre Channel (FC).</block>
   <block id="2a41c03d949869222b758867aff845ff" category="inline-link-macro">Suporte ao VMware vSphere 6.x e 7.x com sincronização ativa do NetApp SnapMirror</block>
-  <block id="a3d213368ad78179b0d9b7b5d93b6385" category="list-text">A inicialização DE SAN usando o protocolo NVMe-of não é atualmente suportada.</block>
   <block id="77835a1b9432b93fd521ab9f863d3c08" category="list-text">Os scripts nativos de conexão automática NVMe/FC não estão disponíveis no pacote nvme-cli. Use os scripts externos de conexão automática fornecidos pelo fornecedor HBA.</block>
   <block id="6ba6a18088999d632ca174b9873a3b12" category="list-text">Instale o<block ref="e1667929105bf030b9f367fc21f8d216" prefix=" " category="inline-code"></block> pacote:</block>
   <block id="edf8941abbf70168c1c1f10527d2f73f" category="list-text">Verifique se<block ref="2daa99bd4c709cddaca678ef2050fb39" prefix=" " category="inline-code"></block> está definido como<block ref="eccbc87e4b5ce2fe28308fd9f2a7baf3" prefix=" " category="inline-code"></block>:</block>
@@ -827,35 +822,26 @@
   <block id="a046a35b29637b8ed1e4a75b1770338d" category="list-text">Verifique se os namespaces são criados e descobertos corretamente no host:</block>
   <block id="4f8639e044e21b4514d7a88676eca04b" category="list-text">Verifique se o estado do controlador de cada caminho está ativo e tem o status ANA correto:</block>
   <block id="bd891cc047425f44dc25261ff56d8619" category="list-text">Verifique se o plug-in NetApp exibe os valores corretos para cada dispositivo de namespace ONTAP:</block>
-  <block id="e92702d12f6aa1afc14988d919e8a06e" category="list-text">Uso do tráfego coexistente NVMe e SCSI no mesmo host em um determinado adaptador de barramento do host (HBA), sem as configurações explícitas de dm-multipath para impedir a reivindicação de namespaces NVMe.</block>
-  <block id="b064015a3282fc489c69be4a7699cc91" category="section-title">Validar versões de software</block>
   <block id="256141e56255da4626b3cd641b2f785a" category="list-text">Verifique se a<block ref="24039a6c469b55da1dae1ff1197f8079" prefix=" " category="inline-code"></block> cadeia corresponde à<block ref="24039a6c469b55da1dae1ff1197f8079" prefix=" " category="inline-code"></block> cadeia para o subsistema correspondente na matriz ONTAP:</block>
-  <block id="f6f33242227bf5d079f46a94f3780b75" category="paragraph">Você pode configurar o NVMe/FC para adaptadores Broadcom/Emulex ou Marvell/Qlogic.</block>
   <block id="3ea394f2d9cebf2dfc911ba5e025db7a" category="open-title">Broadcom/Emulex</block>
-  <block id="2f749c740a41c151c1485b84206264ca" category="list-text">Verifique se você está usando o modelo de adaptador suportado.</block>
   <block id="10ce16d02c992727f1f013108c8de76e" category="list-text">Verifique se você está usando o firmware Broadcom recomendado e o driver da<block ref="0de495b1d3c13e53ae08556231d825b9" prefix=" " category="inline-code"></block> caixa de entrada:</block>
   <block id="42d18363818951017351b676627b6308" category="list-text">Verifique se<block ref="a8961a0cb8d5dfd91556db806f0f2cfc" prefix=" " category="inline-code"></block> está definido. Isso permite que o adaptador Marvell funcione como um iniciador NVMe/FC:</block>
-  <block id="4985227ddc1cd987688d7fe0d8873ec8" category="section-title">Ativar 1MB I/o (Opcional)</block>
-  <block id="55ab77cd94d55aaa364453f7cf104285" category="section-title">Validar o NVMe-of</block>
   <block id="26bcb9f1cb6f391f4b2c18e676bb458d" category="open-title">NVMe/FC</block>
   <block id="8b7c42123642e2e4ea7dd426aeb2de58" category="open-title">NVMe/TCP</block>
   <block id="1976d7f704de389d9fe064e08ea35b2d" category="open-title">Coluna</block>
   <block id="0ecd11c1d7a287401d148a23bbd7a2f8" category="open-title">JSON</block>
   <block id="9cdf71978b23a4023a75f102c03f30d0" category="list-text">Verifique se você está usando o modelo de adaptador suportado:</block>
-  <block id="fd3cbdb4a32644d25b951ee0b3bc5aae" category="open-title">Adaptador FC Marvell/QLogic para NVMe/FC</block>
   <block id="5aae5284420b8ceb0aa0f5d959c566bc" category="list-text">Verifique se as outras combinações de LIF entre iniciador e destino do NVMe/TCP podem obter com êxito os dados da página de log de descoberta:</block>
   <block id="6015ee0c3c4dbc37f534783a65239e72" category="example-title">Mostrar exemplo</block>
   <block id="0815968d94c1d10c54227de24659397e" category="example-title">Mostrar exemplo de saída</block>
   <block id="99c66119d6b08daedeeade4ea3314f28" category="list-text">Execute o<block ref="90eeda0f5788d7d78c0f198b124712a3" prefix=" " category="inline-code"></block> comando em todos os LIFs de destino iniciador NVMe/TCP suportados nos nós:</block>
   <block id="174bb021781f59df2db4c30e37782cb2" category="list-text">Instale o<block ref="d7deb22e6166f8cce87002f8f100fbe6" prefix=" " category="inline-code"></block> pacote:</block>
   <block id="e71d1275a2744aceb8d59932f2e5fe56" category="list-text">Ativar multipath NVMe no kernel:</block>
-  <block id="b36540ee1aea09e40e2e7cb8bdd31c82" category="list-text">Verifique se as portas do iniciador estão ativas e em execução e se você pode ver os LIFs de destino:</block>
   <block id="8872970684e912db5d3cedce11e8f59c" category="list-text">Verifique se o multipath NVMe no kernel está habilitado:</block>
   <block id="4c865e0cb70fa33868e69a5e88daad47" category="inline-link-macro">1479047</block>
   <block id="e62de6043f25aae2915aa8c10fbaec9d" category="cell"><block ref="e62de6043f25aae2915aa8c10fbaec9d" category="inline-link-macro-rx"></block></block>
   <block id="2ca464fc1baee04e879e92c84915029a" category="open-title">Marvell/QLogic</block>
   <block id="72c8898bab867ffe51404357bb7e09df" category="list-text">Verifique se você está executando o driver de adaptador e as versões de firmware compatíveis:</block>
-  <block id="18b65bc41e8c8da147a70b70eb89f63f" category="paragraph">Você pode usar o procedimento a seguir para validar o NVME-of.</block>
   <block id="0929df0c2d7b307ae019137c488669a8" category="cell">1503468</block>
   <block id="6362c7afdb076db9b67492227263935e" category="admonition">Se as<block ref="24039a6c469b55da1dae1ff1197f8079" prefix=" " category="inline-code"></block> strings não corresponderem, use o<block ref="f7aa1d6bd51ada390168cd39c4c09b91" prefix=" " category="inline-code"></block> comando para atualizar a<block ref="24039a6c469b55da1dae1ff1197f8079" prefix=" " category="inline-code"></block> cadeia de carateres no subsistema de matriz ONTAP correspondente para corresponder à<block ref="24039a6c469b55da1dae1ff1197f8079" prefix=" " category="inline-code"></block> cadeia de carateres<block ref="7c33f184451a7567af5a5fb5f2bc7ae1" prefix=" " category="inline-code"></block> do host.</block>
   <block id="4dab1b4f451ec45a30431478018d4fd5" category="list-text">Verifique se você está usando o firmware Broadcom recomendado e o driver da<block ref="0de495b1d3c13e53ae08556231d825b9" prefix=" " category="inline-code"></block> caixa de entrada.</block>
@@ -883,14 +869,9 @@
   <block id="d3e220182499e43aeadc8bda16bcb3db" category="paragraph">No exemplo a seguir, uma chave dhchap aleatória com HMAC definido como 3 (SHA-512) é gerada.</block>
   <block id="78550e91fbb2b5810210b43b287b7c4e" category="summary">Como configurar o host NVMe-of para Ubuntu 22,04 com o ONTAP</block>
   <block id="c6846e0213409c96ad77f710fa307642" category="paragraph">O NVMe sobre Fabrics (NVMe-of), incluindo NVMe sobre Fibre Channel (NVMe/FC) e outros transportes, é compatível com o Ubuntu 22,04.04, com acesso a namespace assimétrico (ANA). Em ambientes NVMe-of, o ANA equivale a multipathing ALUA em ambientes iSCSI e FC e é implementado com multipath NVMe no kernel.</block>
-  <block id="71251761db71d74ce129581af51deea0" category="paragraph">O suporte a seguir está disponível para a configuração de host NVMe-of para Ubuntu 22,04 com ONTAP:</block>
-  <block id="c7b8b08d4869ac84fdd57c23e53885a4" category="list-text">O plug-in do NetApp no pacote nativo do nvme-cli exibe detalhes do ONTAP para namespaces NVMe/FC.</block>
-  <block id="ee255f2b3c440f68a5bcc9252dfbbd03" category="paragraph">O Ubuntu 22,04 tem multipath NVMe no kernel habilitado para namespaces NVMe por padrão. Portanto, não há necessidade de configurações explícitas.</block>
-  <block id="3621191bce4af482b56d942fb4c692d3" category="paragraph">Você pode usar o procedimento a seguir para validar as versões de software Ubuntu 22,04 mínimas suportadas.</block>
   <block id="daeaa7aff0b3adc4e01d754047800447" category="list-text">Instale o Ubuntu 22,04 no servidor. Depois que a instalação estiver concluída, verifique se você está executando o kernel Ubuntu 22,04 especificado:</block>
   <block id="8f3ce7816b499a01a35c5c583a9b91a5" category="list-text">No host Ubuntu 22,04, verifique a string hostnqn em<block ref="7c33f184451a7567af5a5fb5f2bc7ae1" prefix=" " category="inline-code"></block>:</block>
   <block id="9b581488b49c5ac223f72f44dce46098" category="list-text">Execute o comando nvme connect-all em todas as LIFs de destino do iniciador NVMe/TCP suportadas nos nós e defina o período de tempo limite de perda do controlador por pelo menos 30 minutos ou 1800 segundos:</block>
-  <block id="2d737bddc26fec4760722ea17aae3833" category="open-title">NVME/TCP</block>
   <block id="0142c1c78731d2b44a6976490ee04599" category="paragraph">A configuração de host NVMe-of para Ubuntu 22,04 com a versão ONTAP tem o seguinte problema conhecido:</block>
   <block id="364053ddb08791e86bba8694da89f153" category="cell">CONTAPEXT-2037</block>
   <block id="e53d231580138a5c74d1783c30057235" category="cell">Os hosts NVMe-of do Ubuntu 22,04 criam controladoras de descoberta persistente duplicadas</block>
@@ -992,36 +973,17 @@
   <block id="4a69ba1535a62f4e118b39597d1edde0" category="section-title">Configurações do ASA</block>
   <block id="353cc9a5b9b1899de18cfe6696d32fff" category="list-text">Execute o<block ref="eb2bf21d337d5754274973a21f351bbd" prefix=" " category="inline-code"></block> comando e reinicie o host.</block>
   <block id="7ed1d546734f7bd4b0ef96e269498a07" category="summary">Como configurar o host NVMe-of para Ubuntu 24,04 com o ONTAP</block>
-  <block id="60996b6ae2fc149121c64d77e545be4d" category="doc">Configuração de host NVMe-of para Ubuntu 24,04 com ONTAP</block>
   <block id="36b519db67ced390f37880201669ceb0" category="paragraph">O NVMe sobre Fabrics (NVMe-of), incluindo NVMe sobre Fibre Channel (NVMe/FC) e outros transportes, é compatível com Ubuntu 24,04 e Asymmetric namespace Access (ANA). Em ambientes NVMe-of, o ANA é equivalente ao multipathing ALUA em ambientes iSCSI e FC e é implementado com multipath NVMe no kernel.</block>
-  <block id="1cebcdc437378665b2b13986cfecf476" category="paragraph">O suporte a seguir está disponível para a configuração de host NVMe-of para Ubuntu 24,04 com ONTAP:</block>
-  <block id="cb6a7f1c7c2b0754816bd169cec44fa7" category="paragraph">O Ubuntu 24,04 tem multipath NVMe no kernel habilitado para namespaces NVMe por padrão. Isso significa que você não precisa de configurações explícitas.</block>
   <block id="8f08cb72c5a7a46b7b7c4226b677247d" category="paragraph">A inicialização DA SAN usando o protocolo NVMe-of não é atualmente suportada para o Ubuntu 24,04 com ONTAP.</block>
-  <block id="14b2bcdde3b94eba7e2f71e3f7f697ee" category="paragraph">Você pode usar o procedimento a seguir para validar as versões de software Ubuntu 24,04 mínimas suportadas.</block>
   <block id="c4d9b54b2cbafddba6cb828668bb5dfa" category="list-text">Instale o Ubuntu 24,04 no servidor. Depois que a instalação estiver concluída, verifique se você está executando o kernel Ubuntu 24,04 especificado:</block>
   <block id="6af8bb70dc7b638c43ad6228d8556ead" category="list-text">No host Ubuntu 24,04, verifique a string hostnqn em<block ref="7c33f184451a7567af5a5fb5f2bc7ae1" prefix=" " category="inline-code"></block>:</block>
-  <block id="d99695e6a2bc736629304dfb41f083c2" category="list-text">Verifique se a<block ref="24039a6c469b55da1dae1ff1197f8079" prefix=" " category="inline-code"></block> cadeia de carateres de<block ref="7c33f184451a7567af5a5fb5f2bc7ae1" prefix=" " category="inline-code"></block> corresponde à<block ref="24039a6c469b55da1dae1ff1197f8079" prefix=" " category="inline-code"></block> cadeia de carateres do subsistema correspondente na matriz ONTAP:</block>
   <block id="945d72653662c95f9c7078a068a95e3a" category="admonition">Se as<block ref="24039a6c469b55da1dae1ff1197f8079" prefix=" " category="inline-code"></block> strings não corresponderem, use o<block ref="f7aa1d6bd51ada390168cd39c4c09b91" prefix=" " category="inline-code"></block> comando para atualizar a<block ref="24039a6c469b55da1dae1ff1197f8079" prefix=" " category="inline-code"></block> cadeia de carateres no subsistema de matriz ONTAP correspondente para corresponder à<block ref="24039a6c469b55da1dae1ff1197f8079" prefix=" " category="inline-code"></block> cadeia de carateres<block ref="7c33f184451a7567af5a5fb5f2bc7ae1" prefix=" " category="inline-code"></block> do host.</block>
   <block id="8d1bdd041ee1a1988425b0c6bdbb8684" category="paragraph">Configurar o NVMe/FC para um adaptador Broadcom/Emulex.</block>
   <block id="a10050dbe2f6bc656e7e7bb8d22502a9" category="list-text">Verifique se você está usando o modelo de adaptador suportado:</block>
-  <block id="a67280dcc378318a3dc4702ecf63d3ef" category="list-text"><block ref="eed65f7b111c5a679c9ebd52d64f1a7e" prefix="" category="inline-code"></block></block>
-  <block id="b8f6ddd724a8b8e74953ea5f8d0ed17f" category="list-text"><block ref="00f8f6c3e3c596defab169a6543cea71" prefix="" category="inline-code"></block></block>
-  <block id="6829ad73e092b3fd6e0df14f5709e4d1" category="list-text">Verifique se você está usando o firmware Broadcom recomendado e o driver da<block ref="0de495b1d3c13e53ae08556231d825b9" prefix=" " category="inline-code"></block> caixa de entrada.</block>
-  <block id="22ace6e1c575032bc0c5446c3e5fae03" category="list-text"><block ref="fbb7658d10be2c4db27511a6ae32756e" prefix="" category="inline-code"></block></block>
-  <block id="c5c93d83ef086318d9656de6331063f0" category="list-text"><block ref="40ef4ddbdd7977b19e5f6fc2f92ccdfd" prefix="" category="inline-code"></block></block>
-  <block id="e907323b98507b54f33720ae8fbfca83" category="paragraph">A saída esperada é 3.</block>
-  <block id="ca1e38ef1021d28d62b444c03b7d2cbd" category="list-text"><block ref="02634c9bfc2b6365f527e5ab8750abd5" prefix="" category="inline-code"></block></block>
-  <block id="293151d7d1e64e8099605ae4f4946ca7" category="list-text"><block ref="4b346cab565b7cd14816652d6ebe2807" prefix="" category="inline-code"></block></block>
-  <block id="8e6aa9b9f216193455a6353f967e119f" category="list-text"><block ref="56f637cd126b99eb02fe1ddc06ff71c5" prefix="" category="inline-code"></block></block>
   <block id="7e80c20fc9456778419a9603d273227b" category="paragraph">O driver nativo da caixa de entrada qla2xxx incluído no kernel do Ubuntu 24,04 GA tem as correções upstream mais recentes. Essas correções são essenciais para o suporte ao ONTAP.</block>
   <block id="25d69e2db3ca7d51d3e21ac543d47915" category="paragraph">O outptut esperado é 1.</block>
-  <block id="4eb7059500e57471598a526a4ac18f38" category="paragraph">O NVMe/TCP não oferece suporte à funcionalidade de conexão automática. Em vez disso, você pode descobrir manualmente os subsistemas e namespaces NVMe/TCP usando os<block ref="b640a0ce465fa2a4150c36b305c1c11b" prefix=" " category="inline-code"></block> comandos ou<block ref="d2cdac60ef2245cec13c7ecfb5c3b376" prefix=" " category="inline-code"></block>.</block>
-  <block id="f9ff6d5cef4ac461a39536812496b2a8" category="list-text">Verifique se as outras combinações de LIF entre iniciador e destino do NVMe/TCP podem buscar dados da página de log de descoberta:</block>
   <block id="5922de8746f6bbeb2eeca1b8270454b3" category="admonition">A partir do Ubuntu 24,04.04, a configuração padrão ctrl_loss_tmo timeout para NVMe/TCP é desativada. Isso significa que não há limite no número de tentativas (tentativa indefinida) e você não precisa configurar manualmente uma duração específica de tempo limite de ctrl_loss_tmo ao usar os<block ref="9058603c510faa501774cf55475bb088" prefix=" " category="inline-code"></block> comandos ou<block ref="90eeda0f5788d7d78c0f198b124712a3" prefix=" " category="inline-code"></block> (opção -l ). Com esse comportamento padrão, as controladoras NVMe/TCP não apresentam timeouts em caso de falha de caminho e permanecem conectadas indefinidamente.</block>
   <block id="25fe112b2528a69b5409b7266e42b118" category="paragraph">A saída esperada é "Y".</block>
-  <block id="d3565492c368dc728f9d13493c793986" category="list-text">Verifique se as configurações de NVMe-of apropriadas (como, modelo definido como "controlador NetApp ONTAP" e balanceamento de carga iopolicy definido como "round-robin") para os respetivos namespaces ONTAP são exibidos corretamente no host:</block>
-  <block id="aca77ba2a0ce331ce07b00bc07442e14" category="list-text"><block ref="d077a463f31db192bc2166bfffcf8de0" prefix="" category="inline-code"></block></block>
-  <block id="b297fab030eb1c0e21f8c1c43eb2cefb" category="list-text"><block ref="8449e535ecd6773d321bf1358b514b8b" prefix="" category="inline-code"></block></block>
   <block id="198ef744f24c6814a980b52a8b628dbd" category="paragraph">Não há problemas conhecidos para a configuração de host NVMe-of para Ubuntu 24,04 com a versão ONTAP.</block>
   <block id="cd5fcfe02b1d4f040fde5ba738d7572a" category="sidebar">24,04</block>
   <block id="d7eeafe16e993a6db0f390553a4f2af4" category="paragraph">O protocolo NVMe/TCP não suporta a<block ref="c73910bff7459eb78b9c2d1e7c0e3ed7" prefix=" " category="inline-code"></block> operação. Em vez disso, você pode descobrir os subsistemas e namespaces NVMe/TCP executando as operações NVMe/TCP<block ref="b640a0ce465fa2a4150c36b305c1c11b" prefix=" " category="inline-code"></block> ou<block ref="d2cdac60ef2245cec13c7ecfb5c3b376" prefix=" " category="inline-code"></block> manualmente.</block>
@@ -1959,7 +1921,6 @@
   <block id="f41f106fe6317bf1fffbc4d33580f3d8" category="doc">Configure o CentOS 8.x para FCP e iSCSI para armazenamento ONTAP.</block>
   <block id="cf833d77734e30b1539d8f93f0b110b0" category="paragraph">O software Linux Host Utilities fornece ferramentas de gerenciamento e diagnóstico para hosts Linux conectados ao armazenamento ONTAP . Ao instalar os utilitários de host Linux em um host CentOS 8.x, você pode usá-los para gerenciar operações de protocolo FCP e iSCSI com LUNs ONTAP .</block>
   <block id="f29ce90064042fdf54d7f129472e1a29" category="paragraph">Você pode usar o recurso de multipathing com o CentOS 8.x para gerenciar LUNs do ONTAP .</block>
-  <block id="37818604bc325c12da17d12c5a11b2c6" category="paragraph">Para problemas conhecidos com kernels compatíveis com CentOS Red Hat, consulte o <block ref="38e57a44e96058881795f8bd23b80525" category="inline-link-macro-rx"></block> para a série Red Hat Enterprise Linux (RHEL) 8.x.</block>
   <block id="2d0bfc473ee44f864dd566c0718022a0" category="summary">Descreve como usar o Oracle Linux 8.x com o ONTAP.</block>
   <block id="ba67fad4eca07067a073d76c746b6f4d" category="doc">Configurar o Oracle Linux 8.x para FCP e iSCSI com armazenamento ONTAP.</block>
   <block id="dc041beabf1d67c4a880346af0ab38cb" category="paragraph">O software Linux Host Utilities fornece ferramentas de gerenciamento e diagnóstico para hosts Linux conectados ao armazenamento ONTAP . Ao instalar os utilitários de host Linux em um host Oracle Linux 8.x, você pode usá-los para gerenciar operações de protocolo FCP e iSCSI com LUNs ONTAP .</block>
@@ -2381,7 +2342,6 @@
   <block id="872d5db3305b32e54793529162eed87f" category="paragraph">Ative o registro detalhado para LPFC ou Qlogic (Qla2xxx).</block>
   <block id="fe040552b4fc83efe2ba593498969954" category="list-text">Verifique as configurações:</block>
   <block id="79c482cb23c057c0d600ecd3434dbb27" category="section-title">Erros comuns do "nvme-cli" e soluções alternativas</block>
-  <block id="c481530fd3180128cebd4b0d3be77c0f" category="paragraph">Se os problemas persistirem, reúna os seguintes arquivos e resultados de comando e entre em contato. <block ref="39332fc74dd50b9d9a8e9919506502c0" category="inline-link-macro-rx"></block> para triagem adicional:</block>
   <block id="0669c03dc492faf8d7b9fc2bd8512b73" category="sidebar">Versões anteriores do Host Utilities</block>
   <block id="2444d67396b745a440cfa96bf55da9c6" category="doc">Saiba como configurar hosts ONTAP SAN com NVMe-oF</block>
   <block id="55b4f27e868d94d08cb7b820fb7dcaf4" category="summary">Instale os utilitários de host Linux em um servidor SUSE Linux Enterprise Server 16 para gerenciar operações de protocolo FCP e iSCSI com LUNs ONTAP.</block>
@@ -2449,4 +2409,62 @@
   <block id="32b0b2fb94c023fc633bfa7c0caf801f" category="section-title">Etapa 2: confirme a configuração iSCSI para o seu host</block>
   <block id="961c1419cfe8060ce390b232d6e264c5" category="sidebar">HPE VME</block>
   <block id="c956a158e93a32e225bfb772f4b64394" category="sidebar">HPE VME 8.0.x</block>
+  <block id="1cb98d24e975e6c21662789b34e2d3c2" category="paragraph">Para problemas conhecidos do kernel compatível com CentOS Red Hat, consulte a <block ref="b64a4fb065ec8eadbc881ece1cbf7ba0" category="inline-link-macro-rx"></block> para a série Red Hat Enterprise Linux (RHEL) 8.x.</block>
+  <block id="fef8ee7b94533bb078469a27722a8bba" category="list-text">Verifique se o <block ref="dd5ff67ba72768d33f75e645aa2b8e56" prefix=" " category="inline-code"></block> arquivo existe. Se o arquivo não existir, crie um arquivo vazio, zero bytes:</block>
+  <block id="2ce48a142c0e80ab8f317a99f9fe6ed3" category="summary">Instale os utilitários de host Linux em um host Oracle Linux 10 para gerenciar operações de protocolo FCP e iSCSI com LUNs ONTAP.</block>
+  <block id="ea29a45fe150e616e26859f8c3d6f7e6" category="doc">Configurar o Oracle Linux 10 para FCP e iSCSI com storage ONTAP</block>
+  <block id="9b146d11e8cfc51a1ac9d01dc405828f" category="paragraph">O software Linux Host Utilities fornece ferramentas de gerenciamento e diagnóstico para hosts Linux conectados ao storage ONTAP. Ao instalar o Linux Host Utilities em um host Oracle Linux 10, você pode usar o Host Utilities para ajudar a gerenciar as operações dos protocolos FCP e iSCSI com LUNs ONTAP.</block>
+  <block id="bd18c770f808d8ed650b8826f4be0370" category="paragraph">Você pode usar o recurso de multipathing com o Oracle Linux 10 para gerenciar LUNs do ONTAP.</block>
+  <block id="53b840df2d08c073f2534327f111dbf9" category="summary">Configuração de host NVMe-oF para Oracle Linux 10 com ONTAP</block>
+  <block id="7230db89ca6861865150be7831e09274" category="doc">Configurar o Oracle Linux 10.x com NVMe-oF para storage ONTAP</block>
+  <block id="d510a8ad0c1bbc5c8d97b199a8f0a853" category="paragraph">Aprenda como configurar hosts NVMe over Fabrics (NVMe-oF) para Oracle Linux 10.x. Para obter mais informações sobre suporte e recursos, consulte <block ref="340e41b773bf3515fe22a98049376f83" category="inline-link-macro-rx"></block>.</block>
+  <block id="9f53c366466752fe327c961a6ac8050d" category="paragraph">NVMe-oF com Oracle Linux 10.x apresenta a seguinte limitação conhecida:</block>
+  <block id="434a4c1992d6e87fcab47a93c7ad1e82" category="paragraph">Utilize o procedimento a seguir para validar as versões mínimas de software suportadas do Oracle Linux 10.x.</block>
+  <block id="0ae5db6158a6e86bee0d9ecd4e04c8ac" category="list-text">Instale o Oracle Linux 10.x no servidor. Após a conclusão da instalação, verifique se você está executando o kernel do Oracle Linux 10.x especificado.</block>
+  <block id="9a1fc841d104b96cae7df9dfaadeaf1f" category="list-text">No host Oracle Linux 10.x, verifique a <block ref="24039a6c469b55da1dae1ff1197f8079" prefix=" " category="inline-code"></block> string em <block ref="7c33f184451a7567af5a5fb5f2bc7ae1" prefix=" " category="inline-code"></block>:</block>
+  <block id="026e7910f8597707ea78ced9009402b0" category="paragraph">O host Oracle Linux 10.x define a iopolicy padrão para NVMe-oF como <block ref="f63d19812a9885e12a84d9c2748b701f" prefix=" " category="inline-code"></block>. Você pode alterar a iopolicy para <block ref="7b6d85eaafedeee6d733437bf856da7e" prefix=" " category="inline-code"></block> modificando o arquivo de regras udev.</block>
+  <block id="93653ae68b7f62e4baef589277623491" category="paragraph">Os exemplos de saída a seguir mostram um namespace hospedado em um controlador ONTAP de dois nós para um sistema AFF, FAS, ASA ou ASA r2 com NVMe/FC.</block>
+  <block id="6f412196079d9e58544081f4700ce25f" category="paragraph">Os exemplos de saída a seguir mostram um namespace hospedado em um controlador ONTAP de dois nós para um sistema AFF, FAS, ASA ou ASA r2 com NVMe/TCP.</block>
+  <block id="74ef0cdc12fc9f4e8b83d1a035e4f577" category="paragraph">A autenticação in-band segura é suportada via NVMe/TCP entre um host Oracle Linux 10.x e um controlador ONTAP.</block>
+  <block id="8ae4d61c82b1c9b58e4acbd1373806b2" category="cell">A partir do Oracle Linux 9.6, nvme suporta a política de i/o "queue-depth" e está habilitado como opção padrão.</block>
+  <block id="d3c49c5822283d264df05a1fd8b0870e" category="inline-link-macro">Configurando NVMe para Oracle Linux 10</block>
+  <block id="7d3306fa564ca0cc7f3c887e0359e138" category="cell"><block ref="7d3306fa564ca0cc7f3c887e0359e138" category="inline-link-macro-rx"></block></block>
+  <block id="7d3905e0cba501e1167bfeb0ef23716d" category="inline-link-macro">Saiba mais sobre ASA R2</block>
+  <block id="c5aad2fbcc370dd1069cc7b310e5f818" category="paragraph"><block ref="1d871fa88754498eb3c93e5a73370e81" category="inline-link-macro-rx"></block> <block ref="e479a529e06da14c3826316f4b5d486e" category="inline-link-macro-rx"></block></block>
+  <block id="81d8d5962924b66a80a5c3110f594d9c" category="doc">Configurar o Ubuntu 22.04 para NVMe-oF com storage ONTAP</block>
+  <block id="7375c26540849f01a84eac6b85362a26" category="inline-link-macro">Suporte e recursos do Ubuntu ONTAP</block>
+  <block id="3c317945c8c1e566a0973c6bfe2e23c8" category="paragraph">Aprenda como configurar hosts NVMe over Fabrics (NVMe-oF) para Ubuntu 22.04. Para obter mais informações sobre suporte e recursos, consulte <block ref="2596c465ddd6c92fd8b161574a0cd8ba" category="inline-link-macro-rx"></block>.</block>
+  <block id="b5bdaf0b6b0807ef8e3508c017b220b1" category="paragraph">NVMe-oF com Ubuntu 22.04 apresenta as seguintes limitações conhecidas:</block>
+  <block id="6ddd22a26c1d066bc09e395480afb927" category="list-text">A inicialização SAN usando o protocolo NVMe-oF atualmente não é suportada para Ubuntu 22.04 com ONTAP.</block>
+  <block id="5a62653e96ff80952f0f615590c366f3" category="paragraph">Para obter detalhes adicionais sobre as configurações suportadas, consulte o <block ref="a7003953f15e88b0eda85022d31017b5" category="inline-link-macro-rx"></block>.</block>
+  <block id="c421752fceed574575540b4537854630" category="section-title">Passo 1: Instale o Ubuntu e o software NVMe e verifique sua configuração</block>
+  <block id="5d98ed6d7426c19599636b584cbd8499" category="paragraph">Exemplo de versão do kernel do Ubuntu:</block>
+  <block id="4febcb438e38d8ea26f146c7eb4cc6b0" category="list-text">No sistema ONTAP, verifique se a <block ref="24039a6c469b55da1dae1ff1197f8079" prefix=" " category="inline-code"></block> string de <block ref="7c33f184451a7567af5a5fb5f2bc7ae1" prefix=" " category="inline-code"></block> corresponde à <block ref="24039a6c469b55da1dae1ff1197f8079" prefix=" " category="inline-code"></block> string do subsistema correspondente no sistema de storage ONTAP:</block>
+  <block id="cdb7d0ce548732d9f1fd2c399d2d64cb" category="paragraph">Configurar NVMe/FC para adaptadores Broadcom/Emulex ou Marvell/Qlogic, ou configurar NVMe/TCP usando descoberta manual e operações de conexão.</block>
+  <block id="3a3389ef589dfce02feb77c9c8bf0726" category="paragraph">Você deverá ver uma saída semelhante ao seguinte exemplo:</block>
+  <block id="97f9a8bc058f969713afc7e49ff602ef" category="paragraph">Você deverá ver uma saída semelhante a:</block>
+  <block id="b5d49ed10fc06ec57d0952d3ebd54840" category="paragraph">O NVMe/TCP não possui funcionalidade de conexão automática. Em vez disso, você pode descobrir os subsistemas e namespaces do NVMe/TCP executando as operações NVMe/TCP <block ref="b640a0ce465fa2a4150c36b305c1c11b" prefix=" " category="inline-code"></block> ou <block ref="d2cdac60ef2245cec13c7ecfb5c3b376" prefix=" " category="inline-code"></block> manualmente.</block>
+  <block id="555b74e71738f2e402fc0de53b48fc8b" category="paragraph">Se um caminho for interrompido e não for restabelecido dentro do período de tempo limite padrão de 10 minutos, NVMe/TCP não poderá se reconectar automaticamente. Para evitar um tempo limite, defina o período de novas tentativas para eventos de failover para pelo menos 30 minutos.</block>
+  <block id="bb89e9bace59fd7fd241efa108f91336" category="list-text">Verifique se a porta iniciadora consegue obter os dados da página de log de descoberta através das LIFs NVMe/TCP suportadas:</block>
+  <block id="a00a6308352e2747153a9ae26be20fff" category="section-title">Etapa 4: verificar a configuração de multipath</block>
+  <block id="e3439a3f81a4e69f12df04a21d7a0a84" category="doc">Configurar o Ubuntu 24.04 para NVMe-oF com storage ONTAP</block>
+  <block id="5bb69d27124817d4ad8a88830c49b873" category="paragraph">Aprenda como configurar hosts NVMe over Fabrics (NVMe-oF) para Ubuntu 24.04. Para obter mais informações sobre suporte e recursos, veja <block ref="2596c465ddd6c92fd8b161574a0cd8ba" category="inline-link-macro-rx"></block>.</block>
+  <block id="acd22788128acb44c428e0f1cf6b4a4c" category="paragraph">NVMe-oF com Ubuntu 24.04 apresenta as seguintes limitações conhecidas:</block>
+  <block id="d16989a0a7cff1ea32aab2ccb4a37161" category="admonition">Se as <block ref="24039a6c469b55da1dae1ff1197f8079" prefix=" " category="inline-code"></block>strings não coincidirem, use o comando <block ref="f7aa1d6bd51ada390168cd39c4c09b91" prefix=" " category="inline-code"></block> para atualizar a string <block ref="24039a6c469b55da1dae1ff1197f8079" prefix=" " category="inline-code"></block> no subsistema do sistema de storage ONTAP correspondente para corresponder à string <block ref="24039a6c469b55da1dae1ff1197f8079" prefix=" " category="inline-code"></block> de <block ref="7c33f184451a7567af5a5fb5f2bc7ae1" prefix=" " category="inline-code"></block> no host.</block>
+  <block id="165acd219757dbbec65fbd5a24792898" category="list-text">Verifique se você está usando o firmware e o driver inbox da Broadcom recomendados:<block ref="0de495b1d3c13e53ae08556231d825b9" prefix=" " category="inline-code"></block></block>
+  <block id="06bd4ba69054120ef18345db9c5cccca" category="paragraph">O NVMe/TCP não suporta a operação de conexão automática. Em vez disso, você pode descobrir os subsistemas e namespaces do NVMe/TCP executando as operações NVMe/TCP <block ref="b640a0ce465fa2a4150c36b305c1c11b" prefix=" " category="inline-code"></block> ou <block ref="d2cdac60ef2245cec13c7ecfb5c3b376" prefix=" " category="inline-code"></block> manualmente.</block>
+  <block id="fbb8c3634e390cf69c69cd1f449175c7" category="paragraph">== Etapa 5: analise os problemas conhecidos</block>
+  <block id="efaa7a41c95bd26123cf738971f624b5" category="summary">Saiba mais sobre o suporte e os recursos do ONTAP para hosts Ubuntu</block>
+  <block id="35408fbc8cac4acdf31c0e994b9e617f" category="cell">Versão do host Ubuntu</block>
+  <block id="f079c6de48aef64f8a494cd8ba7dc4b0" category="cell">O NetApp plug-in no pacote nativo exibe detalhes do ONTAP para namespaces NVMe/FC.</block>
+  <block id="f6a7cbbb80d1a6558737078fc690dbd8" category="paragraph">22.04 ou posterior</block>
+  <block id="3c18533c5f637891d53935135a3f19cd" category="cell">O tráfego NVMe e SCSI é suportado no mesmo host em um determinado adaptador de barramento de host (HBA), sem as configurações explícitas de dm-multipath para evitar a reivindicação de namespaces NVMe</block>
+  <block id="f11fee1c202f6e705b5fd13528d79f9f" category="cell">O multipath NVMe in-kernel está habilitado por padrão para namespaces NVMe. Portanto, nenhuma configuração explícita é necessária</block>
+  <block id="141a30e0e3658704b53664b1d6d92012" category="cell">Se a sua versão do Ubuntu for ..</block>
+  <block id="79735da1d0f9dfbb1518d18d7249f5c6" category="inline-link-macro">Configurando NVMe para Ubuntu 24.04</block>
+  <block id="9fef4c15c5a56298164ab156cc0d11a3" category="cell"><block ref="9fef4c15c5a56298164ab156cc0d11a3" category="inline-link-macro-rx"></block></block>
+  <block id="e142a16151c5acc6ebb2be3ff16b7e3c" category="inline-link-macro">Configurando NVMe para Ubuntu 22.04</block>
+  <block id="549658667f6362886a369bc723e2a20d" category="cell"><block ref="549658667f6362886a369bc723e2a20d" category="inline-link-macro-rx"></block></block>
+  <block id="36efc339e29dbfc55b87bdb738345d78" category="paragraph">Caso os problemas persistam, colete os seguintes arquivos e resultados de comandos e entre em contato <block ref="ea2f4052f3eaf8e0d09bdf7668185025" category="inline-link-macro-rx"></block> para uma análise mais detalhada:</block>
+  <block id="43a1437f7f656cd8be7c996c58719e0a" category="sidebar">10,0</block>
 </blocks>
