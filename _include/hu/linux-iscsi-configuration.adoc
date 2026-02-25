@@ -109,10 +109,10 @@ $iscsiadm --mode node -l all
 $iscsiadm --mode node -T <target_name> -p <ip:port> -o update -n node.startup -v automatic
 ----
 +
-Você deverá ver uma saída semelhante ao exemplo a seguir:
+Substitua  `<target_name>` pelo nome do alvo ao qual você deseja fazer login automaticamente quando o host for inicializado. Substitua  `<ip:port>` pelo endereço IP e número da porta do alvo. Por exemplo:
 
 +
-[listing]
+[source, cli]
 ----
 iscsiadm --mode node -T iqn.1992-08.com.netapp:sn.064a9b19b3ee11f09dcad039eabac370:vs.23 -p 192.168.30.87:3260 -o update -n node.startup -v automatic
 ----

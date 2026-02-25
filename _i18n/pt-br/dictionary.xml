@@ -2374,7 +2374,6 @@
   <block id="3f52de62927af66bbbcbf9a67e36d63c" category="paragraph">Você pode criar um controlador de descoberta persistente (PDC) para um host SUSE Linux Enterprise Server 16. Um PDC é necessário para detectar automaticamente uma operação de adição ou remoção de subsistema NVMe e alterações nos dados da página de log de descoberta.</block>
   <block id="3c8457e76486b7070b5f16df832bfb55" category="paragraph">A autenticação in-band segura é suportada via NVMe/TCP entre um host SUSE Linux Enterprise Server 16 e um controlador ONTAP.</block>
   <block id="60940bf76e8a6f461e5cdf574e9a3897" category="sidebar">SLES-16-FCP</block>
-  <block id="2f2f70e91ff2172f6a78bf052b441f39" category="paragraph"><block ref="806369b10c4f480029bde19415f580b3" category="inline-link-macro-rx"></block>.</block>
   <block id="ae3361bffdcc882805368ae077d6fcaf" category="cell">A regra udev nativa no pacote <block ref="e1667929105bf030b9f367fc21f8d216" prefix=" " category="inline-code"></block> fornece balanceamento de carga de profundidade de fila para multipathing NVMe</block>
   <block id="a30e163e966b967193e35b02c3ab5b4b" category="cell">A regra udev nativa no pacote <block ref="e1667929105bf030b9f367fc21f8d216" prefix=" " category="inline-code"></block> fornece balanceamento de carga round-robin para multipathing NVMe</block>
   <block id="db69f2e21d32b6494100c9cdb558a83c" category="list-text">Verifique se o pacote do iniciador iSCSI (iscsi-initiator-utils) está instalado:</block>
@@ -2411,10 +2410,6 @@
   <block id="c956a158e93a32e225bfb772f4b64394" category="sidebar">HPE VME 8.0.x</block>
   <block id="1cb98d24e975e6c21662789b34e2d3c2" category="paragraph">Para problemas conhecidos do kernel compatível com CentOS Red Hat, consulte a <block ref="b64a4fb065ec8eadbc881ece1cbf7ba0" category="inline-link-macro-rx"></block> para a série Red Hat Enterprise Linux (RHEL) 8.x.</block>
   <block id="fef8ee7b94533bb078469a27722a8bba" category="list-text">Verifique se o <block ref="dd5ff67ba72768d33f75e645aa2b8e56" prefix=" " category="inline-code"></block> arquivo existe. Se o arquivo não existir, crie um arquivo vazio, zero bytes:</block>
-  <block id="2ce48a142c0e80ab8f317a99f9fe6ed3" category="summary">Instale os utilitários de host Linux em um host Oracle Linux 10 para gerenciar operações de protocolo FCP e iSCSI com LUNs ONTAP.</block>
-  <block id="ea29a45fe150e616e26859f8c3d6f7e6" category="doc">Configurar o Oracle Linux 10 para FCP e iSCSI com storage ONTAP</block>
-  <block id="9b146d11e8cfc51a1ac9d01dc405828f" category="paragraph">O software Linux Host Utilities fornece ferramentas de gerenciamento e diagnóstico para hosts Linux conectados ao storage ONTAP. Ao instalar o Linux Host Utilities em um host Oracle Linux 10, você pode usar o Host Utilities para ajudar a gerenciar as operações dos protocolos FCP e iSCSI com LUNs ONTAP.</block>
-  <block id="bd18c770f808d8ed650b8826f4be0370" category="paragraph">Você pode usar o recurso de multipathing com o Oracle Linux 10 para gerenciar LUNs do ONTAP.</block>
   <block id="53b840df2d08c073f2534327f111dbf9" category="summary">Configuração de host NVMe-oF para Oracle Linux 10 com ONTAP</block>
   <block id="7230db89ca6861865150be7831e09274" category="doc">Configurar o Oracle Linux 10.x com NVMe-oF para storage ONTAP</block>
   <block id="d510a8ad0c1bbc5c8d97b199a8f0a853" category="paragraph">Aprenda como configurar hosts NVMe over Fabrics (NVMe-oF) para Oracle Linux 10.x. Para obter mais informações sobre suporte e recursos, consulte <block ref="340e41b773bf3515fe22a98049376f83" category="inline-link-macro-rx"></block>.</block>
@@ -2466,5 +2461,10 @@
   <block id="e142a16151c5acc6ebb2be3ff16b7e3c" category="inline-link-macro">Configurando NVMe para Ubuntu 22.04</block>
   <block id="549658667f6362886a369bc723e2a20d" category="cell"><block ref="549658667f6362886a369bc723e2a20d" category="inline-link-macro-rx"></block></block>
   <block id="36efc339e29dbfc55b87bdb738345d78" category="paragraph">Caso os problemas persistam, colete os seguintes arquivos e resultados de comandos e entre em contato <block ref="ea2f4052f3eaf8e0d09bdf7668185025" category="inline-link-macro-rx"></block> para uma análise mais detalhada:</block>
-  <block id="43a1437f7f656cd8be7c996c58719e0a" category="sidebar">10,0</block>
+  <block id="e44b2b58aad54238aa5355009152242d" category="paragraph"><block ref="7985fef0202f035198f9b90e728f7c0d" category="inline-link-macro-rx"></block>.</block>
+  <block id="43350dfeda24a210866e938e8eecce66" category="paragraph">Substitua <block ref="9a0ef88465d2105ffa310985c6028776" prefix=" " category="inline-code"></block> pelo nome do alvo ao qual você deseja fazer login automaticamente quando o host for inicializado. Substitua <block ref="0bfdde656b1793c584acc5fdacf0a6ac" prefix=" " category="inline-code"></block> pelo endereço IP e número da porta do alvo. Por exemplo:</block>
+  <block id="cb81b0ab1d51502be708f945a76e352a" category="summary">Instale os utilitários de host Linux em um host Oracle Linux 10.x para gerenciar operações de protocolo FCP e iSCSI com LUNs ONTAP.</block>
+  <block id="22429905973644b59fef5bc5f1de5cc0" category="doc">Configurar o Oracle Linux 10.x para FCP e iSCSI com armazenamento ONTAP</block>
+  <block id="c095933cd33553034e8d119262dd097b" category="paragraph">O software Linux Host Utilities fornece ferramentas de gerenciamento e diagnóstico para hosts Linux conectados ao armazenamento ONTAP. Ao instalar o Linux Host Utilities em um host Oracle Linux 10.x, você pode usar o Host Utilities para ajudar a gerenciar as operações dos protocolos FCP e iSCSI com LUNs do ONTAP.</block>
+  <block id="53b0cb8dd1f208321bcde1fc420505d1" category="paragraph">Você pode usar o recurso de multipathing com o Oracle Linux 10.x para gerenciar LUNs do ONTAP.</block>
 </blocks>
