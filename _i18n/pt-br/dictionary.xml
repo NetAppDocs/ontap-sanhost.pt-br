@@ -920,7 +920,6 @@
   <block id="7391a7cd9aaad0e97cd0084d95a4c0fd" category="sidebar">9,3</block>
   <block id="43784ec2c1aaa42346ed96f22c8410b6" category="sidebar">9,2</block>
   <block id="796d3a90e43ce105cbf37298c5065f7e" category="sidebar">9,1</block>
-  <block id="cf5f238fca8b6e155078aa41c175743a" category="sidebar">9,0</block>
   <block id="8b6f93f33bce541c7f50f8aff637e2e1" category="sidebar">RHEL</block>
   <block id="8479d6fad2633b26cf495862e89ca1c9" category="sidebar">RHEL-9-FCP</block>
   <block id="c3491b1c6045b4ab49c098b050003b88" category="sidebar">RHEL-8-FCP</block>
@@ -2467,4 +2466,9 @@
   <block id="22429905973644b59fef5bc5f1de5cc0" category="doc">Configurar o Oracle Linux 10.x para FCP e iSCSI com armazenamento ONTAP</block>
   <block id="c095933cd33553034e8d119262dd097b" category="paragraph">O software Linux Host Utilities fornece ferramentas de gerenciamento e diagnóstico para hosts Linux conectados ao armazenamento ONTAP. Ao instalar o Linux Host Utilities em um host Oracle Linux 10.x, você pode usar o Host Utilities para ajudar a gerenciar as operações dos protocolos FCP e iSCSI com LUNs do ONTAP.</block>
   <block id="53b0cb8dd1f208321bcde1fc420505d1" category="paragraph">Você pode usar o recurso de multipathing com o Oracle Linux 10.x para gerenciar LUNs do ONTAP.</block>
+  <block id="6a2b4410790513f6bead3be5a1c5f033" category="paragraph">8.0 ou posterior</block>
+  <block id="de99ebfc9b67fc827d4b885ffe66df51" category="section-title">Etapa 3: opcionalmente, modifique a iopolicy nas regras udev</block>
+  <block id="6c3cb6f0244406645b054fde3485555c" category="paragraph">A partir do Proxmox VE 9.0, a política de E/S padrão para NVMe-oF é definida como <block ref="f63d19812a9885e12a84d9c2748b701f" prefix=" " category="inline-code"></block>. Se você deseja alterar a política de E/S para <block ref="7b6d85eaafedeee6d733437bf856da7e" prefix=" " category="inline-code"></block>, que também está disponível como uma opção configurável, modifique o arquivo de regras udev da seguinte forma:</block>
+  <block id="3261e25ecb6c10cb23753dafcc11d3f3" category="list-text">Modifique a regra para que <block ref="f63d19812a9885e12a84d9c2748b701f" prefix=" " category="inline-code"></block> seja alterada para <block ref="7b6d85eaafedeee6d733437bf856da7e" prefix=" " category="inline-code"></block>, como mostrado no exemplo a seguir:</block>
+  <block id="306924ca750fad388254a44133cf90dd" category="list-text">Verifique a política de iopolicy atual do seu subsistema. Substitua &lt;subsystem&gt; pelo nome do seu subsistema, por exemplo, nvme-subsys0.</block>
 </blocks>
