@@ -59,7 +59,7 @@ Exemplo de saída:
 
 [listing]
 ----
-Host NQN: nqn.2014-08.org.nvmexpress:uuid:62a19711-ba8c-475d-c954-0000c9f1a436
+Host NQN: nqn.2014-08.org.nvmexpress:uuid:62a1XXXX-ba8c-XXXX-c954-000XXXX1a436
 ----
 [listing]
 ----
@@ -71,7 +71,7 @@ Exemplo de saída:
 ----
 Vserver Subsystem Host NQN
 ------- --------- ----------------------------------------------------------
-nvme_fc nvme_ss  nqn.2014-08.org.nvmexpress:uuid:62a19711-ba8c-475d-c954-0000c9f1a436
+nvme_fc nvme_ss  nqn.2014-08.org.nvmexpress:uuid:62a1XXXX-ba8c-XXXX-c954-000XXXX1a436
 ----
 Se as strings NQN do host não corresponderem, você deve usar o `vserver nvme subsystem host add` comando para atualizar a string NQN do host correta no subsistema NVMe do ONTAP correspondente.
 

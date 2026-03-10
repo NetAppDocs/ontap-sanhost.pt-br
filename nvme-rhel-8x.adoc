@@ -109,7 +109,7 @@ O exemplo a seguir mostra um  `hostnqn` versão:
 +
 [listing]
 ----
-nqn.2014-08.org.nvmexpress:uuid:4c4c4544-0032-3410-8035-b8c04f4c5132
+nqn.2014-08.org.nvmexpress:uuid:4c4cXXXX-0032-XXXX-8035-b8cXXXXc5132
 ----
 . No sistema ONTAP , verifique se o `hostnqn` A string corresponde à `hostnqn` string para o subsistema correspondente no sistema de armazenamento ONTAP :
 +

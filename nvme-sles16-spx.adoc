@@ -744,9 +744,9 @@ NOTE: A partir do ONTAP 9.16.1, NVMe/FC e NVMe/TCP reportam todos os caminhos ot
 ====
 .NVMe/FC
 --
-O exemplo de saída a seguir mostra um namespace hospedado em um controlador ONTAP de dois nós para sistemas AFF, FAS e ASA e sistema ASA r2 com NVMe/FC.
+Os exemplos de saída a seguir mostram um namespace hospedado em um controlador ONTAP de dois nós para sistemas AFF, FAS, ASA ou ASA r2 com NVMe/FC.
 
-.Exibir exemplos de saída de AFF, FAS e ASA
+.Exibir exemplo de saída para AFF, FAS ou ASA
 [%collapsible]
 =====
 [listing, subs="+quotes"]
@@ -759,7 +759,7 @@ O exemplo de saída a seguir mostra um namespace hospedado em um controlador ONT
 +- nvme117 *fc* traddr=nn-0x234ed039ea359e4a:pn-0x2363d039ea359e4a,host_traddr=nn-0x20000090fae0ec89:pn-0x10000090fae0ec89 *live non-optimized*
 ----
 =====
-.Exibir exemplo de saída do ASA r2
+.Mostrar exemplo de saída para ASA r2
 [%collapsible]
 =====
 [listing, subs="+quotes"]
@@ -776,9 +776,9 @@ nvme-subsys96 - NQN=nqn.1992-08.om.netapp:sn.b351b2b6777b11f0b3c2d039ea5cfc91:su
 --
 .NVMe/TCP
 --
-O exemplo de saída a seguir mostra um namespace hospedado em um controlador ONTAP de dois nós para sistemas AFF, FAS e ASA e sistemas ASA r2 com NVMe/TCP.
+Os exemplos de saída a seguir mostram um namespace hospedado em um controlador ONTAP de dois nós para sistemas AFF, FAS, ASA ou ASA r2 com NVMe/TCP.
 
-.Exibir exemplos de saída de AFF, FAS e ASA
+.Exibir exemplo de saída para AFF, FAS ou ASA
 [%collapsible]
 =====
 [listing, subs="+quotes"]
@@ -792,7 +792,7 @@ nvme-subsys9 - NQN=nqn.1992-08.com.netapp:sn.9927e165694211f0b4f4d039eab31e9d:su
  +- nvme9 *tcp* traddr=192.168.38.10,trsvcid=4420,host_traddr=192.168.38.20,src_addr=192.168.38.20 *live optimized*
 ----
 =====
-.Exibir exemplo de saída do ASA r2
+.Mostrar exemplo de saída para ASA r2
 [%collapsible]
 =====
 [listing, subs="+quotes"]
@@ -1455,6 +1455,12 @@ nvme-subsys0 - NQN=nqn.1992-08.com.netapp:sn.9927e165694211f0b4f4d039eab31e9d:su
  +- nvme0 tcp traddr=192.168.38.10,trsvcid=4420,host_traddr=192.168.38.20,src_addr=192.168.38.20 live
 ----
 ====
+.. Exporte a chave PSK TLS do chaveiro do kernel. Isso garante que a chave persista durante a reinicialização do host:
++
+[source, cli]
+----
+# nvme tls --export --keyfile /etc/nvme/tls-keys
+----
 
 
 . Adicione o destino e verifique a conexão TLS ao subsistema ONTAP especificado:
