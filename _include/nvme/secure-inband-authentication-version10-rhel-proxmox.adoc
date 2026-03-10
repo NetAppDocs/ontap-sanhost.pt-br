@@ -41,7 +41,7 @@ No exemplo a seguir, uma chave dhchap aleatória com HMAC definido como 3 (SHA-5
 +
 [listing]
 ----
-nvme gen-dhchap-key -m 3 -n nqn.2014-08.org.nvmexpress:uuid:4c4c4544-0035-5910-804b-c2c04f444d33
+nvme gen-dhchap-key -m 3 -n nqn.2014-08.org.nvmexpress:uuid:4c4cxxxx-0035-xxxx-804b-c2cxxxx44d33
 DHHC-1:03:7zf8I9gaRcDWH3tCH5vLGaoyjzPIvwNWusBfKdpJa+hia1aKDKJQ2o53pX3wYM9xdv5DtKNNhJInZ7X8wU2RQpQIngc=:
 ----
 . No controlador ONTAP, adicione o host e especifique ambas as chaves dhchap:
@@ -132,8 +132,8 @@ NOTE: No exemplo a seguir,  `dhchap_key` corresponde a  `dhchap_secret` e  `dhch
 cat /etc/nvme/config.json
 [
 {
-"hostnqn":"nqn.2014-08.org.nvmexpress:uuid:4c4c4544-0035-5910-804b-c2c04f444d33",
-"hostid":"4c4c4544-0035-5910-804b-c2c04f444d33",
+"hostnqn":"nqn.2014-08.org.nvmexpress:uuid:4c4cxxxx-0035-xxxx-804b-c2cxxxx44d33",
+"hostid":"4c4cxxxx-0035-xxxx-804b-c2cxxxx44d33",
 "dhchap_key":"DHHC-1:03:7zf8I9gaRcDWH3tCH5vLGaoyjzPIvwNWusBfKdpJa+hia1aKDKJQ2o53pX3wYM9xdv5DtKNNhJInZ7X8wU2RQpQIngc=:",
 "subsystems":[
 {
