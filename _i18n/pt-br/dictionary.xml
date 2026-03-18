@@ -2416,7 +2416,6 @@
   <block id="026e7910f8597707ea78ced9009402b0" category="paragraph">O host Oracle Linux 10.x define a iopolicy padrão para NVMe-oF como <block ref="f63d19812a9885e12a84d9c2748b701f" prefix=" " category="inline-code"></block>. Você pode alterar a iopolicy para <block ref="7b6d85eaafedeee6d733437bf856da7e" prefix=" " category="inline-code"></block> modificando o arquivo de regras udev.</block>
   <block id="93653ae68b7f62e4baef589277623491" category="paragraph">Os exemplos de saída a seguir mostram um namespace hospedado em um controlador ONTAP de dois nós para um sistema AFF, FAS, ASA ou ASA r2 com NVMe/FC.</block>
   <block id="6f412196079d9e58544081f4700ce25f" category="paragraph">Os exemplos de saída a seguir mostram um namespace hospedado em um controlador ONTAP de dois nós para um sistema AFF, FAS, ASA ou ASA r2 com NVMe/TCP.</block>
-  <block id="74ef0cdc12fc9f4e8b83d1a035e4f577" category="paragraph">A autenticação in-band segura é suportada via NVMe/TCP entre um host Oracle Linux 10.x e um controlador ONTAP.</block>
   <block id="8ae4d61c82b1c9b58e4acbd1373806b2" category="cell">A partir do Oracle Linux 9.6, nvme suporta a política de i/o "queue-depth" e está habilitado como opção padrão.</block>
   <block id="d3c49c5822283d264df05a1fd8b0870e" category="inline-link-macro">Configurando NVMe para Oracle Linux 10</block>
   <block id="7d3306fa564ca0cc7f3c887e0359e138" category="cell"><block ref="7d3306fa564ca0cc7f3c887e0359e138" category="inline-link-macro-rx"></block></block>
@@ -2476,4 +2475,5 @@
   <block id="508e93b6f899f26c01374d86f06060a5" category="list-text">Exporte a chave PSK TLS do chaveiro do kernel. Isso garante que a chave persista durante a reinicialização do host:</block>
   <block id="1b569e78f049cfc0d5612ae09602f392" category="paragraph">Os exemplos de saída a seguir mostram um namespace hospedado em um controlador ONTAP de dois nós para sistemas AFF, FAS, ASA ou ASA r2 com NVMe/FC.</block>
   <block id="6d984a3ecdb3a900adb251dd0b78d708" category="paragraph">Os exemplos de saída a seguir mostram um namespace hospedado em um controlador ONTAP de dois nós para sistemas AFF, FAS, ASA ou ASA r2 com NVMe/TCP.</block>
+  <block id="8e9aa976f7a8a387e926c6bbb8588831" category="paragraph">A autenticação in-band segura é suportada via NVMe/TCP entre um host Oracle Linux 10.x e um controlador ONTAP.</block>
 </blocks>
