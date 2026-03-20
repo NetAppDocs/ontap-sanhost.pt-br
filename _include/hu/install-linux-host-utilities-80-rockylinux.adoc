@@ -1,0 +1,12 @@
+= 
+:allow-uri-read: 
+
+
+A NetApp recomenda fortemente a instalação dos utilitários de host Linux para suportar o gerenciamento de LUN ONTAP e auxiliar o suporte técnico na coleta de dados de configuração.
+
+Rocky Linux é uma distribuição compatível com o RHEL e não possui um pacote separado de utilitários de host Linux. Use o pacote de utilitários de host Linux correspondente à versão do RHEL.
+
+link:hu-luhu-80.html["Instalar o Linux Host Utilities 8.0"] .
+
+
+NOTE: A instalação dos Utilitários de host do Linux não altera nenhuma configuração de tempo limite do host no seu host Linux.

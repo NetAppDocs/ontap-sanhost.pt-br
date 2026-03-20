@@ -2476,4 +2476,5 @@
   <block id="1b569e78f049cfc0d5612ae09602f392" category="paragraph">Os exemplos de saída a seguir mostram um namespace hospedado em um controlador ONTAP de dois nós para sistemas AFF, FAS, ASA ou ASA r2 com NVMe/FC.</block>
   <block id="6d984a3ecdb3a900adb251dd0b78d708" category="paragraph">Os exemplos de saída a seguir mostram um namespace hospedado em um controlador ONTAP de dois nós para sistemas AFF, FAS, ASA ou ASA r2 com NVMe/TCP.</block>
   <block id="8e9aa976f7a8a387e926c6bbb8588831" category="paragraph">A autenticação in-band segura é suportada via NVMe/TCP entre um host Oracle Linux 10.x e um controlador ONTAP.</block>
+  <block id="e7f67da4e95cce9c0568e2b8ad82a925" category="paragraph">Rocky Linux é uma distribuição compatível com o RHEL e não possui um pacote separado de utilitários de host Linux. Use o pacote de utilitários de host Linux correspondente à versão do RHEL.</block>
 </blocks>
