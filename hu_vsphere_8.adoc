@@ -348,7 +348,7 @@ A versão do VMware vSphere 8.x com ONTAP tem os seguintes problemas conhecidos:
 | ID de erro do NetApp | Título | Descrição 
 
 
-| link:https://mysupport.netapp.com/site/bugs-online/product/HOSTUTILITIES/1543660["1543660"^] | O erro de e/S ocorre quando as VMs Linux que usam adaptadores vNVMe encontram uma janela longa de todos os caminhos para baixo (APD)  a| 
+| link:https://jira.ngage.netapp.com/browse/CONTAPEXT-1126["CONTAPEXT-1126"^] | O erro de e/S ocorre quando as VMs Linux que usam adaptadores vNVMe encontram uma janela longa de todos os caminhos para baixo (APD)  a| 
 As VMs Linux que executam o vSphere 8.x e posterior e que usam adaptadores NVMe virtuais (vNVME) encontram um erro de e/S porque a operação de repetição do vNVMe está desativada por padrão. Para evitar uma interrupção nas VMs Linux que executam kernels mais antigos durante um APD (All Paths Down) ou uma carga de e/S pesada, a VMware introduziu um "VSCSIDisableNvmeRetry" sintonizável para desativar a operação de repetição do vNVMe.
 
 |===

@@ -520,8 +520,6 @@
   <block id="6900c94ed3bcf3920ffd579cf50e5209" category="paragraph">Você pode usar o seguinte comando para verificar o QFullSampleSize.</block>
   <block id="7cdbf4845592ad7b5cdb4ccc2c4e2638" category="paragraph"><block ref="d6c304a8136df005fd734e2f1889954c" prefix="" category="inline-code"></block></block>
   <block id="f55878d5db78235140cd87e36b5e1afc" category="paragraph">A versão do VMware vSphere 8.x com ONTAP tem os seguintes problemas conhecidos:</block>
-  <block id="fe73a89d7c677ea4abb2a996360023fa" category="inline-link-macro">1543660</block>
-  <block id="23c3f6b1dc0958b81d21563a91eecfa6" category="cell"><block ref="23c3f6b1dc0958b81d21563a91eecfa6" category="inline-link-macro-rx"></block></block>
   <block id="5a3b86e99232b3604afe4db20db45884" category="cell">O erro de e/S ocorre quando as VMs Linux que usam adaptadores vNVMe encontram uma janela longa de todos os caminhos para baixo (APD)</block>
   <block id="9c72461f3069d27216e1faab60848be8" category="paragraph">As VMs Linux que executam o vSphere 8.x e posterior e que usam adaptadores NVMe virtuais (vNVME) encontram um erro de e/S porque a operação de repetição do vNVMe está desativada por padrão. Para evitar uma interrupção nas VMs Linux que executam kernels mais antigos durante um APD (All Paths Down) ou uma carga de e/S pesada, a VMware introduziu um "VSCSIDisableNvmeRetry" sintonizável para desativar a operação de repetição do vNVMe.</block>
   <block id="880b9ba9933b6e3ce087d9412e66470b" category="inline-link-macro">Catálogo do Microsoft Update 2012 R2</block>
@@ -813,7 +811,6 @@
   <block id="c19fe6dee7f7a3724a5f9dcec2948091" category="list-text">Recuperar uma lista de conexões NVMe/TCP:</block>
   <block id="7b2ec28c3dfb12efddfebc7d80f05316" category="list-text">Recuperar uma lista do número de caminhos para um namespace NVMe:</block>
   <block id="b666f8343a2e41c88c8766775c8dec12" category="paragraph">A configuração de host NVMe-of para ESXi 8.x com ONTAP tem os seguintes problemas conhecidos:</block>
-  <block id="85dcf040cfea5e44024dcdee365ef36f" category="cell">O ONTAP 9.9,1 introduziu o suporte para o comando NVMe "abort". Quando o ONTAP recebe o comando "abortar" para abortar um comando NVMe fundido que está aguardando o comando Partner, ocorre uma interrupção do nó ONTAP. O problema é notado somente em hosts que usam comandos fundidos NVMe (por exemplo, ESX) e transporte Fibre Channel (FC).</block>
   <block id="2a41c03d949869222b758867aff845ff" category="inline-link-macro">Suporte ao VMware vSphere 6.x e 7.x com sincronização ativa do NetApp SnapMirror</block>
   <block id="77835a1b9432b93fd521ab9f863d3c08" category="list-text">Os scripts nativos de conexão automática NVMe/FC não estão disponíveis no pacote nvme-cli. Use os scripts externos de conexão automática fornecidos pelo fornecedor HBA.</block>
   <block id="6ba6a18088999d632ca174b9873a3b12" category="list-text">Instale o<block ref="e1667929105bf030b9f367fc21f8d216" prefix=" " category="inline-code"></block> pacote:</block>
@@ -2477,4 +2474,9 @@
   <block id="6d984a3ecdb3a900adb251dd0b78d708" category="paragraph">Os exemplos de saída a seguir mostram um namespace hospedado em um controlador ONTAP de dois nós para sistemas AFF, FAS, ASA ou ASA r2 com NVMe/TCP.</block>
   <block id="8e9aa976f7a8a387e926c6bbb8588831" category="paragraph">A autenticação in-band segura é suportada via NVMe/TCP entre um host Oracle Linux 10.x e um controlador ONTAP.</block>
   <block id="e7f67da4e95cce9c0568e2b8ad82a925" category="paragraph">Rocky Linux é uma distribuição compatível com o RHEL e não possui um pacote separado de utilitários de host Linux. Use o pacote de utilitários de host Linux correspondente à versão do RHEL.</block>
+  <block id="f2797f4fff71e1241dbd27de578e26fe" category="inline-link-macro">CONTAPEXT-1126</block>
+  <block id="3bf0e426a8bb195e45d195cbc0249dfa" category="cell"><block ref="3bf0e426a8bb195e45d195cbc0249dfa" category="inline-link-macro-rx"></block></block>
+  <block id="63c3f0dce3adfd21858e4906af8b540e" category="cell">O nó ONTAP não está operacional quando o protocolo NVMe/FC é usado com a versão do ONTAP 9.9.1</block>
+  <block id="75fe6ffd14185a732fe5c93e3655894f" category="cell">ONTAP 9.9.1 introduziu suporte para o comando "abort" do NVMe. Quando ONTAP recebe o comando "abort" para abortar um comando NVMe fundido que está aguardando seu comando correspondente, ocorre uma interrupção no nó do ONTAP. O problema é percebido apenas em hosts que utilizam comandos NVMe fundidos (por exemplo, ESX) e transporte Fibre Channel (FC).</block>
+  <block id="8f0a705220613d95434cdb5a4fcab23b" category="paragraph">As máquinas virtuais Linux executando vSphere 8.x e posteriores e usando adaptadores NVMe virtuais (vNVMe) encontram um erro de E/S porque a operação de repetição do vNVMe está desativada por padrão. Para evitar interrupções em máquinas virtuais Linux com kernels mais antigos durante uma falha de todos os caminhos (APD) ou uma carga de E/S intensa, a VMware introduziu um parâmetro configurável "VSCSIDisableNvmeRetry" para desativar a operação de repetição do vNVMe.</block>
 </blocks>
