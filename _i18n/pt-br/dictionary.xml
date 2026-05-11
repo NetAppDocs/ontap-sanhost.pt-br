@@ -144,7 +144,6 @@
   <block id="cc09e9b715b19878584d7de2582a4981" category="cell">FC EN1B, FC EN1C</block>
   <block id="297f86e3f009c4831d4973ff8e686c8e" category="cell">500 para AIX (autônomo/físico) 200 para VIOC</block>
   <block id="c78667df66d3342c7fe6a58f227a56c1" category="cell">FC EN0G</block>
-  <block id="b6758eb9c7ac57209dfad7db602a24d4" category="inline-link-macro">Como configurar um host AIX para sincronização ativa do SnapMirror</block>
   <block id="95dc0391ce7b396d7dd5622284e8fc3e" category="section-title">Problemas conhecidos</block>
   <block id="784c795c066fdf3c4713aae58af639ff" category="paragraph">Não há problemas conhecidos.</block>
   <block id="01281e2990c631b64037834e8b22bd4c" category="cell">rw_timeout (disco)</block>
@@ -1367,9 +1366,6 @@
   <block id="054877f3a4e22840052a9d35b9cef0e4" category="inline-link-macro">Quais são as considerações de suporte ao host AIX em uma configuração do MetroCluster ?</block>
   <block id="fd47c7e90e5d1a165a9f160bc5d6eb8d" category="paragraph">Por padrão, o sistema operacional AIX impõe um tempo limite de E/S menor quando não há caminhos disponíveis para um LUN.  Isso pode ocorrer em configurações que incluem malha SAN de switch único e em configurações do MetroCluster que apresentam failovers não planejados.  Para obter informações adicionais e alterações recomendadas nas configurações padrão, consulte o artigo da Base de conhecimento<block ref="5a78f40a3907cb552cb02e019660f8d8" category="inline-link-macro-rx"></block> .</block>
   <block id="c0b79db5f258f0c991a383cbdbf001dd" category="open-title">Sincronização ativa do SnapMirror</block>
-  <block id="946ae0d0e8f27a2482322365b072fe17" category="paragraph">A partir do ONTAP 9.11.1, a sincronização ativa do SnapMirror é suportada para um host AIX.  O cluster principal em uma configuração AIX é o cluster "ativo".</block>
-  <block id="60915f06c9c1330f3ed550adf149966e" category="paragraph">Em uma configuração AIX, os failovers são disruptivos.  Com cada failover, você precisa executar uma nova varredura no host para que as operações de E/S sejam retomadas.</block>
-  <block id="c6f7900c1810cbe72822a3151f7a41d8" category="paragraph">Consulte o artigo da Base de Conhecimento<block ref="d270a735f5e8b531c1d55de94a45b690" category="inline-link-macro-rx"></block> .</block>
   <block id="efffdf29fb8c22b09edba3371dc2b1b8" category="inline-link-macro">Instalar o Linux Host Utilities 8.0</block>
   <block id="5f31956444f1d0bde7a1ffb325106db8" category="paragraph"><block ref="cd52b6bcf27b8c7efa7bb2cae7dba9b4" category="inline-link-macro-rx"></block> .</block>
   <block id="3358e8b26d19a4499acfc0263dca6ce1" category="paragraph">Os utilitários de host Linux ajudam você a gerenciar o armazenamento ONTAP conectado a um host Linux.  A NetApp recomenda fortemente a instalação do Linux Host Utilities, mas não é obrigatório.  Os utilitários melhoram o gerenciamento e auxiliam o suporte ao cliente da NetApp a coletar informações sobre sua configuração.</block>
@@ -2503,4 +2499,9 @@
   <block id="9ac038eaf430fd52f4f8187e511c2c64" category="paragraph">Quando os hosts OLVM usam ONTAP SnapMirror active sync, você deve ajustar os parâmetros de tempo limite de sanlock e multipath para garantir o comportamento correto do host e da VM durante eventos de failover de armazenamento. Os valores de tempo limite padrão do OLVM podem causar failovers de VM de alta disponibilidade não intencionais durante failovers de site não planejados, pois a janela de renovação do lease pode expirar antes que a recuperação de multipath seja concluída.</block>
   <block id="48456488fd8e1ab35d02545499c661fe" category="inline-link">Oracle Linux Virtualization Manager - Configurações Sanlock para ONTAP SnapMirror Active Sync</block>
   <block id="d586abe993be4482cf9a1c2a026a70c7" category="paragraph">Siga os passos de configuração no artigo da Knowledge Base da NetApp<block ref="5895161fcfd751cbe73c1e86aa55f0d8" category="inline-link-rx"></block> para atualizar os valores de timeout do sanlock e do multipath, para que a janela de renovação do lease permaneça suficiente para a conclusão da recuperação multipath durante um evento de failover de armazenamento.</block>
+  <block id="94ef234a2ec2f42dc97a266ae7901d7a" category="paragraph">SnapMirror active sync é compatível com um host AIX. O comportamento de suporte varia conforme a versão do ONTAP:</block>
+  <block id="794db6ce05b1835a99e67a30b5ce986b" category="inline-link-macro">SnapMirror active sync suporte para AIX: comportamento por release do ONTAP e orientações de migração</block>
+  <block id="510d8f08b1bcd3d37f5f38838ba87607" category="list-text">A partir do ONTAP 9.19.1, SnapMirror active sync é suportado na configuração Active/Active, permitindo operações de SnapMirror active sync sem interrupções. Consulte o artigo da Knowledge Base <block ref="689132335b86d0a731403daf22970080" category="inline-link-macro-rx"></block>.</block>
+  <block id="58d09565b9d76aa8df134a3c88f349ef" category="inline-link-macro">Como configurar um host AIX para SnapMirror active sync no ONTAP 9.11.1 a 9.18.1</block>
+  <block id="edef79d6486b82062ad7b8f2b46174e2" category="list-text">Para ONTAP 9.11.1 a 9.18.1, SnapMirror active sync é suportado na configuração ativo/em espera. Consulte o artigo da Knowledge Base <block ref="170dab56a652357d4fe24ca37b0b9eea" category="inline-link-macro-rx"></block>.</block>
 </blocks>
