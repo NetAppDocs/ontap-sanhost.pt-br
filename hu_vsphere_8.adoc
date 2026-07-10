@@ -20,6 +20,7 @@ Você pode configurar as configurações de host SAN ONTAP para a versão do VMw
 
 
 
+[[hypervisor-san-booting]]
 == Inicialização de SAN do hipervisor
 
 .Antes de começar
@@ -41,6 +42,7 @@ Para obter informações sobre como ativar o BIOS HBA, consulte a documentação
 
 
 
+[[multipathing]]
 == Multipathing
 
 O ESXi fornece um módulo multipathing extensível chamado NMP (Native Multipathing Plug-in) que gerencia os sub-plugins, os SATPs (Storage Array Type Plugins) e os PSPs (Path Selection Plugins). Por padrão, essas regras SATP estão disponíveis no ESXi.
@@ -67,6 +69,7 @@ tpgs_on        VMW_PSP_RR                   NetApp arrays with ALUA support
 ----
 
 
+[[non-asa-configurations]]
 === Configurações que não são ASA
 
 Para configurações que não sejam ASA, deve haver dois grupos de caminhos com prioridades diferentes. Os caminhos com prioridades mais altas são Ativo/otimizado. Isso significa que eles são atendidos pelo controlador onde o agregado está localizado. Os caminhos com prioridades mais baixas estão ativos, mas não otimizados, porque são servidos de um controlador diferente. Os caminhos não otimizados são usados somente quando caminhos otimizados não estão disponíveis.
@@ -203,6 +206,7 @@ fc.200034800d756a74:210034800d756a74-fc.2018d039ea936319:2016d039ea936319-naa.60
 ----
 
 
+[[vvol]]
 == Evolução
 
 Os volumes virtuais (vVols) são um tipo de objeto VMware que corresponde a um disco de máquina virtual (VM), seus snapshots e clones rápidos.
@@ -230,10 +234,12 @@ Para obter informações detalhadas sobre o provisionamento e o gerenciamento de
 
 
 
+[[recommended-settings]]
 == Definições recomendadas
 
 
 
+[[ats-locking]]
 === Bloqueio ATS
 
 O bloqueio ATS é *obrigatório* para armazenamento compatível com VAAI e VMFS5 atualizado e é necessário para interoperabilidade adequada e desempenho ideal de e/S de armazenamento compartilhado VMFS com LUNs ONTAP. Consulte a documentação da VMware para obter detalhes sobre como ativar o bloqueio ATS.
@@ -256,6 +262,7 @@ NOTE: Ative `Space-alloc` a configuração para todos os LUNs mapeados para o VM
 
 
 
+[[guest-os-timeouts]]
 === Tempos limite de tempo do SO convidado
 
 Você pode configurar manualmente as máquinas virtuais com as afinações recomendadas do SO Guest. Depois de ajustar as atualizações, você deve reiniciar o convidado para que as atualizações entrem em vigor.
@@ -277,6 +284,7 @@ Você pode configurar manualmente as máquinas virtuais com as afinações recom
 |===
 
 
+[[validate-the-vsphere-tunable]]
 === Valide o vSphere ajustável
 
 Você pode usar o seguinte comando para verificar a `HardwareAcceleratedLocking` configuração.
@@ -298,6 +306,7 @@ Você pode usar o seguinte comando para verificar a `HardwareAcceleratedLocking`
 ----
 
 
+[[validate-the-disk-iops-setting]]
 === Valide a configuração de IOPs de disco
 
 Você pode usar o seguinte comando para verificar a configuração IOPs.
@@ -318,6 +327,7 @@ naa.600a098038304731783f506670553355
 ----
 
 
+[[validate-the-qfullsamplesize]]
 === Valide o QFullSampleSize
 
 Você pode usar o seguinte comando para verificar o QFullSampleSize.
@@ -339,6 +349,7 @@ Você pode usar o seguinte comando para verificar o QFullSampleSize.
 ----
 
 
+[[known-issues]]
 == Problemas conhecidos
 
 A versão do VMware vSphere 8.x com ONTAP tem os seguintes problemas conhecidos:

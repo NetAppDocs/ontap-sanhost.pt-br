@@ -16,6 +16,7 @@ summary: O Windows Host Utilities inclui um programa de instalação que define 
 [role="lead"]
 Os Utilitários de host do Windows permitem que você conete um computador host do Windows aos sistemas de armazenamento do NetApp.
 
+[[supported-windows-versions-80]]
 Os Utilitários de host do Windows suportam as seguintes versões do Windows:
 
 * Windows 2025
@@ -46,6 +47,7 @@ Os Utilitários de host oferecem suporte a diferentes configurações de host do
 
 
 
+[[step-1-verify-your-host-and-storage-system-configuration]]
 == Etapa 1: verifique a configuração do seu host e do sistema de armazenamento
 
 Verifique se a configuração do seu host e do sistema de armazenamento são compatíveis antes de instalar o Windows Host Utilities para o<<supported-windows-versions-80,Versão Windows suportada>> .
@@ -66,6 +68,7 @@ Consulte o https://docs.netapp.com/us-en/ontap/san-config/index.html["Referênci
 
 
 
+[[step-2-configure-fc-hbas-and-switches]]
 == Etapa 2: configurar HBAs e switches FC
 
 Instalar e configurar um ou mais adaptadores de barramento de host FC (HBAs) compatíveis para conexões FC ao sistema de storage.
@@ -85,6 +88,7 @@ CAUTION: Você deve permitir apenas que o instalador do Windows Host Utilities d
 
 
 
+[[step-3-install-the-windows-host-utilities]]
 == Etapa 3: instalar os utilitários do host do Windows
 
 O programa de instalação instala o pacote Windows Host Utilities e define o registro do Windows e as configurações do HBA.
@@ -147,6 +151,7 @@ NOTE: Para ver as opções padrão do Microsoft Installer (MSI) para Registro e 
 ====
 
 
+[[whats-next]]
 == O que se segue?
 
 link:hu-wuhu-configuration.html["Saiba mais sobre a configuração dos utilitários do host do Windows para armazenamento ONTAP."]

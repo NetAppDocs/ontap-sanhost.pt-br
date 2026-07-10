@@ -29,6 +29,7 @@ O NVMe-oF com Rocky Linux 8.x apresenta as seguintes limitações conhecidas:
 
 
 
+[[step-1-install-rocky-linux-and-nvme-software-and-verify-your-configuration]]
 == Passo 1: Instale o Rocky Linux e o software NVMe e verifique sua configuração.
 
 Para configurar seu host para NVMe-oF, você precisa instalar os pacotes de software do host e do NVMe, habilitar o multipathing e verificar a configuração NQN do seu host.
@@ -124,6 +125,7 @@ NOTE: Se as `hostnqn` strings não corresponderem, use o `vserver modify` comand
 
 
 
+[[step-2-configure-nvmefc-and-nvmetcp]]
 == Etapa 2: Configurar NVMe/FC e NVMe/TCP
 
 Configure NVMe/FC com adaptadores Broadcom/Emulex ou Marvell/QLogic, ou configure NVMe/TCP usando operações manuais de descoberta e conexão.
@@ -598,6 +600,7 @@ nvme	connect-all	-t	tcp	-w	192.168.2.31	-a	192.168.2.25
 ====
 
 
+[[step-3-optionally-enable-1mb-io-for-nvmefc]]
 == Etapa 3: Opcionalmente, habilite a E/S de 1 MB para NVMe/FC.
 
 Você pode habilitar solicitações de E/S de 1 MB para NVMe/FC configurado com um adaptador Broadcom. O ONTAP relata um Tamanho Máximo de Transferência de Dados (MDTS) de 8 nos dados do Controlador de Identificação. Isso significa que o tamanho máximo da solicitação de e/S pode ser de até 1MBMB. Para emitir solicitações de E/S de 1 MB, você precisa aumentar o valor de lpfc do  `lpfc_sg_seg_cnt` parâmetro para 256 do valor padrão de 64.
@@ -628,6 +631,7 @@ cat /sys/module/lpfc/parameters/lpfc_sg_seg_cnt
 
 
 
+[[step-4-verify-the-multipathing-configuration]]
 == Etapa 4: Verifique a configuração de multipathing
 
 Verifique se o status multipath do NVMe no kernel, o status ANA e os namespaces do ONTAP estão corretos para a configuração do NVMe-of.
@@ -813,6 +817,7 @@ nvme netapp ontapdevices -o json
 
 
 
+[[step-5-review-the-known-issues]]
 == Etapa 5: Revise os problemas conhecidos
 
 Estes são os problemas conhecidos:

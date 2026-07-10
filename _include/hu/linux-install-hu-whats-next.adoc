@@ -4,6 +4,7 @@
 
 
 
+[[whats-next]]
 == O que se segue?
 
 * Configurações de driver recomendadas com kernel Linux

@@ -4,6 +4,7 @@
 
 
 
+[[step-1-optionally-enable-san-booting]]
 == Passo 1: Opcionalmente, ative a inicialização de SAN
 
 Você pode inicializar o sistema operacional Windows usando uma inicialização local ou uma inicialização SAN.  A NetApp recomenda o uso de um SAN boot para simplificar a implementação e melhorar a escalabilidade.

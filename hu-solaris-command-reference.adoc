@@ -20,6 +20,7 @@ Você pode usar a referência de comando de exemplo do Solaris Host Utilities pa
 
 
 
+[[list-all-host-initiators-mapped-to-host]]
 == Listar todos os iniciadores de host mapeados para o host
 
 Você pode recuperar uma lista de todos os iniciadores de host mapeados para um host.
@@ -119,6 +120,7 @@ OS device name:    /dev/cfg/c6
 ====
 
 
+[[list-all-luns-mapped-to-host]]
 == Listar todos os LUNs mapeados para o host
 
 Você pode recuperar uma lista de todos os LUNs mapeados para um host.
@@ -170,6 +172,7 @@ ONTAP Path: sanboot_unix:/vol/test1/lun1
 ====
 
 
+[[list-all-luns-mapped-to-host-from-a-given-svm-list-all-attributes-of-a-given-lun-mapped-to-host]]
 == Listar todos os LUNs mapeados para o host de um determinado SVM/Liste todos os atributos de um determinado LUN mapeados para o host
 
 Você pode recuperar uma lista de todos os LUNs mapeados para um host de um SVM específico.
@@ -214,6 +217,7 @@ ONTAP Path: sanboot_unix:/vol/sol_boot/sanboot_lun
 ====
 
 
+[[list-ontap-lun-attributes-by-host-device-filename]]
 == Listar atributos LUN ONTAP por nome de arquivo do dispositivo host
 
 Você pode recuperar uma lista de todos os atributos LUN do ONTAP especificando um nome de arquivo do dispositivo host.

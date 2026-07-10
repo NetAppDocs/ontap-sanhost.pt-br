@@ -26,6 +26,7 @@ FCP e iSCSI com Proxmox VE 9.x apresentam as seguintes limitações conhecidas:
 
 
 
+[[step-1-confirm-the-multipath-configuration-for-your-host]]
 == Etapa 1: confirme a configuração multipath para seu host
 
 Você pode usar o recurso de multipathing com o Proxmox VE 9.x para gerenciar LUNs do ONTAP .
@@ -58,6 +59,7 @@ A tabela a seguir mostra as configurações de parâmetros multipath compilados 
 .Mostrar definições de parâmetros
 [%collapsible]
 ====
+[[multipath-parameter-settings]]
 [cols="2"]
 |===
 | Parâmetro | Definição 
@@ -204,6 +206,7 @@ multipath -ll
 
 
 
+[[step-2-confirm-the-iscsi-configuration-for-your-host]]
 == Etapa 2: confirme a configuração iSCSI para o seu host
 
 Certifique-se de que iSCSI esteja configurado corretamente para seu host.
@@ -346,6 +349,7 @@ tcp: [4] 192.168.166.70:3260,1042 iqn.1992-08.com.netapp:sn.c770be5d934811f0b624
 
 
 
+[[step-3-optionally-exclude-a-device-from-multipathing]]
 == Etapa 3: opcionalmente, exclua um dispositivo do multipathing
 
 Se necessário, você pode excluir um dispositivo de multipathing adicionando o WWID para o dispositivo indesejado à estrofe "lista negra" para o `multipath.conf` arquivo.
@@ -378,6 +382,7 @@ blacklist {
 
 
 
+[[step-4-customize-multipath-parameters-for-ontap-luns]]
 == Etapa 4: personalizar parâmetros multicaminho para LUNs ONTAP
 
 Se o seu host estiver conetado a LUNs de outros fornecedores e qualquer configuração de parâmetro multipath for substituída, você precisará corrigi-los adicionando estrofes posteriormente `multipath.conf` no arquivo que se aplicam especificamente aos LUNs ONTAP. Se você não fizer isso, os LUNs do ONTAP podem não funcionar como esperado.
@@ -411,6 +416,7 @@ devices {
 ====
 
 
+[[step-5-review-the-known-issues]]
 == Etapa 5: Revise os problemas conhecidos
 
 Não há problemas conhecidos.

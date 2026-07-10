@@ -20,6 +20,7 @@ O software Linux Host Utilities fornece ferramentas de gerenciamento e diagnóst
 
 
 
+[[step-1-optionally-enable-san-booting]]
 == Passo 1: Opcionalmente, ative a inicialização de SAN
 
 Você pode configurar seu host para usar a inicialização SAN para simplificar a implantação e melhorar a escalabilidade.
@@ -40,6 +41,7 @@ Para obter informações sobre como ativar o BIOS HBA, consulte a documentação
 
 
 
+[[step-2-install-the-linux-host-utilities]]
 == Passo 2: Instale os Utilitários de host do Linux
 
 A NetApp recomenda enfaticamente link:hu-luhu-release-notes.html["Instalando os utilitários do host Linux"] Para dar suporte ao gerenciamento de LUNs do ONTAP e auxiliar o suporte técnico na coleta de dados de configuração.
@@ -49,6 +51,7 @@ NOTE: A instalação dos Utilitários de host do Linux não altera nenhuma confi
 
 
 
+[[step-3-confirm-the-veritas-dynamic-multipathing-configuration-for-your-host]]
 == Etapa 3: Confirme a configuração do Veritas Dynamic Multipathing para o seu host.
 
 Utilize o Veritas Dynamic Multipathing (VxDMP) com o Veritas Infoscale 9 para gerenciar LUNs ONTAP .
@@ -252,12 +255,14 @@ sdea  ENABLED     Active/Non-Optimized c14   SFRAC       sfrac0     -      -
 
 
 
+[[step-4-known-issues]]
 == Etapa 4: Problemas conhecidos
 
 Não há problemas conhecidos.
 
 
 
+[[whats-next]]
 == O que se segue?
 
 * link:hu-luhu-command-reference.html["Saiba mais sobre como usar a ferramenta Linux Host Utilities"] .

@@ -4,6 +4,7 @@
 
 
 
+[[step-2-install-the-solaris-host-utilities]]
 == Etapa 2: instalar os utilitários do host Solaris
 
 A NetApp recomenda fortemente a instalação do Solaris Host Utilities para dar suporte ao gerenciamento do ONTAP LUN e auxiliar o suporte técnico na coleta de dados de configuração.

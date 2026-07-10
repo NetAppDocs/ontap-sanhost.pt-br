@@ -20,6 +20,7 @@ O software Linux Host Utilities fornece ferramentas de gerenciamento e diagnóst
 
 
 
+[[step-1-optionally-enable-san-booting]]
 == Passo 1: Opcionalmente, ative a inicialização de SAN
 
 Você pode configurar seu host para usar a inicialização SAN para simplificar a implantação e melhorar a escalabilidade.
@@ -38,6 +39,7 @@ Para obter informações sobre como ativar o BIOS HBA, consulte a documentação
 
 
 
+[[step-2-install-the-linux-host-utilities]]
 == Passo 2: Instale os Utilitários de host do Linux
 
 A NetApp recomenda fortemente a instalação dos utilitários de host Linux para suportar o gerenciamento de LUN ONTAP e auxiliar o suporte técnico na coleta de dados de configuração.
@@ -49,6 +51,7 @@ NOTE: A instalação dos Utilitários de host do Linux não altera nenhuma confi
 
 
 
+[[step-3-confirm-the-multipath-configuration-for-your-host]]
 == Etapa 3: Confirme a configuração multipath do seu host
 
 Você pode usar o recurso de multipathing com o SUSE Linux Enterprise Server 16 para gerenciar ONTAP LUNs.
@@ -89,6 +92,7 @@ A tabela a seguir mostra as configurações de parâmetros multipath compilados 
 .Mostrar definições de parâmetros
 [%collapsible]
 ====
+[[multipath-parameter-settings]]
 [cols="2"]
 |===
 | Parâmetro | Definição 
@@ -211,6 +215,7 @@ size=80G features='3 queue_if_no_path pg_init_retries 50' hwhandler='1 alua' wp=
 
 
 
+[[step-4-confirm-the-iscsi-configuration-for-your-host]]
 == Passo 4: confirme a configuração iSCSI para o seu host
 
 Certifique-se de que iSCSI esteja configurado corretamente para seu host.
@@ -350,6 +355,7 @@ tcp: [4] 192.168.30.97:3260,1140 iqn.1992-08.com.netapp:sn.064a9b19b3ee11f09dcad
 
 
 
+[[step-5-optionally-exclude-a-device-from-multipathing]]
 == Etapa 5: opcionalmente, exclua um dispositivo do multipathing
 
 Se necessário, você pode excluir um dispositivo de multipathing adicionando o WWID para o dispositivo indesejado à estrofe "lista negra" para o `multipath.conf` arquivo.
@@ -382,6 +388,7 @@ blacklist {
 
 
 
+[[step-6-customize-multipath-parameters-for-ontap-luns]]
 == Etapa 6: personalizar os parâmetros de multipath para ONTAP LUNs
 
 Se o seu host estiver conetado a LUNs de outros fornecedores e qualquer configuração de parâmetro multipath for substituída, você precisará corrigi-los adicionando estrofes posteriormente `multipath.conf` no arquivo que se aplicam especificamente aos LUNs ONTAP. Se você não fizer isso, os LUNs do ONTAP podem não funcionar como esperado.
@@ -415,12 +422,14 @@ devices {
 ====
 
 
+[[step-7-review-the-known-issues]]
 == Etapa 7: Revise os problemas conhecidos
 
 Não há problemas conhecidos.
 
 
 
+[[whats-next]]
 == O que se segue?
 
 * link:hu-luhu-command-reference.html["Saiba mais sobre como usar a ferramenta Linux Host Utilities"] .

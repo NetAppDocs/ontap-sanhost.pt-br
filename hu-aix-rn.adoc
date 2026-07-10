@@ -22,6 +22,7 @@ Para obter informações específicas sobre as versões e atualizações do sist
 
 
 
+[[whats-new]]
 == O que há de novo
 
 As versões do AIX Host Utilities contêm os seguintes novos recursos e aprimoramentos:
@@ -32,6 +33,7 @@ As versões do AIX Host Utilities contêm os seguintes novos recursos e aprimora
 
 
 
+[[known-problems-and-limitations]]
 == Problemas e limitações conhecidos
 
 Você deve estar ciente dos seguintes problemas conhecidos e limitações que podem afetar o desempenho em seu host específico.

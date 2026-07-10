@@ -22,6 +22,7 @@ Para obter informações específicas sobre as versões e atualizações do sist
 
 
 
+[[whats-new-in-solaris-host-utilities-8-0]]
 == Novidades no Solaris Host Utilities 8.0
 
 * O Solaris Host Utilities 8.0 apresenta o `disksort:false` e `cache-nonvolatile:true` configurações de parâmetros.  Esses parâmetros suprimem chamadas de sincronização constantes do host.  As chamadas de sincronização afetam o desempenho e não são necessárias porque o ONTAP não tem cache volátil. Para obter mais informações, consulte link:https://docs.oracle.com/en/operating-systems/solaris/oracle-solaris/11.4/tuning/ensuring-proper-cache-flush-behavior-flash-and-nvram-storage-devices.html["Comportamento de liberação de cache para dispositivos de armazenamento Flash e NVRAM"^] .
@@ -30,6 +31,7 @@ Para obter informações específicas sobre as versões e atualizações do sist
 
 
 
+[[known-issues-and-limitations]]
 == Problemas e limitações conhecidos
 
 Você deve estar ciente dos seguintes problemas e limitações conhecidos que podem afetar o desempenho do seu host específico.
@@ -52,6 +54,7 @@ Você deve estar ciente dos seguintes problemas e limitações conhecidos que po
 
 
 
+[[whats-next]]
 == O que vem a seguir
 
 link:hu-solaris-80.html["Saiba mais sobre a instalação do Solaris Host Utilities"]

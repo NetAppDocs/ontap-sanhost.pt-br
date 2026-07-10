@@ -30,6 +30,7 @@ O NVMe-oF com Oracle Linux 7.x apresenta as seguintes limitações conhecidas:
 
 
 
+[[step-1-install-oracle-linux-and-nvme-software-and-verify-your-configuration]]
 == Passo 1: Instale o Oracle Linux e o software NVMe e verifique sua configuração.
 
 Utilize o procedimento a seguir para validar as versões mínimas de software suportadas pelo Oracle Linux 7.x.
@@ -112,6 +113,7 @@ NOTE: Se as `hostnqn` strings não corresponderem, use o `vserver modify` comand
 
 
 
+[[step-2-configure-nvmefc]]
 == Etapa 2: Configurar NVMe/FC
 
 Configurar o NVMe/FC para um adaptador Broadcom/Emulex.
@@ -233,6 +235,7 @@ NVME RPORT WWPN x203100a098c80f09 WWNN x202c00a098c80f09 DID x010601 *TARGET DIS
 
 
 
+[[step-3-optionally-enable-1mb-io-for-nvmefc]]
 == Etapa 3: Opcionalmente, habilite a E/S de 1 MB para NVMe/FC.
 
 O ONTAP relata um Tamanho Máximo de Transferência de Dados (MDTS) de 8 nos dados do Controlador de Identificação.  Isso significa que o tamanho máximo da solicitação de E/S pode ser de até 1 MB.  Para emitir solicitações de E/S de tamanho 1 MB para um host Broadcom NVMe/FC, você deve aumentar o `lpfc` valor do `lpfc_sg_seg_cnt` parâmetro para 256 do valor padrão de 64.
@@ -266,6 +269,7 @@ cat /sys/module/lpfc/parameters/lpfc_sg_seg_cnt
 
 
 
+[[step-4-verify-the-multipathing-configuration]]
 == Etapa 4: Verifique a configuração de multipathing
 
 Verifique se o status multipath do NVMe no kernel, o status ANA e os namespaces do ONTAP estão corretos para a configuração do NVMe-of.
@@ -409,6 +413,7 @@ nvme netapp ontapdevices -o json
 
 
 
+[[step-5-review-the-known-issues]]
 == Etapa 5: Revise os problemas conhecidos
 
 Não há problemas conhecidos.

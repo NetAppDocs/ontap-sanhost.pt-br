@@ -27,6 +27,7 @@ O NVMe-oF com Proxmox VE 9.x apresenta a seguinte limitação conhecida:
 
 
 
+[[step-1-install-proxmox-ve-and-nvme-software-and-verify-your-configuration]]
 == Passo 1: Instale o software Proxmox VE e NVMe e verifique sua configuração.
 
 Para configurar seu host para NVMe-oF, você precisa instalar os pacotes de software do host e do NVMe, habilitar o multipathing e verificar a configuração NQN do seu host.
@@ -117,6 +118,7 @@ NOTE: Se o `hostnqn` as strings não correspondem, use o `vserver modify` comand
 
 
 
+[[step-2-configure-nvmefc-and-nvmetcp]]
 == Etapa 2: Configurar NVMe/FC e NVMe/TCP
 
 Configure NVMe/FC com adaptadores Broadcom/Emulex ou Marvell/QLogic, ou configure NVMe/TCP usando operações manuais de descoberta e conexão.
@@ -407,6 +409,7 @@ A configuração para NVMe/TCP `ctrl_loss_tmo timeout` é automaticamente defini
 ====
 
 
+[[step-3-optionally-modify-the-iopolicy-in-the-udev-rules]]
 == Etapa 3: opcionalmente, modifique a iopolicy nas regras udev
 
 A partir do Proxmox VE 9.0, a política de E/S padrão para NVMe-oF é definida como  `queue-depth`. Se você deseja alterar a política de E/S para  `round-robin`, que também está disponível como uma opção configurável, modifique o arquivo de regras udev da seguinte forma:
@@ -466,6 +469,7 @@ NOTE: A nova política de E/S (iopolicy) aplica-se automaticamente aos dispositi
 
 
 
+[[step-4-optionally-enable-1mb-io-for-nvmefc]]
 == Etapa 4: Opcionalmente, habilite 1 MB de E/S para NVMe/FC
 
 O ONTAP relata um Tamanho Máximo de Transferência de Dados (MDTS) de 8 nos dados do Controlador de Identificação.  Isso significa que o tamanho máximo da solicitação de E/S pode ser de até 1 MB.  Para emitir solicitações de E/S de tamanho 1 MB para um host Broadcom NVMe/FC, você deve aumentar o `lpfc` valor do `lpfc_sg_seg_cnt` parâmetro para 256 do valor padrão de 64.
@@ -499,6 +503,7 @@ cat /sys/module/lpfc/parameters/lpfc_sg_seg_cnt
 
 
 
+[[step-5-verify-nvme-boot-services]]
 == Etapa 5: verificar os serviços de inicialização NVMe
 
 O `nvmefc-boot-connections.service` e `nvmf-autoconnect.service` serviços de inicialização incluídos no NVMe/FC `nvme-cli` Os pacotes são ativados automaticamente quando o sistema é inicializado.
@@ -557,6 +562,7 @@ Feb 20 22:00:11 HPE-DL365-14-176 systemd[1]: Finished nvmefc-boot-connections.se
 
 
 
+[[step-6-verify-the-multipathing-configuration]]
 == Etapa 6: verificar a configuração de multipathing
 
 Verifique se o status multipath do NVMe no kernel, o status ANA e os namespaces do ONTAP estão corretos para a configuração do NVMe-of.
@@ -764,6 +770,7 @@ nvme netapp ontapdevices -o json
 
 
 
+[[step-7-review-the-known-issues]]
 == Etapa 7: Revise os problemas conhecidos
 
 Não há problemas conhecidos.

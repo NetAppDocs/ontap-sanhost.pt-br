@@ -30,6 +30,7 @@ A tabela a seguir mostra as configurações de parâmetros multipath compilados 
 .Mostrar definições de parâmetros
 [%collapsible]
 ====
+[[multipath-parameter-settings]]
 [cols="2"]
 |===
 | Parâmetro | Definição 

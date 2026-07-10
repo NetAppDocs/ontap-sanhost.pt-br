@@ -22,6 +22,7 @@ Para obter informações específicas sobre as versões e atualizações do sist
 
 
 
+[[whats-new-in-linux-host-utilities-8-0]]
 == Novidades no Linux Host Utilities 8.0
 
 A versão 8.0 do Linux Host Utilities contém os seguintes novos recursos e melhorias
@@ -38,6 +39,7 @@ Os seguintes sistemas operacionais são suportados:
 
 
 
+[[whats-new-in-linux-host-utilities-7-1]]
 == Novidades no Linux Host Utilities 7.1
 
 A versão Linux Host Utilities 7,1 contém os seguintes novos recursos e aprimoramentos:
@@ -63,6 +65,7 @@ NOTE: A NetApp continua trabalhando com o Linux Host Utilities para adicionar su
 
 
 
+[[fixed-issues]]
 == Problemas corrigidos
 
 Os seguintes problemas foram corrigidos no Linux Host Utilities.
@@ -76,6 +79,7 @@ Os seguintes problemas foram corrigidos no Linux Host Utilities.
 |===
 
 
+[[known-issues-and-limitations]]
 == Problemas e limitações conhecidos
 
 Você deve estar ciente dos seguintes problemas e limitações conhecidos que podem afetar o desempenho do seu host específico:
@@ -94,6 +98,7 @@ link:https://mysupport.netapp.com/site/bugs-online/product["NetApp Bugs Online"^
 
 
 
+[[whats-next]]
 == O que vem a seguir
 
 link:hu-luhu-80.html["Aprenda sobre a instalação do Linux Host Utilities"]

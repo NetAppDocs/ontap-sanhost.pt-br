@@ -20,6 +20,7 @@ Os utilitários de host do Windows permitem conectar hosts Windows a discos virt
 
 
 
+[[step-1-optionally-enable-san-booting]]
 == Passo 1: Opcionalmente, ative a inicialização de SAN
 
 Você pode inicializar o sistema operacional Windows usando uma inicialização local ou uma inicialização SAN.  A NetApp recomenda o uso de um SAN boot para simplificar a implementação e melhorar a escalabilidade.
@@ -51,6 +52,7 @@ Efetue uma inicialização local instalando o sistema operacional Windows no dis
 ====
 
 
+[[step-2-install-windows-hotfixes]]
 == Etapa 2: Instale as correções do Windows
 
 A NetApp recomenda a instalação da *última atualização cumulativa* disponível no Catálogo de atualizações da Microsoft no servidor host.
@@ -70,6 +72,7 @@ TIP: Muitas correções de software exigem a reinicialização do host Windows. 
 
 
 
+[[step-3-install-the-windows-host-utilities]]
 == Etapa 3: instalar os utilitários do host do Windows
 
 Os utilitários de host do Windows são um conjunto de programas de software com documentação que permitem conectar computadores host a discos virtuais (LUNs) em um SAN NetApp .  A NetApp recomenda baixar e instalar os utilitários de host do Windows mais recentes para dar suporte ao gerenciamento de LUNs do ONTAP e ajudar o suporte técnico a coletar dados de configuração.
@@ -78,6 +81,7 @@ Para obter informações sobre a configuração e instalação dos utilitários 
 
 
 
+[[step-4-confirm-the-multipath-configuration-for-your-host]]
 == Etapa 4: confirme a configuração multipath para seu host
 
 Instale o software Microsoft Multipath I/O (MPIO) e habilite o multipathing se o seu host Windows tiver mais de um caminho para o sistema de armazenamento.
@@ -156,12 +160,14 @@ image::nonasa.png[Captura de tela de um LUN ONTAP com dois caminhos ativos/otimi
 
 
 
+[[step-5-review-the-known-issues]]
 == Etapa 5: Analise os problemas conhecidos
 
 Não há problemas conhecidos.
 
 
 
+[[whats-next]]
 == O que se segue?
 
 link:hu-wuhu-configuration.html["Saiba mais sobre a configuração dos utilitários do host do Windows para armazenamento ONTAP."]

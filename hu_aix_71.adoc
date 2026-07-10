@@ -20,6 +20,7 @@ O software AIX Host Utilities fornece ferramentas de gerenciamento e diagnóstic
 
 
 
+[[step-1-optionally-enable-san-booting]]
 == Passo 1: Opcionalmente, ative a inicialização de SAN
 
 Você pode configurar seu host para usar a inicialização SAN para simplificar a implantação e melhorar a escalabilidade.  Se sua configuração não suportar inicialização SAN, você poderá usar uma inicialização local.
@@ -47,6 +48,7 @@ Execute uma inicialização local instalando o sistema operacional AIX no disco 
 ====
 
 
+[[step-2-install-the-aix-host-utilities]]
 == Etapa 2: instalar os utilitários do host AIX
 
 A NetApp recomenda fortemente a instalação do AIX Host Utilities para dar suporte ao gerenciamento de LUN do ONTAP e auxiliar o suporte técnico na coleta de dados de configuração.  O pacote MPIO do Host Utilities fornece suporte MPIO para AIX e VIOS.
@@ -58,6 +60,7 @@ link:hu_aix_61.html["Instalar o AIX Host Utilities 6.1"] .
 
 
 
+[[step-3-confirm-the-multipath-configuration-for-your-host]]
 == Etapa 3: Confirme a configuração multipath do seu host
 
 Você pode usar multipathing com um host AIX 7.1 para gerenciar LUNs ONTAP .
@@ -220,12 +223,14 @@ up      secondary  path3  fcs1    fc_aix_4        1
 
 
 
+[[step-4-review-the-known-issues]]
 == Etapa 4: Revise os problemas conhecidos
 
 A versão do AIX 7.1 com armazenamento ONTAP não apresenta problemas conhecidos.
 
 
 
+[[whats-next]]
 == O que se segue?
 
 link:hu-aix-command-reference.html["Saiba mais sobre como usar a ferramenta AIX Host Utilities"] .

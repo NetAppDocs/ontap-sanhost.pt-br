@@ -11,6 +11,7 @@ Consulte o https://docs.netapp.com/us-en/ontap/san-config/index.html["Referênci
 
 
 
+[[step-2-configure-fc-hbas-and-switches]]
 == Etapa 2: configurar HBAs e switches FC
 
 Instalar e configurar um ou mais adaptadores de barramento de host FC (HBAs) compatíveis para conexões FC ao sistema de storage.
