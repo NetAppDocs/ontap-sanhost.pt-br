@@ -2,4 +2,4 @@
 :allow-uri-read: 
 
 
-Os utilitários de host Linux ajudam você a gerenciar o armazenamento ONTAP conectado a um host Linux.  A NetApp recomenda fortemente a instalação do Linux Host Utilities, mas não é obrigatório.  Os utilitários melhoram o gerenciamento e auxiliam o suporte ao cliente da NetApp a coletar informações sobre sua configuração.
+Os utilitários do host Linux ajudam você a gerenciar o armazenamento ONTAP conectado a um host Linux. NetApp recomenda fortemente a instalação dos utilitários do host Linux, mas isso não é obrigatório. Os utilitários do host Linux melhoram o gerenciamento e auxiliam o suporte ao cliente da NetApp na coleta de informações sobre sua configuração.

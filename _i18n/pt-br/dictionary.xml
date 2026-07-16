@@ -1361,7 +1361,6 @@
   <block id="c0b79db5f258f0c991a383cbdbf001dd" category="open-title">Sincronização ativa do SnapMirror</block>
   <block id="efffdf29fb8c22b09edba3371dc2b1b8" category="inline-link-macro">Instalar o Linux Host Utilities 8.0</block>
   <block id="5f31956444f1d0bde7a1ffb325106db8" category="paragraph"><block ref="cd52b6bcf27b8c7efa7bb2cae7dba9b4" category="inline-link-macro-rx"></block> .</block>
-  <block id="3358e8b26d19a4499acfc0263dca6ce1" category="paragraph">Os utilitários de host Linux ajudam você a gerenciar o armazenamento ONTAP conectado a um host Linux.  A NetApp recomenda fortemente a instalação do Linux Host Utilities, mas não é obrigatório.  Os utilitários melhoram o gerenciamento e auxiliam o suporte ao cliente da NetApp a coletar informações sobre sua configuração.</block>
   <block id="10ca5ea421dcd3f1d3ffc993c36b7352" category="inline-link-macro">Saiba mais sobre o utilitário "sanlun"</block>
   <block id="237320d7446d5cfcc43ede01a894bf16" category="list-text"><block ref="f71314b5052c5e3bba533a90a34a7db3" category="inline-link-macro-rx"></block> .</block>
   <block id="8d0f1920f47f772db5dc821056891ae2" category="inline-link-macro">Saiba mais sobre como usar a ferramenta Solaris Host Utilities</block>
@@ -1499,7 +1498,6 @@
   <block id="b04ac3eadb66597daaa5c909511f8e43" category="summary">Descreve como usar o Linux Host Utilities 8.0 com ONTAP</block>
   <block id="8f7edc1d0af50521632d636624077c1e" category="doc">Instalar o Linux Host Utilities 8.0 para armazenamento ONTAP</block>
   <block id="0d0d3c3c60d25468f496fa9728f6a214" category="paragraph">O Linux Host Utilities 8.0 oferece suporte aos seguintes tipos de distribuição:</block>
-  <block id="fad99686a271ab31e763cc6e083d2fe1" category="paragraph">Quando você instala o Linux Host Utilities, ele não altera nenhuma configuração no seu host Linux.</block>
   <block id="98d9c0b801e9d76fa04103ad022672e4" category="list-text">Para uma operação confiável, use o<block ref="d663e2c355c00396895dd4c79ec8b92b" category="inline-link-macro-rx"></block> para verificar se sua configuração iSCSI, FC ou FCoE é suportada.</block>
   <block id="54d2be6229d60cd6144f8a215e8e77e9" category="list-text">Instale os pacotes de gerenciamento do adaptador de barramento de host (HBA) disponíveis no site de suporte do fornecedor.  O software de gestão permite que<block ref="3a8e4afa851609127d534b04e7d29c08" prefix=" " category="inline-code"></block> comandos para coletar informações sobre os FC HBAs, como seus WWPNs.</block>
   <block id="0ea3e528a268f7a469a48d5d8aae4f82" category="paragraph">Consulte a documentação do fornecedor para verificar se os seguintes pacotes estão instalados corretamente.  Esses pacotes são necessários para dar suporte ao<block ref="09a10ae06f964cc0f5c0201377e37384" prefix=" " category="inline-code"></block> comando:</block>
@@ -2415,7 +2413,6 @@
   <block id="d16989a0a7cff1ea32aab2ccb4a37161" category="admonition">Se as <block ref="24039a6c469b55da1dae1ff1197f8079" prefix=" " category="inline-code"></block>strings não coincidirem, use o comando <block ref="f7aa1d6bd51ada390168cd39c4c09b91" prefix=" " category="inline-code"></block> para atualizar a string <block ref="24039a6c469b55da1dae1ff1197f8079" prefix=" " category="inline-code"></block> no subsistema do sistema de storage ONTAP correspondente para corresponder à string <block ref="24039a6c469b55da1dae1ff1197f8079" prefix=" " category="inline-code"></block> de <block ref="7c33f184451a7567af5a5fb5f2bc7ae1" prefix=" " category="inline-code"></block> no host.</block>
   <block id="165acd219757dbbec65fbd5a24792898" category="list-text">Verifique se você está usando o firmware e o driver inbox da Broadcom recomendados:<block ref="0de495b1d3c13e53ae08556231d825b9" prefix=" " category="inline-code"></block></block>
   <block id="06bd4ba69054120ef18345db9c5cccca" category="paragraph">O NVMe/TCP não suporta a operação de conexão automática. Em vez disso, você pode descobrir os subsistemas e namespaces do NVMe/TCP executando as operações NVMe/TCP <block ref="b640a0ce465fa2a4150c36b305c1c11b" prefix=" " category="inline-code"></block> ou <block ref="d2cdac60ef2245cec13c7ecfb5c3b376" prefix=" " category="inline-code"></block> manualmente.</block>
-  <block id="fbb8c3634e390cf69c69cd1f449175c7" category="paragraph">== Etapa 5: analise os problemas conhecidos</block>
   <block id="efaa7a41c95bd26123cf738971f624b5" category="summary">Saiba mais sobre o suporte e os recursos do ONTAP para hosts Ubuntu</block>
   <block id="35408fbc8cac4acdf31c0e994b9e617f" category="cell">Versão do host Ubuntu</block>
   <block id="f079c6de48aef64f8a494cd8ba7dc4b0" category="cell">O NetApp plug-in no pacote nativo exibe detalhes do ONTAP para namespaces NVMe/FC.</block>
@@ -2504,4 +2501,7 @@
   <block id="6b9dd1af850387c3bbb1a8645b455f48" category="list-text"><block ref="6b9dd1af850387c3bbb1a8645b455f48" category="inline-link-rx"></block></block>
   <block id="5ea4a4d083b9b7faa4d73ebd6193eec3" category="sidebar">Aprenda a configurar hosts com FCP e iSCSI</block>
   <block id="46fa0acef0abce2c8d85781039d9ca0e" category="sidebar">Saiba mais sobre como configurar um host com NVMe-oF</block>
+  <block id="9d32a296d3ce5f696e1fdfdc2b0f8b87" category="paragraph">Os utilitários do host Linux ajudam você a gerenciar o armazenamento ONTAP conectado a um host Linux. NetApp recomenda fortemente a instalação dos utilitários do host Linux, mas isso não é obrigatório. Os utilitários do host Linux melhoram o gerenciamento e auxiliam o suporte ao cliente da NetApp na coleta de informações sobre sua configuração.</block>
+  <block id="83e24aa706fccba3ff4d736e0e31bf85" category="paragraph">Ao instalar o Linux Host Utilities, isso não altera nenhuma configuração ou comportamento do seu host.</block>
+  <block id="80fd4adc269a85ce0df8e3b446ebf481" category="admonition">O Linux Host Utilities tem uma dependência de instalação na biblioteca libHBAAPI.so. Você precisa instalar um dos pacotes listados acima, mesmo que um host seja destinado a uma configuração somente iSCSI. Como alternativa, você pode usar ferramentas em nível de sistema operacional para gerenciamento de LUN e caminhos.</block>
 </blocks>

@@ -16,7 +16,7 @@ summary: Descreve como usar o Linux Host Utilities 8.0 com ONTAP
 
 
 [role="lead"]
-Os utilitários de host Linux ajudam você a gerenciar o armazenamento ONTAP conectado a um host Linux.  A NetApp recomenda fortemente a instalação do Linux Host Utilities, mas não é obrigatório.  Os utilitários melhoram o gerenciamento e auxiliam o suporte ao cliente da NetApp a coletar informações sobre sua configuração.
+Os utilitários do host Linux ajudam você a gerenciar o armazenamento ONTAP conectado a um host Linux. NetApp recomenda fortemente a instalação dos utilitários do host Linux, mas isso não é obrigatório. Os utilitários do host Linux melhoram o gerenciamento e auxiliam o suporte ao cliente da NetApp na coleta de informações sobre sua configuração.
 
 O Linux Host Utilities 8.0 oferece suporte aos seguintes tipos de distribuição:
 
@@ -30,7 +30,7 @@ O Linux Host Utilities 8.0 oferece suporte aos seguintes tipos de distribuição
 NOTE: O software Linux Host Utilities não é compatível com os protocolos de host NVMe em Fibre Channel (NVMe/FC) e NVMe em TCP (NVMe/TCP).
 
 .Sobre esta tarefa
-Quando você instala o Linux Host Utilities, ele não altera nenhuma configuração no seu host Linux.
+Ao instalar o Linux Host Utilities, isso não altera nenhuma configuração ou comportamento do seu host.
 
 .Antes de começar
 * Para uma operação confiável, use olink:https://imt.netapp.com/matrix/#welcome["Ferramenta de Matriz de interoperabilidade"^] para verificar se sua configuração iSCSI, FC ou FCoE é suportada.
@@ -41,6 +41,10 @@ Consulte a documentação do fornecedor para verificar se os seguintes pacotes e
 +
 ** Marvell QLogic HBA – QConvergeConsole CLI
 ** Broadcom Emulex HBA - OneCommand Manager Core Application CLI
++
+
+NOTE: O Linux Host Utilities tem uma dependência de instalação na biblioteca libHBAAPI.so. Você precisa instalar um dos pacotes listados acima, mesmo que um host seja destinado a uma configuração somente iSCSI. Como alternativa, você pode usar ferramentas em nível de sistema operacional para gerenciamento de LUN e caminhos.
+
 
 
 
