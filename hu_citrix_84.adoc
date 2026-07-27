@@ -52,13 +52,59 @@ Você pode usar multipathing com o Citrix Xenserver 8.4 para gerenciar LUNs ONTA
 Para garantir que o multipathing esteja configurado corretamente para o host, verifique se o `/etc/multipath.conf` arquivo está definido e se você tem as configurações recomendadas do NetApp configuradas para os LUNs do ONTAP.
 
 .Passos
-. Verifique se o  `/etc/multipath.conf` arquivo existe. Se o arquivo não existir, crie um arquivo vazio de zero bytes:
+. Localize o arquivo  `/etc/multipath.conf`.
 +
+Se o arquivo de referência `/etc/multipath.conf` não contiver os parâmetros de configuração específicos do dispositivo NetApp, adicione esses parâmetros usando o seguinte arquivo personalizado `.conf drop-in`. Você pode encontrar este arquivo em `/etc/multipath/conf.d/`:
+
++
+
+NOTE: Não faça alterações no arquivo  `/etc/multipath.conf`, pois o conteúdo dele pode ser sobrescrito durante uma atualização do sistema.
+
++
+.Exibir conteúdo do arquivo
+[%collapsible]
+====
 [source, cli]
 ----
-touch /etc/multipath.conf
+$sudo tee -a /etc/multipath/conf.d/custom.conf >/dev/null <<'EOF'
+
+defaults {
+    polling_interval 5
+}
+
+blacklist {
+    wwid <Insert_LUN_wwid_string>
+    devnode "^(ram|raw|loop|fd|md|dm-|sr|scd|st)[0-9]*"
+    devnode "^hd[a-z]"
+    devnode "^cciss.*"
+}
+
+devices {
+    device {
+    vendor "NETAPP"
+    product "LUN.*"
+    user_friendly_names no
+    path_checker "tur"
+    prio "ontap"
+    detect_prio yes
+    path_grouping_policy "group_by_prio"
+    path_selector "service-time 0"
+    failback immediate
+    fast_io_fail_tmo 5
+    dev_loss_tmo infinity
+    no_path_retry queue
+    features "3 queue_if_no_path pg_init_retries 50"
+    flush_on_last_del yes
+    hardware_handler "0"
+    retain_attached_hw_handler yes
+    rr_weight uniform
+  }
+}
+
+EOF
 ----
-. Na primeira vez que o `multipath.conf` arquivo é criado, talvez seja necessário ativar e iniciar os serviços multipath para carregar as configurações recomendadas:
+====
+. Na primeira vez que você configurar multipath, talvez seja necessário ativar e iniciar os serviços de multipath para carregar as configurações recomendadas:
 +
 [source, cli]
 ----
@@ -69,7 +115,7 @@ systemctl enable multipathd
 ----
 systemctl start multipathd
 ----
-. Cada vez que você inicializar o host, o arquivo vazio de `/etc/multipath.conf` zero byte carrega automaticamente os parâmetros de multipath de host recomendados pelo NetApp como as configurações padrão. Você não deve precisar fazer alterações no `/etc/multipath.conf` arquivo para o seu host porque o sistema operacional do host é compilado com os parâmetros multipath que reconhecem e gerenciam LUNs ONTAP corretamente.
+. Cada vez que você inicializa o host, o arquivo  `/etc/multipath/conf.d/custom.conf` carrega automaticamente os parâmetros multipath recomendados pela NetApp como configurações padrão.
 +
 A tabela a seguir mostra as configurações de parâmetros multipath compilados pelo sistema operacional Linux nativo para LUNs ONTAP.
 
@@ -141,7 +187,7 @@ A tabela a seguir mostra as configurações de parâmetros multipath compilados 
 +
 [source, cli]
 ----
-/sbin/mpathutil list
+/sbin/mpathutil status
 ----
 +
 Os parâmetros multipath padrão suportam configurações ASA, AFF e FAS . Nessas configurações, um único LUN ONTAP não deve exigir mais de quatro caminhos. Ter mais de quatro caminhos pode causar problemas durante uma falha de armazenamento.
@@ -205,7 +251,7 @@ size=9.0G features='4 queue_if_no_path pg_init_retries 50 retain_attached_hw_han
 [[step-3-optionally-exclude-a-device-from-multipathing]]
 == Etapa 3: opcionalmente, exclua um dispositivo do multipathing
 
-Se necessário, você pode excluir um dispositivo de multipathing adicionando o WWID para o dispositivo indesejado à estrofe "lista negra" para o `multipath.conf` arquivo.
+Caso necessário, você pode excluir um dispositivo do multipathing adicionando o WWID do dispositivo indesejado à seção "blacklist" para o arquivo  `/etc/multipath/conf.d/custom.conf`.
 
 .Passos
 . Determine o WWID:
@@ -225,7 +271,7 @@ Um exemplo WWID é `360030057024d0730239134810c0cb833`.
 [source, cli]
 ----
 blacklist {
-	     wwid   360030057024d0730239134810c0cb833
+        wwid   360030057024d0730239134810c0cb833
         devnode "^(ram|raw|loop|fd|md|dm-|sr|scd|st)[0-9]*"
         devnode "^hd[a-z]"
         devnode "^cciss.*"
@@ -238,14 +284,12 @@ blacklist {
 [[step-4-customize-multipath-parameters-for-ontap-luns]]
 == Etapa 4: personalizar parâmetros multicaminho para LUNs ONTAP
 
-Se o seu host estiver conetado a LUNs de outros fornecedores e qualquer configuração de parâmetro multipath for substituída, você precisará corrigi-los adicionando estrofes posteriormente `multipath.conf` no arquivo que se aplicam especificamente aos LUNs ONTAP. Se você não fizer isso, os LUNs do ONTAP podem não funcionar como esperado.
-
-Verifique o `/etc/multipath.conf` arquivo, especialmente na seção padrões, para configurações que possam estar substituindo o <<multipath-parameter-settings,configurações padrão para parâmetros multipath>>.
+Se o seu host estiver conectado a LUNs de outros fornecedores e qualquer uma das configurações de parâmetros de multipath estiver sobrescrita, você precisa corrigi-las modificando as seções no arquivo  `/etc/multipath/conf.d/custom.conf` que se aplicam especificamente às LUNs do ONTAP. Você deve rolar o arquivo para baixo para adicionar essas seções. Se você não corrigir os parâmetros, as LUNs do ONTAP podem não funcionar como esperado.
 
 
 CAUTION: Não deve substituir as definições de parâmetros recomendadas para LUNs ONTAP. Essas configurações são necessárias para o desempenho ideal da configuração do seu host. Entre em Contato com o suporte da NetApp, seu fornecedor de sistemas operacionais ou ambos para obter mais informações.
 
-O exemplo a seguir mostra como corrigir um padrão substituído. Neste exemplo, o `multipath.conf` arquivo define valores para `path_checker` e `no_path_retry` que não são compatíveis com LUNs ONTAP, e você não pode remover esses parâmetros porque os storages ONTAP ainda estão conetados ao host. Em vez disso, você corrige os valores `path_checker` de e `no_path_retry` adicionando uma estrofe de dispositivo ao `multipath.conf` arquivo que se aplica especificamente aos LUNs ONTAP.
+O exemplo a seguir mostra como corrigir um valor padrão sobrescrito. Neste exemplo, o  `custom.conf drop-in` arquivo define valores para  `path_checker` e  `no_path_retry` que não são compatíveis com ONTAP LUNs, e você não pode remover esses parâmetros porque os arrays de armazenamento ONTAP ainda estão conectados ao host. Em vez disso, você corrige os valores de  `path_checker` e  `no_path_retry` adicionando uma seção de dispositivo ao  `custom.conf drop-in` arquivo que se aplica especificamente aos ONTAP LUNs.
 
 .Mostrar exemplo
 [%collapsible]

@@ -360,7 +360,7 @@ blacklist {
 [[step-5-customize-multipath-parameters-for-ontap-luns]]
 == Etapa 5: Personalizar parâmetros multipath para LUNs ONTAP
 
-Se o seu host estiver conetado a LUNs de outros fornecedores e qualquer configuração de parâmetro multipath for substituída, você precisará corrigi-los adicionando estrofes posteriormente `multipath.conf` no arquivo que se aplicam especificamente aos LUNs ONTAP. Se você não fizer isso, os LUNs do ONTAP podem não funcionar como esperado.
+Se o seu host estiver conectado a LUNs de outros fornecedores e qualquer uma das configurações de parâmetros de multipath tiver sido sobrescrita, você precisa corrigi-las adicionando trechos no arquivo  `multipath.conf` que se aplicam especificamente às LUNs do ONTAP. Você deve rolar o arquivo para baixo para adicionar esses trechos. Se você não corrigir os parâmetros, as LUNs do ONTAP podem não funcionar como esperado.
 
 Verifique o `/etc/multipath.conf` arquivo, especialmente na seção padrões, para configurações que possam estar substituindo o <<multipath-parameter-settings,configurações padrão para parâmetros multipath>>.
 
