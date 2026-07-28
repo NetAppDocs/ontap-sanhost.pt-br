@@ -57,7 +57,7 @@ devices {
 EOF
 ----
 ====
-. Na primeira vez que você configurar multipath, talvez seja necessário ativar e iniciar os serviços de multipath para carregar as configurações recomendadas:
+. Na primeira vez que você configurar o multipath, talvez seja necessário ativar e iniciar os serviços de multipath para carregar as configurações recomendadas:
 +
 [source, cli]
 ----

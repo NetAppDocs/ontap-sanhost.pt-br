@@ -139,21 +139,82 @@ Dependendo da configuração da sua SAN, o host usa configurações ASA, AFF ou 
 Os exemplos de saída a seguir mostram as configurações corretas para LUNs ONTAP em uma configuração ASA, AFF ou FAS .
 
 +
+
+NOTE: A política MPIO recomendada é Round Robin com Subset.
+
++
 [role="tabbed-block"]
 ====
 .Configuração ASA
 --
 Uma configuração ASA deve ter um grupo de caminhos Ativos/Otimizados com prioridades únicas.  O controlador gerencia os caminhos e envia comandos de E/S em todos os caminhos ativos.
 
+.Mostrar exemplo de CLI
+[%collapsible]
+=====
+[listing]
+----
+MPIO Disk13: 04 Paths, Round Robin with Subset, Symmetric Access
+    Controlling DSM: Microsoft DSM
+    SN: 600A09803831397A545D586E362D2F54
+    Supported Load Balance Policies: FOO RR RRWS LQD WP LB
+
+    Path ID          State              SCSI Address      Weight
+    -------------------------------------------------------------
+    0000000077060001 Active/Optimized   006|000|001|013   0
+      TPG_State : Active/Optimized  , TPG_Id: 1001, : 4
+
+    0000000077060000 Active/Optimized   006|000|000|013   0
+      TPG_State : Active/Optimized  , TPG_Id: 1000, : 2
+
+    0000000077050001 Active/Optimized   005|000|001|013   0
+      TPG_State : Active/Optimized  , TPG_Id: 1001, : 3
+
+    0000000077050000 Active/Optimized   005|000|000|013   0
+      TPG_State : Active/Optimized  , TPG_Id: 1000, : 1
+----
+=====
+.Mostrar exemplo de interface do usuário
+[%collapsible]
+=====
 image::asa.png[Captura de tela do LUN ONTAP com caminhos ativos/otimizados]
 
+=====
 --
 .Configuração AFF ou FAS
 --
 Uma configuração AFF ou FAS deve ter dois grupos de caminhos com prioridades diferentes.  Os caminhos com maior prioridade são Ativos/Otimizados e são gerenciados pelo controlador onde o agregado está localizado.  Os caminhos com prioridades mais baixas são atendidos por um controlador diferente.  Eles estão ativos, mas não otimizados, e só são usados ​​quando caminhos otimizados não estão disponíveis.
 
+.Mostrar exemplo de CLI
+[%collapsible]
+=====
+[listing]
+----
+MPIO Disk0: 04 Paths, Round Robin with Subset, Implicit Only
+    Controlling DSM: Microsoft DSM
+    SN: 600A0980383136724D5D546931437933
+    Supported Load Balance Policies: FOO RRWS LQD WP LB
+    Path ID          State              SCSI Address      Weight
+    -------------------------------------------------------------
+    0000000077010001 Active/Optimized   001|000|001|000   0
+      TPG_State : Active/Optimized  , TPG_Id: 1000, : 2
+
+    0000000077010000 Active/Unoptimized 001|000|000|000   0
+      TPG_State : Active/Unoptimized, TPG_Id: 1001, : 4
+
+    0000000077000001 Active/Unoptimized 000|000|001|000   0
+      TPG_State : Active/Unoptimized, TPG_Id: 1001, : 3
+
+    0000000077000000 Active/Optimized   000|000|000|000   0
+      TPG_State : Active/Optimized  , TPG_Id: 1000, : 1
+----
+=====
+.Mostrar exemplo de interface do usuário
+[%collapsible]
+=====
 image::nonasa.png[Captura de tela de um LUN ONTAP com dois caminhos ativos/otimizados e dois caminhos ativos/não otimizados]
 
+=====
 --
 ====
 
