@@ -37,7 +37,7 @@ libnvme-1.11.1-1.el10.x86_64
 cat /etc/nvme/hostnqn
 ----
 +
-O exemplo a seguir mostra um  `hostnqn` versão:
+O exemplo a seguir mostra um `hostnqn` valor:
 
 +
 [listing]

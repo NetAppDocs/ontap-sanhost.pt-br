@@ -98,7 +98,7 @@ libnvme-1.13-1.el10.x86_64
 cat /etc/nvme/hostnqn
 ----
 +
-O exemplo a seguir mostra um  `hostnqn` versão:
+O exemplo a seguir mostra um `hostnqn` valor:
 
 +
 [listing]
@@ -554,7 +554,7 @@ ACTION=="add", SUBSYSTEM=="nvme-subsystem", ATTR{subsystype}=="nvm", ATTR{model}
 udevadm control --reload
 udevadm trigger --subsystem-match=nvme-subsystem
 ----
-. Verifique a política de E/S atual para o seu subsistema.  Substitua <subsistema>, por exemplo, `nvme-subsys0` .
+. Verifique a política de iopolicy atual para o seu subsistema:
 +
 [source, cli]
 ----

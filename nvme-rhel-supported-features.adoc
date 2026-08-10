@@ -23,6 +23,11 @@ Os recursos suportados para configuração de host com NVMe over Fabrics (NVMe-o
 | Recurso | versão do host RHEL | Versão ONTAP 
 
 
+| NVMe/FC e NVMe/TCP relatam todos os caminhos otimizados em sistemas ASA r2  a| 
+9.0 ou posterior
+| 9.16.1 ou posterior 
+
+
 | A autenticação segura em banda é suportada via NVMe/TCP entre um host RHEL e um controlador ONTAP.  a| 
 9.3 ou posterior
 | 9.12.1 ou posterior 

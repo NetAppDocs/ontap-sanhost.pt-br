@@ -23,7 +23,7 @@ Os recursos suportados para configuração de host com NVMe over Fabrics (NVMe-o
 | Recurso | versão do host SUSE Linux Enterprise Server | Versão ONTAP 
 
 
-| NVMe/TCP reporta todos os caminhos otimizados para sistemas ASA r2  a| 
+| NVMe/FC e NVMe/TCP relatam todos os caminhos otimizados em sistemas ASA r2  a| 
 16
 | 9.16.1 ou posterior 
 

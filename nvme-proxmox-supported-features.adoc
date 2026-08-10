@@ -23,6 +23,11 @@ Os recursos suportados para configuração de host com NVMe over Fabrics (NVMe-o
 | Recurso ONTAP | versão do host Proxmox | Versão ONTAP 
 
 
+| NVMe/FC e NVMe/TCP relatam todos os caminhos otimizados em sistemas ASA r2  a| 
+9.0 ou posterior
+| 9.16.1 ou posterior 
+
+
 | NVMe/TCP é um recurso empresarial totalmente suportado.  a| 
 9.0 ou posterior
 | 9.10.1 ou posterior 

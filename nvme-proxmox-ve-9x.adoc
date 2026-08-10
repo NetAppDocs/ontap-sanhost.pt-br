@@ -448,7 +448,7 @@ ACTION=="add", SUBSYSTEM=="nvme-subsystem", ATTR{subsystype}=="nvm", ATTR{model}
 udevadm control --reload
 udevadm trigger --subsystem-match=nvme-subsystem
 ----
-. Verifique a política de iopolicy atual do seu subsistema. Substitua <subsystem> pelo nome do seu subsistema, por exemplo, nvme-subsys0.
+. Verifique a política de iopolicy atual para o seu subsistema:
 +
 [source, cli]
 ----

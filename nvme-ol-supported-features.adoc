@@ -23,6 +23,11 @@ Os recursos suportados para configuração de host com NVMe over Fabrics (NVMe-o
 | Recurso | versão do host Oracle Linux | Versão ONTAP 
 
 
+| NVMe/FC e NVMe/TCP relatam todos os caminhos otimizados em sistemas ASA r2  a| 
+9.0 ou posterior
+| 9.16.1 ou posterior 
+
+
 | A partir do Oracle Linux 9.6, nvme suporta a política de i/o "queue-depth" e está habilitado como opção padrão.  a| 
 9.6 ou posterior
 | 9.10.1 ou posterior 
