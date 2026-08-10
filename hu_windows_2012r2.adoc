@@ -226,9 +226,5 @@ image::nonasa.png[Captura de tela de um LUN ONTAP com dois caminhos ativos/otimi
 
 Não há problemas conhecidos.
 
-
-
-[[whats-next]]
-== O que se segue?
-
+.O que vem a seguir
 link:hu-wuhu-configuration.html["Saiba mais sobre a configuração dos utilitários do host do Windows para armazenamento ONTAP."]

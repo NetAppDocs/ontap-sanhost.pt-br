@@ -153,9 +153,5 @@ PdAt:
 ====
 
 
-
-
-[[whats-next]]
-== O que se segue?
-
+.O que vem a seguir
 link:hu-aix-san-toolkit.html["Saiba mais sobre o AIX SAN Toolkit"] .

@@ -121,7 +121,7 @@ Para obter informações adicionais e alterações recomendadas nas configuraç�
 --
 ** As opções de virtualização do Solaris incluem Domínios Lógicos Solaris (também chamados de LDOMs ou Oracle VM Server para SPARC), Domínios Dinâmicos Solaris, Zonas Solaris e Contêineres Solaris.  Essas tecnologias também são chamadas de "Máquinas Virtuais Oracle".
 ** Você pode usar várias opções juntas, por exemplo, um Contêiner Solaris dentro de um Domínio Lógico Solaris específico.
-** A NetApp oferece suporte ao uso de tecnologias de virtualização Solaris, onde a configuração geral é suportada pela Oracle e qualquer partição com acesso direto a LUNs é listada nolink:https://imt.netapp.com/matrix/#welcome["IMT"] em uma configuração suportada.  Isso inclui contêineres raiz, domínios de E/S LDOM e LDOM usando NPIV para acessar LUNs.
+** NetApp suporta o uso das tecnologias de virtualização Solaris quando a configuração geral é suportada pela Oracle e qualquer partição com acesso direto a LUNs está listada na link:https://imt.netapp.com/matrix/#welcome["IMT"^] em uma configuração suportada. Isso inclui contêineres raiz, domínios de E/S LDOM e LDOM usando NPIV para acessar LUNs.
 ** Partições ou máquinas virtuais que usam apenas recursos de armazenamento virtualizados, como um `vdsk` , não precisam de qualificações específicas porque não têm acesso direto aos LUNs do ONTAP .  Você só precisa verificar se a partição ou máquina virtual que tem acesso direto ao LUN subjacente, como um domínio de E/S LDOM, está listada nolink:https://imt.netapp.com/matrix/#welcome["IMT"^] .
 
 
@@ -204,7 +204,7 @@ NOTE: Depois `scsi-vhci-failover-override` de ter sido aplicado, `conf` é adici
 +
 [source, cli]
 ----
-pkg info entire`
+pkg info entire
 ----
 .. Verifique se o ONTAP LUN possui `ostype` como "Solaris", independente do tamanho do LUN:
 +
@@ -256,7 +256,7 @@ root@sparc-s7-55-148:~# sanlun lun show -pv
 +
 [source, cli]
 ----
-mpathadm show lu <LUN>`
+mpathadm show lu <LUN>
 ----
 +
 Os exemplos de saída a seguir mostram o status correto do caminho para LUNs ONTAP em uma configuração ASA, AFF ou FAS .  As prioridades do caminho são exibidas em "Estado de acesso" para cada LUN na saída.
@@ -445,9 +445,5 @@ A versão Solaris 11.4 para FCP e iSCSI com armazenamento ONTAP tem os seguintes
 
 | link:https://mysupport.netapp.com/site/bugs-online/product/HOSTUTILITIES/1345622["1345622"^] | Relatórios de caminho anormais em hosts Solaris com ASA/PPorts usando comandos nativos do sistema operacional | Problemas de relatórios de caminho intermitentes são notados no Solaris 11,4 com todas as matrizes SAN (ASA). | Não aplicável 
 |===
-
-
-[[whats-next]]
-== O que se segue?
-
+.O que vem a seguir
 link:hu-solaris-command-reference.html["Saiba mais sobre como usar a ferramenta Solaris Host Utilities"] .

@@ -40,9 +40,5 @@ Este kit de ferramentas SAN é comum a todas as configurações e protocolos do 
 O SAN Toolkit é compatível com versões de sistema operacional AIX e PowerVM/VIOS.
 
 ====
-
-
-[[whats-next]]
-== O que se segue?
-
+.O que vem a seguir
 link:hu_hpux_60_cmd.html["Saiba mais sobre como usar a ferramenta HP-UX Host Utilities"] .

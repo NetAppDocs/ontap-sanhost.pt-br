@@ -162,9 +162,5 @@ NOTE: Para ver as opções padrão do Microsoft Installer (MSI) para Registro e 
 
 --
 ====
-
-
-[[whats-next]]
-== O que se segue?
-
+.O que vem a seguir
 link:hu-wuhu-configuration.html["Saiba mais sobre a configuração dos utilitários do host do Windows para armazenamento ONTAP."]

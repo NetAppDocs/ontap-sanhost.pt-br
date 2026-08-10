@@ -396,11 +396,7 @@ devices {
 
 Não há problemas conhecidos.
 
-
-
-[[whats-next]]
-== O que se segue?
-
+.O que vem a seguir
 * link:hu-luhu-command-reference.html["Saiba mais sobre como usar a ferramenta Linux Host Utilities"] .
 * Configurar os data stores HPE VME nos LUNs ONTAP, depois configurar a máquina virtual. Consulte a documentação do fornecedor HPE para mais informações.
 

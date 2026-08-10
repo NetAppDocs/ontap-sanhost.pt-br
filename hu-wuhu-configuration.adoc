@@ -35,7 +35,7 @@ O instalador define valores diferentes quando você especifica o suporte ao Micr
 
 [NOTE]
 ====
-Você precisa alterar o valor do parâmetro LimTransferSize após instalar o Windows Host Utilities 7.2. Ver <<nvme_parameter,Parâmetros NVME>> .
+Você precisa alterar o valor do parâmetro LimTransferSize após instalar o Windows Host Utilities 7.2. Consulte <<nvme-parameter,Parâmetros NVME>>.
 
 Para todos os outros parâmetros e chaves de registro do Windows Host Utilities 8.0, 7.2 ou 7.1, você não precisa alterar os valores, a menos que o suporte técnico o recomende.
 
@@ -162,7 +162,7 @@ O Windows Host Utilities 8.0 atualiza os seguintes parâmetros do driver NVMe Em
 
 O instalador do Windows Host Utilities define automaticamente os valores do registro do Windows e os parâmetros do HBA iSCSI e NVMe com base nas opções selecionadas durante a instalação. Analise esses valores e a versão do sistema operacional.
 
-[#nvme_parameter,role="tabbed-block"]
+[#nvme-parameter,role="tabbed-block"]
 ====
 .Valores do registro do Windows
 --
@@ -467,7 +467,7 @@ O Windows Host Utilities define valores para os seguintes parâmetros se o MS DS
 Ao solucionar problemas com o HBA, verifique se essas configurações possuem os valores corretos. Os valores corretos dependem de dois fatores:
 
 * O fornecedor HBA
-* Se você estiver usando o software MPIO.
+* Se você estiver usando o software MPIO
 
 
 Você pode corrigir as configurações do HBA porlink:hu_wuhu_repair_remove.html["executando a opção Reparar"] no instalador do Windows Host Utilities.

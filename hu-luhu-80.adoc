@@ -135,11 +135,7 @@ sanlun version 8.0.386.1644
 ----
 
 
-
-
-[[whats-next]]
-== O que se segue?
-
+.O que vem a seguir
 * Configurações de driver recomendadas com kernel Linux
 +
 Quando você configura um ambiente FC que usa drivers de caixa de entrada nativos que são empacotados com o kernel Linux, você pode usar os valores padrão para os drivers.

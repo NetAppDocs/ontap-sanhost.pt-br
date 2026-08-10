@@ -96,9 +96,5 @@ Make sure the package installing the library is installed & loaded` Consulte Net
 |===
 link:https://mysupport.netapp.com/site/bugs-online/product["NetApp Bugs Online"^] fornece informações completas para a maioria dos problemas conhecidos, incluindo soluções alternativas sugeridas sempre que possível.
 
-
-
-[[whats-next]]
-== O que vem a seguir
-
+.O que vem a seguir
 link:hu-luhu-80.html["Aprenda sobre a instalação do Linux Host Utilities"]

@@ -178,9 +178,5 @@ A versão HP-UX 11i v3 com armazenamento ONTAP apresenta os seguintes problemas 
 
 | 1306354 | A criação HP-UX LVM envia e/S de tamanho de bloco acima de 1MB | O comprimento máximo de transferência de SCSI de 1 MB é aplicado no ONTAP All SAN Array. Para restringir o comprimento máximo de transferência de hosts HP-UX quando conetado a ONTAP All SAN Array, é necessário definir o tamanho máximo de e/S permitido pelo subsistema HP-UX SCSI para 1 MB. Consulte a documentação do fornecedor HP-UX para obter detalhes. | NA 
 |===
-
-
-[[whats-next]]
-== O que vem a seguir
-
+.O que vem a seguir
 link:hu_hpux_60_cmd.html["Saiba mais sobre como usar a ferramenta HP-UX Host Utilities"] .

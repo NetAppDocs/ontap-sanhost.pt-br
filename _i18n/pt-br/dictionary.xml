@@ -184,11 +184,8 @@
   <block id="11f09804b54aa2c55c142764b2502d82" category="paragraph">O seguinte é um exemplo de uso do utilitário dotpaths:</block>
   <block id="cebcd1a5ff2049be4533aaf6b185029d" category="summary">Notas de versão para AIX Host Utilities 6,1</block>
   <block id="8bcfee74cc2c8be35dd3adbc80bfb29a" category="doc">AIX Host Utilities Notas de lançamento</block>
-  <block id="5cbce7f0ea158500dcff175373e3cbcf" category="paragraph">As notas de versão descrevem novos recursos e aprimoramentos, problemas corrigidos na versão atual, problemas e limitações conhecidos e precauções importantes relacionadas à configuração e gerenciamento de seu host AIX específico com seu sistema de armazenamento ONTAP.</block>
-  <block id="33871b6190a8d5adbe8b15282054766c" category="section-title">O que há de novo</block>
   <block id="6919ca52878e24946a6a73aa37f083ee" category="list-text">O AIX Host Utilities 7,0 suporta O DESBLOQUEIO SCSI no sistema operacional do host AIX. Com os utilitários de host AIX 7,0, o provisionamento de thin SCSI funciona perfeitamente com LUNs AIX e NetApp para dispositivos FC.</block>
   <block id="2813f127dc58929fb553bc32684c2e46" category="section-title">Problemas e limitações conhecidos</block>
-  <block id="d79264094c58a09021a5a2a80dcf4328" category="paragraph">Você deve estar ciente dos seguintes problemas conhecidos e limitações que podem afetar o desempenho em seu host específico.</block>
   <block id="b066ca6122c9857ad1ee3a44f18cc5e7" category="cell">ID do bug</block>
   <block id="382b0f5185773fa0f67a8ed8056c7759" category="cell">N/A.</block>
   <block id="6f60d2b701807f15296111f9ab2ce1c3" category="cell">O AIX Host Utilities 7,0 suporta apenas o recurso DE DESINSTALAÇÃO SCSI para dispositivos FC. O suporte DE DESBLOQUEIO SCSI para dispositivos iSCSI não está incluído nesta versão.</block>
@@ -783,8 +780,6 @@
   <block id="e59f05c9149caf590d63da27c24797cb" category="inline-link-macro">Suporte ao VMware vSphere 6.x e 7.x com o NetApp SnapMirror ative Sync</block>
   <block id="7ff276d19a76a720d17e3dcf4d050ee3" category="summary">Você pode configurar o NVMe sobre Fabrics (NVMe-of) em hosts iniciadores que executam o ESXi 8.x e o ONTAP como destino.</block>
   <block id="c719ab5e5b2a188adebd62c0829a9f96" category="doc">Configuração de host NVMe-of para ESXi 8.x com ONTAP</block>
-  <block id="53b4135529508b3c01c35cf73dca64d0" category="list-text">A partir do ONTAP 9.10,1, o protocolo NVMe/TCP é compatível com ONTAP.</block>
-  <block id="7237142305a120be2bd65985f2ef736c" category="list-text">A partir do ONTAP 9.9,1 P3, o protocolo NVMe/FC é compatível com ESXi 8 e posterior.</block>
   <block id="7c1c1c55c2c606a3cf3259643b78a017" category="list-text">Os hosts iniciadores do ESXi podem executar o tráfego NVMe/FC e FCP nas mesmas portas do adaptador. Consulte o <block ref="d46722d88b0f3e3641b7ffb0d0a65333" category="inline-link-macro-rx"></block> para obter uma lista de controladores e adaptadores FC compatíveis. Consulte a <block ref="aaa18d9ccb38f09094f0c241a8585efd" category="inline-link-macro-rx"></block> para obter a lista mais atual de configurações e versões suportadas.</block>
   <block id="d202ecba0de538b2ab3f4e53f0191f53" category="list-text">Para ESXi 8,0 e versões posteriores, o HPP (plugin de alto desempenho) é o plug-in padrão para dispositivos NVMe.</block>
   <block id="b1d7de4d8d51704fba7a0c0f12c2c299" category="list-text">O mapeamento RDM não é suportado.</block>
@@ -936,7 +931,6 @@
   <block id="2ba8ced675fff51092484e241860c46e" category="paragraph">O<block ref="273d5cd3ecc9b9ccde8aa81942ced2f2" prefix=" " category="inline-code"></block> comando produz o seguinte tipo de saída. A saída no exemplo a seguir é truncada.</block>
   <block id="adcc6b5e38256f637746539b3d3cb7b3" category="paragraph">O driver nativo da caixa de entrada qla2xxx incluído no kernel do Ubuntu 22,04 GA tem as correções upstream mais recentes. Essas correções são essenciais para o suporte ao ONTAP.</block>
   <block id="587b796170a9abac4701cd8aa1bb38cb" category="listing-title">Exemplo de saída</block>
-  <block id="8b6a5845688d81720a1016c10aa9e843" category="list-text">A partir da alocação de espaço ONTAP 9.16,1 é ativada por padrão para todos os namespaces NVMe recém-criados.</block>
   <block id="0c48e7c4bbc87e64bef6a0afca5676b3" category="paragraph">O valor esperado é 0.</block>
   <block id="e63e68670f6caa57aae357d60e7ea92c" category="paragraph"><block ref="5fb81999d6f54088d56d3a83b7e45bb2" prefix="" category="inline-code"></block></block>
   <block id="7b4c45ceb018e94a23feffc876757fd9" category="paragraph">O valor esperado é 1.</block>
@@ -1025,7 +1019,6 @@
   <block id="4ca4b3d2d4df168b4ccd9c3ed42aacb7" category="list-text">Se sua configuração não suportar ALUA, você precisa usar o utilitário dotpaths para definir as prioridades do caminho. O utilitário dotpaths é instalado quando você instala os Utilitários do host. Não use o utilitário dotpaths se o ALUA estiver habilitado.</block>
   <block id="536030c2a43ef2d08d5779cf13416e11" category="list-text">Para definir a prioridade para todos os LUNs ONTAP, introduza:</block>
   <block id="8b047d84ff88fe8413922711a8a6b88e" category="paragraph">Para obter informações específicas sobre as versões e atualizações do sistema operacional compatíveis com os Utilitários do host, consulte <block ref="d663e2c355c00396895dd4c79ec8b92b" category="inline-link-macro-rx"></block>.</block>
-  <block id="65e17e3635aff4a06545ebdec876d723" category="paragraph">As versões do AIX Host Utilities contêm os seguintes novos recursos e aprimoramentos:</block>
   <block id="3a7c6e3d017877edeea93359d3fe1527" category="list-text">AIX Host Utilities 6,1 inclui suporte para o problema de falha de memória que ocorreu em versões anteriores do sistema operacional host AIX. Com AIX Host Utilities 6,1, apenas o binário sanlun mudou. O Microsoft Multipath I/o (MPIO) e o ODM relacionado permanecem inalterados.</block>
   <block id="2a372b892113e198dff50fad53f7c8cf" category="cell">O SCSI DESMAPEIA o suporte para LUNs iSCSI ONTAP</block>
   <block id="ad8a44c5166ba0f4232aef9400e09e61" category="cell">O comprimento máximo de transferência de SCSI de 1 MB é aplicado no ONTAP All SAN Array. Para restringir o comprimento máximo de transferência de hosts HP-UX quando conetado a ONTAP All SAN Array, é necessário definir o tamanho máximo de e/S permitido pelo subsistema HP-UX SCSI para 1 MB. Consulte a documentação do fornecedor HP-UX para obter detalhes.</block>
@@ -1222,7 +1215,6 @@
   <block id="5c74c157af6548045320136db7e14e99" category="doc">Instale os utilitários de host HP-UX 6,0 para armazenamento ONTAP</block>
   <block id="999228127327d5abbf22fcd7674b2b9e" category="section-title">Etapa 3: Confirme a configuração multipath do seu host</block>
   <block id="8c17d9c0a4a49ae4d62efebd1ab80463" category="section-title">Passo 6: Revise os problemas conhecidos</block>
-  <block id="58eaebf972358f1cf03d386a4ade1a0f" category="section-title">O que se segue?</block>
   <block id="d29ad9efbcae6053e82420f1cc871c51" category="paragraph">Para obter informações detalhadas sobre o provisionamento e o gerenciamento de vVols, consulte as ferramentas do ONTAP para a documentação do VMware vSphere, bem<block ref="c45840700e4ab6d55371aa3a3251b306" category="inline-link-rx"></block> como e <block ref="506dc68919d50d1567e18d25faf7ae58" category="inline-link-macro-rx"></block>.</block>
   <block id="764c3360f3f7d6cb07c2ff1a79f2cf58" category="paragraph">Para obter informações detalhadas sobre o provisionamento e o gerenciamento de vVols, consulte as ferramentas do ONTAP para a documentação do VMware vSphere, bem <block ref="11b7981a4bc487d4291cc9a0614db625" category="inline-link-macro-rx"></block>como e <block ref="506dc68919d50d1567e18d25faf7ae58" category="inline-link-macro-rx"></block>.</block>
   <block id="d04eb85f6d5ba5f0fcd2c894dea16fe5" category="paragraph">Para obter informações detalhadas sobre o provisionamento e o gerenciamento de vVols, consulte as ferramentas do ONTAP para a documentação do VMware vSphere, <block ref="11b7981a4bc487d4291cc9a0614db625" category="inline-link-macro-rx"></block>e <block ref="506dc68919d50d1567e18d25faf7ae58" category="inline-link-macro-rx"></block>.</block>
@@ -1328,7 +1320,6 @@
   <block id="e74cde91767e734e99cfb172af811316" category="paragraph">Os exemplos de saída a seguir mostram o status correto do caminho para LUNs ONTAP em uma configuração ASA, AFF ou FAS .</block>
   <block id="9376575465ca90697f172c2aeaf3187c" category="paragraph">Uma configuração ASA otimiza todos os caminhos para um determinado LUN, mantendo-os ativos ("primários").  Isso melhora o desempenho ao atender operações de E/S por todos os caminhos ao mesmo tempo.</block>
   <block id="9dd1e4b7a8e96791578f9515cdfeb564" category="paragraph">O exemplo a seguir exibe a saída correta para um LUN ONTAP com dois caminhos ativos/otimizados ("primários") e dois caminhos ativos/não otimizados ("secundários"):</block>
-  <block id="3f297ef15cde0668e93b35f2752fd4fd" category="doc">O que vem a seguir?</block>
   <block id="e299e7fd1c6381a6c7fcac9a828fd25a" category="inline-link-macro">Saiba mais sobre como usar a ferramenta AIX Host Utilities</block>
   <block id="03ea706883bb6caab71c2b449fed7e79" category="paragraph"><block ref="62e681160c8e8c0a8a6639c5a7efeaf1" category="inline-link-macro-rx"></block> .</block>
   <block id="807db967063af5a57e4bd6d406117c45" category="paragraph">Você pode configurar seu host para usar a inicialização SAN para simplificar a implantação e melhorar a escalabilidade.  Se sua configuração não suportar inicialização SAN, você poderá usar uma inicialização local.</block>
@@ -1374,7 +1365,6 @@
   <block id="7a5aeaf8595e6c9f25eba82c59c5ab69" category="list-text">As opções de virtualização do Solaris incluem Domínios Lógicos Solaris (também chamados de LDOMs ou Oracle VM Server para SPARC), Domínios Dinâmicos Solaris, Zonas Solaris e Contêineres Solaris.  Essas tecnologias também são chamadas de "Máquinas Virtuais Oracle".</block>
   <block id="5b0999bdd29511cd69bf4dd133ff0c63" category="list-text">Você pode usar várias opções juntas, por exemplo, um Contêiner Solaris dentro de um Domínio Lógico Solaris específico.</block>
   <block id="c5dcd35af16918a17ee9c3a5c153f0af" category="inline-link-macro">IMT</block>
-  <block id="cc8893c8f0542112ca80fb5db23d7462" category="list-text">A NetApp oferece suporte ao uso de tecnologias de virtualização Solaris, onde a configuração geral é suportada pela Oracle e qualquer partição com acesso direto a LUNs é listada no<block ref="f2ace9f0e4933191bdebca35fac63081" category="inline-link-macro-rx"></block> em uma configuração suportada.  Isso inclui contêineres raiz, domínios de E/S LDOM e LDOM usando NPIV para acessar LUNs.</block>
   <block id="ad9dc8e53a80162116da2029c2d76fef" category="list-text">Partições ou máquinas virtuais que usam apenas recursos de armazenamento virtualizados, como um<block ref="dd1b72ccf817859175e584ec8bd92247" prefix=" " category="inline-code"></block> , não precisam de qualificações específicas porque não têm acesso direto aos LUNs do ONTAP .  Você só precisa verificar se a partição ou máquina virtual que tem acesso direto ao LUN subjacente, como um domínio de E/S LDOM, está listada no<block ref="60b6cb8e2c630f624cf99dafa0404aa7" category="inline-link-macro-rx"></block> .</block>
   <block id="8ba8e82da6ec8196b50c9e5973ee8374" category="paragraph">Quando LUNs são usados como dispositivos de disco virtual dentro de um LDOM, a origem do LUN é mascarada pela virtualização e o LDOM não detecta corretamente os tamanhos dos blocos.  Para evitar esse problema:</block>
   <block id="5777b6718f54bda044be003223397377" category="list-text">Corrigir o sistema operacional LDOM para o _Oracle Bug 15824910_</block>
@@ -1502,13 +1492,11 @@
   <block id="509349566982f99a656299d84be158b8" category="summary">Notas de versão para utilitários de host Linux</block>
   <block id="cfdc7e76ebdc6ad4a2ed2fe7838b63ff" category="doc">Notas de versão dos utilitários de host Linux</block>
   <block id="71fa685aca55c417ddf8783ea80b9e9d" category="paragraph">As notas de versão descrevem novos recursos, melhorias, problemas corrigidos, problemas conhecidos, limitações e cuidados importantes para configurar e gerenciar seu host específico com seu sistema de armazenamento ONTAP .</block>
-  <block id="7d58c905ee6ec02029a4b8f235dfc14d" category="section-title">Novidades no Linux Host Utilities 8.0</block>
   <block id="475b4872fd854efca8d6a832dd0672ab" category="paragraph">A versão 8.0 do Linux Host Utilities contém os seguintes novos recursos e melhorias</block>
   <block id="75ea0ef4107d3eebbf536bd7a414bfbb" category="paragraph">O Linux Host Utilities 8.0 inclui suporte para adaptadores de barramento de host (HBA) QLogic e Emulex FC de 64 bits.</block>
   <block id="7a19e51272fb4c5eacf3c88353d929c1" category="paragraph">Os seguintes sistemas operacionais são suportados:</block>
   <block id="b8ab8c3a49fd02a709e35ce73c494665" category="list-text">Red Hat Enterprise Linux (RHEL) séries 9 e 8</block>
   <block id="234105b5cc619cc0716ea8f0c1d701f4" category="list-text">Oracle Linux série 9 e 8</block>
-  <block id="39f38abeb7798b8080630e92279dafce" category="section-title">Novidades no Linux Host Utilities 7.1</block>
   <block id="f317130310d196ffb6cb3c4e596e152e" category="list-text">KVM e XEN, RHEV 6.5 e 6.4</block>
   <block id="06070b7982853bae8702983f209f6439" category="list-text">Oracle Linux série 7 e 6</block>
   <block id="b4662103d6ad12beba27dd61eada3441" category="list-text">Série RHEL 7 e 6</block>
@@ -1585,7 +1573,6 @@
   <block id="232aef9fc6bd219e5e42efc637ae382a" category="cell">Utilitários de host Solaris 8.0</block>
   <block id="2a10cb6c1480dd0c903a6a2f3352e4c2" category="cell">A versão 8.0 do Solaris Host Utilities suporta apenas o Solaris 11.4 com plataformas SPARC e x86.  Para o Solaris 11.3 e versões anteriores, você precisa usar o Solaris Host Utilities 6.2.</block>
   <block id="0f01862e42b00b0465d7160eca1d2587" category="cell">Solaris 11.4</block>
-  <block id="39e884c2c1f24e34ff9cda59393d0677" category="paragraph">+<block ref="355b22d66d025f6de0a19431aae0f536" category="inline-link-macro-rx"></block> fornece informações completas para a maioria dos problemas conhecidos, incluindo soluções alternativas sugeridas sempre que possível.  Algumas combinações de palavras-chave e tipos de bugs que você pode querer usar incluem o seguinte:</block>
   <block id="fc61cee2d0e65bb3c86b381005cec4d8" category="admonition">Este kit de ferramentas é comum a todas as configurações e protocolos do Host Utilities.  Como resultado, todos os componentes não se aplicam a todas as configurações.  Componentes não utilizados não afetam o desempenho do sistema.</block>
   <block id="2249e72138dc74b7dfcc843db71d1449" category="summary">O Windows Host Utilities inclui um programa de instalação que define os parâmetros necessários do registro do Windows e do HBA para que o host do Windows manipule corretamente os comportamentos do sistema de armazenamento para plataformas ONTAP .</block>
   <block id="0f888ac55960dcac896f93b8f0037793" category="doc">Instalar o Windows Host Utilities 8.0 para armazenamento ONTAP</block>
@@ -1681,7 +1668,6 @@
   <block id="50b0de549390e9fd0aff72d2cc76922d" category="paragraph">Instale o pacote de software Host Utilities interativamente executando o programa de instalação do Host Utilities e seguindo as instruções.</block>
   <block id="d539640f2a8ad84ff2b6b210b3c82a8b" category="doc">Instalar o Windows Host Utilities 7.2 para armazenamento ONTAP</block>
   <block id="80fecb40ffb39e22d2139bf9886132bc" category="inline-xref">Parâmetros NVME</block>
-  <block id="40bd27b40d44b862091d49e4f0538774" category="paragraph">Você precisa alterar o valor do parâmetro LimTransferSize após instalar o Windows Host Utilities 7.2. Ver <block ref="f34264ec923664aedfb2a9ccd6257931" category="inline-xref-macro-rx"></block> .</block>
   <block id="05371652e7984167bbb3f85201a5b89b" category="paragraph">Para todos os outros parâmetros e chaves de registro do Windows Host Utilities 8.0, 7.2 ou 7.1, você não precisa alterar os valores, a menos que o suporte técnico o recomende.</block>
   <block id="071b3c301587fc461b5b5db6056fea64" category="cell">Quando o suporte MPIO é especificado e seu servidor é Windows Server 2025, 2022, 2019 ou 2016</block>
   <block id="213770055804b675ffe14467be7be594" category="cell">Quando seu servidor for Windows Server 2025, 2022, 2019 ou 2016</block>
@@ -1689,7 +1675,6 @@
   <block id="20aac534719ebb4b8d33960d910552ae" category="section-title">Saiba mais sobre as alterações do Host Utilities nas configurações do driver FC HBA</block>
   <block id="290855c6daac5448d222f3c661f749fb" category="list-text">*LinkTimeOut*: define o tempo em segundos que a porta do host aguarda antes de retomar a E/S após um link físico estar inativo.</block>
   <block id="9e02085844efecca4159003505f0e34a" category="list-text">*NodeTimeOut*: define o tempo em segundos antes que a porta do host reconheça que uma conexão com o dispositivo de destino está inativa.</block>
-  <block id="31544e277536e777e9c3f798fd5e0913" category="list-text">Se você estiver usando o software MPIO.</block>
   <block id="62c6d5921cc25fa2fecef7c94356c189" category="inline-link-macro">executando a opção Reparar</block>
   <block id="7eaaf936e50fb533dab6ae4ba3b589bc" category="paragraph">Você pode corrigir as configurações do HBA por<block ref="262b15737127f72127997ad6784b0e26" category="inline-link-macro-rx"></block> no instalador do Windows Host Utilities.</block>
   <block id="623dcbddc542817cdcdf36e9ce6846ce" category="list-text">Selecione o HBA apropriado na lista e selecione a aba *Parâmetros do Driver*.</block>
@@ -2532,4 +2517,13 @@
   <block id="b74c1a6422fd773c6a4cf77ef14675ae" category="cell">A política de E/S padrão para NVMe-oF está definida como queue-depth</block>
   <block id="86c05a1fbdedf558f48b1ce3a99d9fe8" category="inline-link-macro">Configurando NVMe para Ubuntu 26.04</block>
   <block id="20f16eb182c0a9b085c8193d16ef0fb3" category="cell"><block ref="20f16eb182c0a9b085c8193d16ef0fb3" category="inline-link-macro-rx"></block></block>
+  <block id="ed8e051a49611c288afb480ce73d605d" category="list-text">NetApp suporta o uso das tecnologias de virtualização Solaris quando a configuração geral é suportada pela Oracle e qualquer partição com acesso direto a LUNs está listada na <block ref="60b6cb8e2c630f624cf99dafa0404aa7" category="inline-link-macro-rx"></block> em uma configuração suportada. Isso inclui contêineres raiz, domínios de E/S LDOM e LDOM usando NPIV para acessar LUNs.</block>
+  <block id="0048a12413609133ed4f3ca29bf0024a" category="section-title">Novidades no Linux Host Utilities 8.0</block>
+  <block id="6c9c1ae20d4741183e62db33bcf45d49" category="section-title">Novidades no Linux Host Utilities 7.1</block>
+  <block id="4af9cfdb8fa2a5afc040af3eb77660bd" category="paragraph">Você precisa alterar o valor do parâmetro LimTransferSize após instalar o Windows Host Utilities 7.2. Consulte <block ref="dc46e8bfbb9f77d795c66139839b2373" category="inline-xref-macro-rx"></block>.</block>
+  <block id="ec931df4ed265dbeb58635743fb2c8a1" category="list-text">Se você estiver usando o software MPIO</block>
+  <block id="ccc5200a41ac281136e85915742ee943" category="summary">Instale os utilitários do host Linux em um host Ubuntu 22.04 para gerenciar operações de protocolo FCP e iSCSI com LUNs ONTAP.</block>
+  <block id="9227e9de01a4a3312d8274d2e61e478c" category="list-text">A partir do ONTAP 9.16.1, a alocação é habilitada por padrão para todos os namespaces NVMe recém-criados.</block>
+  <block id="a75717feaa22af7bffd985baebeb5c22" category="list-text">A partir do ONTAP 9.9.1 P3, o protocolo NVMe/FC é suportado para o ESXi 8.</block>
+  <block id="f6615e8535f35dd305084ea2894bfa16" category="list-text">A partir da ONTAP 9.10.1, o protocolo NVMe/TCP é compatível com a ONTAP.</block>
 </blocks>

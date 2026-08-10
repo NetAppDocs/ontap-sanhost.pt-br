@@ -464,11 +464,7 @@ O RHEL 8.x com armazenamento ONTAP apresenta os seguintes problemas conhecidos.
 |===
 --
 ====
-
-
-[[whats-next]]
-== O que se segue?
-
+.O que vem a seguir
 * link:hu-luhu-command-reference.html["Saiba mais sobre como usar a ferramenta Linux Host Utilities"] .
 * Saiba mais sobre espelhamento ASM
 +
