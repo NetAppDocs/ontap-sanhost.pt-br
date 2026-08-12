@@ -2520,10 +2520,11 @@
   <block id="ed8e051a49611c288afb480ce73d605d" category="list-text">NetApp suporta o uso das tecnologias de virtualização Solaris quando a configuração geral é suportada pela Oracle e qualquer partição com acesso direto a LUNs está listada na <block ref="60b6cb8e2c630f624cf99dafa0404aa7" category="inline-link-macro-rx"></block> em uma configuração suportada. Isso inclui contêineres raiz, domínios de E/S LDOM e LDOM usando NPIV para acessar LUNs.</block>
   <block id="0048a12413609133ed4f3ca29bf0024a" category="section-title">Novidades no Linux Host Utilities 8.0</block>
   <block id="6c9c1ae20d4741183e62db33bcf45d49" category="section-title">Novidades no Linux Host Utilities 7.1</block>
-  <block id="4af9cfdb8fa2a5afc040af3eb77660bd" category="paragraph">Você precisa alterar o valor do parâmetro LimTransferSize após instalar o Windows Host Utilities 7.2. Consulte <block ref="dc46e8bfbb9f77d795c66139839b2373" category="inline-xref-macro-rx"></block>.</block>
   <block id="ec931df4ed265dbeb58635743fb2c8a1" category="list-text">Se você estiver usando o software MPIO</block>
   <block id="ccc5200a41ac281136e85915742ee943" category="summary">Instale os utilitários do host Linux em um host Ubuntu 22.04 para gerenciar operações de protocolo FCP e iSCSI com LUNs ONTAP.</block>
   <block id="9227e9de01a4a3312d8274d2e61e478c" category="list-text">A partir do ONTAP 9.16.1, a alocação é habilitada por padrão para todos os namespaces NVMe recém-criados.</block>
   <block id="a75717feaa22af7bffd985baebeb5c22" category="list-text">A partir do ONTAP 9.9.1 P3, o protocolo NVMe/FC é suportado para o ESXi 8.</block>
   <block id="f6615e8535f35dd305084ea2894bfa16" category="list-text">A partir da ONTAP 9.10.1, o protocolo NVMe/TCP é compatível com a ONTAP.</block>
+  <block id="06980ca83225c81b8134c0b467016286" category="paragraph">Você precisa alterar o valor do parâmetro LimTransferSize após instalar o Windows Host Utilities 7.2. Consulte <block ref="62303d561309e8cf89d2be92987f3150" category="inline-xref-macro-rx"></block>.</block>
+  <block id="6a79af20a523a4fc84d19fee8187b203" category="paragraph">[[parameter-72]]O instalador do Windows Host Utilities define automaticamente os valores do registro do Windows e os parâmetros do HBA iSCSI e NVMe com base nas opções que você escolher durante a instalação. Revise esses valores e a versão do sistema operacional.</block>
 </blocks>
