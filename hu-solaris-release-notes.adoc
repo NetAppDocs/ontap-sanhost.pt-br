@@ -4,7 +4,7 @@ permalink: hu-solaris-release-notes.html
 keywords: Host Utilities, solaris, 6.2, 8.0, netapp, ontap 
 summary: Notas de versão do Solaris Host Utilities. 
 ---
-= Notas de versão dos utilitários de host do Solaris
+= Notas de versão do Solaris Host Utilities para o storage ONTAP
 :hardbreaks:
 :toclevels: 1
 :allow-uri-read: 

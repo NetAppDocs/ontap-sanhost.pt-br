@@ -4,7 +4,7 @@ permalink: hu_hpux_60_cmd.html
 keywords: host utilities, unified, oracle, hp-ux, 6.0, netapp, ontap 
 summary: Descreve como usar os utilitários de host HP-UX 6.0 com o ONTAP. 
 ---
-= Use os comandos do HP-UX Host Utilities para verificar a configuração de armazenamento ONTAP
+= Comandos do HP-UX Host Utilities para a configuração de storage do ONTAP
 :hardbreaks:
 :toclevels: 1
 :allow-uri-read: 

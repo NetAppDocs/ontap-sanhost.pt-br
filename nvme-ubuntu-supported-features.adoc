@@ -4,7 +4,7 @@ permalink: nvme-ubuntu-supported-features.html
 keywords: nvme, linux, ubuntu, red hat, enterprise 
 summary: Saiba mais sobre o suporte e os recursos do ONTAP para hosts Ubuntu 
 ---
-= Saiba mais sobre o suporte e os recursos do ONTAP para hosts Ubuntu
+= Suporte e recursos do ONTAP para hosts Ubuntu
 :hardbreaks:
 :toclevels: 1
 :allow-uri-read: 

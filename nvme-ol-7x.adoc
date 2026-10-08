@@ -4,7 +4,7 @@ permalink: nvme-ol-7x.html
 keywords: nvme, linux, oracle, 7.x 
 summary: Configuração de host VMe/FC para Oracle Linux 7.x com ONTAP, com exemplos. 
 ---
-= Configure o Oracle Linux 7.x com NVMe-oF para armazenamento ONTAP.
+= Configurar o Oracle Linux 7.x para NVMe-oF com storage ONTAP
 :hardbreaks:
 :toclevels: 1
 :allow-uri-read: 

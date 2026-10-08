@@ -4,7 +4,7 @@ permalink: nvme-proxmox-supported-features.html
 keywords: nvme, proxmox, enterprise 
 summary: Saiba mais sobre o suporte e os recursos do ONTAP para hosts Proxmox. 
 ---
-= Saiba mais sobre o suporte e os recursos do ONTAP para hosts Proxmox.
+= Suporte e recursos do ONTAP para hosts Proxmox
 :hardbreaks:
 :toclevels: 1
 :allow-uri-read: 

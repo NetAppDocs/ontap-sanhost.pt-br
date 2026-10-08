@@ -4,7 +4,7 @@ permalink: hu-wuhu-configuration.html
 keywords: windows, host, utilities, 7.1, hba, fibre, channel, SANtricity, netapp, san, host, e-series, platform 
 summary: Os Utilitários de host do Windows incluem um programa de instalação que define os parâmetros necessários do Registro do Windows e do HBA para que o host do Windows manipule corretamente os comportamentos do sistema de storage para plataformas ONTAP e e-Series. 
 ---
-= Analise a configuração dos Utilitários de Host do Windows para armazenamento ONTAP.
+= Configuração do Windows Host Utilities para storage do ONTAP
 :toc: macro
 :hardbreaks:
 :toclevels: 1

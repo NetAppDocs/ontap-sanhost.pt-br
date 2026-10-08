@@ -4,7 +4,7 @@ permalink: hu-hpux-release-notes.html
 keywords: host utilities, hpux, 6.0, netapp, ontap, release, notes 
 summary: Notas de versão para HPUX Host Utilities 6,0 
 ---
-= Notas de versão dos utilitários de host HP-UX
+= Notas de versão dos utilitários de host HP-UX para o storage ONTAP
 :hardbreaks:
 :toclevels: 1
 :allow-uri-read: 

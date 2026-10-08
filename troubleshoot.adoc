@@ -4,7 +4,7 @@ permalink: troubleshoot.html
 keywords: host utilities, veritas, infoscale, 8.x, netapp, ontap, vmware, vspehere 
 summary: Você pode configurar as configurações de host SAN ONTAP para a versão do VMware vSphere 8.x com protocolos FC, FCoE e iSCSI. 
 ---
-= Solução de problemas de armazenamento NVMe-oF com ONTAP para utilitários de host Linux
+= Solução de problemas de NVMe-oF com storage ONTAP em hosts Linux
 :hardbreaks:
 :toclevels: 1
 :allow-uri-read: 

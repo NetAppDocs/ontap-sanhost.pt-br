@@ -4,7 +4,7 @@ permalink: hu-wuhu-release-notes.html
 keywords: host utilities, linux, 7.1, 7.2, netapp, ontap, release, notes 
 summary: Notas de versão para Utilitários de sistema anfitrião do Windows 
 ---
-= Notas de lançamento dos Utilitários do sistema anfitrião do Windows
+= Notas de versão dos utilitários de host do Windows para o storage ONTAP
 :hardbreaks:
 :toclevels: 1
 :allow-uri-read: 
