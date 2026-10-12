@@ -77,6 +77,8 @@ Uma configuração ASA deve ter um grupo de caminhos Ativos/Otimizados com prior
 =====
 [listing]
 ----
+C:\TOOLS>mpclaim -s -d 13
+
 MPIO Disk13: 04 Paths, Round Robin with Subset, Symmetric Access
     Controlling DSM: Microsoft DSM
     SN: 600A09803831397A545D586E362D2F54
@@ -113,6 +115,8 @@ Uma configuração AFF ou FAS deve ter dois grupos de caminhos com prioridades d
 =====
 [listing]
 ----
+C:\Windows\system32>mpclaim -s -d 0
+
 MPIO Disk0: 04 Paths, Round Robin with Subset, Implicit Only
     Controlling DSM: Microsoft DSM
     SN: 600A0980383136724D5D546931437933
