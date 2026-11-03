@@ -2534,4 +2534,6 @@
   <block id="108d95e5dc2ef949553c9a0fafc69b42" category="sidebar">Saiba mais sobre o SAN Tollkit</block>
   <block id="99d9fff5cb102bc1af76475056d30628" category="sidebar">Aprenda sobre a configuração de FCP e iSCSI</block>
   <block id="2577436e0a1529b400f7af13bf054dd3" category="sidebar">Saiba mais sobre a configuração de NVMe-oF</block>
+  <block id="e00f09f4cda9392c891c49988b80edc8" category="sidebar">SLES-FCP</block>
+  <block id="8becbe3ee64db6f436bf244fb25c7f57" category="sidebar">SLES-NVMe</block>
 </blocks>
