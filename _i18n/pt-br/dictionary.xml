@@ -2536,4 +2536,9 @@
   <block id="2577436e0a1529b400f7af13bf054dd3" category="sidebar">Saiba mais sobre a configuração de NVMe-oF</block>
   <block id="e00f09f4cda9392c891c49988b80edc8" category="sidebar">SLES-FCP</block>
   <block id="8becbe3ee64db6f436bf244fb25c7f57" category="sidebar">SLES-NVMe</block>
+  <block id="b69bffb1a1f55594751fbc58f7abb114" category="summary">Configure o Citrix Xenserver 9.0 para multipathing com parâmetros e configurações específicos para operações dos protocolos FCP e iSCSI com o armazenamento ONTAP.</block>
+  <block id="f52d84b92b78c6dad322e059e6943904" category="doc">Configure o Citrix Xenserver 9.0 para FCP e iSCSI com o armazenamento ONTAP</block>
+  <block id="aa6f72aa4dad8dc14f65a49c7b60982a" category="paragraph">Você pode usar o recurso de multipathing com o Citrix Xenserver 9.0 para gerenciar as LUNs do ONTAP.</block>
+  <block id="3f6d8773170dd1c73493c97ee36bb40a" category="paragraph">Uma configuração de AFF ou FAS deve ter dois grupos de caminhos com prioridades mais altas e mais baixas. Os caminhos Active/Optimized de prioridade mais alta são atendidos pelo controlador onde o agregado está localizado. Os caminhos de prioridade mais baixa estão ativos, mas não otimizados, pois são atendidos por um controlador diferente. Os caminhos não otimizados são usados somente quando os caminhos otimizados não estão disponíveis.</block>
+  <block id="1d5076606adf1177c26a3f206e21498e" category="sidebar">O Xenserver 9.0</block>
 </blocks>
