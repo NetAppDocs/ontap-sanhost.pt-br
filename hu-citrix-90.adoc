@@ -1,10 +1,10 @@
 ---
 sidebar: sidebar 
 permalink: hu-citrix-90.html 
-keywords: host utilities, citrix, Xenserver, 9 series, netapp, ontap, san, boot 
-summary: Configure o Citrix Xenserver 9.0 para multipathing com parâmetros e configurações específicos para operações dos protocolos FCP e iSCSI com o armazenamento ONTAP. 
+keywords: host utilities, citrix, XenServer, 9 series, netapp, ontap, san, boot 
+summary: Configure o Citrix XenServer 9.0 para multipathing com parâmetros e configurações específicos para operações de protocolo FCP e iSCSI com o armazenamento ONTAP. 
 ---
-= Configure o Citrix Xenserver 9.0 para FCP e iSCSI com o armazenamento ONTAP
+= Configure o Citrix XenServer 9.0 para FCP e iSCSI com armazenamento ONTAP
 :hardbreaks:
 :toclevels: 1
 :allow-uri-read: 
@@ -16,11 +16,11 @@ summary: Configure o Citrix Xenserver 9.0 para multipathing com parâmetros e co
 
 
 [role="lead"]
-Configure o Citrix Xenserver 9.0 para multipathing com parâmetros e configurações específicos para operações dos protocolos FCP e iSCSI com o armazenamento ONTAP.
+Configure o Citrix XenServer 9.0 para multipathing com parâmetros e configurações específicos para operações de protocolo FCP e iSCSI com o armazenamento ONTAP.
 
 [NOTE]
 ====
-O pacote de software Linux Host Utilities não oferece suporte aos sistemas operacionais Citrix Xenserver.
+O pacote de software Linux Host Utilities não é compatível com os sistemas operacionais Citrix XenServer.
 
 ====
 
@@ -47,7 +47,7 @@ Para obter informações sobre como ativar o BIOS HBA, consulte a documentação
 [[step-2-confirm-the-multipath-configuration-for-your-host]]
 == Etapa 2: confirme a configuração multipath para seu host
 
-Você pode usar o recurso de multipathing com o Citrix Xenserver 9.0 para gerenciar as LUNs do ONTAP.
+Você pode usar multipathing com o Citrix XenServer 9.0 para gerenciar LUNs do ONTAP.
 
 Para garantir que o multipathing esteja configurado corretamente para o host, verifique se o `/etc/multipath.conf` arquivo está definido e se você tem as configurações recomendadas do NetApp configuradas para os LUNs do ONTAP.
 

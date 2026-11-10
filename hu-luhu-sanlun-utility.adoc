@@ -44,7 +44,7 @@ Para o Linux Host Utilities 8.0, o utilitário "sanlun" não é compatível com 
 --
 .7,1
 --
-Para o Linux Host Utilities 7.1, o utilitário "sanlun" não é compatível com Citrix Xenserver, Red Hat Enterprise Virtualization e Proxmox.
+Para o Linux Host Utilities 7.1, o utilitário "sanlun" não é compatível com Citrix XenServer, Red hat Enterprise Virtualization e Proxmox.
 
 --
 ====
