@@ -41,7 +41,7 @@ sidebar:
         url: "/hu_hpux_60.html"
       - title: Saiba mais sobre o SAN Toolkit
         url: "/hu-hpux-sanlun-toolkit.html"
-      - title: Saiba mais sobre a referência de comando do HP-UX
+      - title: Referência de comandos do HP-UX
         url: "/hu_hpux_60_cmd.html"
     - title: Utilitários de host Linux
       entries:
@@ -69,7 +69,7 @@ sidebar:
           url: "/hu_solaris_62.html"
       - title: Saiba mais sobre o SAN Toolkit
         url: "/hu-solaris-san-toolkit.html"
-      - title: Saiba mais sobre a referência de comando do Solaris
+      - title: Referência de comandos do Solaris
         url: "/hu-solaris-command-reference.html"
     - title: Utilitários de host do Windows
       entries:
